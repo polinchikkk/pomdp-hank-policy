@@ -4,20 +4,24 @@ Belief-state policy design under regime uncertainty in a HANK model: comparison 
 
 ## Current Scope
 
-The repository now contains a completed stage-1 baseline: a small, reproducible RBC pipeline that serves as the sanity-check layer before moving to NK, hidden-state, and RL blocks.
+The repository now contains two completed baseline stages.
 
-Implemented in stage 1:
+Stage 1:
 
-- formal RBC model with a persistent technology shock;
-- deterministic steady state;
-- first-order local solution around the steady state via generalized Schur / QZ decomposition;
-- stochastic simulation from synthetic shocks;
-- IRF construction;
-- external `gensys` IRF cross-check;
-- residual-based sanity checks;
-- generated figures and a short technical note.
+- RBC sanity-check environment;
+- QZ/generalized-Schur solution;
+- simulation and IRF;
+- external `gensys` IRF cross-check.
 
-Not implemented yet:
+Stage 2:
+
+- small linear New Keynesian policy model;
+- Taylor-rule monetary policy environment;
+- QZ/generalized-Schur solution with BK checks;
+- demand, cost-push, and monetary-shock IRF;
+- simulated paths and determinacy map over `(\phi_pi, \phi_x)`.
+
+Still not implemented:
 
 - hidden states;
 - Kalman filtering;
@@ -26,9 +30,9 @@ Not implemented yet:
 - HANK blocks;
 - real data.
 
-## Model
+## Stage 1 Model
 
-The baseline model is a standard RBC economy with technology shock `z_t`:
+The stage-1 baseline is a standard RBC economy with technology shock `z_t`:
 
 - Euler equation:
   `1 / c_t = beta E_t[(1 / c_(t+1)) (alpha exp(z_(t+1)) k_(t+1)^(alpha-1) n_(t+1)^(1-alpha) + 1 - delta)]`
@@ -41,31 +45,37 @@ The baseline model is a standard RBC economy with technology shock `z_t`:
 - Shock process:
   `z_(t+1) = rho z_t + sigma epsilon_(t+1)`
 
-State variables:
+## Stage 2 Model
 
-- log deviation of capital from steady state;
-- current technology state `z_t`.
+The stage-2 baseline is a small linear New Keynesian policy model:
 
-Control variables:
-
-- log deviation of consumption from steady state;
-- log deviation of labor from steady state.
+- IS curve:
+  `x_t = E_t[x_(t+1)] - (1 / sigma) * (i_t - E_t[pi_(t+1)] - r_t^n)`
+- New Keynesian Phillips curve:
+  `pi_t = beta * E_t[pi_(t+1)] + kappa * x_t + u_t`
+- Taylor rule:
+  `i_t = phi_pi * pi_t + phi_x * x_t + nu_t`
+- Shock laws:
+  `r_(t+1)^n = rho_r * r_t^n + sigma_r * eps_(t+1)^r`
+  `u_(t+1) = rho_u * u_t + sigma_u * eps_(t+1)^u`
+  `nu_(t+1) = rho_nu * nu_t + sigma_nu * eps_(t+1)^nu`
 
 ## Quick Start
 
-Install dependencies and run the full stage-1 pipeline:
+Install dependencies and run either baseline:
 
 ```bash
 python3 -m pip install -r requirements.txt
 python3 scripts/run_stage1.py
+python3 scripts/run_stage2.py
 ```
 
-By default this writes all outputs into `outputs/stage1`.
+By default these write outputs into `outputs/stage1` and `outputs/stage2`.
 The first benchmark run also downloads `dsge==0.1.3` into the user cache to load an external `gensys` implementation for IRF comparison.
 
 ## Generated Artifacts
 
-After running the pipeline you will find:
+Stage 1 outputs:
 
 - `outputs/stage1/steady_state.json`
 - `outputs/stage1/solution.json`
@@ -82,7 +92,28 @@ After running the pipeline you will find:
 - `outputs/stage1/figures/irf.png`
 - `outputs/stage1/figures/irf_qz_vs_gensys.png`
 
-The concise human-written note for stage 1 is in `docs/stage1_note.md`.
+Stage 2 outputs:
+
+- `outputs/stage2/model_spec.json`
+- `outputs/stage2/solution.json`
+- `outputs/stage2/irf_demand.csv`
+- `outputs/stage2/irf_costpush.csv`
+- `outputs/stage2/irf_monetary.csv`
+- `outputs/stage2/simulated_paths.csv`
+- `outputs/stage2/determinacy_map.csv`
+- `outputs/stage2/diagnostics_summary.json`
+- `outputs/stage2/stage2_report.md`
+- `outputs/stage2/figures/irf_demand.png`
+- `outputs/stage2/figures/irf_demand_shocks.png`
+- `outputs/stage2/figures/irf_costpush.png`
+- `outputs/stage2/figures/irf_costpush_shocks.png`
+- `outputs/stage2/figures/irf_monetary.png`
+- `outputs/stage2/figures/irf_monetary_shocks.png`
+- `outputs/stage2/figures/simulated_paths.png`
+- `outputs/stage2/figures/simulated_shocks.png`
+- `outputs/stage2/figures/determinacy_map.png`
+
+The concise human-written note for stage 1 is in `docs/stage1_note.md`. The generated stage-2 report is `outputs/stage2/stage2_report.md`.
 
 ## Repository Layout
 
@@ -90,9 +121,13 @@ The concise human-written note for stage 1 is in `docs/stage1_note.md`.
 - `rbc_baseline/solver.py`: QZ/generalized-Schur solver for the linear policy system with Blanchard-Kahn checks.
 - `rbc_baseline/benchmark.py`: external `gensys` benchmark loader and IRF comparison utilities.
 - `rbc_baseline/pipeline.py`: simulation, IRF, diagnostics, plots, and artifact export.
+- `nk_baseline/model.py`: small linear NK policy model specification.
+- `nk_baseline/solver.py`: QZ/generalized-Schur NK solver and determinacy diagnostics.
+- `nk_baseline/pipeline.py`: stage-2 IRF, simulation, determinacy-map, and report pipeline.
 - `scripts/run_stage1.py`: one-command entry point for the full baseline run.
+- `scripts/run_stage2.py`: one-command entry point for the stage-2 NK baseline.
 - `docs/stage1_note.md`: short technical note for the baseline stage.
 
-## Transition To Stage 2
+## Transition To Stage 3
 
-Stage 2 should build on this infrastructure by replacing the simple RBC block with a small New Keynesian environment and then extending the state representation toward hidden-state and policy-design problems.
+The next stage should add hidden states and partial observability on top of the stage-2 NK policy environment, and only after that move to rule-based versus learning-based policy comparison.

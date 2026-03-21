@@ -1,0 +1,48 @@
+{
+  "control_variables": [
+    "x",
+    "pi",
+    "i"
+  ],
+  "equations": [
+    "x_t = E_t[x_{t+1}] - (1/sigma) * (i_t - E_t[pi_{t+1}] - r_t^n)",
+    "pi_t = beta * E_t[pi_{t+1}] + kappa * x_t + u_t",
+    "i_t = phi_pi * pi_t + phi_x * x_t + nu_t",
+    "r^n_{t+1} = rho_r * r^n_t + sigma_r * eps^r_{t+1}",
+    "u_{t+1} = rho_u * u_t + sigma_u * eps^u_{t+1}",
+    "nu_{t+1} = rho_nu * nu_t + sigma_nu * eps^nu_{t+1}"
+  ],
+  "linearization_point": {
+    "i": 0.0,
+    "nu": 0.0,
+    "pi": 0.0,
+    "r_n": 0.0,
+    "u": 0.0,
+    "x": 0.0
+  },
+  "model_name": "small_linear_new_keynesian_policy_baseline",
+  "parameters": {
+    "beta": 0.99,
+    "kappa": 0.1,
+    "phi_pi": 1.5,
+    "phi_x": 0.5,
+    "rho_nu": 0.5,
+    "rho_r": 0.8,
+    "rho_u": 0.5,
+    "sigma": 1.0,
+    "sigma_nu": 0.0025,
+    "sigma_r": 0.01,
+    "sigma_u": 0.01
+  },
+  "policy_rule": "i_t = phi_pi * pi_t + phi_x * x_t + nu_t",
+  "shock_names": [
+    "demand",
+    "costpush",
+    "monetary"
+  ],
+  "state_variables": [
+    "r_n",
+    "u",
+    "nu"
+  ]
+}
