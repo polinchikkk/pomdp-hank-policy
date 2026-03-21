@@ -1,0 +1,56 @@
+{
+  "bk_condition_satisfied": true,
+  "generalized_eigenvalues": [
+    {
+      "imag": 0.0,
+      "is_infinite": false,
+      "real": 0.9575162738441922
+    },
+    {
+      "imag": 0.0,
+      "is_infinite": false,
+      "real": 0.95
+    },
+    {
+      "imag": null,
+      "is_infinite": true,
+      "real": null
+    },
+    {
+      "imag": 0.0,
+      "is_infinite": false,
+      "real": 1.0549178511303328
+    }
+  ],
+  "infinite_root_count": 1,
+  "invariant_block_condition_number": 1.10567034897645,
+  "policy_matrix": [
+    [
+      0.5837056654868281,
+      0.3644365047720226
+    ],
+    [
+      -0.1644894598759634,
+      0.4673260993533538
+    ]
+  ],
+  "residual_norm": 2.55351295663786e-15,
+  "roots_outside_unit_circle_count": 1,
+  "shock_vector": [
+    0.0,
+    0.01
+  ],
+  "solver_name": "generalized_schur_qz",
+  "spectral_radius": 0.9575162738441922,
+  "stable_root_count": 2,
+  "transition_matrix": [
+    [
+      0.9575162738441922,
+      0.10024212452170407
+    ],
+    [
+      0.0,
+      0.95
+    ]
+  ]
+}

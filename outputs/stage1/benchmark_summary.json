@@ -1,0 +1,13 @@
+{
+  "existence": true,
+  "max_abs_diff": 3.5093455919010808e-15,
+  "rc": [
+    1,
+    1
+  ],
+  "rms_diff": 1.0725360119592078e-15,
+  "source_file": "dsge/gensys.py",
+  "source_package": "dsge",
+  "source_version": "0.1.3",
+  "uniqueness": true
+}

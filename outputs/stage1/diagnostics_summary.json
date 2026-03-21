@@ -1,0 +1,80 @@
+{
+  "bk_condition_satisfied": true,
+  "burn_in": 80,
+  "external_gensys_benchmark": {
+    "existence": true,
+    "max_abs_diff": 3.5093455919010808e-15,
+    "rc": [
+      1,
+      1
+    ],
+    "rms_diff": 1.0725360119592078e-15,
+    "source_file": "dsge/gensys.py",
+    "source_package": "dsge",
+    "source_version": "0.1.3",
+    "uniqueness": true
+  },
+  "impact_irf_signs": {
+    "consumption_positive": true,
+    "investment_positive": true,
+    "labor_positive": true,
+    "output_positive": true
+  },
+  "infinite_root_count": 1,
+  "invariant_block_condition_number": 1.10567034897645,
+  "irf_horizon": 24,
+  "linear_solution_residual_max": 2.55351295663786e-15,
+  "max_abs_conditional_residual": 0.0029559282958722117,
+  "max_abs_conditional_residuals": {
+    "capital_accumulation_residual": 0.0029559282958722117,
+    "euler_residual": 9.994074444768891e-05,
+    "labor_residual": 1.6070700326054066e-11,
+    "technology_law_residual": 1.5800182528271712e-18
+  },
+  "mean_conditional_residuals": {
+    "capital_accumulation_residual": -0.0004225476864064603,
+    "euler_residual": -2.2284746549727316e-05,
+    "labor_residual": -8.42696283124648e-13,
+    "technology_law_residual": -1.879601003666907e-20
+  },
+  "rms_conditional_residual": 0.00036012047076631174,
+  "roots_outside_unit_circle_count": 1,
+  "runtime_seconds": 0.4521817080094479,
+  "seed_stability": [
+    {
+      "finite_paths": true,
+      "max_abs_residual": 0.003390147149374911,
+      "max_abs_state_deviation": 0.09214074200689584,
+      "seed": 0
+    },
+    {
+      "finite_paths": true,
+      "max_abs_residual": 0.0022510610547925585,
+      "max_abs_state_deviation": 0.10974069824632844,
+      "seed": 1
+    },
+    {
+      "finite_paths": true,
+      "max_abs_residual": 0.002678828753262863,
+      "max_abs_state_deviation": 0.1039555886179935,
+      "seed": 2
+    },
+    {
+      "finite_paths": true,
+      "max_abs_residual": 0.003982658708686415,
+      "max_abs_state_deviation": 0.09032683560528887,
+      "seed": 3
+    },
+    {
+      "finite_paths": true,
+      "max_abs_residual": 0.003715673837943356,
+      "max_abs_state_deviation": 0.11662733054594418,
+      "seed": 4
+    }
+  ],
+  "simulation_periods": 240,
+  "simulation_seed": 42,
+  "solver_name": "generalized_schur_qz",
+  "spectral_radius": 0.9575162738441922,
+  "stable_root_count": 2
+}
