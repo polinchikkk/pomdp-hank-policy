@@ -1,141 +1,94 @@
 # pomdp-hank-policy
 
-Исследовательский проект о построении экономической политики при неполной наблюдаемости и режимной неопределенности в макроэкономических моделях.  
-Цель проекта: перейти от классического пайплайна к более гибкой постановке, в которой политика строится на основе belief state и в дальнейшем может быть реализована с использованием learning-based подходов.
+Исследовательский проект о построении экономической политики при неполной наблюдаемости и режимной неопределенности в макроэкономических моделях.
+
+Цель проекта: пройти путь от простого воспроизводимого DSGE baseline к policy-среде с hidden states, а затем перейти к belief-state policy и learning-based подходам.
 
 ## Логика проекта
 
-<<<<<<< HEAD
-1. **Baseline на простой модели**  
-   Проверка вычислений на стандартной RBC-модели.
+1. **Этап 1. RBC baseline**
+   Проверка вычислительной инфраструктуры на простой модели: решение, симуляция, IRF и базовые sanity checks.
 
-2. **Переход к новокейнсианской среде**  
-   Добавление policy block и постановки задачи экономической политики.
+2. **Этап 2. Новокейнсианская policy-среда**
+   Переход к малой линейной NK-модели с правилом Тейлора, IRF по ключевым шокам и determinacy map.
 
-3. **Скрытые состояния и неполная наблюдаемость**  
-   Представление модели в форме пространства состояний и восстановление скрытых компонент.
+3. **Этап 3. Hidden states**
+   Переписывание модели в форме пространства состояний и восстановление скрытого состояния через фильтр Калмана.
 
-4. **Режимная неопределенность**  
-   Переход к средам со скрытыми режимами и структурными сдвигами.
-=======
-The repository now contains two completed baseline stages.
+4. **Следующий шаг**
+   Переход от hidden-state inference к belief-state policy design и более гибким learning-based схемам.
 
-Stage 1:
+## Что уже реализовано
 
-- RBC sanity-check environment;
-- QZ/generalized-Schur solution;
-- simulation and IRF;
-- external `gensys` IRF cross-check.
+### Этап 1
 
-Stage 2:
+- стандартная RBC-модель с технологическим шоком;
+- решение через generalized Schur / QZ decomposition;
+- stochastic simulation и IRF;
+- sanity checks и residual diagnostics;
+- внешняя `gensys`-сверка IRF.
 
-- small linear New Keynesian policy model;
-- Taylor-rule monetary policy environment;
-- QZ/generalized-Schur solution with BK checks;
-- demand, cost-push, and monetary-shock IRF;
-- simulated paths and determinacy map over `(\phi_pi, \phi_x)`.
+### Этап 2
 
-Still not implemented:
->>>>>>> 2d04508 (nk baseline)
+- малая линейная NK-модель;
+- policy block с Taylor rule;
+- BK-check и determinacy map по `(\phi_pi, \phi_x)`;
+- IRF по demand, cost-push и monetary shocks;
+- simulation baseline для policy-relevant variables.
 
-5. **Learning-based policy design**  
-   Сравнение классической схемы с более гибкими подходами к построению политики.
+### Этап 3
 
-<<<<<<< HEAD
----
+- linear-Gaussian state-space baseline поверх stage 2;
+- скрытое состояние: вектор шоков `r_n`, `u`, `nu`;
+- базовые наблюдения: `(x, pi, i)`;
+- дополнительный stress test по урезанному набору наблюдений `(pi, i)`;
+- явная реализация фильтра Калмана;
+- сравнение true vs filtered state по всем латентным компонентам;
+- sensitivity к уровню measurement noise и observation design;
+- innovation diagnostics и mild parameter misspecification;
+- Monte Carlo-сводка по точности и покрытию фильтра.
 
-## Baseline на RBC-модели
-=======
-## Stage 1 Model
+## Быстрый запуск
 
-The stage-1 baseline is a standard RBC economy with technology shock `z_t`:
->>>>>>> 2d04508 (nk baseline)
-
-На первом этапе реализована стандартная модель реального делового цикла (RBC) с технологическим шоком, описываемым процессом AR(1).
-
-<<<<<<< HEAD
-Цель этого этапа — создание воспроизводимого вычислительного baseline, на котором можно проверить:
-
-- корректность задания модели
-- вычисление стационарного состояния
-- получение локального решения
-- стохастическую симуляцию траекторий
-- построение импульсных откликов
-- базовые диагностические проверки
-
-В текущей реализации:
-
-- стационарное состояние вычисляется в замкнутой форме
-- равновесные условия линеаризуются численно
-- линейная система рациональных ожиданий решается методом обобщённого разложения Шура (generalized Schur / QZ decomposition)
-- дополнительно проверяется выполнение условия Бланшара–Кана
-=======
-## Stage 2 Model
-
-The stage-2 baseline is a small linear New Keynesian policy model:
-
-- IS curve:
-  `x_t = E_t[x_(t+1)] - (1 / sigma) * (i_t - E_t[pi_(t+1)] - r_t^n)`
-- New Keynesian Phillips curve:
-  `pi_t = beta * E_t[pi_(t+1)] + kappa * x_t + u_t`
-- Taylor rule:
-  `i_t = phi_pi * pi_t + phi_x * x_t + nu_t`
-- Shock laws:
-  `r_(t+1)^n = rho_r * r_t^n + sigma_r * eps_(t+1)^r`
-  `u_(t+1) = rho_u * u_t + sigma_u * eps_(t+1)^u`
-  `nu_(t+1) = rho_nu * nu_t + sigma_nu * eps_(t+1)^nu`
->>>>>>> 2d04508 (nk baseline)
-
-### Что получено на этапе 1
-
-<<<<<<< HEAD
-В результате реализации baseline получены:
-
-- стационарное состояние модели;
-- матрицы линейной политики и перехода;
-- стохастическая симуляция траекторий;
-- импульсные отклики на положительный технологический шок;
-- диагностические остатки и базовые sanity checks.
-
-### Основные проверки
-=======
-Install dependencies and run either baseline:
+Установка зависимостей:
 
 ```bash
 python3 -m pip install -r requirements.txt
-python3 scripts/run_stage1.py
-python3 scripts/run_stage2.py
 ```
 
-By default these write outputs into `outputs/stage1` and `outputs/stage2`.
-The first benchmark run also downloads `dsge==0.1.3` into the user cache to load an external `gensys` implementation for IRF comparison.
->>>>>>> 2d04508 (nk baseline)
+Запуск этапов:
 
-Для baseline были проведены следующие проверки:
+```bash
+python3 scripts/run_stage1.py
+python3 scripts/run_stage2.py
+python3 scripts/run_stage3.py
+```
 
-<<<<<<< HEAD
-- устойчивость линейного решения;
-- выполнение условия Бланшара–Кана;
-- корректность знаков импульсных откликов;
-- малость остатков равновесных уравнений на стохастической симуляции;
-- устойчивость результатов к смене `seed`.
-=======
-Stage 1 outputs:
->>>>>>> 2d04508 (nk baseline)
+По умолчанию результаты сохраняются в:
 
----
+- `outputs/stage1`
+- `outputs/stage2`
+- `outputs/stage3`
 
-<<<<<<< HEAD
-## Визуализация baseline
-=======
-Stage 2 outputs:
+При первом запуске внешней benchmark-сверки stage 1 проект автоматически подтягивает `dsge==0.1.3` в пользовательский cache, чтобы загрузить внешнюю реализацию `gensys`.
+
+## Ключевые артефакты
+
+### Этап 1
+
+- `outputs/stage1/steady_state.json`
+- `outputs/stage1/solution.json`
+- `outputs/stage1/irf.csv`
+- `outputs/stage1/benchmark_summary.json`
+- `outputs/stage1/stage1_report.md`
+
+### Этап 2
 
 - `outputs/stage2/model_spec.json`
 - `outputs/stage2/solution.json`
 - `outputs/stage2/irf_demand.csv`
 - `outputs/stage2/irf_costpush.csv`
 - `outputs/stage2/irf_monetary.csv`
-- `outputs/stage2/simulated_paths.csv`
 - `outputs/stage2/determinacy_map.csv`
 - `outputs/stage2/diagnostics_summary.json`
 - `outputs/stage2/stage2_report.md`
@@ -177,3 +130,19 @@ The concise human-written note for stage 1 is in `docs/stage1_note.md`. The gene
 - `diagnostics_summary.json` — краткая сводка по проверкам;
 - `stage1_report.md` — текстовый отчёт по этапу 1;
 - `figures/` — графики.
+=======
+- `rbc_baseline/model.py`: model equations, steady state, observable reconstruction.
+- `rbc_baseline/solver.py`: QZ/generalized-Schur solver for the linear policy system with Blanchard-Kahn checks.
+- `rbc_baseline/benchmark.py`: external `gensys` benchmark loader and IRF comparison utilities.
+- `rbc_baseline/pipeline.py`: simulation, IRF, diagnostics, plots, and artifact export.
+- `nk_baseline/model.py`: small linear NK policy model specification.
+- `nk_baseline/solver.py`: QZ/generalized-Schur NK solver and determinacy diagnostics.
+- `nk_baseline/pipeline.py`: stage-2 IRF, simulation, determinacy-map, and report pipeline.
+- `scripts/run_stage1.py`: one-command entry point for the full baseline run.
+- `scripts/run_stage2.py`: one-command entry point for the stage-2 NK baseline.
+- `docs/stage1_note.md`: short technical note for the baseline stage.
+
+## Transition To Stage 3
+
+The next stage should add hidden states and partial observability on top of the stage-2 NK policy environment, and only after that move to rule-based versus learning-based policy comparison.
+>>>>>>> 2d04508 (nk baseline)
