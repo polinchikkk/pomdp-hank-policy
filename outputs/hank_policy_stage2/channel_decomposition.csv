@@ -1,0 +1,1501 @@
+scenario,scenario_label,period,component,component_label,value
+baseline,Базовое правило,0,household_total,Отклик household-блока,-0.19570127549983332
+baseline,Базовое правило,1,household_total,Отклик household-блока,-0.14840258654068436
+baseline,Базовое правило,2,household_total,Отклик household-блока,-0.085071657097987
+baseline,Базовое правило,3,household_total,Отклик household-блока,-0.04996508348504131
+baseline,Базовое правило,4,household_total,Отклик household-блока,-0.030322585119519144
+baseline,Базовое правило,5,household_total,Отклик household-блока,-0.019129691885690355
+baseline,Базовое правило,6,household_total,Отклик household-блока,-0.012587667053058917
+baseline,Базовое правило,7,household_total,Отклик household-блока,-0.008622212460595363
+baseline,Базовое правило,8,household_total,Отклик household-блока,-0.006099967992143723
+baseline,Базовое правило,9,household_total,Отклик household-блока,-0.004399886349389038
+baseline,Базовое правило,10,household_total,Отклик household-блока,-0.0031796794771732687
+baseline,Базовое правило,11,household_total,Отклик household-блока,-0.002249002786842517
+baseline,Базовое правило,12,household_total,Отклик household-блока,-0.0015007125541717584
+baseline,Базовое правило,13,household_total,Отклик household-блока,-0.0008735505845864666
+baseline,Базовое правило,14,household_total,Отклик household-блока,-0.00033178899925139974
+baseline,Базовое правило,15,household_total,Отклик household-блока,0.00014596051888774963
+baseline,Базовое правило,16,household_total,Отклик household-блока,0.0005729575201136014
+baseline,Базовое правило,17,household_total,Отклик household-блока,0.0009578119220989287
+baseline,Базовое правило,18,household_total,Отклик household-блока,0.001306446968815293
+baseline,Базовое правило,19,household_total,Отклик household-блока,0.0016232105763858283
+baseline,Базовое правило,20,household_total,Отклик household-блока,0.0019115037716142245
+baseline,Базовое правило,21,household_total,Отклик household-блока,0.0021741340705727
+baseline,Базовое правило,22,household_total,Отклик household-блока,0.0024135125657495874
+baseline,Базовое правило,23,household_total,Отклик household-блока,0.0026317631838501045
+baseline,Базовое правило,24,household_total,Отклик household-блока,0.0028307836211018235
+baseline,Базовое правило,25,household_total,Отклик household-блока,0.003012280591869013
+baseline,Базовое правило,26,household_total,Отклик household-блока,0.003177792100869788
+baseline,Базовое правило,27,household_total,Отклик household-блока,0.0033287036797517724
+baseline,Базовое правило,28,household_total,Отклик household-блока,0.0034662621843946357
+baseline,Базовое правило,29,household_total,Отклик household-блока,0.00359158890006172
+baseline,Базовое правило,30,household_total,Отклик household-блока,0.0037056927144796118
+baseline,Базовое правило,31,household_total,Отклик household-блока,0.0038094836491584737
+baseline,Базовое правило,32,household_total,Отклик household-блока,0.0039037868872098024
+baseline,Базовое правило,33,household_total,Отклик household-блока,0.003989357387095722
+baseline,Базовое правило,34,household_total,Отклик household-блока,0.004066895233801033
+baseline,Базовое правило,35,household_total,Отклик household-блока,0.004137061888058367
+baseline,Базовое правило,36,household_total,Отклик household-блока,0.004200497444021959
+baseline,Базовое правило,37,household_total,Отклик household-блока,0.004257838791470576
+baseline,Базовое правило,38,household_total,Отклик household-блока,0.004309738116096747
+baseline,Базовое правило,39,household_total,Отклик household-блока,0.004356880328079764
+baseline,Базовое правило,40,household_total,Отклик household-блока,0.004399996698112288
+baseline,Базовое правило,41,household_total,Отклик household-блока,0.004439869876725112
+baseline,Базовое правило,42,household_total,Отклик household-блока,0.0044773226211525545
+baseline,Базовое правило,43,household_total,Отклик household-блока,0.004513178549258112
+baseline,Базовое правило,44,household_total,Отклик household-блока,0.004548178233687489
+baseline,Базовое правило,45,household_total,Отклик household-блока,0.004582827899692788
+baseline,Базовое правило,46,household_total,Отклик household-блока,0.004617151540366193
+baseline,Базовое правило,47,household_total,Отклик household-блока,0.004650311438588112
+baseline,Базовое правило,48,household_total,Отклик household-блока,0.004680059061827744
+baseline,Базовое правило,49,household_total,Отклик household-блока,0.004701981548486464
+baseline,Базовое правило,50,household_total,Отклик household-блока,0.004708524137982519
+baseline,Базовое правило,51,household_total,Отклик household-блока,0.004687804228388233
+baseline,Базовое правило,52,household_total,Отклик household-блока,0.00462229994130475
+baseline,Базовое правило,53,household_total,Отклик household-блока,0.00448761132299987
+baseline,Базовое правило,54,household_total,Отклик household-блока,0.004251676124291711
+baseline,Базовое правило,55,household_total,Отклик household-блока,0.003875099371973809
+baseline,Базовое правило,56,household_total,Отклик household-блока,0.0033136520938468307
+baseline,Базовое правило,57,household_total,Отклик household-блока,0.0025245269956835387
+baseline,Базовое правило,58,household_total,Отклик household-блока,0.0014786000875012591
+baseline,Базовое правило,59,household_total,Отклик household-блока,0.00018165891019371439
+baseline,Базовое правило,0,intertemporal_financial_channel,Межвременной и финансовый канал,-0.055309903493235765
+baseline,Базовое правило,1,intertemporal_financial_channel,Межвременной и финансовый канал,-0.002825908323791414
+baseline,Базовое правило,2,intertemporal_financial_channel,Межвременной и финансовый канал,0.01978818537666393
+baseline,Базовое правило,3,intertemporal_financial_channel,Межвременной и финансовый канал,0.030779202547737656
+baseline,Базовое правило,4,intertemporal_financial_channel,Межвременной и финансовый канал,0.03560576396982049
+baseline,Базовое правило,5,intertemporal_financial_channel,Межвременной и финансовый канал,0.03723863163543129
+baseline,Базовое правило,6,intertemporal_financial_channel,Межвременной и финансовый канал,0.03724156933389707
+baseline,Базовое правило,7,intertemporal_financial_channel,Межвременной и финансовый канал,0.03644568834438377
+baseline,Базовое правило,8,intertemporal_financial_channel,Межвременной и финансовый канал,0.03528834494597513
+baseline,Базовое правило,9,intertemporal_financial_channel,Межвременной и финансовый канал,0.03399595987732093
+baseline,Базовое правило,10,intertemporal_financial_channel,Межвременной и финансовый канал,0.032682773656275504
+baseline,Базовое правило,11,intertemporal_financial_channel,Межвременной и финансовый канал,0.031403895244757014
+baseline,Базовое правило,12,intertemporal_financial_channel,Межвременной и финансовый канал,0.030183658169660246
+baseline,Базовое правило,13,intertemporal_financial_channel,Межвременной и финансовый канал,0.029030714471774553
+baseline,Базовое правило,14,intertemporal_financial_channel,Межвременной и финансовый канал,0.027946018755356006
+baseline,Базовое правило,15,intertemporal_financial_channel,Межвременной и финансовый канал,0.026926998864391115
+baseline,Базовое правило,16,intertemporal_financial_channel,Межвременной и финансовый канал,0.025969683928838683
+baseline,Базовое правило,17,intertemporal_financial_channel,Межвременной и финансовый канал,0.025069746107937853
+baseline,Базовое правило,18,intertemporal_financial_channel,Межвременной и финансовый канал,0.024222974219041942
+baseline,Базовое правило,19,intertemporal_financial_channel,Межвременной и финансовый канал,0.023425459215562584
+baseline,Базовое правило,20,intertemporal_financial_channel,Межвременной и финансовый канал,0.02267364096802308
+baseline,Базовое правило,21,intertemporal_financial_channel,Межвременной и финансовый канал,0.021964294246630572
+baseline,Базовое правило,22,intertemporal_financial_channel,Межвременной и финансовый канал,0.021294492893892156
+baseline,Базовое правило,23,intertemporal_financial_channel,Межвременной и финансовый канал,0.020661570417668106
+baseline,Базовое правило,24,intertemporal_financial_channel,Межвременной и финансовый канал,0.02006308450685742
+baseline,Базовое правило,25,intertemporal_financial_channel,Межвременной и финансовый канал,0.019496787731028514
+baseline,Базовое правило,26,intertemporal_financial_channel,Межвременной и финансовый канал,0.01896060434412371
+baseline,Базовое правило,27,intertemporal_financial_channel,Межвременной и финансовый канал,0.018452612255065847
+baseline,Базовое правило,28,intertemporal_financial_channel,Межвременной и финансовый канал,0.017971029077269832
+baseline,Базовое правило,29,intertemporal_financial_channel,Межвременной и финансовый канал,0.01751420132232861
+baseline,Базовое правило,30,intertemporal_financial_channel,Межвременной и финансовый канал,0.01708059604439108
+baseline,Базовое правило,31,intertemporal_financial_channel,Межвременной и финансовый канал,0.016668794503313523
+baseline,Базовое правило,32,intertemporal_financial_channel,Межвременной и финансовый канал,0.016277487638221
+baseline,Базовое правило,33,intertemporal_financial_channel,Межвременной и финансовый канал,0.015905473338405623
+baseline,Базовое правило,34,intertemporal_financial_channel,Межвременной и финансовый канал,0.015551655655083926
+baseline,Базовое правило,35,intertemporal_financial_channel,Межвременной и финансовый канал,0.015215046212026562
+baseline,Базовое правило,36,intertemporal_financial_channel,Межвременной и финансовый канал,0.014894768133193955
+baseline,Базовое правило,37,intertemporal_financial_channel,Межвременной и финансовый канал,0.01459006277912308
+baseline,Базовое правило,38,intertemporal_financial_channel,Межвременной и финансовый канал,0.014300299408190522
+baseline,Базовое правило,39,intertemporal_financial_channel,Межвременной и финансовый канал,0.014024987481295648
+baseline,Базовое правило,40,intertemporal_financial_channel,Межвременной и финансовый канал,0.013763790572423459
+baseline,Базовое правило,41,intertemporal_financial_channel,Межвременной и финансовый канал,0.013516539591071299
+baseline,Базовое правило,42,intertemporal_financial_channel,Межвременной и финансовый канал,0.013283241050777089
+baseline,Базовое правило,43,intertemporal_financial_channel,Межвременной и финансовый канал,0.013064073218813003
+baseline,Базовое правило,44,intertemporal_financial_channel,Межвременной и финансовый канал,0.012859358925335095
+baseline,Базовое правило,45,intertemporal_financial_channel,Межвременной и финансовый канал,0.012669498456439221
+baseline,Базовое правило,46,intertemporal_financial_channel,Межвременной и финансовый канал,0.012494839273557413
+baseline,Базовое правило,47,intertemporal_financial_channel,Межвременной и финансовый канал,0.012335451678325405
+baseline,Базовое правило,48,intertemporal_financial_channel,Межвременной и финансовый канал,0.012190771859556096
+baseline,Базовое правило,49,intertemporal_financial_channel,Межвременной и финансовый канал,0.01205906792869
+baseline,Базовое правило,50,intertemporal_financial_channel,Межвременной и финансовый канал,0.01193668391201071
+baseline,Базовое правило,51,intertemporal_financial_channel,Межвременной и финансовый канал,0.01181702672032207
+baseline,Базовое правило,52,intertemporal_financial_channel,Межвременной и финансовый канал,0.011689290350153144
+baseline,Базовое правило,53,intertemporal_financial_channel,Межвременной и финансовый канал,0.011536972427907754
+baseline,Базовое правило,54,intertemporal_financial_channel,Межвременной и финансовый канал,0.01133634815021691
+baseline,Базовое правило,55,intertemporal_financial_channel,Межвременной и финансовый канал,0.011055248890327786
+baseline,Базовое правило,56,intertemporal_financial_channel,Межвременной и финансовый канал,0.010652775963399547
+baseline,Базовое правило,57,intertemporal_financial_channel,Межвременной и финансовый канал,0.010080995478069194
+baseline,Базовое правило,58,intertemporal_financial_channel,Межвременной и финансовый канал,0.009290233312672296
+baseline,Базовое правило,59,intertemporal_financial_channel,Межвременной и финансовый канал,0.008240296445373373
+baseline,Базовое правило,0,labor_income_channel,Канал трудового дохода,-0.14048138088478188
+baseline,Базовое правило,1,labor_income_channel,Канал трудового дохода,-0.1457040905369061
+baseline,Базовое правило,2,labor_income_channel,Канал трудового дохода,-0.10491959623995963
+baseline,Базовое правило,3,labor_income_channel,Канал трудового дохода,-0.0807738747353812
+baseline,Базовое правило,4,labor_income_channel,Канал трудового дохода,-0.06594480739363402
+baseline,Базовое правило,5,labor_income_channel,Канал трудового дохода,-0.05637733922610604
+baseline,Базовое правило,6,labor_income_channel,Канал трудового дохода,-0.04983241168141361
+baseline,Базовое правило,7,labor_income_channel,Канал трудового дохода,-0.045066084719109924
+baseline,Базовое правило,8,labor_income_channel,Канал трудового дохода,-0.04138190125919914
+baseline,Базовое правило,9,labor_income_channel,Канал трудового дохода,-0.03838503126978239
+baseline,Базовое правило,10,labor_income_channel,Канал трудового дохода,-0.03584742084987514
+baseline,Базовое правило,11,labor_income_channel,Канал трудового дохода,-0.033633945579410844
+baseline,Базовое правило,12,labor_income_channel,Канал трудового дохода,-0.03166193526887677
+baseline,Базовое правило,13,labor_income_channel,Канал трудового дохода,-0.02987888829434582
+baseline,Базовое правило,14,labor_income_channel,Канал трудового дохода,-0.02825007240879277
+baseline,Базовое правило,15,labor_income_channel,Канал трудового дохода,-0.026751505856396983
+baseline,Базовое правило,16,labor_income_channel,Канал трудового дохода,-0.025365891872914912
+baseline,Базовое правило,17,labor_income_channel,Канал трудового дохода,-0.024080203164620305
+baseline,Базовое правило,18,labor_income_channel,Канал трудового дохода,-0.022884211921273087
+baseline,Базовое правило,19,labor_income_channel,Канал трудового дохода,-0.021769577587687182
+baseline,Базовое правило,20,labor_income_channel,Канал трудового дохода,-0.020729272675747076
+baseline,Базовое правило,21,labor_income_channel,Канал трудового дохода,-0.019757217656597582
+baseline,Базовое правило,22,labor_income_channel,Канал трудового дохода,-0.018848046695703884
+baseline,Базовое правило,23,labor_income_channel,Канал трудового дохода,-0.01799695553348254
+baseline,Базовое правило,24,labor_income_channel,Канал трудового дохода,-0.017199600782730487
+baseline,Базовое правило,25,labor_income_channel,Канал трудового дохода,-0.0164520311637709
+baseline,Базовое правило,26,labor_income_channel,Канал трудового дохода,-0.015750638439269573
+baseline,Базовое правило,27,labor_income_channel,Канал трудового дохода,-0.015092120427072576
+baseline,Базовое правило,28,labor_income_channel,Канал трудового дохода,-0.014473451451769783
+baseline,Базовое правило,29,labor_income_channel,Канал трудового дохода,-0.013891857457967846
+baseline,Базовое правило,30,labor_income_channel,Канал трудового дохода,-0.013344794177375418
+baseline,Базовое правило,31,labor_income_channel,Канал трудового дохода,-0.012829927436133273
+baseline,Базовое правило,32,labor_income_channel,Канал трудового дохода,-0.012345115081944608
+baseline,Базовое правило,33,labor_income_channel,Канал трудового дохода,-0.011888390281586666
+baseline,Базовое правило,34,labor_income_channel,Канал трудового дохода,-0.011457946062651794
+baseline,Базовое правило,35,labor_income_channel,Канал трудового дохода,-0.011052121118603125
+baseline,Базовое правило,36,labor_income_channel,Канал трудового дохода,-0.010669387036685771
+baseline,Базовое правило,37,labor_income_channel,Канал трудового дохода,-0.010308337318958376
+baseline,Базовое правило,38,labor_income_channel,Канал трудового дохода,-0.009967678873666709
+baseline,Базовое правило,39,labor_income_channel,Канал трудового дохода,-0.009646227110208136
+baseline,Базовое правило,40,labor_income_channel,Канал трудового дохода,-0.009342906338770694
+baseline,Базовое правило,41,labor_income_channel,Канал трудового дохода,-0.009056758016669246
+baseline,Базовое правило,42,labor_income_channel,Канал трудового дохода,-0.008786960272597621
+baseline,Базовое правило,43,labor_income_channel,Канал трудового дохода,-0.008532863238160654
+baseline,Базовое правило,44,labor_income_channel,Канал трудового дохода,-0.008294045669744718
+baseline,Базовое правило,45,labor_income_channel,Канал трудового дохода,-0.008070399026070894
+baseline,Базовое правило,46,labor_income_channel,Канал трудового дохода,-0.00786224494919161
+baseline,Базовое правило,47,labor_income_channel,Канал трудового дохода,-0.007670490275044303
+baseline,Базовое правило,48,labor_income_channel,Канал трудового дохода,-0.007496819059311044
+baseline,Базовое правило,49,labor_income_channel,Канал трудового дохода,-0.0073439120077374125
+baseline,Базовое правило,50,labor_income_channel,Канал трудового дохода,-0.00721566793991199
+baseline,Базовое правило,51,labor_income_channel,Канал трудового дохода,-0.0071173766349923485
+baseline,Базовое правило,52,labor_income_channel,Канал трудового дохода,-0.007055754458573375
+baseline,Базовое правило,53,labor_income_channel,Канал трудового дохода,-0.007038699780607342
+baseline,Базовое правило,54,labor_income_channel,Канал трудового дохода,-0.007074551338647805
+baseline,Базовое правило,55,labor_income_channel,Канал трудового дохода,-0.007170537644692263
+baseline,Базовое правило,56,labor_income_channel,Канал трудового дохода,-0.007329992601572946
+baseline,Базовое правило,57,labor_income_channel,Канал трудового дохода,-0.007547795427408011
+baseline,Базовое правило,58,labor_income_channel,Канал трудового дохода,-0.007803404763631397
+baseline,Базовое правило,59,labor_income_channel,Канал трудового дохода,-0.008050852208957262
+baseline,Базовое правило,0,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,9.000887818430972e-05
+baseline,Базовое правило,1,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,0.0001274123200131656
+baseline,Базовое правило,2,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,5.975376530870218e-05
+baseline,Базовое правило,3,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,2.9588702602232757e-05
+baseline,Базовое правило,4,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,1.645830429438591e-05
+baseline,Базовое правило,5,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,9.015704984394373e-06
+baseline,Базовое правило,6,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,3.1752944576214495e-06
+baseline,Базовое правило,7,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.81608586920681e-06
+baseline,Базовое правило,8,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-6.411678919708124e-06
+baseline,Базовое правило,9,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.0814956927573302e-05
+baseline,Базовое правило,10,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.5032283573634664e-05
+baseline,Базовое правило,11,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.8952452188691497e-05
+baseline,Базовое правило,12,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.2435454955236185e-05
+baseline,Базовое правило,13,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.5376762015199278e-05
+baseline,Базовое правило,14,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.773534581463355e-05
+baseline,Базовое правило,15,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.9532489106382387e-05
+baseline,Базовое правило,16,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.083453581016865e-05
+baseline,Базовое правило,17,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.173102121861737e-05
+baseline,Базовое правило,18,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.231532895356273e-05
+baseline,Базовое правило,19,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.2671051489574756e-05
+baseline,Базовое правило,20,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.2864520661778065e-05
+baseline,Базовое правило,21,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.294251946029123e-05
+baseline,Базовое правило,22,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.293363243868568e-05
+baseline,Базовое правило,23,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.285170033545796e-05
+baseline,Базовое правило,24,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.2700103025108025e-05
+baseline,Базовое правило,25,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.247597538860128e-05
+baseline,Базовое правило,26,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.217380398435023e-05
+baseline,Базовое правило,27,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.178814824149994e-05
+baseline,Базовое правило,28,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.1315441105413e-05
+baseline,Базовое правило,29,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.075496429904323e-05
+baseline,Базовое правило,30,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.0109152536052e-05
+baseline,Базовое правило,31,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.938341802177655e-05
+baseline,Базовое правило,32,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.8585669066588436e-05
+baseline,Базовое правило,33,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.7725669723235287e-05
+baseline,Базовое правило,34,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.681435863109801e-05
+baseline,Базовое правило,35,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.586320536506924e-05
+baseline,Базовое правило,36,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.4883652486223538e-05
+baseline,Базовое правило,37,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.3886668694127727e-05
+baseline,Базовое правило,38,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.2882418427065984e-05
+baseline,Базовое правило,39,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.188004300774678e-05
+baseline,Базовое правило,40,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.0887535540475473e-05
+baseline,Базовое правило,41,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.9911697676940633e-05
+baseline,Базовое правило,42,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.895815702691233e-05
+baseline,Базовое правило,43,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.8031431394236686e-05
+baseline,Базовое правило,44,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.7135021902888345e-05
+baseline,Базовое правило,45,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.627153067553716e-05
+baseline,Базовое правило,46,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.544278399961193e-05
+baseline,Базовое правило,47,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.4649964692991475e-05
+baseline,Базовое правило,48,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.3893738417309319e-05
+baseline,Базовое правило,49,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.3174372466124568e-05
+baseline,Базовое правило,50,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.2491834116201285e-05
+baseline,Базовое правило,51,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.184585694148909e-05
+baseline,Базовое правило,52,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.1235950275020599e-05
+baseline,Базовое правило,53,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.066132430054211e-05
+baseline,Базовое правило,54,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.0120687277393792e-05
+baseline,Базовое правило,55,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.611873661713166e-06
+baseline,Базовое правило,56,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.131267979771423e-06
+baseline,Базовое правило,57,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-8.673054977644737e-06
+baseline,Базовое правило,58,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-8.228461539640055e-06
+baseline,Базовое правило,59,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-7.785326222398e-06
+baseline,Базовое правило,0,general_equilibrium_total,Полный отклик,-0.19570127549983332
+baseline,Базовое правило,1,general_equilibrium_total,Полный отклик,-0.14840258654068436
+baseline,Базовое правило,2,general_equilibrium_total,Полный отклик,-0.085071657097987
+baseline,Базовое правило,3,general_equilibrium_total,Полный отклик,-0.04996508348504131
+baseline,Базовое правило,4,general_equilibrium_total,Полный отклик,-0.030322585119519144
+baseline,Базовое правило,5,general_equilibrium_total,Полный отклик,-0.019129691885690355
+baseline,Базовое правило,6,general_equilibrium_total,Полный отклик,-0.012587667053058917
+baseline,Базовое правило,7,general_equilibrium_total,Полный отклик,-0.008622212460595363
+baseline,Базовое правило,8,general_equilibrium_total,Полный отклик,-0.006099967992143723
+baseline,Базовое правило,9,general_equilibrium_total,Полный отклик,-0.004399886349389038
+baseline,Базовое правило,10,general_equilibrium_total,Полный отклик,-0.0031796794771732687
+baseline,Базовое правило,11,general_equilibrium_total,Полный отклик,-0.002249002786842517
+baseline,Базовое правило,12,general_equilibrium_total,Полный отклик,-0.0015007125541717584
+baseline,Базовое правило,13,general_equilibrium_total,Полный отклик,-0.0008735505845864666
+baseline,Базовое правило,14,general_equilibrium_total,Полный отклик,-0.00033178899925139974
+baseline,Базовое правило,15,general_equilibrium_total,Полный отклик,0.00014596051888774963
+baseline,Базовое правило,16,general_equilibrium_total,Полный отклик,0.0005729575201136014
+baseline,Базовое правило,17,general_equilibrium_total,Полный отклик,0.0009578119220989287
+baseline,Базовое правило,18,general_equilibrium_total,Полный отклик,0.001306446968815293
+baseline,Базовое правило,19,general_equilibrium_total,Полный отклик,0.0016232105763858283
+baseline,Базовое правило,20,general_equilibrium_total,Полный отклик,0.0019115037716142245
+baseline,Базовое правило,21,general_equilibrium_total,Полный отклик,0.0021741340705727
+baseline,Базовое правило,22,general_equilibrium_total,Полный отклик,0.0024135125657495874
+baseline,Базовое правило,23,general_equilibrium_total,Полный отклик,0.0026317631838501045
+baseline,Базовое правило,24,general_equilibrium_total,Полный отклик,0.0028307836211018235
+baseline,Базовое правило,25,general_equilibrium_total,Полный отклик,0.003012280591869013
+baseline,Базовое правило,26,general_equilibrium_total,Полный отклик,0.003177792100869788
+baseline,Базовое правило,27,general_equilibrium_total,Полный отклик,0.0033287036797517724
+baseline,Базовое правило,28,general_equilibrium_total,Полный отклик,0.0034662621843946357
+baseline,Базовое правило,29,general_equilibrium_total,Полный отклик,0.00359158890006172
+baseline,Базовое правило,30,general_equilibrium_total,Полный отклик,0.0037056927144796118
+baseline,Базовое правило,31,general_equilibrium_total,Полный отклик,0.0038094836491584737
+baseline,Базовое правило,32,general_equilibrium_total,Полный отклик,0.0039037868872098024
+baseline,Базовое правило,33,general_equilibrium_total,Полный отклик,0.003989357387095722
+baseline,Базовое правило,34,general_equilibrium_total,Полный отклик,0.004066895233801033
+baseline,Базовое правило,35,general_equilibrium_total,Полный отклик,0.004137061888058367
+baseline,Базовое правило,36,general_equilibrium_total,Полный отклик,0.004200497444021959
+baseline,Базовое правило,37,general_equilibrium_total,Полный отклик,0.004257838791470576
+baseline,Базовое правило,38,general_equilibrium_total,Полный отклик,0.004309738116096747
+baseline,Базовое правило,39,general_equilibrium_total,Полный отклик,0.004356880328079764
+baseline,Базовое правило,40,general_equilibrium_total,Полный отклик,0.004399996698112288
+baseline,Базовое правило,41,general_equilibrium_total,Полный отклик,0.004439869876725112
+baseline,Базовое правило,42,general_equilibrium_total,Полный отклик,0.0044773226211525545
+baseline,Базовое правило,43,general_equilibrium_total,Полный отклик,0.004513178549258112
+baseline,Базовое правило,44,general_equilibrium_total,Полный отклик,0.004548178233687489
+baseline,Базовое правило,45,general_equilibrium_total,Полный отклик,0.004582827899692788
+baseline,Базовое правило,46,general_equilibrium_total,Полный отклик,0.004617151540366193
+baseline,Базовое правило,47,general_equilibrium_total,Полный отклик,0.004650311438588112
+baseline,Базовое правило,48,general_equilibrium_total,Полный отклик,0.004680059061827744
+baseline,Базовое правило,49,general_equilibrium_total,Полный отклик,0.004701981548486464
+baseline,Базовое правило,50,general_equilibrium_total,Полный отклик,0.004708524137982519
+baseline,Базовое правило,51,general_equilibrium_total,Полный отклик,0.004687804228388233
+baseline,Базовое правило,52,general_equilibrium_total,Полный отклик,0.00462229994130475
+baseline,Базовое правило,53,general_equilibrium_total,Полный отклик,0.00448761132299987
+baseline,Базовое правило,54,general_equilibrium_total,Полный отклик,0.004251676124291711
+baseline,Базовое правило,55,general_equilibrium_total,Полный отклик,0.003875099371973809
+baseline,Базовое правило,56,general_equilibrium_total,Полный отклик,0.0033136520938468307
+baseline,Базовое правило,57,general_equilibrium_total,Полный отклик,0.0025245269956835387
+baseline,Базовое правило,58,general_equilibrium_total,Полный отклик,0.0014786000875012591
+baseline,Базовое правило,59,general_equilibrium_total,Полный отклик,0.00018165891019371439
+high_phi_pi,Сильная реакция на инфляцию,0,household_total,Отклик household-блока,-0.1724581838762791
+high_phi_pi,Сильная реакция на инфляцию,1,household_total,Отклик household-блока,-0.13140216924562836
+high_phi_pi,Сильная реакция на инфляцию,2,household_total,Отклик household-блока,-0.07318708020403271
+high_phi_pi,Сильная реакция на инфляцию,3,household_total,Отклик household-блока,-0.041911134537143624
+high_phi_pi,Сильная реакция на инфляцию,4,household_total,Отклик household-блока,-0.02488496896072713
+high_phi_pi,Сильная реакция на инфляцию,5,household_total,Отклик household-блока,-0.015404672502430765
+high_phi_pi,Сильная реакция на инфляцию,6,household_total,Отклик household-блока,-0.009962772950695932
+high_phi_pi,Сильная реакция на инфляцию,7,household_total,Отклик household-блока,-0.0067038464725545435
+high_phi_pi,Сильная реакция на инфляцию,8,household_total,Отклик household-блока,-0.004643098165168104
+high_phi_pi,Сильная реакция на инфляцию,9,household_total,Отклик household-блока,-0.003254487182422263
+high_phi_pi,Сильная реакция на инфляцию,10,household_total,Отклик household-блока,-0.002254312016917484
+high_phi_pi,Сильная реакция на инфляцию,11,household_total,Отклик household-блока,-0.0014875377214821702
+high_phi_pi,Сильная реакция на инфляцию,12,household_total,Отклик household-блока,-0.0008680169954317357
+high_phi_pi,Сильная реакция на инфляцию,13,household_total,Отклик household-блока,-0.0003469056080822034
+high_phi_pi,Сильная реакция на инфляцию,14,household_total,Отклик household-блока,0.00010417310202792346
+high_phi_pi,Сильная реакция на инфляцию,15,household_total,Отклик household-блока,0.0005022133856772244
+high_phi_pi,Сильная реакция на инфляцию,16,household_total,Отклик household-блока,0.0008577998959788651
+high_phi_pi,Сильная реакция на инфляцию,17,household_total,Отклик household-блока,0.0011778668380575355
+high_phi_pi,Сильная реакция на инфляцию,18,household_total,Отклик household-блока,0.0014672447354442482
+high_phi_pi,Сильная реакция на инфляцию,19,household_total,Отклик household-блока,0.0017295317710874832
+high_phi_pi,Сильная реакция на инфляцию,20,household_total,Отклик household-блока,0.0019675837475834133
+high_phi_pi,Сильная реакция на инфляцию,21,household_total,Отклик household-блока,0.00218378727928994
+high_phi_pi,Сильная реакция на инфляцию,22,household_total,Отклик household-блока,0.002380210040257491
+high_phi_pi,Сильная реакция на инфляцию,23,household_total,Отклик household-блока,0.002558682101644932
+high_phi_pi,Сильная реакция на инфляцию,24,household_total,Отклик household-блока,0.0027208395220153234
+high_phi_pi,Сильная реакция на инфляцию,25,household_total,Отклик household-блока,0.002868147919646023
+high_phi_pi,Сильная реакция на инфляцию,26,household_total,Отклик household-блока,0.003001915922827735
+high_phi_pi,Сильная реакция на инфляцию,27,household_total,Отклик household-блока,0.0031233038458797512
+high_phi_pi,Сильная реакция на инфляцию,28,household_total,Отклик household-блока,0.0032333304216228603
+high_phi_pi,Сильная реакция на инфляцию,29,household_total,Отклик household-блока,0.0033328791798683545
+high_phi_pi,Сильная реакция на инфляцию,30,household_total,Отклик household-блока,0.003422705582879003
+high_phi_pi,Сильная реакция на инфляцию,31,household_total,Отклик household-блока,0.003503446090936057
+high_phi_pi,Сильная реакция на инфляцию,32,household_total,Отклик household-блока,0.00357563062730979
+high_phi_pi,Сильная реакция на инфляцию,33,household_total,Отклик household-блока,0.0036397004346958584
+high_phi_pi,Сильная реакция на инфляцию,34,household_total,Отклик household-блока,0.003696033748268389
+high_phi_pi,Сильная реакция на инфляцию,35,household_total,Отклик household-блока,0.0037449820833680195
+high_phi_pi,Сильная реакция на инфляцию,36,household_total,Отклик household-блока,0.003786919857404217
+high_phi_pi,Сильная реакция на инфляцию,37,household_total,Отклик household-блока,0.0038223094550268013
+high_phi_pi,Сильная реакция на инфляцию,38,household_total,Отклик household-блока,0.00385178231150302
+high_phi_pi,Сильная реакция на инфляцию,39,household_total,Отклик household-блока,0.0038762338238406717
+high_phi_pi,Сильная реакция на инфляцию,40,household_total,Отклик household-блока,0.003896925618062382
+high_phi_pi,Сильная реакция на инфляцию,41,household_total,Отклик household-блока,0.003915582627304985
+high_phi_pi,Сильная реакция на инфляцию,42,household_total,Отклик household-блока,0.0039344644798182645
+high_phi_pi,Сильная реакция на инфляцию,43,household_total,Отклик household-блока,0.003956381112992153
+high_phi_pi,Сильная реакция на инфляцию,44,household_total,Отклик household-блока,0.003984612024051205
+high_phi_pi,Сильная реакция на инфляцию,45,household_total,Отклик household-блока,0.00402267849712627
+high_phi_pi,Сильная реакция на инфляцию,46,household_total,Отклик household-блока,0.0040739109071740555
+high_phi_pi,Сильная реакция на инфляцию,47,household_total,Отклик household-блока,0.0041407521895185226
+high_phi_pi,Сильная реакция на инфляцию,48,household_total,Отклик household-блока,0.004223748570279236
+high_phi_pi,Сильная реакция на инфляцию,49,household_total,Отклик household-блока,0.0043202058712598366
+high_phi_pi,Сильная реакция на инфляцию,50,household_total,Отклик household-блока,0.00442254145519194
+high_phi_pi,Сильная реакция на инфляцию,51,household_total,Отклик household-блока,0.004516446549308891
+high_phi_pi,Сильная реакция на инфляцию,52,household_total,Отклик household-блока,0.004579099559629546
+high_phi_pi,Сильная реакция на инфляцию,53,household_total,Отклик household-блока,0.004577845140788675
+high_phi_pi,Сильная реакция на инфляцию,54,household_total,Отклик household-блока,0.00446997947015734
+high_phi_pi,Сильная реакция на инфляцию,55,household_total,Отклик household-блока,0.004204555135163086
+high_phi_pi,Сильная реакция на инфляцию,56,household_total,Отклик household-блока,0.0037274216409382372
+high_phi_pi,Сильная реакция на инфляцию,57,household_total,Отклик household-блока,0.0029910122739268867
+high_phi_pi,Сильная реакция на инфляцию,58,household_total,Отклик household-блока,0.0019706238309415143
+high_phi_pi,Сильная реакция на инфляцию,59,household_total,Отклик household-блока,0.0006889396885223574
+high_phi_pi,Сильная реакция на инфляцию,0,intertemporal_financial_channel,Межвременной и финансовый канал,-0.051127408553892896
+high_phi_pi,Сильная реакция на инфляцию,1,intertemporal_financial_channel,Межвременной и финансовый канал,-0.0026780082282803737
+high_phi_pi,Сильная реакция на инфляцию,2,intertemporal_financial_channel,Межвременной и финансовый канал,0.017506091969595107
+high_phi_pi,Сильная реакция на инфляцию,3,intertemporal_financial_channel,Межвременной и финансовый канал,0.0270132642088434
+high_phi_pi,Сильная реакция на инфляцию,4,intertemporal_financial_channel,Межвременной и финансовый канал,0.031029313736350556
+high_phi_pi,Сильная реакция на инфляцию,5,intertemporal_financial_channel,Межвременной и финансовый канал,0.032280587370852494
+high_phi_pi,Сильная реакция на инфляцию,6,intertemporal_financial_channel,Межвременной и финансовый канал,0.03215856782109625
+high_phi_pi,Сильная реакция на инфляцию,7,intertemporal_financial_channel,Межвременной и финансовый канал,0.03138384654520046
+high_phi_pi,Сильная реакция на инфляцию,8,intertemporal_financial_channel,Межвременной и финансовый канал,0.030325815815968646
+high_phi_pi,Сильная реакция на инфляцию,9,intertemporal_financial_channel,Межвременной и финансовый канал,0.029170937700291926
+high_phi_pi,Сильная реакция на инфляцию,10,intertemporal_financial_channel,Межвременной и финансовый канал,0.02801084260255281
+high_phi_pi,Сильная реакция на инфляцию,11,intertemporal_financial_channel,Межвременной и финансовый канал,0.026888341736322412
+high_phi_pi,Сильная реакция на инфляцию,12,intertemporal_financial_channel,Межвременной и финансовый канал,0.025821406757710056
+high_phi_pi,Сильная реакция на инфляцию,13,intertemporal_financial_channel,Межвременной и финансовый канал,0.02481564682334466
+high_phi_pi,Сильная реакция на инфляцию,14,intertemporal_financial_channel,Межвременной и финансовый канал,0.02387077265290069
+high_phi_pi,Сильная реакция на инфляцию,15,intertemporal_financial_channel,Межвременной и финансовый канал,0.022983905940868028
+high_phi_pi,Сильная реакция на инфляцию,16,intertemporal_financial_channel,Межвременной и финансовый канал,0.022151231429245317
+high_phi_pi,Сильная реакция на инфляцию,17,intertemporal_financial_channel,Межвременной и финансовый канал,0.021368783139348497
+high_phi_pi,Сильная реакция на инфляцию,18,intertemporal_financial_channel,Межвременной и финансовый канал,0.020632785911729193
+high_phi_pi,Сильная реакция на инфляцию,19,intertemporal_financial_channel,Межвременной и финансовый канал,0.019939776187174515
+high_phi_pi,Сильная реакция на инфляцию,20,intertemporal_financial_channel,Межвременной и финансовый канал,0.01928661974112732
+high_phi_pi,Сильная реакция на инфляцию,21,intertemporal_financial_channel,Межвременной и финансовый канал,0.018670486645952136
+high_phi_pi,Сильная реакция на инфляцию,22,intertemporal_financial_channel,Межвременной и финансовый канал,0.018088812904333056
+high_phi_pi,Сильная реакция на инфляцию,23,intertemporal_financial_channel,Межвременной и финансовый канал,0.017539261943567676
+high_phi_pi,Сильная реакция на инфляцию,24,intertemporal_financial_channel,Межвременной и финансовый канал,0.017019690914366368
+high_phi_pi,Сильная реакция на инфляцию,25,intertemporal_financial_channel,Межвременной и финансовый канал,0.016528122806882626
+high_phi_pi,Сильная реакция на инфляцию,26,intertemporal_financial_channel,Межвременной и финансовый канал,0.01606272374427752
+high_phi_pi,Сильная реакция на инфляцию,27,intertemporal_financial_channel,Межвременной и финансовый канал,0.01562178431966163
+high_phi_pi,Сильная реакция на инфляцию,28,intertemporal_financial_channel,Межвременной и финансовый канал,0.015203703912687336
+high_phi_pi,Сильная реакция на инфляцию,29,intertemporal_financial_channel,Межвременной и финансовый канал,0.014806977239935688
+high_phi_pi,Сильная реакция на инфляцию,30,intertemporal_financial_channel,Межвременной и финансовый канал,0.0144301828361558
+high_phi_pi,Сильная реакция на инфляцию,31,intertemporal_financial_channel,Межвременной и финансовый канал,0.014071973646516087
+high_phi_pi,Сильная реакция на инфляцию,32,intertemporal_financial_channel,Межвременной и финансовый канал,0.013731070432206458
+high_phi_pi,Сильная реакция на инфляцию,33,intertemporal_financial_channel,Межвременной и финансовый канал,0.013406259214414667
+high_phi_pi,Сильная реакция на инфляцию,34,intertemporal_financial_channel,Межвременной и финансовый канал,0.013096394485097123
+high_phi_pi,Сильная реакция на инфляцию,35,intertemporal_financial_channel,Межвременной и финансовый канал,0.012800410323235648
+high_phi_pi,Сильная реакция на инфляцию,36,intertemporal_financial_channel,Межвременной и финансовый канал,0.012517341784838605
+high_phi_pi,Сильная реакция на инфляцию,37,intertemporal_financial_channel,Межвременной и финансовый канал,0.01224635880596851
+high_phi_pi,Сильная реакция на инфляцию,38,intertemporal_financial_channel,Межвременной и финансовый канал,0.011986814201838163
+high_phi_pi,Сильная реакция на инфляцию,39,intertemporal_financial_channel,Межвременной и финансовый канал,0.011738305883265096
+high_phi_pi,Сильная реакция на инфляцию,40,intertemporal_financial_channel,Межвременной и финансовый канал,0.011500750885871226
+high_phi_pi,Сильная реакция на инфляцию,41,intertemporal_financial_channel,Межвременной и финансовый канал,0.01127446494278429
+high_phi_pi,Сильная реакция на инфляцию,42,intertemporal_financial_channel,Межвременной и финансовый канал,0.011060235928470847
+high_phi_pi,Сильная реакция на инфляцию,43,intertemporal_financial_channel,Межвременной и финансовый канал,0.010859372515464549
+high_phi_pi,Сильная реакция на инфляцию,44,intertemporal_financial_channel,Межвременной и финансовый канал,0.010673701045060427
+high_phi_pi,Сильная реакция на инфляцию,45,intertemporal_financial_channel,Межвременной и финансовый канал,0.010505474590894818
+high_phi_pi,Сильная реакция на инфляцию,46,intertemporal_financial_channel,Межвременной и финансовый канал,0.01035714976117733
+high_phi_pi,Сильная реакция на инфляцию,47,intertemporal_financial_channel,Межвременной и финансовый канал,0.010230981059218843
+high_phi_pi,Сильная реакция на инфляцию,48,intertemporal_financial_channel,Межвременной и финансовый канал,0.010128382668866062
+high_phi_pi,Сильная реакция на инфляцию,49,intertemporal_financial_channel,Межвременной и финансовый канал,0.010049017608272991
+high_phi_pi,Сильная реакция на инфляцию,50,intertemporal_financial_channel,Межвременной и финансовый канал,0.009989599666101072
+high_phi_pi,Сильная реакция на инфляцию,51,intertemporal_financial_channel,Межвременной и финансовый канал,0.009942440804870513
+high_phi_pi,Сильная реакция на инфляцию,52,intertemporal_financial_channel,Межвременной и финансовый канал,0.009893852795973929
+high_phi_pi,Сильная реакция на инфляцию,53,intertemporal_financial_channel,Межвременной и финансовый канал,0.009822623644896559
+high_phi_pi,Сильная реакция на инфляцию,54,intertemporal_financial_channel,Межвременной и финансовый канал,0.009698942448963691
+high_phi_pi,Сильная реакция на инфляцию,55,intertemporal_financial_channel,Межвременной и финансовый канал,0.00948434306560136
+high_phi_pi,Сильная реакция на инфляцию,56,intertemporal_financial_channel,Межвременной и финансовый канал,0.009133473480984703
+high_phi_pi,Сильная реакция на инфляцию,57,intertemporal_financial_channel,Межвременной и финансовый канал,0.008598758595189613
+high_phi_pi,Сильная реакция на инфляцию,58,intertemporal_financial_channel,Межвременной и финансовый канал,0.007839273891729474
+high_phi_pi,Сильная реакция на инфляцию,59,intertemporal_financial_channel,Межвременной и финансовый канал,0.006835294371274687
+high_phi_pi,Сильная реакция на инфляцию,0,labor_income_channel,Канал трудового дохода,-0.12140294809568465
+high_phi_pi,Сильная реакция на инфляцию,1,labor_income_channel,Канал трудового дохода,-0.1288277716702582
+high_phi_pi,Сильная реакция на инфляцию,2,labor_income_channel,Канал трудового дохода,-0.09074180882934692
+high_phi_pi,Сильная реакция на инфляцию,3,labor_income_channel,Канал трудового дохода,-0.06894942582623205
+high_phi_pi,Сильная реакция на инфляцию,4,labor_income_channel,Канал трудового дохода,-0.05593009884105416
+high_phi_pi,Сильная реакция на инфляцию,5,labor_income_channel,Канал трудового дохода,-0.04769497490914528
+high_phi_pi,Сильная реакция на инфляцию,6,labor_income_channel,Канал трудового дохода,-0.04212628017702867
+high_phi_pi,Сильная реакция на инфляцию,7,labor_income_channel,Канал трудового дохода,-0.03808853107358631
+high_phi_pi,Сильная реакция на инфляцию,8,labor_income_channel,Канал трудового дохода,-0.034966009417892845
+high_phi_pi,Сильная реакция на инфляцию,9,labor_income_channel,Канал трудового дохода,-0.03241898509616896
+high_phi_pi,Сильная реакция на инфляцию,10,labor_income_channel,Канал трудового дохода,-0.03025536645181613
+high_phi_pi,Сильная реакция на инфляцию,11,labor_income_channel,Канал трудового дохода,-0.02836299545545669
+high_phi_pi,Сильная реакция на инфляцию,12,labor_income_channel,Канал трудового дохода,-0.02667378844793509
+high_phi_pi,Сильная реакция на инфляцию,13,labor_income_channel,Канал трудового дохода,-0.02514458108003502
+high_phi_pi,Сильная реакция на инфляцию,14,labor_income_channel,Канал трудового дохода,-0.02374673420267368
+high_phi_pi,Сильная реакция на инфляцию,15,labor_income_channel,Канал трудового дохода,-0.02246035723033037
+high_phi_pi,Сильная реакция на инфляцию,16,labor_income_channel,Канал трудового дохода,-0.021270999245948698
+high_phi_pi,Сильная реакция на инфляцию,17,labor_income_channel,Канал трудового дохода,-0.02016769210920235
+high_phi_pi,Сильная реакция на инфляцию,18,labor_income_channel,Канал трудового дохода,-0.01914175978213451
+high_phi_pi,Сильная реакция на инфляцию,19,labor_income_channel,Канал трудового дохода,-0.01818607816787268
+high_phi_pi,Сильная реакция на инфляцию,20,labor_income_channel,Канал трудового дохода,-0.017294608575292594
+high_phi_pi,Сильная реакция на инфляцию,21,labor_income_channel,Канал трудового дохода,-0.01646210115061071
+high_phi_pi,Сильная реакция на инфляцию,22,labor_income_channel,Канал трудового дохода,-0.015683905049852218
+high_phi_pi,Сильная реакция на инфляцию,23,labor_income_channel,Канал трудового дохода,-0.014955845731235392
+high_phi_pi,Сильная реакция на инфляцию,24,labor_income_channel,Канал трудового дохода,-0.014274144156539149
+high_phi_pi,Сильная реакция на инфляцию,25,labor_income_channel,Канал трудового дохода,-0.013635361918109894
+high_phi_pi,Сильная реакция на инфляцию,26,labor_income_channel,Канал трудового дохода,-0.01303636220161468
+high_phi_pi,Сильная реакция на инфляцию,27,labor_income_channel,Канал трудового дохода,-0.012474280303051226
+high_phi_pi,Сильная реакция на инфляцию,28,labor_income_channel,Канал трудового дохода,-0.011946499839076433
+high_phi_pi,Сильная реакция на инфляцию,29,labor_income_channel,Канал трудового дохода,-0.011450632230183052
+high_phi_pi,Сильная реакция на инфляцию,30,labor_income_channel,Канал трудового дохода,-0.01098449790356107
+high_phi_pi,Сильная реакция на инфляцию,31,labor_income_channel,Канал трудового дохода,-0.01054610806276508
+high_phi_pi,Сильная реакция на инфляцию,32,labor_income_channel,Канал трудового дохода,-0.010133646111467604
+high_phi_pi,Сильная реакция на инфляцию,33,labor_income_channel,Канал трудового дохода,-0.00974544783625127
+high_phi_pi,Сильная реакция на инфляцию,34,labor_income_channel,Канал трудового дохода,-0.009379979558341163
+high_phi_pi,Сильная реакция на инфляцию,35,labor_income_channel,Канал трудового дохода,-0.009035813532086398
+high_phi_pi,Сильная реакция на инфляцию,36,labor_income_channel,Канал трудового дохода,-0.008711600194405235
+high_phi_pi,Сильная реакция на инфляцию,37,labor_income_channel,Канал трудового дохода,-0.008406037385313385
+high_phi_pi,Сильная реакция на инфляцию,38,labor_income_channel,Канал трудового дохода,-0.008117837539672238
+high_phi_pi,Сильная реакция на инфляцию,39,labor_income_channel,Канал трудового дохода,-0.00784569517352688
+high_phi_pi,Сильная реакция на инфляцию,40,labor_income_channel,Канал трудового дохода,-0.007588258740973254
+high_phi_pi,Сильная реакция на инфляцию,41,labor_income_channel,Канал трудового дохода,-0.00734411315831602
+high_phi_pi,Сильная реакция на инфляцию,42,labor_income_channel,Канал трудового дохода,-0.00711178183738795
+high_phi_pi,Сильная реакция на инфляцию,43,labor_income_channel,Канал трудового дохода,-0.006889759667162237
+high_phi_pi,Сильная реакция на инфляцию,44,labor_income_channel,Канал трудового дохода,-0.006676590548514543
+high_phi_pi,Сильная реакция на инфляцию,45,labor_income_channel,Канал трудового дохода,-0.006471004129616035
+high_phi_pi,Сильная реакция на инфляцию,46,labor_income_channel,Канал трудового дохода,-0.006272125193224855
+high_phi_pi,Сильная реакция на инфляцию,47,labor_income_channel,Канал трудового дохода,-0.00607976443298001
+high_phi_pi,Сильная реакция на инфляцию,48,labor_income_channel,Канал трудового дохода,-0.005894789392201735
+high_phi_pi,Сильная реакция на инфляцию,49,labor_income_channel,Канал трудового дохода,-0.005719557196931846
+high_phi_pi,Сильная реакция на инфляцию,50,labor_income_channel,Канал трудового дохода,-0.005558364439197823
+high_phi_pi,Сильная реакция на инфляцию,51,labor_income_channel,Канал трудового дохода,-0.005417832161424964
+high_phi_pi,Сильная реакция на инфляцию,52,labor_income_channel,Канал трудового дохода,-0.005307094114705617
+high_phi_pi,Сильная реакция на инфляцию,53,labor_income_channel,Канал трудового дохода,-0.005237594115903831
+high_phi_pi,Сильная реакция на инфляцию,54,labor_income_channel,Канал трудового дохода,-0.00522222573782458
+high_phi_pi,Сильная реакция на инфляцию,55,labor_income_channel,Канал трудового дохода,-0.005273471367252697
+high_phi_pi,Сильная реакция на инфляцию,56,labor_income_channel,Канал трудового дохода,-0.00540013155230253
+high_phi_pi,Сильная реакция на инфляцию,57,labor_income_channel,Канал трудового дохода,-0.005602201600135217
+high_phi_pi,Сильная реакция на инфляцию,58,labor_income_channel,Канал трудового дохода,-0.005863466186469604
+high_phi_pi,Сильная реакция на инфляцию,59,labor_income_channel,Канал трудового дохода,-0.006141525474041744
+high_phi_pi,Сильная реакция на инфляцию,0,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,7.217277329844749e-05
+high_phi_pi,Сильная реакция на инфляцию,1,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,0.00010361065291021512
+high_phi_pi,Сильная реакция на инфляцию,2,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,4.863665571910113e-05
+high_phi_pi,Сильная реакция на инфляцию,3,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,2.5027080245029235e-05
+high_phi_pi,Сильная реакция на инфляцию,4,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,1.5816143976473473e-05
+high_phi_pi,Сильная реакция на инфляцию,5,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,9.715035862022395e-06
+high_phi_pi,Сильная реакция на инфляцию,6,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,4.939405236492069e-06
+high_phi_pi,Сильная реакция на инфляцию,7,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,8.380558313092314e-07
+high_phi_pi,Сильная реакция на инфляцию,8,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.904563243904354e-06
+high_phi_pi,Сильная реакция на инфляцию,9,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-6.4397865452293405e-06
+high_phi_pi,Сильная реакция на инфляцию,10,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.788167654167394e-06
+high_phi_pi,Сильная реакция на инфляцию,11,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.288400234789143e-05
+high_phi_pi,Сильная реакция на инфляцию,12,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.5635305206704282e-05
+high_phi_pi,Сильная реакция на инфляцию,13,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.7971351391843264e-05
+high_phi_pi,Сильная реакция на инфляцию,14,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.9865348199086985e-05
+high_phi_pi,Сильная реакция на инфляцию,15,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.1335324860432817e-05
+high_phi_pi,Сильная реакция на инфляцию,16,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.24322873177535e-05
+high_phi_pi,Сильная реакция на инфляцию,17,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.322419208861068e-05
+high_phi_pi,Сильная реакция на инфляцию,18,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.3781394150432685e-05
+high_phi_pi,Сильная реакция на инфляцию,19,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.4166248214351883e-05
+high_phi_pi,Сильная реакция на инфляцию,20,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.4427418251314288e-05
+high_phi_pi,Сильная реакция на инфляцию,21,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.459821605148234e-05
+high_phi_pi,Сильная реакция на инфляцию,22,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.4697814223347363e-05
+high_phi_pi,Сильная реакция на инфляцию,23,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.473411068735089e-05
+high_phi_pi,Сильная реакция на инфляцию,24,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.4707235811896495e-05
+high_phi_pi,Сильная реакция на инфляцию,25,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.4612969126708436e-05
+high_phi_pi,Сильная реакция на инфляцию,26,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.4445619835102377e-05
+high_phi_pi,Сильная реакция на инфляцию,27,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.4200170730653738e-05
+high_phi_pi,Сильная реакция на инфляцию,28,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.387365198804279e-05
+high_phi_pi,Сильная реакция на инфляцию,29,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.3465829884280453e-05
+high_phi_pi,Сильная реакция на инфляцию,30,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.2979349715726418e-05
+high_phi_pi,Сильная реакция на инфляцию,31,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.2419492814948805e-05
+high_phi_pi,Сильная реакция на инфляцию,32,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.1793693429065216e-05
+high_phi_pi,Сильная реакция на инфляцию,33,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.1110943467537934e-05
+high_phi_pi,Сильная реакция на инфляцию,34,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.0381178487571206e-05
+high_phi_pi,Сильная реакция на инфляцию,35,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.9614707781230965e-05
+high_phi_pi,Сильная реакция на инфляцию,36,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.8821733029152523e-05
+high_phi_pi,Сильная реакция на инфляцию,37,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.801196562832161e-05
+high_phi_pi,Сильная реакция на инфляцию,38,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.719435066290421e-05
+high_phi_pi,Сильная реакция на инфляцию,39,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.637688589754323e-05
+high_phi_pi,Сильная реакция на инфляцию,40,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.556652683559014e-05
+high_phi_pi,Сильная реакция на инфляцию,41,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.4769157163284594e-05
+high_phi_pi,Сильная реакция на инфляцию,42,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.3989611264631938e-05
+high_phi_pi,Сильная реакция на инфляцию,43,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.323173531015684e-05
+high_phi_pi,Сильная реакция на инфляцию,44,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.249847249467876e-05
+high_phi_pi,Сильная реакция на инфляцию,45,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.1791964152514484e-05
+high_phi_pi,Сильная реакция на инфляцию,46,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.111366077841974e-05
+high_phi_pi,Сильная реакция на инфляцию,47,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.0464436720311952e-05
+high_phi_pi,Сильная реакция на инфляцию,48,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.844706385089566e-06
+high_phi_pi,Сильная реакция на инфляцию,49,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.254540081308202e-06
+high_phi_pi,Сильная реакция на инфляцию,50,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-8.69377171130977e-06
+high_phi_pi,Сильная реакция на инфляцию,51,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-8.162094136657878e-06
+high_phi_pi,Сильная реакция на инфляцию,52,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-7.659121638765726e-06
+high_phi_pi,Сильная реакция на инфляцию,53,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-7.184388204053299e-06
+high_phi_pi,Сильная реакция на инфляцию,54,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-6.737240981771668e-06
+high_phi_pi,Сильная реакция на инфляцию,55,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-6.316563185577894e-06
+high_phi_pi,Сильная реакция на инфляцию,56,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-5.920287743936617e-06
+high_phi_pi,Сильная реакция на инфляцию,57,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-5.544721127508779e-06
+high_phi_pi,Сильная реакция на инфляцию,58,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-5.183874318356327e-06
+high_phi_pi,Сильная реакция на инфляцию,59,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.829208710585511e-06
+high_phi_pi,Сильная реакция на инфляцию,0,general_equilibrium_total,Полный отклик,-0.1724581838762791
+high_phi_pi,Сильная реакция на инфляцию,1,general_equilibrium_total,Полный отклик,-0.13140216924562836
+high_phi_pi,Сильная реакция на инфляцию,2,general_equilibrium_total,Полный отклик,-0.07318708020403271
+high_phi_pi,Сильная реакция на инфляцию,3,general_equilibrium_total,Полный отклик,-0.041911134537143624
+high_phi_pi,Сильная реакция на инфляцию,4,general_equilibrium_total,Полный отклик,-0.02488496896072713
+high_phi_pi,Сильная реакция на инфляцию,5,general_equilibrium_total,Полный отклик,-0.015404672502430765
+high_phi_pi,Сильная реакция на инфляцию,6,general_equilibrium_total,Полный отклик,-0.009962772950695932
+high_phi_pi,Сильная реакция на инфляцию,7,general_equilibrium_total,Полный отклик,-0.0067038464725545435
+high_phi_pi,Сильная реакция на инфляцию,8,general_equilibrium_total,Полный отклик,-0.004643098165168104
+high_phi_pi,Сильная реакция на инфляцию,9,general_equilibrium_total,Полный отклик,-0.003254487182422263
+high_phi_pi,Сильная реакция на инфляцию,10,general_equilibrium_total,Полный отклик,-0.002254312016917484
+high_phi_pi,Сильная реакция на инфляцию,11,general_equilibrium_total,Полный отклик,-0.0014875377214821702
+high_phi_pi,Сильная реакция на инфляцию,12,general_equilibrium_total,Полный отклик,-0.0008680169954317357
+high_phi_pi,Сильная реакция на инфляцию,13,general_equilibrium_total,Полный отклик,-0.0003469056080822034
+high_phi_pi,Сильная реакция на инфляцию,14,general_equilibrium_total,Полный отклик,0.00010417310202792346
+high_phi_pi,Сильная реакция на инфляцию,15,general_equilibrium_total,Полный отклик,0.0005022133856772244
+high_phi_pi,Сильная реакция на инфляцию,16,general_equilibrium_total,Полный отклик,0.0008577998959788651
+high_phi_pi,Сильная реакция на инфляцию,17,general_equilibrium_total,Полный отклик,0.0011778668380575355
+high_phi_pi,Сильная реакция на инфляцию,18,general_equilibrium_total,Полный отклик,0.0014672447354442482
+high_phi_pi,Сильная реакция на инфляцию,19,general_equilibrium_total,Полный отклик,0.0017295317710874832
+high_phi_pi,Сильная реакция на инфляцию,20,general_equilibrium_total,Полный отклик,0.0019675837475834133
+high_phi_pi,Сильная реакция на инфляцию,21,general_equilibrium_total,Полный отклик,0.00218378727928994
+high_phi_pi,Сильная реакция на инфляцию,22,general_equilibrium_total,Полный отклик,0.002380210040257491
+high_phi_pi,Сильная реакция на инфляцию,23,general_equilibrium_total,Полный отклик,0.002558682101644932
+high_phi_pi,Сильная реакция на инфляцию,24,general_equilibrium_total,Полный отклик,0.0027208395220153234
+high_phi_pi,Сильная реакция на инфляцию,25,general_equilibrium_total,Полный отклик,0.002868147919646023
+high_phi_pi,Сильная реакция на инфляцию,26,general_equilibrium_total,Полный отклик,0.003001915922827735
+high_phi_pi,Сильная реакция на инфляцию,27,general_equilibrium_total,Полный отклик,0.0031233038458797512
+high_phi_pi,Сильная реакция на инфляцию,28,general_equilibrium_total,Полный отклик,0.0032333304216228603
+high_phi_pi,Сильная реакция на инфляцию,29,general_equilibrium_total,Полный отклик,0.0033328791798683545
+high_phi_pi,Сильная реакция на инфляцию,30,general_equilibrium_total,Полный отклик,0.003422705582879003
+high_phi_pi,Сильная реакция на инфляцию,31,general_equilibrium_total,Полный отклик,0.003503446090936057
+high_phi_pi,Сильная реакция на инфляцию,32,general_equilibrium_total,Полный отклик,0.00357563062730979
+high_phi_pi,Сильная реакция на инфляцию,33,general_equilibrium_total,Полный отклик,0.0036397004346958584
+high_phi_pi,Сильная реакция на инфляцию,34,general_equilibrium_total,Полный отклик,0.003696033748268389
+high_phi_pi,Сильная реакция на инфляцию,35,general_equilibrium_total,Полный отклик,0.0037449820833680195
+high_phi_pi,Сильная реакция на инфляцию,36,general_equilibrium_total,Полный отклик,0.003786919857404217
+high_phi_pi,Сильная реакция на инфляцию,37,general_equilibrium_total,Полный отклик,0.0038223094550268013
+high_phi_pi,Сильная реакция на инфляцию,38,general_equilibrium_total,Полный отклик,0.00385178231150302
+high_phi_pi,Сильная реакция на инфляцию,39,general_equilibrium_total,Полный отклик,0.0038762338238406717
+high_phi_pi,Сильная реакция на инфляцию,40,general_equilibrium_total,Полный отклик,0.003896925618062382
+high_phi_pi,Сильная реакция на инфляцию,41,general_equilibrium_total,Полный отклик,0.003915582627304985
+high_phi_pi,Сильная реакция на инфляцию,42,general_equilibrium_total,Полный отклик,0.0039344644798182645
+high_phi_pi,Сильная реакция на инфляцию,43,general_equilibrium_total,Полный отклик,0.003956381112992153
+high_phi_pi,Сильная реакция на инфляцию,44,general_equilibrium_total,Полный отклик,0.003984612024051205
+high_phi_pi,Сильная реакция на инфляцию,45,general_equilibrium_total,Полный отклик,0.00402267849712627
+high_phi_pi,Сильная реакция на инфляцию,46,general_equilibrium_total,Полный отклик,0.0040739109071740555
+high_phi_pi,Сильная реакция на инфляцию,47,general_equilibrium_total,Полный отклик,0.0041407521895185226
+high_phi_pi,Сильная реакция на инфляцию,48,general_equilibrium_total,Полный отклик,0.004223748570279236
+high_phi_pi,Сильная реакция на инфляцию,49,general_equilibrium_total,Полный отклик,0.0043202058712598366
+high_phi_pi,Сильная реакция на инфляцию,50,general_equilibrium_total,Полный отклик,0.00442254145519194
+high_phi_pi,Сильная реакция на инфляцию,51,general_equilibrium_total,Полный отклик,0.004516446549308891
+high_phi_pi,Сильная реакция на инфляцию,52,general_equilibrium_total,Полный отклик,0.004579099559629546
+high_phi_pi,Сильная реакция на инфляцию,53,general_equilibrium_total,Полный отклик,0.004577845140788675
+high_phi_pi,Сильная реакция на инфляцию,54,general_equilibrium_total,Полный отклик,0.00446997947015734
+high_phi_pi,Сильная реакция на инфляцию,55,general_equilibrium_total,Полный отклик,0.004204555135163086
+high_phi_pi,Сильная реакция на инфляцию,56,general_equilibrium_total,Полный отклик,0.0037274216409382372
+high_phi_pi,Сильная реакция на инфляцию,57,general_equilibrium_total,Полный отклик,0.0029910122739268867
+high_phi_pi,Сильная реакция на инфляцию,58,general_equilibrium_total,Полный отклик,0.0019706238309415143
+high_phi_pi,Сильная реакция на инфляцию,59,general_equilibrium_total,Полный отклик,0.0006889396885223574
+high_rho_i,Высокая инерция ставки,0,household_total,Отклик household-блока,-0.5616227267859898
+high_rho_i,Высокая инерция ставки,1,household_total,Отклик household-блока,-0.4295545524707272
+high_rho_i,Высокая инерция ставки,2,household_total,Отклик household-блока,-0.3023211246462202
+high_rho_i,Высокая инерция ставки,3,household_total,Отклик household-блока,-0.210127325319207
+high_rho_i,Высокая инерция ставки,4,household_total,Отклик household-блока,-0.14500037516497255
+high_rho_i,Высокая инерция ставки,5,household_total,Отклик household-блока,-0.09989656662358112
+high_rho_i,Высокая инерция ставки,6,household_total,Отклик household-блока,-0.06908860635804931
+high_rho_i,Высокая инерция ставки,7,household_total,Отклик household-блока,-0.048177529949779
+high_rho_i,Высокая инерция ставки,8,household_total,Отклик household-блока,-0.03397569200344126
+high_rho_i,Высокая инерция ставки,9,household_total,Отклик household-блока,-0.024250147340564847
+high_rho_i,Высокая инерция ставки,10,household_total,Отклик household-блока,-0.017473341007620418
+high_rho_i,Высокая инерция ставки,11,household_total,Отклик household-блока,-0.012624489396067586
+high_rho_i,Высокая инерция ставки,12,household_total,Отклик household-блока,-0.009034021415301574
+high_rho_i,Высокая инерция ставки,13,household_total,Отклик household-блока,-0.006269307844909668
+high_rho_i,Высокая инерция ставки,14,household_total,Отклик household-блока,-0.004054102502287748
+high_rho_i,Высокая инерция ставки,15,household_total,Отклик household-блока,-0.002213509805159312
+high_rho_i,Высокая инерция ставки,16,household_total,Отклик household-блока,-0.0006372979715993719
+high_rho_i,Высокая инерция ставки,17,household_total,Отклик household-блока,0.0007440761812937848
+high_rho_i,Высокая инерция ставки,18,household_total,Отклик household-блока,0.0019748705852789252
+high_rho_i,Высокая инерция ставки,19,household_total,Отклик household-блока,0.0030838023269468716
+high_rho_i,Высокая инерция ставки,20,household_total,Отклик household-блока,0.004090121039213769
+high_rho_i,Высокая инерция ставки,21,household_total,Отклик household-блока,0.005007337435948376
+high_rho_i,Высокая инерция ставки,22,household_total,Отклик household-блока,0.005845476030676285
+high_rho_i,Высокая инерция ставки,23,household_total,Отклик household-блока,0.0066124130489993715
+high_rho_i,Высокая инерция ставки,24,household_total,Отклик household-блока,0.007314656734775054
+high_rho_i,Высокая инерция ставки,25,household_total,Отклик household-блока,0.00795779435639867
+high_rho_i,Высокая инерция ставки,26,household_total,Отклик household-блока,0.008546744603865968
+high_rho_i,Высокая инерция ставки,27,household_total,Отклик household-блока,0.009085899663500756
+high_rho_i,Высокая инерция ставки,28,household_total,Отклик household-блока,0.009579207019790594
+high_rho_i,Высокая инерция ставки,29,household_total,Отклик household-блока,0.010030219921960164
+high_rho_i,Высокая инерция ставки,30,household_total,Отклик household-блока,0.0104421326003264
+high_rho_i,Высокая инерция ставки,31,household_total,Отклик household-блока,0.010817808726475506
+high_rho_i,Высокая инерция ставки,32,household_total,Отклик household-блока,0.011159807302688866
+high_rho_i,Высокая инерция ставки,33,household_total,Отклик household-блока,0.011470407851430612
+high_rho_i,Высокая инерция ставки,34,household_total,Отклик household-блока,0.011751635733347554
+high_rho_i,Высокая инерция ставки,35,household_total,Отклик household-блока,0.01200528807504703
+high_rho_i,Высокая инерция ставки,36,household_total,Отклик household-блока,0.012232960937291178
+high_rho_i,Высокая инерция ставки,37,household_total,Отклик household-блока,0.012436078692009642
+high_rho_i,Высокая инерция ставки,38,household_total,Отклик household-блока,0.012615926945889661
+high_rho_i,Высокая инерция ставки,39,household_total,Отклик household-блока,0.012773690550270679
+high_rho_i,Высокая инерция ставки,40,household_total,Отклик household-блока,0.01291049780265042
+high_rho_i,Высокая инерция ставки,41,household_total,Отклик household-блока,0.013027470417971315
+high_rho_i,Высокая инерция ставки,42,household_total,Отклик household-блока,0.013125775213438372
+high_rho_i,Высокая инерция ставки,43,household_total,Отклик household-блока,0.01320666642127722
+high_rho_i,Высокая инерция ставки,44,household_total,Отклик household-блока,0.013271495261571778
+high_rho_i,Высокая инерция ставки,45,household_total,Отклик household-блока,0.01332164350193003
+high_rho_i,Высокая инерция ставки,46,household_total,Отклик household-блока,0.013358307504180442
+high_rho_i,Высокая инерция ставки,47,household_total,Отклик household-блока,0.013382016409140772
+high_rho_i,Высокая инерция ставки,48,household_total,Отклик household-блока,0.013391711763267557
+high_rho_i,Высокая инерция ставки,49,household_total,Отклик household-блока,0.01338314922498706
+high_rho_i,Высокая инерция ставки,50,household_total,Отклик household-блока,0.013346317426072812
+high_rho_i,Высокая инерция ставки,51,household_total,Отклик household-блока,0.013261530748802666
+high_rho_i,Высокая инерция ставки,52,household_total,Отклик household-блока,0.013093893866515794
+high_rho_i,Высокая инерция ставки,53,household_total,Отклик household-блока,0.012786048704299028
+high_rho_i,Высокая инерция ставки,54,household_total,Отклик household-блока,0.012249651956973343
+high_rho_i,Высокая инерция ставки,55,household_total,Отклик household-блока,0.011357125322447884
+high_rho_i,Высокая инерция ставки,56,household_total,Отклик household-блока,0.009937190205554008
+high_rho_i,Высокая инерция ставки,57,household_total,Отклик household-блока,0.007780925139570517
+high_rho_i,Высокая инерция ставки,58,household_total,Отклик household-блока,0.004669960081071116
+high_rho_i,Высокая инерция ставки,59,household_total,Отклик household-блока,0.00044493339038210403
+high_rho_i,Высокая инерция ставки,0,intertemporal_financial_channel,Межвременной и финансовый канал,-0.13426523381726135
+high_rho_i,Высокая инерция ставки,1,intertemporal_financial_channel,Межвременной и финансовый канал,-0.02693506084317949
+high_rho_i,Высокая инерция ставки,2,intertemporal_financial_channel,Межвременной и финансовый канал,0.03231846596750338
+high_rho_i,Высокая инерция ставки,3,intertemporal_financial_channel,Межвременной и финансовый канал,0.06949096865393065
+high_rho_i,Высокая инерция ставки,4,intertemporal_financial_channel,Межвременной и финансовый канал,0.09146687864474196
+high_rho_i,Высокая инерция ставки,5,intertemporal_financial_channel,Межвременной и финансовый канал,0.10330036795947148
+high_rho_i,Высокая инерция ставки,6,intertemporal_financial_channel,Межвременной и финансовый канал,0.10858748045196845
+high_rho_i,Высокая инерция ставки,7,intertemporal_financial_channel,Межвременной и финансовый канал,0.10981596990626413
+high_rho_i,Высокая инерция ставки,8,intertemporal_financial_channel,Межвременной и финансовый канал,0.10862937439399675
+high_rho_i,Высокая инерция ставки,9,intertemporal_financial_channel,Межвременной и финансовый канал,0.10607930466416642
+high_rho_i,Высокая инерция ставки,10,intertemporal_financial_channel,Межвременной и финансовый канал,0.10282669904933028
+high_rho_i,Высокая инерция ставки,11,intertemporal_financial_channel,Межвременной и финансовый канал,0.09927456203124886
+high_rho_i,Высокая инерция ставки,12,intertemporal_financial_channel,Межвременной и финансовый канал,0.09566004564261549
+high_rho_i,Высокая инерция ставки,13,intertemporal_financial_channel,Межвременной и финансовый канал,0.09211625165788993
+high_rho_i,Высокая инерция ставки,14,intertemporal_financial_channel,Межвременной и финансовый канал,0.08871266456403124
+high_rho_i,Высокая инерция ставки,15,intertemporal_financial_channel,Межвременной и финансовый канал,0.08548100661370177
+high_rho_i,Высокая инерция ставки,16,intertemporal_financial_channel,Межвременной и финансовый канал,0.08243138620543375
+high_rho_i,Высокая инерция ставки,17,intertemporal_financial_channel,Межвременной и финансовый канал,0.07956214329822409
+high_rho_i,Высокая инерция ставки,18,intertemporal_financial_channel,Межвременной и финансовый канал,0.0768656878479141
+high_rho_i,Высокая инерция ставки,19,intertemporal_financial_channel,Межвременной и финансовый канал,0.07433183866630069
+high_rho_i,Высокая инерция ставки,20,intertemporal_financial_channel,Межвременной и финансовый канал,0.07194965472486374
+high_rho_i,Высокая инерция ставки,21,intertemporal_financial_channel,Межвременной и финансовый канал,0.06970837544226355
+high_rho_i,Высокая инерция ставки,22,intertemporal_financial_channel,Межвременной и финансовый канал,0.06759785352727224
+high_rho_i,Высокая инерция ставки,23,intertemporal_financial_channel,Межвременной и финансовый канал,0.06560871249053671
+high_rho_i,Высокая инерция ставки,24,intertemporal_financial_channel,Межвременной и финансовый канал,0.06373236404716673
+high_rho_i,Высокая инерция ставки,25,intertemporal_financial_channel,Межвременной и финансовый канал,0.061960961547595755
+high_rho_i,Высокая инерция ставки,26,intertemporal_financial_channel,Межвременной и финансовый канал,0.060287330280780385
+high_rho_i,Высокая инерция ставки,27,intertemporal_financial_channel,Межвременной и финансовый канал,0.05870489505860728
+high_rho_i,Высокая инерция ставки,28,intertemporal_financial_channel,Межвременной и финансовый канал,0.057207614133981205
+high_rho_i,Высокая инерция ставки,29,intertemporal_financial_channel,Межвременной и финансовый канал,0.05578992250481283
+high_rho_i,Высокая инерция ставки,30,intertemporal_financial_channel,Межвременной и финансовый канал,0.05444668473332622
+high_rho_i,Высокая инерция ставки,31,intertemporal_financial_channel,Межвременной и финансовый канал,0.05317315619664338
+high_rho_i,Высокая инерция ставки,32,intertemporal_financial_channel,Межвременной и финансовый канал,0.05196495135775362
+high_rho_i,Высокая инерция ставки,33,intertemporal_financial_channel,Межвременной и финансовый канал,0.05081801778729918
+high_rho_i,Высокая инерция ставки,34,intertemporal_financial_channel,Межвременной и финансовый канал,0.04972861502829883
+high_rho_i,Высокая инерция ставки,35,intertemporal_financial_channel,Межвременной и финансовый канал,0.048693297887950154
+high_rho_i,Высокая инерция ставки,36,intertemporal_financial_channel,Межвременной и финансовый канал,0.04770890432008608
+high_rho_i,Высокая инерция ставки,37,intertemporal_financial_channel,Межвременной и финансовый канал,0.04677254871719402
+high_rho_i,Высокая инерция ставки,38,intertemporal_financial_channel,Межвременной и финансовый канал,0.04588162215737337
+high_rho_i,Высокая инерция ставки,39,intertemporal_financial_channel,Межвременной и финансовый канал,0.04503380184299184
+high_rho_i,Высокая инерция ставки,40,intertemporal_financial_channel,Межвременной и финансовый канал,0.04422707248170884
+high_rho_i,Высокая инерция ставки,41,intertemporal_financial_channel,Межвременной и финансовый канал,0.043459762289923265
+high_rho_i,Высокая инерция ставки,42,intertemporal_financial_channel,Межвременной и финансовый канал,0.04273059499957839
+high_rho_i,Высокая инерция ставки,43,intertemporal_financial_channel,Межвременной и финансовый канал,0.04203875559767006
+high_rho_i,Высокая инерция ставки,44,intertemporal_financial_channel,Межвременной и финансовый канал,0.0413839598229756
+high_rho_i,Высокая инерция ставки,45,intertemporal_financial_channel,Межвременной и финансовый канал,0.04076650320335607
+high_rho_i,Высокая инерция ставки,46,intertemporal_financial_channel,Межвременной и финансовый канал,0.04018724134960977
+high_rho_i,Высокая инерция ставки,47,intertemporal_financial_channel,Межвременной и финансовый канал,0.03964741531666626
+high_rho_i,Высокая инерция ставки,48,intertemporal_financial_channel,Межвременной и финансовый канал,0.03914818001460847
+high_rho_i,Высокая инерция ставки,49,intertemporal_financial_channel,Межвременной и финансовый канал,0.03868961711639661
+high_rho_i,Высокая инерция ставки,50,intertemporal_financial_channel,Межвременной и финансовый канал,0.03826891804001217
+high_rho_i,Высокая инерция ставки,51,intertemporal_financial_channel,Межвременной и финансовый канал,0.03787731799941943
+high_rho_i,Высокая инерция ставки,52,intertemporal_financial_channel,Межвременной и финансовый канал,0.03749527711033184
+high_rho_i,Высокая инерция ставки,53,intertemporal_financial_channel,Межвременной и финансовый канал,0.03708539839771386
+high_rho_i,Высокая инерция ставки,54,intertemporal_financial_channel,Межвременной и финансовый канал,0.036582754953908996
+high_rho_i,Высокая инерция ставки,55,intertemporal_financial_channel,Межвременной и финансовый канал,0.03588285574904522
+high_rho_i,Высокая инерция ставки,56,intertemporal_financial_channel,Межвременной и финансовый канал,0.03482870504518869
+high_rho_i,Высокая инерция ставки,57,intertemporal_financial_channel,Межвременной и финансовый канал,0.03320072931118645
+high_rho_i,Высокая инерция ставки,58,intertemporal_financial_channel,Межвременной и финансовый канал,0.030717313463094847
+high_rho_i,Высокая инерция ставки,59,intertemporal_financial_channel,Межвременной и финансовый канал,0.027059834027879908
+high_rho_i,Высокая инерция ставки,0,labor_income_channel,Канал трудового дохода,-0.4277128564541384
+high_rho_i,Высокая инерция ставки,1,labor_income_channel,Канал трудового дохода,-0.40344950462231427
+high_rho_i,Высокая инерция ставки,2,labor_income_channel,Канал трудового дохода,-0.33502867268854636
+high_rho_i,Высокая инерция ставки,3,labor_income_channel,Канал трудового дохода,-0.279752336983887
+high_rho_i,Высокая инерция ставки,4,labor_income_channel,Канал трудового дохода,-0.2364514026491722
+high_rho_i,Высокая инерция ставки,5,labor_income_channel,Канал трудового дохода,-0.203094175225569
+high_rho_i,Высокая инерция ставки,6,labor_income_channel,Канал трудового дохода,-0.17752133940904194
+high_rho_i,Высокая инерция ставки,7,labor_income_channel,Канал трудового дохода,-0.1578063759085048
+high_rho_i,Высокая инерция ставки,8,labor_income_channel,Канал трудового дохода,-0.14239414107351303
+high_rho_i,Высокая инерция ставки,9,labor_income_channel,Канал трудового дохода,-0.1300998033489887
+high_rho_i,Высокая инерция ставки,10,labor_income_channel,Канал трудового дохода,-0.1200551287544462
+high_rho_i,Высокая инерция ставки,11,labor_income_channel,Канал трудового дохода,-0.11164160126996787
+high_rho_i,Высокая инерция ставки,12,labor_income_channel,Канал трудового дохода,-0.1044266052320226
+high_rho_i,Высокая инерция ставки,13,labor_income_channel,Канал трудового дохода,-0.09811060905210155
+high_rho_i,Высокая инерция ставки,14,labor_income_channel,Канал трудового дохода,-0.09248683123901932
+high_rho_i,Высокая инерция ставки,15,labor_income_channel,Канал трудового дохода,-0.08741196057652421
+high_rho_i,Высокая инерция ставки,16,labor_income_channel,Канал трудового дохода,-0.08278560930935297
+high_rho_i,Высокая инерция ставки,17,labor_income_channel,Канал трудового дохода,-0.07853622211706969
+high_rho_i,Высокая инерция ставки,18,labor_income_channel,Канал трудового дохода,-0.07461156278261614
+high_rho_i,Высокая инерция ставки,19,labor_income_channel,Канал трудового дохода,-0.0709723612149029
+high_rho_i,Высокая инерция ставки,20,labor_income_channel,Канал трудового дохода,-0.06758810461041329
+high_rho_i,Высокая инерция ставки,21,labor_income_channel,Канал трудового дохода,-0.06443426614329359
+high_rho_i,Высокая инерция ставки,22,labor_income_channel,Канал трудового дохода,-0.06149048886524058
+high_rho_i,Высокая инерция ставки,23,labor_income_channel,Канал трудового дохода,-0.0587393993704397
+high_rho_i,Высокая инерция ставки,24,labor_income_channel,Канал трудового дохода,-0.05616583342867326
+high_rho_i,Высокая инерция ставки,25,labor_income_channel,Канал трудового дохода,-0.05375632884379764
+high_rho_i,Высокая инерция ставки,26,labor_income_channel,Канал трудового дохода,-0.05149879010947123
+high_rho_i,Высокая инерция ставки,27,labor_income_channel,Канал трудового дохода,-0.04938226245000535
+high_rho_i,Высокая инерция ставки,28,labor_income_channel,Канал трудового дохода,-0.047396774934135584
+high_rho_i,Высокая инерция ставки,29,labor_income_channel,Канал трудового дохода,-0.0455332269004977
+high_rho_i,Высокая инерция ставки,30,labor_income_channel,Канал трудового дохода,-0.04378330152226643
+high_rho_i,Высокая инерция ставки,31,labor_income_channel,Канал трудового дохода,-0.04213939651717613
+high_rho_i,Высокая инерция ставки,32,labor_income_channel,Канал трудового дохода,-0.04059456594153899
+high_rho_i,Высокая инерция ставки,33,labor_income_channel,Канал трудового дохода,-0.039142469463620794
+high_rho_i,Высокая инерция ставки,34,labor_income_channel,Канал трудового дохода,-0.037777326988294634
+high_rho_i,Высокая инерция ставки,35,labor_income_channel,Канал трудового дохода,-0.036493877416564055
+high_rho_i,Высокая инерция ставки,36,labor_income_channel,Канал трудового дохода,-0.03528734083763653
+high_rho_i,Высокая инерция ставки,37,labor_income_channel,Канал трудового дохода,-0.03415338384749848
+high_rho_i,Высокая инерция ставки,38,labor_income_channel,Канал трудового дохода,-0.03308808810353983
+high_rho_i,Высокая инерция ставки,39,labor_income_channel,Канал трудового дохода,-0.0320879227642458
+high_rho_i,Высокая инерция ставки,40,labor_income_channel,Канал трудового дохода,-0.03114972244329868
+high_rho_i,Высокая инерция ставки,41,labor_income_channel,Канал трудового дохода,-0.030270673790630087
+high_rho_i,Высокая инерция ставки,42,labor_income_channel,Канал трудового дохода,-0.02944831615346267
+high_rho_i,Высокая инерция ставки,43,labor_income_channel,Канал трудового дохода,-0.028680565163509045
+high_rho_i,Высокая инерция ставки,44,labor_income_channel,Канал трудового дохода,-0.027965772665785604
+high_rho_i,Высокая инерция ставки,45,labor_income_channel,Канал трудового дохода,-0.027302842072376873
+high_rho_i,Высокая инерция ставки,46,labor_income_channel,Канал трудового дохода,-0.02669142437564765
+high_rho_i,Высокая инерция ставки,47,labor_income_channel,Канал трудового дохода,-0.026132225013313297
+high_rho_i,Высокая инерция ставки,48,labor_income_channel,Канал трудового дохода,-0.02562745228763153
+high_rho_i,Высокая инерция ставки,49,labor_income_channel,Канал трудового дохода,-0.02518142820903884
+high_rho_i,Высокая инерция ставки,50,labor_income_channel,Канал трудового дохода,-0.024801352359831733
+high_rho_i,Высокая инерция ставки,51,labor_income_channel,Канал трудового дохода,-0.02449814316974656
+high_rho_i,Высокая инерция ставки,52,labor_income_channel,Канал трудового дохода,-0.024287154998083045
+high_rho_i,Высокая инерция ставки,53,labor_income_channel,Канал трудового дохода,-0.02418835059748433
+high_rho_i,Высокая инерция ставки,54,labor_income_channel,Канал трудового дохода,-0.024225153633682925
+high_rho_i,Высокая инерция ставки,55,labor_income_channel,Канал трудового дохода,-0.024420669354021325
+high_rho_i,Высокая инерция ставки,56,labor_income_channel,Канал трудового дохода,-0.024789217403087222
+high_rho_i,Высокая инерция ставки,57,labor_income_channel,Канал трудового дохода,-0.025320212790548653
+high_rho_i,Высокая инерция ставки,58,labor_income_channel,Канал трудового дохода,-0.025950521518477262
+high_rho_i,Высокая инерция ставки,59,labor_income_channel,Канал трудового дохода,-0.026521047964310148
+high_rho_i,Высокая инерция ставки,0,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,0.00035536348540994036
+high_rho_i,Высокая инерция ставки,1,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,0.0008300129947665446
+high_rho_i,Высокая инерция ставки,2,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,0.0003890820748228371
+high_rho_i,Высокая инерция ставки,3,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,0.00013404301074940641
+high_rho_i,Высокая инерция ставки,4,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.5851160542319935e-05
+high_rho_i,Высокая инерция ставки,5,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00010275935748360357
+high_rho_i,Высокая инерция ставки,6,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00015474740097582118
+high_rho_i,Высокая инерция ставки,7,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00018712394753832957
+high_rho_i,Высокая инерция ставки,8,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002109253239249855
+high_rho_i,Высокая инерция ставки,9,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00022964865574256145
+high_rho_i,Высокая инерция ставки,10,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002449113025045146
+high_rho_i,Высокая инерция ставки,11,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002574501573485732
+high_rho_i,Высокая инерция ставки,12,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002674618258944585
+high_rho_i,Высокая инерция ставки,13,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002749504506980584
+high_rho_i,Высокая инерция ставки,14,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002799358272996496
+high_rho_i,Высокая инерция ставки,15,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002825558423368697
+high_rho_i,Высокая инерция ставки,16,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002830748676801471
+high_rho_i,Высокая инерция ставки,17,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00028184499986061266
+high_rho_i,Высокая инерция ставки,18,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002792544800190253
+high_rho_i,Высокая инерция ставки,19,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002756751244509146
+high_rho_i,Высокая инерция ставки,20,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002714290752366967
+high_rho_i,Высокая инерция ставки,21,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00026677186302158514
+high_rho_i,Высокая инерция ставки,22,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00026188863135536767
+high_rho_i,Высокая инерция ставки,23,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002569000710976444
+high_rho_i,Высокая инерция ставки,24,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.000251873883718413
+high_rho_i,Высокая инерция ставки,25,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00024683834739944426
+high_rho_i,Высокая инерция ставки,26,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00024179556744318098
+high_rho_i,Высокая инерция ставки,27,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00023673294510117012
+high_rho_i,Высокая инерция ставки,28,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00023163218005502634
+high_rho_i,Высокая инерция ставки,29,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00022647568235495893
+high_rho_i,Высокая инерция ставки,30,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00022125061073339082
+high_rho_i,Высокая инерция ставки,31,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00021595095299174386
+high_rho_i,Высокая инерция ставки,32,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00021057811352576393
+high_rho_i,Высокая инерция ставки,33,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0002051404722477727
+high_rho_i,Высокая инерция ставки,34,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00019965230665664575
+high_rho_i,Высокая инерция ставки,35,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0001941323963390746
+high_rho_i,Высокая инерция ставки,36,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00018860254515837375
+high_rho_i,Высокая инерция ставки,37,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00018308617768589432
+high_rho_i,Высокая инерция ставки,38,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00017760710794387916
+high_rho_i,Высокая инерция ставки,39,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00017218852847535846
+high_rho_i,Высокая инерция ставки,40,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0001668522357597353
+high_rho_i,Высокая инерция ставки,41,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0001616180813218608
+high_rho_i,Высокая инерция ставки,42,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00015650363267734666
+high_rho_i,Высокая инерция ставки,43,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00015152401288380106
+high_rho_i,Высокая инерция ставки,44,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00014669189561822106
+high_rho_i,Высокая инерция ставки,45,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00014201762904916804
+high_rho_i,Высокая инерция ставки,46,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00013750946978167763
+high_rho_i,Высокая инерция ставки,47,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00013317389421219203
+high_rho_i,Высокая инерция ставки,48,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00012901596370938205
+high_rho_i,Высокая инерция ставки,49,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00012503968237070879
+high_rho_i,Высокая инерция ставки,50,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00012124825410762427
+high_rho_i,Высокая инерция ставки,51,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00011764408087020464
+high_rho_i,Высокая инерция ставки,52,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00011422824573300048
+high_rho_i,Высокая инерция ставки,53,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00011099909593050177
+high_rho_i,Высокая инерция ставки,54,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00010794936325272513
+high_rho_i,Высокая инерция ставки,55,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00010506107257600783
+high_rho_i,Высокая инерция ставки,56,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00010229743654745814
+high_rho_i,Высокая инерция ставки,57,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.959138106728038e-05
+high_rho_i,Высокая инерция ставки,58,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.68318635464698e-05
+high_rho_i,Высокая инерция ставки,59,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.385267318765594e-05
+high_rho_i,Высокая инерция ставки,0,general_equilibrium_total,Полный отклик,-0.5616227267859898
+high_rho_i,Высокая инерция ставки,1,general_equilibrium_total,Полный отклик,-0.4295545524707272
+high_rho_i,Высокая инерция ставки,2,general_equilibrium_total,Полный отклик,-0.3023211246462202
+high_rho_i,Высокая инерция ставки,3,general_equilibrium_total,Полный отклик,-0.210127325319207
+high_rho_i,Высокая инерция ставки,4,general_equilibrium_total,Полный отклик,-0.14500037516497255
+high_rho_i,Высокая инерция ставки,5,general_equilibrium_total,Полный отклик,-0.09989656662358112
+high_rho_i,Высокая инерция ставки,6,general_equilibrium_total,Полный отклик,-0.06908860635804931
+high_rho_i,Высокая инерция ставки,7,general_equilibrium_total,Полный отклик,-0.048177529949779
+high_rho_i,Высокая инерция ставки,8,general_equilibrium_total,Полный отклик,-0.03397569200344126
+high_rho_i,Высокая инерция ставки,9,general_equilibrium_total,Полный отклик,-0.024250147340564847
+high_rho_i,Высокая инерция ставки,10,general_equilibrium_total,Полный отклик,-0.017473341007620418
+high_rho_i,Высокая инерция ставки,11,general_equilibrium_total,Полный отклик,-0.012624489396067586
+high_rho_i,Высокая инерция ставки,12,general_equilibrium_total,Полный отклик,-0.009034021415301574
+high_rho_i,Высокая инерция ставки,13,general_equilibrium_total,Полный отклик,-0.006269307844909668
+high_rho_i,Высокая инерция ставки,14,general_equilibrium_total,Полный отклик,-0.004054102502287748
+high_rho_i,Высокая инерция ставки,15,general_equilibrium_total,Полный отклик,-0.002213509805159312
+high_rho_i,Высокая инерция ставки,16,general_equilibrium_total,Полный отклик,-0.0006372979715993719
+high_rho_i,Высокая инерция ставки,17,general_equilibrium_total,Полный отклик,0.0007440761812937848
+high_rho_i,Высокая инерция ставки,18,general_equilibrium_total,Полный отклик,0.0019748705852789252
+high_rho_i,Высокая инерция ставки,19,general_equilibrium_total,Полный отклик,0.0030838023269468716
+high_rho_i,Высокая инерция ставки,20,general_equilibrium_total,Полный отклик,0.004090121039213769
+high_rho_i,Высокая инерция ставки,21,general_equilibrium_total,Полный отклик,0.005007337435948376
+high_rho_i,Высокая инерция ставки,22,general_equilibrium_total,Полный отклик,0.005845476030676285
+high_rho_i,Высокая инерция ставки,23,general_equilibrium_total,Полный отклик,0.0066124130489993715
+high_rho_i,Высокая инерция ставки,24,general_equilibrium_total,Полный отклик,0.007314656734775054
+high_rho_i,Высокая инерция ставки,25,general_equilibrium_total,Полный отклик,0.00795779435639867
+high_rho_i,Высокая инерция ставки,26,general_equilibrium_total,Полный отклик,0.008546744603865968
+high_rho_i,Высокая инерция ставки,27,general_equilibrium_total,Полный отклик,0.009085899663500756
+high_rho_i,Высокая инерция ставки,28,general_equilibrium_total,Полный отклик,0.009579207019790594
+high_rho_i,Высокая инерция ставки,29,general_equilibrium_total,Полный отклик,0.010030219921960164
+high_rho_i,Высокая инерция ставки,30,general_equilibrium_total,Полный отклик,0.0104421326003264
+high_rho_i,Высокая инерция ставки,31,general_equilibrium_total,Полный отклик,0.010817808726475506
+high_rho_i,Высокая инерция ставки,32,general_equilibrium_total,Полный отклик,0.011159807302688866
+high_rho_i,Высокая инерция ставки,33,general_equilibrium_total,Полный отклик,0.011470407851430612
+high_rho_i,Высокая инерция ставки,34,general_equilibrium_total,Полный отклик,0.011751635733347554
+high_rho_i,Высокая инерция ставки,35,general_equilibrium_total,Полный отклик,0.01200528807504703
+high_rho_i,Высокая инерция ставки,36,general_equilibrium_total,Полный отклик,0.012232960937291178
+high_rho_i,Высокая инерция ставки,37,general_equilibrium_total,Полный отклик,0.012436078692009642
+high_rho_i,Высокая инерция ставки,38,general_equilibrium_total,Полный отклик,0.012615926945889661
+high_rho_i,Высокая инерция ставки,39,general_equilibrium_total,Полный отклик,0.012773690550270679
+high_rho_i,Высокая инерция ставки,40,general_equilibrium_total,Полный отклик,0.01291049780265042
+high_rho_i,Высокая инерция ставки,41,general_equilibrium_total,Полный отклик,0.013027470417971315
+high_rho_i,Высокая инерция ставки,42,general_equilibrium_total,Полный отклик,0.013125775213438372
+high_rho_i,Высокая инерция ставки,43,general_equilibrium_total,Полный отклик,0.01320666642127722
+high_rho_i,Высокая инерция ставки,44,general_equilibrium_total,Полный отклик,0.013271495261571778
+high_rho_i,Высокая инерция ставки,45,general_equilibrium_total,Полный отклик,0.01332164350193003
+high_rho_i,Высокая инерция ставки,46,general_equilibrium_total,Полный отклик,0.013358307504180442
+high_rho_i,Высокая инерция ставки,47,general_equilibrium_total,Полный отклик,0.013382016409140772
+high_rho_i,Высокая инерция ставки,48,general_equilibrium_total,Полный отклик,0.013391711763267557
+high_rho_i,Высокая инерция ставки,49,general_equilibrium_total,Полный отклик,0.01338314922498706
+high_rho_i,Высокая инерция ставки,50,general_equilibrium_total,Полный отклик,0.013346317426072812
+high_rho_i,Высокая инерция ставки,51,general_equilibrium_total,Полный отклик,0.013261530748802666
+high_rho_i,Высокая инерция ставки,52,general_equilibrium_total,Полный отклик,0.013093893866515794
+high_rho_i,Высокая инерция ставки,53,general_equilibrium_total,Полный отклик,0.012786048704299028
+high_rho_i,Высокая инерция ставки,54,general_equilibrium_total,Полный отклик,0.012249651956973343
+high_rho_i,Высокая инерция ставки,55,general_equilibrium_total,Полный отклик,0.011357125322447884
+high_rho_i,Высокая инерция ставки,56,general_equilibrium_total,Полный отклик,0.009937190205554008
+high_rho_i,Высокая инерция ставки,57,general_equilibrium_total,Полный отклик,0.007780925139570517
+high_rho_i,Высокая инерция ставки,58,general_equilibrium_total,Полный отклик,0.004669960081071116
+high_rho_i,Высокая инерция ставки,59,general_equilibrium_total,Полный отклик,0.00044493339038210403
+low_phi_y,Слабая реакция на выпуск,0,household_total,Отклик household-блока,-0.2255939304487423
+low_phi_y,Слабая реакция на выпуск,1,household_total,Отклик household-блока,-0.1725615472023925
+low_phi_y,Слабая реакция на выпуск,2,household_total,Отклик household-блока,-0.10262422664338743
+low_phi_y,Слабая реакция на выпуск,3,household_total,Отклик household-блока,-0.061820800387854605
+low_phi_y,Слабая реакция на выпуск,4,household_total,Отклик household-блока,-0.03799308819201175
+low_phi_y,Слабая реакция на выпуск,5,household_total,Отклик household-блока,-0.023969910481626184
+low_phi_y,Слабая реакция на выпуск,6,household_total,Отклик household-блока,-0.015590826504083569
+low_phi_y,Слабая реакция на выпуск,7,household_total,Отклик household-блока,-0.010460032624566159
+low_phi_y,Слабая реакция на выпуск,8,household_total,Отклик household-блока,-0.007202500164163749
+low_phi_y,Слабая реакция на выпуск,9,household_total,Отклик household-блока,-0.005033026585432966
+low_phi_y,Слабая реакция на выпуск,10,household_total,Отклик household-блока,-0.003504274961060491
+low_phi_y,Слабая реакция на выпуск,11,household_total,Отклик household-блока,-0.0023613347273880913
+low_phi_y,Слабая реакция на выпуск,12,household_total,Отклик household-блока,-0.001458512990193006
+low_phi_y,Слабая реакция на выпуск,13,household_total,Отклик household-блока,-0.0007120223794881581
+low_phi_y,Слабая реакция на выпуск,14,household_total,Отклик household-блока,-7.31648948453858e-05
+low_phi_y,Слабая реакция на выпуск,15,household_total,Отклик household-блока,0.00048685432554949177
+low_phi_y,Слабая реакция на выпуск,16,household_total,Отклик household-блока,0.0009855307899485546
+low_phi_y,Слабая реакция на выпуск,17,household_total,Отклик household-блока,0.0014339373070551321
+low_phi_y,Слабая реакция на выпуск,18,household_total,Отклик household-блока,0.001839485560468315
+low_phi_y,Слабая реакция на выпуск,19,household_total,Отклик household-блока,0.0022074844247257173
+low_phi_y,Слабая реакция на выпуск,20,household_total,Отклик household-блока,0.0025420130257572567
+low_phi_y,Слабая реакция на выпуск,21,household_total,Отклик household-блока,0.0028464044797866742
+low_phi_y,Слабая реакция на выпуск,22,household_total,Отклик household-блока,0.003123510128922396
+low_phi_y,Слабая реакция на выпуск,23,household_total,Отклик household-блока,0.003375841877106176
+low_phi_y,Слабая реакция на выпуск,24,household_total,Отклик household-блока,0.0036056485300735397
+low_phi_y,Слабая реакция на выпуск,25,household_total,Отклик household-блока,0.0038149578484846097
+low_phi_y,Слабая реакция на выпуск,26,household_total,Отклик household-блока,0.004005601956669473
+low_phi_y,Слабая реакция на выпуск,27,household_total,Отклик household-блока,0.004179235672139243
+low_phi_y,Слабая реакция на выпуск,28,household_total,Отклик household-блока,0.004337352732941921
+low_phi_y,Слабая реакция на выпуск,29,household_total,Отклик household-блока,0.00448130241997682
+low_phi_y,Слабая реакция на выпуск,30,household_total,Отклик household-блока,0.004612307790817398
+low_phi_y,Слабая реакция на выпуск,31,household_total,Отклик household-блока,0.004731486199641489
+low_phi_y,Слабая реакция на выпуск,32,household_total,Отклик household-блока,0.004839872582698642
+low_phi_y,Слабая реакция на выпуск,33,household_total,Отклик household-блока,0.004938446017392225
+low_phi_y,Слабая реакция на выпуск,34,household_total,Отклик household-блока,0.00502816006446619
+low_phi_y,Слабая реакция на выпуск,35,household_total,Отклик household-блока,0.005109977357716276
+low_phi_y,Слабая реакция на выпуск,36,household_total,Отклик household-блока,0.005184908586603987
+low_phi_y,Слабая реакция на выпуск,37,household_total,Отклик household-блока,0.005254055363857053
+low_phi_y,Слабая реакция на выпуск,38,household_total,Отклик household-блока,0.005318655240214509
+low_phi_y,Слабая реакция на выпуск,39,household_total,Отклик household-блока,0.005380125205772548
+low_phi_y,Слабая реакция на выпуск,40,household_total,Отклик household-блока,0.005440097110405931
+low_phi_y,Слабая реакция на выпуск,41,household_total,Отклик household-блока,0.005500434398233138
+low_phi_y,Слабая реакция на выпуск,42,household_total,Отклик household-блока,0.005563214220413705
+low_phi_y,Слабая реакция на выпуск,43,household_total,Отклик household-блока,0.005630652335281408
+low_phi_y,Слабая реакция на выпуск,44,household_total,Отклик household-блока,0.005704940513767085
+low_phi_y,Слабая реакция на выпуск,45,household_total,Отклик household-блока,0.005787958034182052
+low_phi_y,Слабая реакция на выпуск,46,household_total,Отклик household-блока,0.005880811742611361
+low_phi_y,Слабая реакция на выпуск,47,household_total,Отклик household-блока,0.005983155258175698
+low_phi_y,Слабая реакция на выпуск,48,household_total,Отклик household-блока,0.006092241072075728
+low_phi_y,Слабая реакция на выпуск,49,household_total,Отклик household-блока,0.006201675011011616
+low_phi_y,Слабая реакция на выпуск,50,household_total,Отклик household-блока,0.006299878844542752
+low_phi_y,Слабая реакция на выпуск,51,household_total,Отклик household-блока,0.006368334474914763
+low_phi_y,Слабая реакция на выпуск,52,household_total,Отклик household-блока,0.006379796272268924
+low_phi_y,Слабая реакция на выпуск,53,household_total,Отклик household-блока,0.006296833635822081
+low_phi_y,Слабая реакция на выпуск,54,household_total,Отклик household-блока,0.006071322783936166
+low_phi_y,Слабая реакция на выпуск,55,household_total,Отклик household-блока,0.0056458623289243485
+low_phi_y,Слабая реакция на выпуск,56,household_total,Отклик household-блока,0.004958550525055789
+low_phi_y,Слабая реакция на выпуск,57,household_total,Отклик household-блока,0.0039531238425918516
+low_phi_y,Слабая реакция на выпуск,58,household_total,Отклик household-блока,0.002597090471850225
+low_phi_y,Слабая реакция на выпуск,59,household_total,Отклик household-блока,0.000911012403820891
+low_phi_y,Слабая реакция на выпуск,0,intertemporal_financial_channel,Межвременной и финансовый канал,-0.06325891301262757
+low_phi_y,Слабая реакция на выпуск,1,intertemporal_financial_channel,Межвременной и финансовый канал,-0.005671814136122485
+low_phi_y,Слабая реакция на выпуск,2,intertemporal_financial_channel,Межвременной и финансовый канал,0.02047172577396719
+low_phi_y,Слабая реакция на выпуск,3,intertemporal_financial_channel,Межвременной и финансовый канал,0.03382861693846106
+low_phi_y,Слабая реакция на выпуск,4,intertemporal_financial_channel,Межвременной и финансовый канал,0.040055924039680765
+low_phi_y,Слабая реакция на выпуск,5,intertemporal_financial_channel,Межвременной и финансовый канал,0.0424024328806657
+low_phi_y,Слабая реакция на выпуск,6,intertemporal_financial_channel,Межвременной и финансовый канал,0.04268955415628523
+low_phi_y,Слабая реакция на выпуск,7,intertemporal_financial_channel,Межвременной и финансовый канал,0.04192339934719327
+low_phi_y,Слабая реакция на выпуск,8,intertemporal_financial_channel,Межвременной и финансовый канал,0.04065571429330925
+low_phi_y,Слабая реакция на выпуск,9,intertemporal_financial_channel,Межвременной и финансовый канал,0.039182900533682424
+low_phi_y,Слабая реакция на выпуск,10,intertemporal_financial_channel,Межвременной и финансовый канал,0.03765980529799588
+low_phi_y,Слабая реакция на выпуск,11,intertemporal_financial_channel,Межвременной и финансовый канал,0.036163884982016434
+low_phi_y,Слабая реакция на выпуск,12,intertemporal_financial_channel,Межвременной и финансовый канал,0.03473100131758384
+low_phi_y,Слабая реакция на выпуск,13,intertemporal_financial_channel,Межвременной и финансовый канал,0.03337518906886362
+low_phi_y,Слабая реакция на выпуск,14,intertemporal_financial_channel,Межвременной и финансовый канал,0.03209944681218988
+low_phi_y,Слабая реакция на выпуск,15,intertemporal_financial_channel,Межвременной и финансовый канал,0.03090153140415738
+low_phi_y,Слабая реакция на выпуск,16,intertemporal_financial_channel,Межвременной и финансовый канал,0.02977699145395797
+low_phi_y,Слабая реакция на выпуск,17,intertemporal_financial_channel,Межвременной и финансовый канал,0.028720692745752206
+low_phi_y,Слабая реакция на выпуск,18,intertemporal_financial_channel,Межвременной и финансовый канал,0.027727535771110583
+low_phi_y,Слабая реакция на выпуск,19,intertemporal_financial_channel,Межвременной и финансовый канал,0.026792753570863345
+low_phi_y,Слабая реакция на выпуск,20,intertemporal_financial_channel,Межвременной и финансовый канал,0.025912001894434503
+low_phi_y,Слабая реакция на выпуск,21,intertemporal_financial_channel,Межвременной и финансовый канал,0.02508135463723014
+low_phi_y,Слабая реакция на выпуск,22,intertemporal_financial_channel,Межвременной и финансовый канал,0.024297262482119806
+low_phi_y,Слабая реакция на выпуск,23,intertemporal_financial_channel,Межвременной и финансовый канал,0.023556502709235292
+low_phi_y,Слабая реакция на выпуск,24,intertemporal_financial_channel,Межвременной и финансовый канал,0.022856132333593373
+low_phi_y,Слабая реакция на выпуск,25,intertemporal_financial_channel,Межвременной и финансовый канал,0.022193448794845985
+low_phi_y,Слабая реакция на выпуск,26,intertemporal_financial_channel,Межвременной и финансовый канал,0.021565958741915667
+low_phi_y,Слабая реакция на выпуск,27,intertemporal_financial_channel,Межвременной и финансовый канал,0.020971354000562877
+low_phi_y,Слабая реакция на выпуск,28,intertemporal_financial_channel,Межвременной и финансовый канал,0.020407493464928244
+low_phi_y,Слабая реакция на выпуск,29,intertemporal_financial_channel,Межвременной и финансовый канал,0.019872389796364333
+low_phi_y,Слабая реакция на выпуск,30,intertemporal_financial_channel,Межвременной и финансовый канал,0.019364200151744525
+low_phi_y,Слабая реакция на выпуск,31,intertemporal_financial_channel,Межвременной и финансовый канал,0.01888122054982104
+low_phi_y,Слабая реакция на выпуск,32,intertemporal_financial_channel,Межвременной и финансовый канал,0.018421883847589353
+low_phi_y,Слабая реакция на выпуск,33,intertemporal_financial_channel,Межвременной и финансовый канал,0.017984761607610818
+low_phi_y,Слабая реакция на выпуск,34,intertemporal_financial_channel,Межвременной и финансовый канал,0.017568570390557772
+low_phi_y,Слабая реакция на выпуск,35,intertemporal_financial_channel,Межвременной и финансовый канал,0.01717218314342418
+low_phi_y,Слабая реакция на выпуск,36,intertemporal_financial_channel,Межвременной и финансовый канал,0.01679464635364309
+low_phi_y,Слабая реакция на выпуск,37,intertemporal_financial_channel,Межвременной и финансовый канал,0.016435203407787834
+low_phi_y,Слабая реакция на выпуск,38,intertemporal_financial_channel,Межвременной и финансовый канал,0.01609332402487193
+low_phi_y,Слабая реакция на выпуск,39,intertemporal_financial_channel,Межвременной и финансовый канал,0.015768738572653807
+low_phi_y,Слабая реакция на выпуск,40,intertemporal_financial_channel,Межвременной и финансовый канал,0.015461474340375474
+low_phi_y,Слабая реакция на выпуск,41,intertemporal_financial_channel,Межвременной и финансовый канал,0.015171888207284859
+low_phi_y,Слабая реакция на выпуск,42,intertemporal_financial_channel,Межвременной и финансовый канал,0.014900686399097857
+low_phi_y,Слабая реакция на выпуск,43,intertemporal_financial_channel,Межвременной и финансовый канал,0.014648916963994313
+low_phi_y,Слабая реакция на выпуск,44,intertemporal_financial_channel,Межвременной и финансовый канал,0.01441791417239032
+low_phi_y,Слабая реакция на выпуск,45,intertemporal_financial_channel,Межвременной и финансовый канал,0.014209166351096923
+low_phi_y,Слабая реакция на выпуск,46,intertemporal_financial_channel,Межвременной и финансовый канал,0.014024070270619669
+low_phi_y,Слабая реакция на выпуск,47,intertemporal_financial_channel,Межвременной и финансовый канал,0.013863527223737194
+low_phi_y,Слабая реакция на выпуск,48,intertemporal_financial_channel,Межвременной и финансовый канал,0.013727330457741667
+low_phi_y,Слабая реакция на выпуск,49,intertemporal_financial_channel,Межвременной и финансовый канал,0.013613294060876326
+low_phi_y,Слабая реакция на выпуск,50,intertemporal_financial_channel,Межвременной и финансовый канал,0.013516084967759735
+low_phi_y,Слабая реакция на выпуск,51,intertemporal_financial_channel,Межвременной и финансовый канал,0.013425750061600654
+low_phi_y,Слабая реакция на выпуск,52,intertemporal_financial_channel,Межвременной и финансовый канал,0.013325989909314277
+low_phi_y,Слабая реакция на выпуск,53,intertemporal_financial_channel,Межвременной и финансовый канал,0.013192333395952577
+low_phi_y,Слабая реакция на выпуск,54,intertemporal_financial_channel,Межвременной и финансовый канал,0.012990530847782922
+low_phi_y,Слабая реакция на выпуск,55,intertemporal_financial_channel,Межвременной и финансовый канал,0.012675727534013186
+low_phi_y,Слабая реакция на выпуск,56,intertemporal_financial_channel,Межвременной и финансовый канал,0.012193325772728702
+low_phi_y,Слабая реакция на выпуск,57,intertemporal_financial_channel,Межвременной и финансовый канал,0.011482908266136094
+low_phi_y,Слабая реакция на выпуск,58,intertemporal_financial_channel,Межвременной и финансовый канал,0.010487177122679173
+low_phi_y,Слабая реакция на выпуск,59,intertemporal_financial_channel,Межвременной и финансовый канал,0.0091684929759441
+low_phi_y,Слабая реакция на выпуск,0,labor_income_channel,Канал трудового дохода,-0.16243182332519926
+low_phi_y,Слабая реакция на выпуск,1,labor_income_channel,Канал трудового дохода,-0.16705184858832964
+low_phi_y,Слабая реакция на выпуск,2,labor_income_channel,Канал трудового дохода,-0.12317095094298924
+low_phi_y,Слабая реакция на выпуск,3,labor_income_channel,Канал трудового дохода,-0.09568303174814617
+low_phi_y,Слабая реакция на выпуск,4,labor_income_channel,Канал трудового дохода,-0.07806338639746828
+low_phi_y,Слабая реакция на выпуск,5,labor_income_channel,Канал трудового дохода,-0.06637682322917467
+low_phi_y,Слабая реакция на выпуск,6,labor_income_channel,Канал трудового дохода,-0.05827738101026065
+low_phi_y,Слабая реакция на выпуск,7,labor_income_channel,Канал трудового дохода,-0.05237424324298784
+low_phi_y,Слабая реакция на выпуск,8,labor_income_channel,Канал трудового дохода,-0.047843435746980884
+low_phi_y,Слабая реакция на выпуск,9,labor_income_channel,Канал трудового дохода,-0.044195860256165606
+low_phi_y,Слабая реакция на выпуск,10,labor_income_channel,Канал трудового дохода,-0.04113900125595311
+low_phi_y,Слабая реакция на выпуск,11,labor_income_channel,Канал трудового дохода,-0.03849552587019248
+low_phi_y,Слабая реакция на выпуск,12,labor_income_channel,Канал трудового дохода,-0.03615575793698728
+low_phi_y,Слабая реакция на выпуск,13,labor_income_channel,Канал трудового дохода,-0.03405005798325626
+low_phi_y,Слабая реакция на выпуск,14,labor_income_channel,Канал трудового дохода,-0.03213276669846824
+low_phi_y,Слабая реакция на выпуск,15,labor_income_channel,Канал трудового дохода,-0.030372815474984615
+low_phi_y,Слабая реакция на выпуск,16,labor_income_channel,Канал трудового дохода,-0.028748176126261422
+low_phi_y,Слабая реакция на выпуск,17,labor_income_channel,Канал трудового дохода,-0.0272425345365884
+low_phi_y,Слабая реакция на выпуск,18,labor_income_channel,Канал трудового дохода,-0.025843268497554795
+low_phi_y,Слабая реакция на выпуск,19,labor_income_channel,Канал трудового дохода,-0.024540202665706737
+low_phi_y,Слабая реакция на выпуск,20,labor_income_channel,Канал трудового дохода,-0.02332483416603914
+low_phi_y,Слабая реакция на выпуск,21,labor_income_channel,Канал трудового дохода,-0.022189846959968236
+low_phi_y,Слабая реакция на выпуск,22,labor_income_channel,Канал трудового дохода,-0.0211288047940092
+low_phi_y,Слабая реакция на выпуск,23,labor_income_channel,Канал трудового дохода,-0.020135954799453366
+low_phi_y,Слабая реакция на выпуск,24,labor_income_channel,Канал трудового дохода,-0.019206099425727565
+low_phi_y,Слабая реакция на выпуск,25,labor_income_channel,Канал трудового дохода,-0.018334510243537345
+low_phi_y,Слабая реакция на выпуск,26,labor_income_channel,Канал трудового дохода,-0.017516867154778393
+low_phi_y,Слабая реакция на выпуск,27,labor_income_channel,Канал трудового дохода,-0.01674921284169128
+low_phi_y,Слабая реакция на выпуск,28,labor_income_channel,Канал трудового дохода,-0.01602791627930342
+low_phi_y,Слабая реакция на выпуск,29,labor_income_channel,Канал трудового дохода,-0.015349641610588058
+low_phi_y,Слабая реакция на выпуск,30,labor_income_channel,Канал трудового дохода,-0.01471132021199751
+low_phi_y,Слабая реакция на выпуск,31,labor_income_channel,Канал трудового дохода,-0.014110124676997689
+low_phi_y,Слабая реакция на выпуск,32,labor_income_channel,Канал трудового дохода,-0.013543444008627321
+low_phi_y,Слабая реакция на выпуск,33,labor_income_channel,Канал трудового дохода,-0.013008859628645147
+low_phi_y,Слабая реакция на выпуск,34,labor_income_channel,Канал трудового дохода,-0.012504122087906615
+low_phi_y,Слабая реакция на выпуск,35,labor_income_channel,Канал трудового дохода,-0.012027128594619728
+low_phi_y,Слабая реакция на выпуск,36,labor_income_channel,Канал трудового дохода,-0.011575901824213879
+low_phi_y,Слабая реакция на выпуск,37,labor_income_channel,Канал трудового дохода,-0.011148570928081032
+low_phi_y,Слабая реакция на выпуск,38,labor_income_channel,Канал трудового дохода,-0.010743356339987652
+low_phi_y,Слабая реакция на выпуск,39,labor_income_channel,Канал трудового дохода,-0.010358560853767665
+low_phi_y,Слабая реакция на выпуск,40,labor_income_channel,Канал трудового дохода,-0.009992570629128226
+low_phi_y,Слабая реакция на выпуск,41,labor_income_channel,Канал трудового дохода,-0.009643871186392186
+low_phi_y,Слабая реакция на выпуск,42,labor_income_channel,Канал трудового дохода,-0.009311085038784304
+low_phi_y,Слабая реакция на выпуск,43,labor_income_channel,Канал трудового дохода,-0.008993039203130026
+low_phi_y,Слабая реакция на выпуск,44,labor_income_channel,Канал трудового дохода,-0.008688872089256576
+low_phi_y,Слабая реакция на выпуск,45,labor_income_channel,Канал трудового дохода,-0.008398189708798097
+low_phi_y,Слабая реакция на выпуск,46,labor_income_channel,Канал трудового дохода,-0.008121279854141268
+low_phi_y,Слабая реакция на выпуск,47,labor_income_channel,Канал трудового дохода,-0.007859388812765976
+low_phi_y,Слабая реакция на выпуск,48,labor_income_channel,Канал трудового дохода,-0.00761505654033562
+low_phi_y,Слабая реакция на выпуск,49,labor_income_channel,Канал трудового дохода,-0.007392490924981205
+low_phi_y,Слабая реакция на выпуск,50,labor_income_channel,Канал трудового дохода,-0.007197937044486493
+low_phi_y,Слабая реакция на выпуск,51,labor_income_channel,Канал трудового дохода,-0.007039959974494117
+low_phi_y,Слабая реакция на выпуск,52,labor_income_channel,Канал трудового дохода,-0.0069295061568189435
+low_phi_y,Слабая реакция на выпуск,53,labor_income_channel,Канал трудового дохода,-0.006879535564472862
+low_phi_y,Слабая реакция на выпуск,54,labor_income_channel,Канал трудового дохода,-0.006903923320306161
+low_phi_y,Слабая реакция на выпуск,55,labor_income_channel,Канал трудового дохода,-0.0070152181873834926
+low_phi_y,Слабая реакция на выпуск,56,labor_income_channel,Канал трудового дохода,-0.0072207283175650975
+low_phi_y,Слабая реакция на выпуск,57,labor_income_channel,Канал трудового дохода,-0.00751630716405987
+low_phi_y,Слабая реакция на выпуск,58,labor_income_channel,Канал трудового дохода,-0.007877160085194578
+low_phi_y,Слабая реакция на выпуск,59,labor_income_channel,Канал трудового дохода,-0.008245101731017888
+low_phi_y,Слабая реакция на выпуск,0,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,9.680588908454369e-05
+low_phi_y,Слабая реакция на выпуск,1,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,0.00016211552205960922
+low_phi_y,Слабая реакция на выпуск,2,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,7.499852563462833e-05
+low_phi_y,Слабая реакция на выпуск,3,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,3.361442183050405e-05
+low_phi_y,Слабая реакция на выпуск,4,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,1.4374165775772394e-05
+low_phi_y,Слабая реакция на выпуск,5,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,4.479866882786275e-06
+low_phi_y,Слабая реакция на выпуск,6,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.9996501081513416e-06
+low_phi_y,Слабая реакция на выпуск,7,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.188728771590654e-06
+low_phi_y,Слабая реакция на выпуск,8,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.4778710492111557e-05
+low_phi_y,Слабая реакция на выпуск,9,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.0066862949785954e-05
+low_phi_y,Слабая реакция на выпуск,10,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.5079003103270585e-05
+low_phi_y,Слабая реакция на выпуск,11,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.9693839212041197e-05
+low_phi_y,Слабая реакция на выпуск,12,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.375637078956017e-05
+low_phi_y,Слабая реакция на выпуск,13,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.715346509552049e-05
+low_phi_y,Слабая реакция на выпуск,14,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.9845008567023415e-05
+low_phi_y,Слабая реакция на выпуск,15,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.1861603623274104e-05
+low_phi_y,Слабая реакция на выпуск,16,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.328453774799688e-05
+low_phi_y,Слабая реакция на выпуск,17,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.422090210867193e-05
+low_phi_y,Слабая реакция на выпуск,18,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.478171308747078e-05
+low_phi_y,Слабая реакция на выпуск,19,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.506648043089282e-05
+low_phi_y,Слабая реакция на выпуск,20,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.515470263810856e-05
+low_phi_y,Слабая реакция на выпуск,21,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.5103197475228944e-05
+low_phi_y,Слабая реакция на выпуск,22,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.494755918820997e-05
+low_phi_y,Слабая реакция на выпуск,23,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.470603267575192e-05
+low_phi_y,Слабая реакция на выпуск,24,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.438437779226819e-05
+low_phi_y,Слабая реакция на выпуск,25,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.3980702824032766e-05
+low_phi_y,Слабая реакция на выпуск,26,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.348963046780345e-05
+low_phi_y,Слабая реакция на выпуск,27,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.2905486732355555e-05
+low_phi_y,Слабая реакция на выпуск,28,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.222445268290331e-05
+low_phi_y,Слабая реакция на выпуск,29,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.1445765799455804e-05
+low_phi_y,Слабая реакция на выпуск,30,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.057214892961741e-05
+low_phi_y,Слабая реакция на выпуск,31,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.9609673181860726e-05
+low_phi_y,Слабая реакция на выпуск,32,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.8567256263390464e-05
+low_phi_y,Слабая реакция на выпуск,33,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.745596157344636e-05
+low_phi_y,Слабая реакция на выпуск,34,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.628823818496528e-05
+low_phi_y,Слабая реакция на выпуск,35,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.5077191088175444e-05
+low_phi_y,Слабая реакция на выпуск,36,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.3835942825225746e-05
+low_phi_y,Слабая реакция на выпуск,37,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.257711584974946e-05
+low_phi_y,Слабая реакция на выпуск,38,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.131244466976763e-05
+low_phi_y,Слабая реакция на выпуск,39,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-3.0052513113594358e-05
+low_phi_y,Слабая реакция на выпуск,40,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.8806600841317148e-05
+low_phi_y,Слабая реакция на выпуск,41,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.7582622659535654e-05
+low_phi_y,Слабая реакция на выпуск,42,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.6387139899848183e-05
+low_phi_y,Слабая реакция на выпуск,43,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.5225425582878834e-05
+low_phi_y,Слабая реакция на выпуск,44,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.410156936665811e-05
+low_phi_y,Слабая реакция на выпуск,45,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.3018608116772703e-05
+low_phi_y,Слабая реакция на выпуск,46,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.197867386703891e-05
+low_phi_y,Слабая реакция на выпуск,47,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.098315279551941e-05
+low_phi_y,Слабая реакция на выпуск,48,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.003284533031876e-05
+low_phi_y,Слабая реакция на выпуск,49,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.912812488350469e-05
+low_phi_y,Слабая реакция на выпуск,50,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.8269078730489444e-05
+low_phi_y,Слабая реакция на выпуск,51,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.7455612191774723e-05
+low_phi_y,Слабая реакция на выпуск,52,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.6687480226408845e-05
+low_phi_y,Слабая реакция на выпуск,53,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.5964195657633932e-05
+low_phi_y,Слабая реакция на выпуск,54,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.528474354059593e-05
+low_phi_y,Слабая реакция на выпуск,55,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.4647017705343185e-05
+low_phi_y,Слабая реакция на выпуск,56,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.4046930107814909e-05
+low_phi_y,Слабая реакция на выпуск,57,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.3477259484371756e-05
+low_phi_y,Слабая реакция на выпуск,58,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.2926565634369871e-05
+low_phi_y,Слабая реакция на выпуск,59,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-1.2378841105322179e-05
+low_phi_y,Слабая реакция на выпуск,0,general_equilibrium_total,Полный отклик,-0.2255939304487423
+low_phi_y,Слабая реакция на выпуск,1,general_equilibrium_total,Полный отклик,-0.1725615472023925
+low_phi_y,Слабая реакция на выпуск,2,general_equilibrium_total,Полный отклик,-0.10262422664338743
+low_phi_y,Слабая реакция на выпуск,3,general_equilibrium_total,Полный отклик,-0.061820800387854605
+low_phi_y,Слабая реакция на выпуск,4,general_equilibrium_total,Полный отклик,-0.03799308819201175
+low_phi_y,Слабая реакция на выпуск,5,general_equilibrium_total,Полный отклик,-0.023969910481626184
+low_phi_y,Слабая реакция на выпуск,6,general_equilibrium_total,Полный отклик,-0.015590826504083569
+low_phi_y,Слабая реакция на выпуск,7,general_equilibrium_total,Полный отклик,-0.010460032624566159
+low_phi_y,Слабая реакция на выпуск,8,general_equilibrium_total,Полный отклик,-0.007202500164163749
+low_phi_y,Слабая реакция на выпуск,9,general_equilibrium_total,Полный отклик,-0.005033026585432966
+low_phi_y,Слабая реакция на выпуск,10,general_equilibrium_total,Полный отклик,-0.003504274961060491
+low_phi_y,Слабая реакция на выпуск,11,general_equilibrium_total,Полный отклик,-0.0023613347273880913
+low_phi_y,Слабая реакция на выпуск,12,general_equilibrium_total,Полный отклик,-0.001458512990193006
+low_phi_y,Слабая реакция на выпуск,13,general_equilibrium_total,Полный отклик,-0.0007120223794881581
+low_phi_y,Слабая реакция на выпуск,14,general_equilibrium_total,Полный отклик,-7.31648948453858e-05
+low_phi_y,Слабая реакция на выпуск,15,general_equilibrium_total,Полный отклик,0.00048685432554949177
+low_phi_y,Слабая реакция на выпуск,16,general_equilibrium_total,Полный отклик,0.0009855307899485546
+low_phi_y,Слабая реакция на выпуск,17,general_equilibrium_total,Полный отклик,0.0014339373070551321
+low_phi_y,Слабая реакция на выпуск,18,general_equilibrium_total,Полный отклик,0.001839485560468315
+low_phi_y,Слабая реакция на выпуск,19,general_equilibrium_total,Полный отклик,0.0022074844247257173
+low_phi_y,Слабая реакция на выпуск,20,general_equilibrium_total,Полный отклик,0.0025420130257572567
+low_phi_y,Слабая реакция на выпуск,21,general_equilibrium_total,Полный отклик,0.0028464044797866742
+low_phi_y,Слабая реакция на выпуск,22,general_equilibrium_total,Полный отклик,0.003123510128922396
+low_phi_y,Слабая реакция на выпуск,23,general_equilibrium_total,Полный отклик,0.003375841877106176
+low_phi_y,Слабая реакция на выпуск,24,general_equilibrium_total,Полный отклик,0.0036056485300735397
+low_phi_y,Слабая реакция на выпуск,25,general_equilibrium_total,Полный отклик,0.0038149578484846097
+low_phi_y,Слабая реакция на выпуск,26,general_equilibrium_total,Полный отклик,0.004005601956669473
+low_phi_y,Слабая реакция на выпуск,27,general_equilibrium_total,Полный отклик,0.004179235672139243
+low_phi_y,Слабая реакция на выпуск,28,general_equilibrium_total,Полный отклик,0.004337352732941921
+low_phi_y,Слабая реакция на выпуск,29,general_equilibrium_total,Полный отклик,0.00448130241997682
+low_phi_y,Слабая реакция на выпуск,30,general_equilibrium_total,Полный отклик,0.004612307790817398
+low_phi_y,Слабая реакция на выпуск,31,general_equilibrium_total,Полный отклик,0.004731486199641489
+low_phi_y,Слабая реакция на выпуск,32,general_equilibrium_total,Полный отклик,0.004839872582698642
+low_phi_y,Слабая реакция на выпуск,33,general_equilibrium_total,Полный отклик,0.004938446017392225
+low_phi_y,Слабая реакция на выпуск,34,general_equilibrium_total,Полный отклик,0.00502816006446619
+low_phi_y,Слабая реакция на выпуск,35,general_equilibrium_total,Полный отклик,0.005109977357716276
+low_phi_y,Слабая реакция на выпуск,36,general_equilibrium_total,Полный отклик,0.005184908586603987
+low_phi_y,Слабая реакция на выпуск,37,general_equilibrium_total,Полный отклик,0.005254055363857053
+low_phi_y,Слабая реакция на выпуск,38,general_equilibrium_total,Полный отклик,0.005318655240214509
+low_phi_y,Слабая реакция на выпуск,39,general_equilibrium_total,Полный отклик,0.005380125205772548
+low_phi_y,Слабая реакция на выпуск,40,general_equilibrium_total,Полный отклик,0.005440097110405931
+low_phi_y,Слабая реакция на выпуск,41,general_equilibrium_total,Полный отклик,0.005500434398233138
+low_phi_y,Слабая реакция на выпуск,42,general_equilibrium_total,Полный отклик,0.005563214220413705
+low_phi_y,Слабая реакция на выпуск,43,general_equilibrium_total,Полный отклик,0.005630652335281408
+low_phi_y,Слабая реакция на выпуск,44,general_equilibrium_total,Полный отклик,0.005704940513767085
+low_phi_y,Слабая реакция на выпуск,45,general_equilibrium_total,Полный отклик,0.005787958034182052
+low_phi_y,Слабая реакция на выпуск,46,general_equilibrium_total,Полный отклик,0.005880811742611361
+low_phi_y,Слабая реакция на выпуск,47,general_equilibrium_total,Полный отклик,0.005983155258175698
+low_phi_y,Слабая реакция на выпуск,48,general_equilibrium_total,Полный отклик,0.006092241072075728
+low_phi_y,Слабая реакция на выпуск,49,general_equilibrium_total,Полный отклик,0.006201675011011616
+low_phi_y,Слабая реакция на выпуск,50,general_equilibrium_total,Полный отклик,0.006299878844542752
+low_phi_y,Слабая реакция на выпуск,51,general_equilibrium_total,Полный отклик,0.006368334474914763
+low_phi_y,Слабая реакция на выпуск,52,general_equilibrium_total,Полный отклик,0.006379796272268924
+low_phi_y,Слабая реакция на выпуск,53,general_equilibrium_total,Полный отклик,0.006296833635822081
+low_phi_y,Слабая реакция на выпуск,54,general_equilibrium_total,Полный отклик,0.006071322783936166
+low_phi_y,Слабая реакция на выпуск,55,general_equilibrium_total,Полный отклик,0.0056458623289243485
+low_phi_y,Слабая реакция на выпуск,56,general_equilibrium_total,Полный отклик,0.004958550525055789
+low_phi_y,Слабая реакция на выпуск,57,general_equilibrium_total,Полный отклик,0.0039531238425918516
+low_phi_y,Слабая реакция на выпуск,58,general_equilibrium_total,Полный отклик,0.002597090471850225
+low_phi_y,Слабая реакция на выпуск,59,general_equilibrium_total,Полный отклик,0.000911012403820891
+persistent_shock,Более персистентный монетарный шок,0,household_total,Отклик household-блока,-0.41378012823857396
+persistent_shock,Более персистентный монетарный шок,1,household_total,Отклик household-блока,-0.31532207549993274
+persistent_shock,Более персистентный монетарный шок,2,household_total,Отклик household-блока,-0.22929694822763996
+persistent_shock,Более персистентный монетарный шок,3,household_total,Отклик household-блока,-0.15998041197328852
+persistent_shock,Более персистентный монетарный шок,4,household_total,Отклик household-блока,-0.10956587497438135
+persistent_shock,Более персистентный монетарный шок,5,household_total,Отклик household-блока,-0.07483358724044219
+persistent_shock,Более персистентный монетарный шок,6,household_total,Отклик household-блока,-0.051588061194487604
+persistent_shock,Более персистентный монетарный шок,7,household_total,Отклик household-блока,-0.03618869994653402
+persistent_shock,Более персистентный монетарный шок,8,household_total,Отклик household-блока,-0.025957160569697664
+persistent_shock,Более персистентный монетарный шок,9,household_total,Отклик household-блока,-0.019048330566785704
+persistent_shock,Более персистентный монетарный шок,10,household_total,Отклик household-блока,-0.014249104592379613
+persistent_shock,Более персистентный монетарный шок,11,household_total,Отклик household-блока,-0.010785649939712701
+persistent_shock,Более персистентный монетарный шок,12,household_total,Отклик household-блока,-0.008173950661172534
+persistent_shock,Более персистентный монетарный шок,13,household_total,Отклик household-блока,-0.006114890904474688
+persistent_shock,Более персистентный монетарный шок,14,household_total,Отклик household-блока,-0.004424671666957491
+persistent_shock,Более персистентный монетарный шок,15,household_total,Отклик household-блока,-0.0029902966170394993
+persistent_shock,Более персистентный монетарный шок,16,household_total,Отклик household-блока,-0.0017417775174110711
+persistent_shock,Более персистентный монетарный шок,17,household_total,Отклик household-блока,-0.000635071088313586
+persistent_shock,Более персистентный монетарный шок,18,household_total,Отклик household-блока,0.00035826831639124547
+persistent_shock,Более персистентный монетарный шок,19,household_total,Отклик household-блока,0.001257305543564072
+persistent_shock,Более персистентный монетарный шок,20,household_total,Отклик household-блока,0.0020754321300167694
+persistent_shock,Более персистентный монетарный шок,21,household_total,Отклик household-блока,0.0028225634570813517
+persistent_shock,Более персистентный монетарный шок,22,household_total,Отклик household-блока,0.0035064339805311005
+persistent_shock,Более персистентный монетарный шок,23,household_total,Отклик household-блока,0.004133358025782588
+persistent_shock,Более персистентный монетарный шок,24,household_total,Отклик household-блока,0.004708676645006897
+persistent_shock,Более персистентный монетарный шок,25,household_total,Отклик household-блока,0.005237022031225539
+persistent_shock,Более персистентный монетарный шок,26,household_total,Отклик household-блока,0.005722477282569814
+persistent_shock,Более персистентный монетарный шок,27,household_total,Отклик household-блока,0.006168677134609376
+persistent_shock,Более персистентный монетарный шок,28,household_total,Отклик household-блока,0.006578876074272184
+persistent_shock,Более персистентный монетарный шок,29,household_total,Отклик household-блока,0.006955998905273519
+persistent_shock,Более персистентный монетарный шок,30,household_total,Отклик household-блока,0.007302682246101754
+persistent_shock,Более персистентный монетарный шок,31,household_total,Отклик household-блока,0.007621311719633023
+persistent_shock,Более персистентный монетарный шок,32,household_total,Отклик household-блока,0.007914057524983342
+persistent_shock,Более персистентный монетарный шок,33,household_total,Отклик household-блока,0.008182910080738553
+persistent_shock,Более персистентный монетарный шок,34,household_total,Отклик household-блока,0.008429716864418256
+persistent_shock,Более персистентный монетарный шок,35,household_total,Отклик household-блока,0.008656221323106738
+persistent_shock,Более персистентный монетарный шок,36,household_total,Отклик household-блока,0.008864104362743474
+persistent_shock,Более персистентный монетарный шок,37,household_total,Отклик household-блока,0.009055028349416275
+persistent_shock,Более персистентный монетарный шок,38,household_total,Отклик household-блока,0.009230682419967186
+persistent_shock,Более персистентный монетарный шок,39,household_total,Отклик household-блока,0.009392825921503123
+persistent_shock,Более персистентный монетарный шок,40,household_total,Отклик household-блока,0.009543323620508297
+persistent_shock,Более персистентный монетарный шок,41,household_total,Отклик household-блока,0.009684161427852014
+persistent_shock,Более персистентный монетарный шок,42,household_total,Отклик household-блока,0.009817424398303496
+persistent_shock,Более персистентный монетарный шок,43,household_total,Отклик household-блока,0.009945209173784548
+persistent_shock,Более персистентный монетарный шок,44,household_total,Отклик household-блока,0.010069430677551266
+persistent_shock,Более персистентный монетарный шок,45,household_total,Отклик household-блока,0.01019146795654289
+persistent_shock,Более персистентный монетарный шок,46,household_total,Отклик household-блока,0.010311577749561835
+persistent_shock,Более персистентный монетарный шок,47,household_total,Отклик household-блока,0.010427989216382515
+persistent_shock,Более персистентный монетарный шок,48,household_total,Отклик household-блока,0.010535584397532447
+persistent_shock,Более персистентный монетарный шок,49,household_total,Отклик household-блока,0.010624074875444903
+persistent_shock,Более персистентный монетарный шок,50,household_total,Отклик household-блока,0.010675619770022184
+persistent_shock,Более персистентный монетарный шок,51,household_total,Отклик household-блока,0.010661914353686441
+persistent_shock,Более персистентный монетарный шок,52,household_total,Отклик household-блока,0.010540942644069344
+persistent_shock,Более персистентный монетарный шок,53,household_total,Отклик household-блока,0.010253872682700248
+persistent_shock,Более персистентный монетарный шок,54,household_total,Отклик household-блока,0.009723033530049042
+persistent_shock,Более персистентный монетарный шок,55,household_total,Отклик household-блока,0.008852610607053977
+persistent_shock,Более персистентный монетарный шок,56,household_total,Отклик household-блока,0.007534689358684858
+persistent_shock,Более персистентный монетарный шок,57,household_total,Отклик household-блока,0.005664588657681936
+persistent_shock,Более персистентный монетарный шок,58,household_total,Отклик household-блока,0.003170982561912974
+persistent_shock,Более персистентный монетарный шок,59,household_total,Отклик household-блока,6.78617476406954e-05
+persistent_shock,Более персистентный монетарный шок,0,intertemporal_financial_channel,Межвременной и финансовый канал,-0.09035969576260573
+persistent_shock,Более персистентный монетарный шок,1,intertemporal_financial_channel,Межвременной и финансовый канал,-0.02058829897808486
+persistent_shock,Более персистентный монетарный шок,2,intertemporal_financial_channel,Межвременной и финансовый канал,0.023478588924034757
+persistent_shock,Более персистентный монетарный шок,3,intertemporal_financial_channel,Межвременной и финансовый канал,0.05236332208346381
+persistent_shock,Более персистентный монетарный шок,4,intertemporal_financial_channel,Межвременной и финансовый канал,0.06950202218788137
+persistent_shock,Более персистентный монетарный шок,5,intertemporal_financial_channel,Межвременной и финансовый канал,0.07854314899614376
+persistent_shock,Более персистентный монетарный шок,6,intertemporal_financial_channel,Межвременной и финансовый канал,0.08238201599529518
+persistent_shock,Более персистентный монетарный шок,7,intertemporal_financial_channel,Межвременной и финансовый канал,0.08308715011754049
+persistent_shock,Более персистентный монетарный шок,8,intertemporal_financial_channel,Межвременной и финансовый канал,0.08199104813796396
+persistent_shock,Более персистентный монетарный шок,9,intertemporal_financial_channel,Межвременной и финансовый канал,0.07992782560742176
+persistent_shock,Более персистентный монетарный шок,10,intertemporal_financial_channel,Межвременной и финансовый канал,0.07739946222425062
+persistent_shock,Более персистентный монетарный шок,11,intertemporal_financial_channel,Межвременной и финансовый канал,0.07469715432622599
+persistent_shock,Более персистентный монетарный шок,12,intertemporal_financial_channel,Межвременной и финансовый канал,0.07198303292695456
+persistent_shock,Более персистентный монетарный шок,13,intertemporal_financial_channel,Межвременной и финансовый канал,0.06934256809179126
+persistent_shock,Более персистентный монетарный шок,14,intertemporal_financial_channel,Межвременной и финансовый канал,0.06681700030722067
+persistent_shock,Более персистентный монетарный шок,15,intertemporal_financial_channel,Межвременной и финансовый канал,0.0644228579965119
+persistent_shock,Более персистентный монетарный шок,16,intertemporal_financial_channel,Межвременной и финансовый канал,0.06216341163836969
+persistent_shock,Более персистентный монетарный шок,17,intertemporal_financial_channel,Межвременной и финансовый канал,0.06003522315190881
+persistent_shock,Более персистентный монетарный шок,18,intertemporal_financial_channel,Межвременной и финансовый канал,0.05803177979987928
+persistent_shock,Более персистентный монетарный шок,19,intertemporal_financial_channel,Межвременной и финансовый канал,0.056145434995275835
+persistent_shock,Более персистентный монетарный шок,20,intertemporal_financial_channel,Межвременной и финансовый канал,0.054368391232860636
+persistent_shock,Более персистентный монетарный шок,21,intertemporal_financial_channel,Межвременной и финансовый канал,0.052693157916265186
+persistent_shock,Более персистентный монетарный шок,22,intertemporal_financial_channel,Межвременной и финансовый канал,0.0511127328650445
+persistent_shock,Более персистентный монетарный шок,23,intertemporal_financial_channel,Межвременной и финансовый канал,0.04962064659918154
+persistent_shock,Более персистентный монетарный шок,24,intertemporal_financial_channel,Межвременной и финансовый канал,0.04821094454041079
+persistent_shock,Более персистентный монетарный шок,25,intertemporal_financial_channel,Межвременной и финансовый канал,0.04687814590176681
+persistent_shock,Более персистентный монетарный шок,26,intertemporal_financial_channel,Межвременной и финансовый канал,0.04561719798726517
+persistent_shock,Более персистентный монетарный шок,27,intertemporal_financial_channel,Межвременной и финансовый канал,0.04442343400087807
+persistent_shock,Более персистентный монетарный шок,28,intertemporal_financial_channel,Межвременной и финансовый канал,0.04329253715112167
+persistent_shock,Более персистентный монетарный шок,29,intertemporal_financial_channel,Межвременной и финансовый канал,0.042220511415285863
+persistent_shock,Более персистентный монетарный шок,30,intertemporal_financial_channel,Межвременной и финансовый канал,0.041203658427932756
+persistent_shock,Более персистентный монетарный шок,31,intertemporal_financial_channel,Межвременной и финансовый канал,0.040238559804458236
+persistent_shock,Более персистентный монетарный шок,32,intertemporal_financial_channel,Межвременной и финансовый канал,0.03932206441108743
+persistent_shock,Более персистентный монетарный шок,33,intertemporal_financial_channel,Межвременной и финансовый канал,0.038451280416719504
+persistent_shock,Более персистентный монетарный шок,34,intertemporal_financial_channel,Межвременной и финансовый канал,0.03762357232175058
+persistent_shock,Более персистентный монетарный шок,35,intertemporal_financial_channel,Межвременной и финансовый канал,0.036836563464730125
+persistent_shock,Более персистентный монетарный шок,36,intertemporal_financial_channel,Межвременной и финансовый канал,0.036088144703319
+persistent_shock,Более персистентный монетарный шок,37,intertemporal_financial_channel,Межвременной и финансовый канал,0.035376489965533185
+persistent_shock,Более персистентный монетарный шок,38,intertemporal_financial_channel,Межвременной и финансовый канал,0.03470007902249332
+persistent_shock,Более персистентный монетарный шок,39,intertemporal_financial_channel,Межвременной и финансовый канал,0.03405772694258514
+persistent_shock,Более персистентный монетарный шок,40,intertemporal_financial_channel,Межвременной и финансовый канал,0.03344861796345854
+persistent_shock,Более персистентный монетарный шок,41,intertemporal_financial_channel,Межвременной и финансовый канал,0.03287233856785536
+persistent_shock,Более персистентный монетарный шок,42,intertemporal_financial_channel,Межвременной и финансовый канал,0.032328899882866115
+persistent_shock,Более персистентный монетарный шок,43,intertemporal_financial_channel,Межвременной и финансовый канал,0.03181873258325575
+persistent_shock,Более персистентный монетарный шок,44,intertemporal_financial_channel,Межвременной и финансовый канал,0.03134262770029454
+persistent_shock,Более персистентный монетарный шок,45,intertemporal_financial_channel,Межвременной и финансовый канал,0.030901583663911623
+persistent_shock,Более персистентный монетарный шок,46,intertemporal_financial_channel,Межвременной и финансовый канал,0.030496503493490253
+persistent_shock,Более персистентный монетарный шок,47,intertemporal_financial_channel,Межвременной и финансовый канал,0.030127666984298057
+persistent_shock,Более персистентный монетарный шок,48,intertemporal_financial_channel,Межвременной и финансовый канал,0.029793883140875166
+persistent_shock,Более персистентный монетарный шок,49,intertemporal_financial_channel,Межвременной и финансовый канал,0.02949121241881942
+persistent_shock,Более персистентный монетарный шок,50,intertemporal_financial_channel,Межвременной и финансовый канал,0.029211144592966438
+persistent_shock,Более персистентный монетарный шок,51,intertemporal_financial_channel,Межвременной и финансовый канал,0.028938139777895368
+persistent_shock,Более персистентный монетарный шок,52,intertemporal_financial_channel,Межвременной и финансовый канал,0.028646508309406505
+persistent_shock,Более персистентный монетарный шок,53,intertemporal_financial_channel,Межвременной и финансовый канал,0.02829675135019782
+persistent_shock,Более персистентный монетарный шок,54,intertemporal_financial_channel,Межвременной и финансовый канал,0.027831752724715785
+persistent_shock,Более персистентный монетарный шок,55,intertemporal_financial_channel,Межвременной и финансовый канал,0.02717366331411946
+persistent_shock,Более персистентный монетарный шок,56,intertemporal_financial_channel,Межвременной и финансовый канал,0.02622302580280504
+persistent_shock,Более персистентный монетарный шок,57,intertemporal_financial_channel,Межвременной и финансовый канал,0.02486272712879576
+persistent_shock,Более персистентный монетарный шок,58,intertemporal_financial_channel,Межвременной и финансовый канал,0.022970794071013184
+persistent_shock,Более персистентный монетарный шок,59,intertemporal_financial_channel,Межвременной и финансовый канал,0.02044778287479018
+persistent_shock,Более персистентный монетарный шок,0,labor_income_channel,Канал трудового дохода,-0.3235642687604071
+persistent_shock,Более персистентный монетарный шок,1,labor_income_channel,Канал трудового дохода,-0.2952134723139794
+persistent_shock,Более персистентный монетарный шок,2,labor_income_channel,Канал трудового дохода,-0.25304288513361295
+persistent_shock,Более персистентный монетарный шок,3,labor_income_channel,Канал трудового дохода,-0.21246055165587066
+persistent_shock,Более персистентный монетарный шок,4,labor_income_channel,Канал трудового дохода,-0.17909413114434525
+persistent_shock,Более персистентный монетарный шок,5,labor_income_channel,Канал трудового дохода,-0.15334894987312817
+persistent_shock,Более персистентный монетарный шок,6,labor_income_channel,Канал трудового дохода,-0.13391209531148007
+persistent_shock,Более персистентный монетарный шок,7,labor_income_channel,Канал трудового дохода,-0.11919660853751009
+persistent_shock,Более персистентный монетарный шок,8,labor_income_channel,Канал трудового дохода,-0.10785245385597006
+persistent_shock,Более персистентный монетарный шок,9,labor_income_channel,Канал трудового дохода,-0.09886678944040554
+persistent_shock,Более персистентный монетарный шок,10,labor_income_channel,Канал трудового дохода,-0.09152750009739752
+persistent_shock,Более персистентный монетарный шок,11,labor_income_channel,Канал трудового дохода,-0.08535161834603591
+persistent_shock,Более персистентный монетарный шок,12,labor_income_channel,Канал трудового дохода,-0.08001726919063609
+persistent_shock,Более персистентный монетарный шок,13,labor_income_channel,Канал трудового дохода,-0.07531091469428428
+persistent_shock,Более персистентный монетарный шок,14,labor_income_channel,Канал трудового дохода,-0.07109005332874242
+persistent_shock,Более персистентный монетарный шок,15,labor_income_channel,Канал трудового дохода,-0.06725816222500594
+persistent_shock,Более персистентный монетарный шок,16,labor_income_channel,Канал трудового дохода,-0.0637483587311359
+persistent_shock,Более персистентный монетарный шок,17,labor_income_channel,Канал трудового дохода,-0.06051292194562276
+persistent_shock,Более персистентный монетарный шок,18,labor_income_channel,Канал трудового дохода,-0.057516623575475954
+persistent_shock,Более персистентный монетарный шок,19,labor_income_channel,Канал трудового дохода,-0.05473249031979983
+persistent_shock,Более персистентный монетарный шок,20,labor_income_channel,Канал трудового дохода,-0.052139105466385824
+persistent_shock,Более персистентный монетарный шок,21,labor_income_channel,Канал трудового дохода,-0.049718882787176705
+persistent_shock,Более персистентный монетарный шок,22,labor_income_channel,Канал трудового дохода,-0.04745695543882653
+persistent_shock,Более персистентный монетарный шок,23,labor_income_channel,Канал трудового дохода,-0.04534045484383719
+persistent_shock,Более персистентный монетарный шок,24,labor_income_channel,Канал трудового дохода,-0.043358037443690635
+persistent_shock,Более персистентный монетарный шок,25,labor_income_channel,Канал трудового дохода,-0.041499569199000295
+persistent_shock,Более персистентный монетарный шок,26,labor_income_channel,Канал трудового дохода,-0.039755910548645135
+persistent_shock,Более персистентный монетарный шок,27,labor_income_channel,Канал трудового дохода,-0.0381187653541075
+persistent_shock,Более персистентный монетарный шок,28,labor_income_channel,Канал трудового дохода,-0.03658057065850255
+persistent_shock,Более персистентный монетарный шок,29,labor_income_channel,Канал трудового дохода,-0.03513441260069295
+persistent_shock,Более персистентный монетарный шок,30,labor_income_channel,Канал трудового дохода,-0.0337739592582714
+persistent_shock,Более персистентный монетарный шок,31,labor_income_channel,Канал трудового дохода,-0.032493404638554726
+persistent_shock,Более персистентный монетарный шок,32,labor_income_channel,Канал трудового дохода,-0.03128742026576683
+persistent_shock,Более персистентный монетарный шок,33,labor_income_channel,Канал трудового дохода,-0.03015111216489243
+persistent_shock,Более персистентный монетарный шок,34,labor_income_channel,Канал трудового дохода,-0.029079982014676962
+persistent_shock,Более персистентный монетарный шок,35,labor_income_channel,Канал трудового дохода,-0.028069891867519594
+persistent_shock,Более персистентный монетарный шок,36,labor_income_channel,Канал трудового дохода,-0.027117032463797933
+persistent_shock,Более персистентный монетарный шок,37,labor_income_channel,Канал трудового дохода,-0.02621789579468551
+persistent_shock,Более персистентный монетарный шок,38,labor_income_channel,Канал трудового дохода,-0.02536925341013657
+persistent_shock,Более персистентный монетарный шок,39,labor_income_channel,Канал трудового дохода,-0.02456814309116802
+persistent_shock,Более персистентный монетарный шок,40,labor_income_channel,Канал трудового дохода,-0.023811867978759636
+persistent_shock,Более персистентный монетарный шок,41,labor_income_channel,Канал трудового дохода,-0.023098014218658636
+persistent_shock,Более персистентный монетарный шок,42,labor_income_channel,Канал трудового дохода,-0.022424495500629107
+persistent_shock,Более персистентный монетарный шок,43,labor_income_channel,Канал трудового дохода,-0.02178963553720678
+persistent_shock,Более персистентный монетарный шок,44,labor_income_channel,Канал трудового дохода,-0.02119230209010443
+persistent_shock,Более персистентный монетарный шок,45,labor_income_channel,Канал трудового дохода,-0.020632108005351295
+persistent_shock,Более персистентный монетарный шок,46,labor_income_channel,Канал трудового дохода,-0.02010969461059814
+persistent_shock,Более персистентный монетарный шок,47,labor_income_channel,Канал трудового дохода,-0.019627108902179443
+persistent_shock,Более персистентный монетарный шок,48,labor_income_channel,Канал трудового дохода,-0.019188275233410934
+persistent_shock,Более персистентный монетарный шок,49,labor_income_channel,Канал трудового дохода,-0.018799540617579002
+persistent_shock,Более персистентный монетарный шок,50,labor_income_channel,Канал трудового дохода,-0.018470234396955235
+persistent_shock,Более персистентный монетарный шок,51,labor_income_channel,Канал трудового дохода,-0.018213120591399224
+persistent_shock,Более персистентный монетарный шок,52,labor_income_channel,Канал трудового дохода,-0.018044525412113755
+persistent_shock,Более персистентный монетарный шок,53,labor_income_channel,Канал трудового дохода,-0.01798378327674914
+persistent_shock,Более персистентный монетарный шок,54,labor_income_channel,Канал трудового дохода,-0.01805145303889964
+persistent_shock,Более персистентный монетарный шок,55,labor_income_channel,Канал трудового дохода,-0.018265509405460654
+persistent_shock,Более персистентный монетарный шок,56,labor_income_channel,Канал трудового дохода,-0.018634427541816677
+persistent_shock,Более персистентный монетарный шок,57,labor_income_channel,Канал трудового дохода,-0.019145806598609982
+persistent_shock,Более персистентный монетарный шок,58,labor_income_channel,Канал трудового дохода,-0.019749047933125218
+persistent_shock,Более персистентный монетарный шок,59,labor_income_channel,Канал трудового дохода,-0.020330785441356133
+persistent_shock,Более персистентный монетарный шок,0,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,0.0001438362844388565
+persistent_shock,Более персистентный монетарный шок,1,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,0.0004796957921315103
+persistent_shock,Более персистентный монетарный шок,2,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,0.0002673479819382228
+persistent_shock,Более персистентный монетарный шок,3,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,0.00011681759911832696
+persistent_shock,Более персистентный монетарный шок,4,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,2.6233982082531947e-05
+persistent_shock,Более персистентный монетарный шок,5,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-2.7786363457786716e-05
+persistent_shock,Более персистентный монетарный шок,6,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-5.798187830270639e-05
+persistent_shock,Более персистентный монетарный шок,7,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-7.924152656442379e-05
+persistent_shock,Более персистентный монетарный шок,8,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.575485169156599e-05
+persistent_shock,Более персистентный монетарный шок,9,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00010936673380192621
+persistent_shock,Более персистентный монетарный шок,10,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00012106671923271784
+persistent_shock,Более персистентный монетарный шок,11,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00013118591990278356
+persistent_shock,Более персистентный монетарный шок,12,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00013971439749099602
+persistent_shock,Более персистентный монетарный шок,13,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00014654430198166515
+persistent_shock,Более персистентный монетарный шок,14,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00015161864543574845
+persistent_shock,Более персистентный монетарный шок,15,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00015499238854545575
+persistent_shock,Более персистентный монетарный шок,16,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0001568304246448554
+persistent_shock,Более персистентный монетарный шок,17,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00015737229459964215
+persistent_shock,Более персистентный монетарный шок,18,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00015688790801207601
+persistent_shock,Более персистентный монетарный шок,19,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00015563913191193998
+persistent_shock,Более персистентный монетарный шок,20,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00015385363645803858
+persistent_shock,Более персистентный монетарный шок,21,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00015171167200713287
+persistent_shock,Более персистентный монетарный шок,22,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00014934344568687038
+persistent_shock,Более персистентный монетарный шок,23,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0001468337295617605
+persistent_shock,Более персистентный монетарный шок,24,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0001442304517132586
+persistent_shock,Более персистентный монетарный шок,25,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.0001415546715409744
+persistent_shock,Более персистентный монетарный шок,26,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00013881015605021817
+persistent_shock,Более персистентный монетарный шок,27,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00013599151216119374
+persistent_shock,Более персистентный монетарный шок,28,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00013309041834693377
+persistent_shock,Более персистентный монетарный шок,29,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00013009990931939545
+persistent_shock,Более персистентный монетарный шок,30,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00012701692355960467
+persistent_shock,Более персистентный монетарный шок,31,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00012384344627048313
+persistent_shock,Более персистентный монетарный шок,32,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.000120586620337266
+persistent_shock,Более персистентный монетарный шок,33,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00011725817108852152
+persistent_shock,Более персистентный монетарный шок,34,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00011387344265535936
+persistent_shock,Более персистентный монетарный шок,35,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00011045027410379542
+persistent_shock,Более персистентный монетарный шок,36,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00010700787677759415
+persistent_shock,Более персистентный монетарный шок,37,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00010356582143140044
+persistent_shock,Более персистентный монетарный шок,38,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-0.00010014319238956234
+persistent_shock,Более персистентный монетарный шок,39,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.675792991399674e-05
+persistent_shock,Более персистентный монетарный шок,40,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.34263641906095e-05
+persistent_shock,Более персистентный монетарный шок,41,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-9.016292134471205e-05
+persistent_shock,Более персистентный монетарный шок,42,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-8.697998393351448e-05
+persistent_shock,Более персистентный монетарный шок,43,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-8.3887872264426e-05
+persistent_shock,Более персистентный монетарный шок,44,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-8.089493263884907e-05
+persistent_shock,Более персистентный монетарный шок,45,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-7.800770201743931e-05
+persistent_shock,Более персистентный монетарный шок,46,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-7.523113333027748e-05
+persistent_shock,Более персистентный монетарный шок,47,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-7.256886573609794e-05
+persistent_shock,Более персистентный монетарный шок,48,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-7.002350993178463e-05
+persistent_shock,Более персистентный монетарный шок,49,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-6.759692579551101e-05
+persistent_shock,Более персистентный монетарный шок,50,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-6.529042598901932e-05
+persistent_shock,Более персистентный монетарный шок,51,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-6.310483280970374e-05
+persistent_shock,Более персистентный монетарный шок,52,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-6.104025322340698e-05
+persistent_shock,Более персистентный монетарный шок,53,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-5.9095390748433185e-05
+persistent_shock,Более персистентный монетарный шок,54,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-5.7266155767101105e-05
+persistent_shock,Более персистентный монетарный шок,55,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-5.5543301604829246e-05
+persistent_shock,Более персистентный монетарный шок,56,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-5.390890230350727e-05
+persistent_shock,Более персистентный монетарный шок,57,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-5.2331872503842624e-05
+persistent_shock,Более персистентный монетарный шок,58,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-5.076357597499374e-05
+persistent_shock,Более персистентный монетарный шок,59,redistribution_liquidity_residual,Остаточный канал перераспределения и ликвидности,-4.9135685793349846e-05
+persistent_shock,Более персистентный монетарный шок,0,general_equilibrium_total,Полный отклик,-0.41378012823857396
+persistent_shock,Более персистентный монетарный шок,1,general_equilibrium_total,Полный отклик,-0.31532207549993274
+persistent_shock,Более персистентный монетарный шок,2,general_equilibrium_total,Полный отклик,-0.22929694822763996
+persistent_shock,Более персистентный монетарный шок,3,general_equilibrium_total,Полный отклик,-0.15998041197328852
+persistent_shock,Более персистентный монетарный шок,4,general_equilibrium_total,Полный отклик,-0.10956587497438135
+persistent_shock,Более персистентный монетарный шок,5,general_equilibrium_total,Полный отклик,-0.07483358724044219
+persistent_shock,Более персистентный монетарный шок,6,general_equilibrium_total,Полный отклик,-0.051588061194487604
+persistent_shock,Более персистентный монетарный шок,7,general_equilibrium_total,Полный отклик,-0.03618869994653402
+persistent_shock,Более персистентный монетарный шок,8,general_equilibrium_total,Полный отклик,-0.025957160569697664
+persistent_shock,Более персистентный монетарный шок,9,general_equilibrium_total,Полный отклик,-0.019048330566785704
+persistent_shock,Более персистентный монетарный шок,10,general_equilibrium_total,Полный отклик,-0.014249104592379613
+persistent_shock,Более персистентный монетарный шок,11,general_equilibrium_total,Полный отклик,-0.010785649939712701
+persistent_shock,Более персистентный монетарный шок,12,general_equilibrium_total,Полный отклик,-0.008173950661172534
+persistent_shock,Более персистентный монетарный шок,13,general_equilibrium_total,Полный отклик,-0.006114890904474688
+persistent_shock,Более персистентный монетарный шок,14,general_equilibrium_total,Полный отклик,-0.004424671666957491
+persistent_shock,Более персистентный монетарный шок,15,general_equilibrium_total,Полный отклик,-0.0029902966170394993
+persistent_shock,Более персистентный монетарный шок,16,general_equilibrium_total,Полный отклик,-0.0017417775174110711
+persistent_shock,Более персистентный монетарный шок,17,general_equilibrium_total,Полный отклик,-0.000635071088313586
+persistent_shock,Более персистентный монетарный шок,18,general_equilibrium_total,Полный отклик,0.00035826831639124547
+persistent_shock,Более персистентный монетарный шок,19,general_equilibrium_total,Полный отклик,0.001257305543564072
+persistent_shock,Более персистентный монетарный шок,20,general_equilibrium_total,Полный отклик,0.0020754321300167694
+persistent_shock,Более персистентный монетарный шок,21,general_equilibrium_total,Полный отклик,0.0028225634570813517
+persistent_shock,Более персистентный монетарный шок,22,general_equilibrium_total,Полный отклик,0.0035064339805311005
+persistent_shock,Более персистентный монетарный шок,23,general_equilibrium_total,Полный отклик,0.004133358025782588
+persistent_shock,Более персистентный монетарный шок,24,general_equilibrium_total,Полный отклик,0.004708676645006897
+persistent_shock,Более персистентный монетарный шок,25,general_equilibrium_total,Полный отклик,0.005237022031225539
+persistent_shock,Более персистентный монетарный шок,26,general_equilibrium_total,Полный отклик,0.005722477282569814
+persistent_shock,Более персистентный монетарный шок,27,general_equilibrium_total,Полный отклик,0.006168677134609376
+persistent_shock,Более персистентный монетарный шок,28,general_equilibrium_total,Полный отклик,0.006578876074272184
+persistent_shock,Более персистентный монетарный шок,29,general_equilibrium_total,Полный отклик,0.006955998905273519
+persistent_shock,Более персистентный монетарный шок,30,general_equilibrium_total,Полный отклик,0.007302682246101754
+persistent_shock,Более персистентный монетарный шок,31,general_equilibrium_total,Полный отклик,0.007621311719633023
+persistent_shock,Более персистентный монетарный шок,32,general_equilibrium_total,Полный отклик,0.007914057524983342
+persistent_shock,Более персистентный монетарный шок,33,general_equilibrium_total,Полный отклик,0.008182910080738553
+persistent_shock,Более персистентный монетарный шок,34,general_equilibrium_total,Полный отклик,0.008429716864418256
+persistent_shock,Более персистентный монетарный шок,35,general_equilibrium_total,Полный отклик,0.008656221323106738
+persistent_shock,Более персистентный монетарный шок,36,general_equilibrium_total,Полный отклик,0.008864104362743474
+persistent_shock,Более персистентный монетарный шок,37,general_equilibrium_total,Полный отклик,0.009055028349416275
+persistent_shock,Более персистентный монетарный шок,38,general_equilibrium_total,Полный отклик,0.009230682419967186
+persistent_shock,Более персистентный монетарный шок,39,general_equilibrium_total,Полный отклик,0.009392825921503123
+persistent_shock,Более персистентный монетарный шок,40,general_equilibrium_total,Полный отклик,0.009543323620508297
+persistent_shock,Более персистентный монетарный шок,41,general_equilibrium_total,Полный отклик,0.009684161427852014
+persistent_shock,Более персистентный монетарный шок,42,general_equilibrium_total,Полный отклик,0.009817424398303496
+persistent_shock,Более персистентный монетарный шок,43,general_equilibrium_total,Полный отклик,0.009945209173784548
+persistent_shock,Более персистентный монетарный шок,44,general_equilibrium_total,Полный отклик,0.010069430677551266
+persistent_shock,Более персистентный монетарный шок,45,general_equilibrium_total,Полный отклик,0.01019146795654289
+persistent_shock,Более персистентный монетарный шок,46,general_equilibrium_total,Полный отклик,0.010311577749561835
+persistent_shock,Более персистентный монетарный шок,47,general_equilibrium_total,Полный отклик,0.010427989216382515
+persistent_shock,Более персистентный монетарный шок,48,general_equilibrium_total,Полный отклик,0.010535584397532447
+persistent_shock,Более персистентный монетарный шок,49,general_equilibrium_total,Полный отклик,0.010624074875444903
+persistent_shock,Более персистентный монетарный шок,50,general_equilibrium_total,Полный отклик,0.010675619770022184
+persistent_shock,Более персистентный монетарный шок,51,general_equilibrium_total,Полный отклик,0.010661914353686441
+persistent_shock,Более персистентный монетарный шок,52,general_equilibrium_total,Полный отклик,0.010540942644069344
+persistent_shock,Более персистентный монетарный шок,53,general_equilibrium_total,Полный отклик,0.010253872682700248
+persistent_shock,Более персистентный монетарный шок,54,general_equilibrium_total,Полный отклик,0.009723033530049042
+persistent_shock,Более персистентный монетарный шок,55,general_equilibrium_total,Полный отклик,0.008852610607053977
+persistent_shock,Более персистентный монетарный шок,56,general_equilibrium_total,Полный отклик,0.007534689358684858
+persistent_shock,Более персистентный монетарный шок,57,general_equilibrium_total,Полный отклик,0.005664588657681936
+persistent_shock,Более персистентный монетарный шок,58,general_equilibrium_total,Полный отклик,0.003170982561912974
+persistent_shock,Более персистентный монетарный шок,59,general_equilibrium_total,Полный отклик,6.78617476406954e-05

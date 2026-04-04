@@ -1,0 +1,138 @@
+{
+  "output_dir": "outputs/hank_regime_learning_stage6_validation_suite/oos_seeds/larger_network",
+  "horizon": 60,
+  "gamma": 0.99,
+  "lambda_y": 0.5,
+  "lambda_i": 0.05,
+  "action_bound": 0.0035,
+  "classical_policy_mode": "normal_only",
+  "training_seeds": [
+    11,
+    22
+  ],
+  "selection_seeds": [
+    500,
+    501
+  ],
+  "evaluation_seeds": [
+    900,
+    901,
+    902,
+    903,
+    904,
+    905,
+    906,
+    907,
+    908,
+    909
+  ],
+  "regime_config": {
+    "output_dir": "outputs/hank_regime_switching_stage5",
+    "random_seed": 17,
+    "lambda_y": 0.5,
+    "lambda_i": 0.05,
+    "regime_transition": [
+      [
+        0.975,
+        0.025
+      ],
+      [
+        0.02,
+        0.98
+      ]
+    ],
+    "moderate_gap_scale": 1.0,
+    "strong_gap_scale": 3.0,
+    "stress_inflation_row_factor": 1.18,
+    "stress_output_row_factor": 1.3,
+    "stress_low_liquidity_row_factor": 1.45,
+    "stress_mean_mpc_row_factor": 1.35,
+    "stress_inflation_control_factor": 1.4,
+    "stress_output_control_factor": 1.8,
+    "stress_low_liquidity_control_factor": 2.5,
+    "stress_mean_mpc_control_factor": 2.0,
+    "stress_macro_noise_factor": 1.4,
+    "stress_distribution_noise_factor": 2.3,
+    "output_to_inflation_link": 0.03,
+    "output_to_low_liquidity_link": -0.08,
+    "output_to_mean_mpc_link": -0.06,
+    "partial_config": {
+      "output_dir": "outputs/hank_partial_info_stage3",
+      "horizon": 60,
+      "response_horizon": 60,
+      "training_periods": 1200,
+      "training_burn_in": 120,
+      "random_seed": 7,
+      "impulse_scale": 0.001,
+      "base_policy_shock_size": 0.001,
+      "base_policy_shock_period": 0,
+      "base_policy_shock_persistence": 0.0,
+      "rstar_rho": 0.85,
+      "productivity_rho": 0.8,
+      "fiscal_rho": 0.7,
+      "rstar_std": 0.0002,
+      "productivity_std": 0.0005,
+      "fiscal_std": 0.00035,
+      "training_policy_std": 0.0005,
+      "training_policy_rho": 0.25,
+      "lambda_y": 0.5,
+      "lambda_i": 0.05,
+      "confidence_scale": 1.96
+    }
+  },
+  "ppo": {
+    "hidden_dim_1": 48,
+    "hidden_dim_2": 48,
+    "rollout_episodes": 12,
+    "num_iterations": 36,
+    "num_epochs": 8,
+    "minibatch_size": 128,
+    "actor_learning_rate": 0.0004,
+    "critic_learning_rate": 0.0007,
+    "clip_epsilon": 0.2,
+    "gae_lambda": 0.95,
+    "entropy_coefficient": 0.0015,
+    "max_grad_norm": 1.0,
+    "initial_log_std": -8.8,
+    "min_log_std": -10.5,
+    "max_log_std": -7.0,
+    "validation_episodes": 4,
+    "normalization_episodes": 8,
+    "normalization_clip": 6.0,
+    "checkpoint_interval": 4
+  },
+  "main_variants": [
+    {
+      "name": "macro_core_moderate_gap",
+      "scenario_name": "macro_core_moderate_gap",
+      "scenario_label": "Фильтрация: инфляция, выпуск и ставка × умеренный режимный разрыв",
+      "input_mode": "belief_state",
+      "include_distributional_state": true,
+      "description": "Regime-switching HANK learning policy: filtered reduced state, stress belief and lagged rate as policy input."
+    },
+    {
+      "name": "macro_core_strong_gap",
+      "scenario_name": "macro_core_strong_gap",
+      "scenario_label": "Фильтрация: инфляция, выпуск и ставка × сильный режимный разрыв",
+      "input_mode": "belief_state",
+      "include_distributional_state": true,
+      "description": "Regime-switching HANK learning policy: filtered reduced state, stress belief and lagged rate as policy input."
+    },
+    {
+      "name": "thin_information_moderate_gap",
+      "scenario_name": "thin_information_moderate_gap",
+      "scenario_label": "Фильтрация: инфляция и ставка × умеренный режимный разрыв",
+      "input_mode": "belief_state",
+      "include_distributional_state": true,
+      "description": "Regime-switching HANK learning policy: filtered reduced state, stress belief and lagged rate as policy input."
+    },
+    {
+      "name": "thin_information_strong_gap",
+      "scenario_name": "thin_information_strong_gap",
+      "scenario_label": "Фильтрация: инфляция и ставка × сильный режимный разрыв",
+      "input_mode": "belief_state",
+      "include_distributional_state": true,
+      "description": "Regime-switching HANK learning policy: filtered reduced state, stress belief and lagged rate as policy input."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+environment_name,environment_label,scenario_name,scenario_label,fixed_degradation_vs_baseline,retuned_degradation_vs_baseline,learned_degradation_vs_baseline
+baseline_environment,Baseline regime environment,macro_core_moderate_gap,"Фильтрация: инфляция, выпуск и ставка × умеренный режимный разрыв",0.0,0.0,0.0
+baseline_environment,Baseline regime environment,macro_core_strong_gap,"Фильтрация: инфляция, выпуск и ставка × сильный режимный разрыв",0.0,0.0,0.0
+baseline_environment,Baseline regime environment,thin_information_moderate_gap,Фильтрация: инфляция и ставка × умеренный режимный разрыв,0.0,0.0,0.0
+baseline_environment,Baseline regime environment,thin_information_strong_gap,Фильтрация: инфляция и ставка × сильный режимный разрыв,0.0,0.0,0.0
+persistent_regimes,More persistent hidden regimes,macro_core_moderate_gap,"Фильтрация: инфляция, выпуск и ставка × умеренный режимный разрыв",-0.00018983570488746368,-1.4995828309906953e-05,-7.888613341132476e-05
+persistent_regimes,More persistent hidden regimes,macro_core_strong_gap,"Фильтрация: инфляция, выпуск и ставка × сильный режимный разрыв",-0.0003719142590209931,3.900302653153231e-06,-4.0331258916924146e-05
+persistent_regimes,More persistent hidden regimes,thin_information_moderate_gap,Фильтрация: инфляция и ставка × умеренный режимный разрыв,0.00046396592777858594,-1.3911719182351174e-05,0.0003686075113072604
+persistent_regimes,More persistent hidden regimes,thin_information_strong_gap,Фильтрация: инфляция и ставка × сильный режимный разрыв,0.00018435051290506196,3.906589090318761e-06,0.0001936765810016403
+shifted_transmission,Shifted macro transmission,macro_core_moderate_gap,"Фильтрация: инфляция, выпуск и ставка × умеренный режимный разрыв",0.00032318555692715904,-6.061174950302954e-05,-9.000418374401293e-05
+shifted_transmission,Shifted macro transmission,macro_core_strong_gap,"Фильтрация: инфляция, выпуск и ставка × сильный режимный разрыв",0.0020868503596183814,1.949348838568561e-05,0.0011519786414142634
+shifted_transmission,Shifted macro transmission,thin_information_moderate_gap,Фильтрация: инфляция и ставка × умеренный режимный разрыв,0.0005107533715715375,-5.936293630537902e-05,0.0007651856435195274
+shifted_transmission,Shifted macro transmission,thin_information_strong_gap,Фильтрация: инфляция и ставка × сильный режимный разрыв,0.0014239265794450204,1.8512098546869817e-05,0.0019462513744285814
+stronger_distributional_channel,Stronger distributional channel,macro_core_moderate_gap,"Фильтрация: инфляция, выпуск и ставка × умеренный режимный разрыв",0.0007728135418575716,8.897789025674046e-05,0.0004966753010430145
+stronger_distributional_channel,Stronger distributional channel,macro_core_strong_gap,"Фильтрация: инфляция, выпуск и ставка × сильный режимный разрыв",-0.000524761886793023,0.0004317312812543042,0.000871737019201289
+stronger_distributional_channel,Stronger distributional channel,thin_information_moderate_gap,Фильтрация: инфляция и ставка × умеренный режимный разрыв,0.0007691765624734939,8.568412116625838e-05,0.001466625585232798
+stronger_distributional_channel,Stronger distributional channel,thin_information_strong_gap,Фильтрация: инфляция и ставка × сильный режимный разрыв,-0.000459284616219368,0.0004198680073802143,0.0006963311653653556

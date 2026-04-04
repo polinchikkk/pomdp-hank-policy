@@ -1,0 +1,34 @@
+{
+  "macro_core_filtered_state": {
+    "training_seed": 22,
+    "best_validation_return": -0.001022610812503832
+  },
+  "full_macro_filtered_state": {
+    "training_seed": 22,
+    "best_validation_return": -0.0009717842510571999
+  },
+  "thin_information_filtered_state": {
+    "training_seed": 22,
+    "best_validation_return": -0.0009675774228522443
+  },
+  "high_noise_filtered_state": {
+    "training_seed": 22,
+    "best_validation_return": -0.0009898105552157415
+  },
+  "distribution_augmented_filtered_state": {
+    "training_seed": 22,
+    "best_validation_return": -0.0011016338076374971
+  },
+  "macro_core_filtered_state_uncertainty": {
+    "training_seed": 22,
+    "best_validation_return": -0.0005291678864189286
+  },
+  "macro_core_raw_observations": {
+    "training_seed": 22,
+    "best_validation_return": -0.0009568732951527961
+  },
+  "distribution_augmented_no_distribution_state": {
+    "training_seed": 11,
+    "best_validation_return": -0.0007534615367714328
+  }
+}

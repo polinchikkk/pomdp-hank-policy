@@ -1,0 +1,5 @@
+scenario_name,representative_seed,belief_final_cumulative_loss,rawobs_final_cumulative_loss,fixed_final_cumulative_loss
+macro_core_moderate_gap,908,0.0009432979278391,0.0018738631259669,0.0075464400111011
+macro_core_strong_gap,905,0.0029848635170849,0.0033833783860882,0.0101104049690438
+thin_information_moderate_gap,902,0.0080024011726791,0.0108310197149214,0.0145289737487355
+thin_information_strong_gap,906,0.0064007603760397,0.0102409884762123,0.0141933944019944

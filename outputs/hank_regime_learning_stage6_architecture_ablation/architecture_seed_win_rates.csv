@@ -1,0 +1,5 @@
+scenario_name,rawobs_vs_classical_win_rate,belief_vs_classical_win_rate,rawobs_vs_belief_win_rate,num_evaluation_seeds
+macro_core_moderate_gap,1.0,1.0,0.4,10
+macro_core_strong_gap,1.0,1.0,0.4,10
+thin_information_moderate_gap,1.0,1.0,0.3,10
+thin_information_strong_gap,0.8,1.0,0.0,10

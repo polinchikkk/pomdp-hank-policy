@@ -1,0 +1,11 @@
+{
+  "operational_definition": "wealthy_htm := low liquid wealth below threshold and illiquid wealth above threshold quantile",
+  "baseline_thresholds": {
+    "low_liquid_cutoff": 0.25,
+    "high_liquid_cutoff": 1.8561704487936153,
+    "wealthy_htm_a_cutoff": 7.125231940055185,
+    "high_total_wealth_cutoff": 19.616007303477538
+  },
+  "low_liquidity_threshold": 0.25,
+  "wealthy_htm_a_quantile": 0.5
+}

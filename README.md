@@ -1,52 +1,23 @@
 # pomdp-hank-policy
 
-Исследовательский проект о построении экономической политики при неполной наблюдаемости и режимной неопределенности в макроэкономических моделях.
+Текущая рабочая ветка проекта сфокусирована на полной two-asset HANK-модели и классической денежно-кредитной политике в этой среде.
 
-Цель проекта: пройти путь от простого воспроизводимого DSGE baseline к policy-среде с hidden states, а затем перейти к belief-state policy и learning-based подходам.
-
-## Логика проекта
-
-1. **Этап 1. RBC baseline**
-   Проверка вычислительной инфраструктуры на простой модели: решение, симуляция, IRF и базовые sanity checks.
-
-2. **Этап 2. Новокейнсианская policy-среда**
-   Переход к малой линейной NK-модели с правилом Тейлора, IRF по ключевым шокам и determinacy map.
-
-3. **Этап 3. Hidden states**
-   Переписывание модели в форме пространства состояний и восстановление скрытого состояния через фильтр Калмана.
-
-4. **Следующий шаг**
-   Переход от hidden-state inference к belief-state policy design и более гибким learning-based схемам.
-
-## Что уже реализовано
-
-### Этап 1
-
-- стандартная RBC-модель с технологическим шоком;
-- решение через generalized Schur / QZ decomposition;
-- stochastic simulation и IRF;
-- sanity checks и residual diagnostics;
-- внешняя `gensys`-сверка IRF.
-
-### Этап 2
-
-- малая линейная NK-модель;
-- policy block с Taylor rule;
-- BK-check и determinacy map по `(\phi_pi, \phi_x)`;
-- IRF по demand, cost-push и monetary shocks;
-- simulation baseline для policy-relevant variables.
-
-### Этап 3
-
-- linear-Gaussian state-space baseline поверх stage 2;
-- скрытое состояние: вектор шоков `r_n`, `u`, `nu`;
-- базовые наблюдения: `(x, pi, i)`;
-- дополнительный stress test по урезанному набору наблюдений `(pi, i)`;
-- явная реализация фильтра Калмана;
-- сравнение true vs filtered state по всем латентным компонентам;
-- sensitivity к уровню measurement noise и observation design;
-- innovation diagnostics и mild parameter misspecification;
-- Monte Carlo-сводка по точности и покрытию фильтра.
+На `main` оставлена только актуальная HANK-линия:
+- [hank_full_baseline](/Users/polinazosimova/pomdp-hank-policy/hank_full_baseline)
+- [hank_partial_info_baseline](/Users/polinazosimova/pomdp-hank-policy/hank_partial_info_baseline)
+- [hank_learning_policy_baseline](/Users/polinazosimova/pomdp-hank-policy/hank_learning_policy_baseline)
+- [regime_switching_baseline](/Users/polinazosimova/pomdp-hank-policy/regime_switching_baseline)
+- [hank_regime_learning_baseline](/Users/polinazosimova/pomdp-hank-policy/hank_regime_learning_baseline)
+- [scripts/run_hank.py](/Users/polinazosimova/pomdp-hank-policy/scripts/run_hank.py)
+- [scripts/run_hank_partial_info.py](/Users/polinazosimova/pomdp-hank-policy/scripts/run_hank_partial_info.py)
+- [scripts/run_hank_learning.py](/Users/polinazosimova/pomdp-hank-policy/scripts/run_hank_learning.py)
+- [scripts/run_hank_regime.py](/Users/polinazosimova/pomdp-hank-policy/scripts/run_hank_regime.py)
+- [scripts/run_hank_regime_learning.py](/Users/polinazosimova/pomdp-hank-policy/scripts/run_hank_regime_learning.py)
+- [outputs/hank_policy_stage2](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_policy_stage2)
+- [outputs/hank_partial_info_stage3](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_partial_info_stage3)
+- [outputs/hank_learning_stage4](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_learning_stage4)
+- [outputs/hank_regime_switching_stage5](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_regime_switching_stage5)
+- [outputs/hank_regime_learning_stage6_universal_tuning](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_regime_learning_stage6_universal_tuning)
 
 ## Быстрый запуск
 
@@ -56,93 +27,209 @@
 python3 -m pip install -r requirements.txt
 ```
 
-Запуск этапов:
+Полный запуск HANK baseline:
 
 ```bash
-python3 scripts/run_stage1.py
-python3 scripts/run_stage2.py
-python3 scripts/run_stage3.py
+python3 scripts/run_hank.py
+```
+
+Запуск HANK baseline с неполной информацией:
+
+```bash
+python3 scripts/run_hank_partial_info.py
+```
+
+Запуск learning-based policy layer поверх partial-information HANK:
+
+```bash
+python3 scripts/run_hank_learning.py
+```
+
+Запуск regime-switching HANK baseline:
+
+```bash
+python3 scripts/run_hank_regime.py
+```
+
+Запуск regime-learning experiments:
+
+```bash
+python3 scripts/run_hank_regime_learning.py
 ```
 
 По умолчанию результаты сохраняются в:
 
-- `outputs/stage1`
-- `outputs/stage2`
-- `outputs/stage3`
+- `outputs/hank_policy_stage2`
+- `outputs/hank_partial_info_stage3`
+- `outputs/hank_learning_stage4`
+- `outputs/hank_regime_switching_stage5`
+- `outputs/hank_regime_learning_stage6_universal_tuning`
 
-При первом запуске внешней benchmark-сверки stage 1 проект автоматически подтягивает `dsge==0.1.3` в пользовательский cache, чтобы загрузить внешнюю реализацию `gensys`.
+## Что считает текущий baseline
+
+- стационарное равновесие полной two-asset HANK-модели;
+- распределение домохозяйств по ликвидному и неликвидному богатству;
+- функции политики домохозяйств;
+- переходную динамику после монетарного шока;
+- импульсные отклики агрегатов;
+- групповые и распределительные эффекты;
+- validation и robustness-блок по MPC, WHtM и household-side calibration.
+
+## Что считает partial-information baseline
+
+- reduced hidden-state представление полной HANK-среды;
+- synthetic trajectories скрытого состояния и noisy macro observables;
+- Kalman-filter восстановление hidden state;
+- classical `filter -> rule` policy поверх оценённого состояния;
+- сравнение с full-information HANK benchmark по loss, rate-gap и распределительным метрикам.
+
+## Что считает learning-based policy baseline
+
+- continuous-action residual PPO поверх того же reduced HANK state-space и того же Kalman filter;
+- comparison `classical filter + fixed rule` vs `filtering + learned policy`;
+- main scenarios: `macro_core`, `full_macro`, `thin_information`, `high_noise`, `distribution_augmented`;
+- ablations: `filtered state + uncertainty`, `raw observations`, `without distributional state`;
+- policy, macro and distributional evaluation уже на полном HANK transition solver.
+
+## Что считают regime-switching расширения
+
+- stage 5: hidden regime-switching overlay поверх reduced-state HANK с switching filter и classical policy benchmark;
+- stage 6: raw-observation и tuned learning-based policy в regime-switching HANK;
+- основной stage-6 артефакт на `main` теперь не ранние search-раны, а universal tuning result с лучшим кандидатом `larger_network`.
 
 ## Ключевые артефакты
 
-### Этап 1
+- `outputs/hank_policy_stage2/model_spec.json`
+- `outputs/hank_policy_stage2/policy_config.json`
+- `outputs/hank_policy_stage2/scenario_config.json`
+- `outputs/hank_policy_stage2/group_definition_spec.json`
+- `outputs/hank_policy_stage2/steady_state_aggregates.json`
+- `outputs/hank_policy_stage2/diagnostics_summary.json`
+- `outputs/hank_policy_stage2/aggregate_paths.csv`
+- `outputs/hank_policy_stage2/distribution_paths.csv`
+- `outputs/hank_policy_stage2/group_paths.csv`
+- `outputs/hank_policy_stage2/group_profiles.csv`
+- `outputs/hank_policy_stage2/group_consumption_irfs.csv`
+- `outputs/hank_policy_stage2/group_income_irfs.csv`
+- `outputs/hank_policy_stage2/channel_decomposition.csv`
+- `outputs/hank_policy_stage2/mpc_validation.csv`
+- `outputs/hank_policy_stage2/transfer_mpc_validation.csv`
+- `outputs/hank_policy_stage2/mpc_measure_spec.json`
+- `outputs/hank_policy_stage2/wealthy_htm_sensitivity.csv`
+- `outputs/hank_policy_stage2/reference_spec.json`
+- `outputs/hank_policy_stage2/sequence_jacobian_reference_parameters.csv`
+- `outputs/hank_policy_stage2/sequence_jacobian_reference_summary.csv`
+- `outputs/hank_policy_stage2/household_robustness_summary.csv`
+- `outputs/hank_policy_stage2/household_robustness_group_peaks.csv`
+- `outputs/hank_policy_stage2/report_stage2_hank_policy.md`
 
-- `outputs/stage1/steady_state.json`
-- `outputs/stage1/solution.json`
-- `outputs/stage1/irf.csv`
-- `outputs/stage1/benchmark_summary.json`
-- `outputs/stage1/stage1_report.md`
+Для partial-information HANK:
 
-### Этап 2
+- `outputs/hank_partial_info_stage3/model_spec.json`
+- `outputs/hank_partial_info_stage3/filter_spec.json`
+- `outputs/hank_partial_info_stage3/policy_spec.json`
+- `outputs/hank_partial_info_stage3/scenario_spec.json`
+- `outputs/hank_partial_info_stage3/reduced_state_space.json`
+- `outputs/hank_partial_info_stage3/true_state_paths.csv`
+- `outputs/hank_partial_info_stage3/filtered_state_paths.csv`
+- `outputs/hank_partial_info_stage3/observations.csv`
+- `outputs/hank_partial_info_stage3/aggregate_paths.csv`
+- `outputs/hank_partial_info_stage3/distribution_stats.csv`
+- `outputs/hank_partial_info_stage3/group_paths.csv`
+- `outputs/hank_partial_info_stage3/filter_metrics.csv`
+- `outputs/hank_partial_info_stage3/policy_metrics.csv`
+- `outputs/hank_partial_info_stage3/report_stage3_partial_information_hank.md`
 
-- `outputs/stage2/model_spec.json`
-- `outputs/stage2/solution.json`
-- `outputs/stage2/irf_demand.csv`
-- `outputs/stage2/irf_costpush.csv`
-- `outputs/stage2/irf_monetary.csv`
-- `outputs/stage2/determinacy_map.csv`
-- `outputs/stage2/diagnostics_summary.json`
-- `outputs/stage2/stage2_report.md`
-- `outputs/stage2/figures/irf_demand.png`
-- `outputs/stage2/figures/irf_demand_shocks.png`
-- `outputs/stage2/figures/irf_costpush.png`
-- `outputs/stage2/figures/irf_costpush_shocks.png`
-- `outputs/stage2/figures/irf_monetary.png`
-- `outputs/stage2/figures/irf_monetary_shocks.png`
-- `outputs/stage2/figures/simulated_paths.png`
-- `outputs/stage2/figures/simulated_shocks.png`
-- `outputs/stage2/figures/determinacy_map.png`
+Для stage 4 learning-based policy:
 
-The concise human-written note for stage 1 is in `docs/stage1_note.md`. The generated stage-2 report is `outputs/stage2/stage2_report.md`.
->>>>>>> 2d04508 (nk baseline)
+- `outputs/hank_learning_stage4/model_spec.json`
+- `outputs/hank_learning_stage4/filter_spec.json`
+- `outputs/hank_learning_stage4/policy_spec.json`
+- `outputs/hank_learning_stage4/scenario_spec.json`
+- `outputs/hank_learning_stage4/reduced_state_space.json`
+- `outputs/hank_learning_stage4/training_history.csv`
+- `outputs/hank_learning_stage4/training_seed_summary.csv`
+- `outputs/hank_learning_stage4/policy_metrics.csv`
+- `outputs/hank_learning_stage4/policy_comparison.csv`
+- `outputs/hank_learning_stage4/aggregate_paths.csv`
+- `outputs/hank_learning_stage4/distribution_stats.csv`
+- `outputs/hank_learning_stage4/group_paths.csv`
+- `outputs/hank_learning_stage4/report_stage4_learning_policy_hank.md`
 
-### Импульсные отклики
+Для stage 5 regime-switching baseline:
 
-<<<<<<< HEAD
-![IRF для RBC baseline](outputs/stage1/figures/irf.png)
+- `outputs/hank_regime_switching_stage5/filter_metrics.csv`
+- `outputs/hank_regime_switching_stage5/policy_metrics.csv`
+- `outputs/hank_regime_switching_stage5/regime_paths.csv`
+- `outputs/hank_regime_switching_stage5/report_stage5_regime_switching_hank.md`
 
-После положительного технологического шока выпуск, потребление, инвестиции и труд увеличиваются на ударе, а капитал накапливается постепенно. Такая форма откликов соответствует стандартной экономической логике RBC-модели.
+Для stage 6 tuned regime-learning results:
 
-### Стохастическая симуляция
+- `outputs/hank_regime_learning_stage6_universal_tuning/candidate_summary.csv`
+- `outputs/hank_regime_learning_stage6_universal_tuning/scenario_results.csv`
+- `outputs/hank_regime_learning_stage6_universal_tuning/best_candidate_core_map.csv`
+- `outputs/hank_regime_learning_stage6_universal_tuning/best_candidate_delta_loss_matrix.csv`
+- `outputs/hank_regime_learning_stage6_universal_tuning/best_vs_baseline_by_scenario.csv`
+- `outputs/hank_regime_learning_stage6_universal_tuning/best_candidate_seed_win_rates.csv`
+- `outputs/hank_regime_learning_stage6_universal_tuning/report_universal_tuning.md`
 
-![Стохастическая симуляция RBC baseline](outputs/stage1/figures/simulated_paths.png)
+Основные таблицы лежат в:
 
-Симулированные траектории подтверждают устойчивость baseline-решения и согласуются с локальной аппроксимацией в окрестности стационарного состояния.
+- `outputs/hank_policy_stage2/tables/`
 
----
+Основные figures лежат в:
 
-Результаты этапа сохраняются в `outputs/stage1/`:
+- `outputs/hank_policy_stage2/figures/`
 
-- `steady_state.json` — параметры модели и стационарное состояние;
-- `solution.json` — матрицы линейной политики и перехода;
-- `simulated_paths.csv` — стохастическая симуляция;
-- `irf.csv` — импульсные отклики;
-- `diagnostics.csv` — диагностические остатки;
-- `diagnostics_summary.json` — краткая сводка по проверкам;
-- `stage1_report.md` — текстовый отчёт по этапу 1;
-- `figures/` — графики.
-=======
-- `rbc_baseline/model.py`: model equations, steady state, observable reconstruction.
-- `rbc_baseline/solver.py`: QZ/generalized-Schur solver for the linear policy system with Blanchard-Kahn checks.
-- `rbc_baseline/benchmark.py`: external `gensys` benchmark loader and IRF comparison utilities.
-- `rbc_baseline/pipeline.py`: simulation, IRF, diagnostics, plots, and artifact export.
-- `nk_baseline/model.py`: small linear NK policy model specification.
-- `nk_baseline/solver.py`: QZ/generalized-Schur NK solver and determinacy diagnostics.
-- `nk_baseline/pipeline.py`: stage-2 IRF, simulation, determinacy-map, and report pipeline.
-- `scripts/run_stage1.py`: one-command entry point for the full baseline run.
-- `scripts/run_stage2.py`: one-command entry point for the stage-2 NK baseline.
-- `docs/stage1_note.md`: short technical note for the baseline stage.
+## Структура репозитория
 
-## Transition To Stage 3
+- `hank_full_baseline/`
+  Полный HANK pipeline: calibration, steady state, household solver, sequence-space Jacobian, transition dynamics, plots, tables и robustness.
+- `hank_partial_info_baseline/`
+  Reduced-state partial-observability HANK pipeline: state-space approximation, Kalman filter, information scenarios, policy diagnostics и article-ready plots/tables.
+- `hank_learning_policy_baseline/`
+  Learning-based policy layer for partial-information HANK: PPO trainer, residual policy environment, scenario evaluation и article-ready outputs.
+- `regime_switching_baseline/`
+  Stage-5 regime-switching HANK overlay: hidden regimes, switching filter, classical benchmark и regime diagnostics.
+- `hank_regime_learning_baseline/`
+  Stage-6 regime-learning layer: raw-observation and filtered-state policy experiments, universal tuning and scenario comparison.
+- `scripts/run_hank.py`
+  One-command запуск полного HANK baseline.
+- `scripts/run_hank_partial_info.py`
+  One-command запуск partial-information HANK baseline.
+- `scripts/run_hank_learning.py`
+  One-command запуск stage-4 learning-based policy baseline.
+- `scripts/run_hank_regime.py`
+  One-command запуск stage-5 regime-switching baseline.
+- `scripts/run_hank_regime_learning.py`
+  One-command запуск stage-6 regime-learning experiments.
+- `outputs/hank_policy_stage2/`
+  Канонический набор результатов для текущей рабочей ветки.
+- `outputs/hank_partial_info_stage3/`
+  Канонический набор результатов для HANK baseline с неполной информацией.
+- `outputs/hank_learning_stage4/`
+  Канонический набор результатов для stage 4: learning-based policy layer в полной HANK при неполной информации.
+- `outputs/hank_regime_switching_stage5/`
+  Канонический набор результатов для stage 5: regime-switching HANK baseline.
+- `outputs/hank_regime_learning_stage6_universal_tuning/`
+  Канонический набор результатов для stage 6: tuned regime-learning comparison против misspecified classical benchmark.
 
-The next stage should add hidden states and partial observability on top of the stage-2 NK policy environment, and only after that move to rule-based versus learning-based policy comparison.
->>>>>>> 2d04508 (nk baseline)
+## Архивные ветки
+
+Старые линии проекта специально вынесены из `main`, чтобы не мешать текущей HANK-разработке.
+
+- `archive/hank-legacy`
+  Legacy HANK-постановки и переходные partial-information HANK материалы.
+- `archive/pre-hank-only-main`
+  Предыдущая широкая версия проекта с baseline этапами 1–7, RL-блоками и не-HANK артефактами.
+
+## Текущий фокус
+
+Текущая main-line логика уже собрана как последовательность:
+- stage 2: full-information classical policy в полной HANK;
+- stage 3: reduced-state partial observability и classical `filter -> rule`;
+- stage 4: learning-based policy layer на той же HANK-среде и той же информационной структуре.
+- stage 5: regime-switching HANK under partial information;
+- stage 6: tuned regime-learning policy и карта условий, где RL получает преимущество над misspecified classical benchmark.
+
+Следующие расширения должны идти уже от этого канонического stage-4 baseline, а не от старых pre-HANK линий проекта.

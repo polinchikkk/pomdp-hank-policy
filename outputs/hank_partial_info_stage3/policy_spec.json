@@ -1,0 +1,10 @@
+{
+  "policy_name": "certainty_equivalent_taylor_rule_on_filtered_hank_state",
+  "rule_formula": "i_t = rho_i i_(t-1) + (1-rho_i)(rstar_hat_t + phi_pi*pi_hat_t + phi_y*y_gap_hat_t) + eps_t^i",
+  "phi_pi": 1.5,
+  "phi_y": 0.125,
+  "rho_i": 0.7,
+  "loss_function": "L_t = pi_t^2 + lambda_y * y_gap_t^2 + lambda_i * (i_t - i_(t-1))^2",
+  "lambda_y": 0.5,
+  "lambda_i": 0.05
+}

@@ -1,0 +1,25 @@
+{
+  "variant_name": "macro_core_strong_gap_belief_state",
+  "scenario_name": "macro_core_strong_gap",
+  "scenario_label": "Фильтрация: инфляция, выпуск и ставка × сильный режимный разрыв",
+  "input_mode": "belief_state",
+  "include_distributional_state": true,
+  "noisy_observations": [
+    "pi",
+    "output_gap"
+  ],
+  "noise_scale": 1.0,
+  "gap_name": "strong_gap",
+  "gap_label": "Сильный режимный разрыв",
+  "gap_scale": 3.0,
+  "horizon": 60,
+  "gamma": 0.99,
+  "lambda_y": 0.5,
+  "lambda_i": 0.05,
+  "action_bound": 0.0035,
+  "rate_bounds": [
+    -0.00875,
+    0.00875
+  ],
+  "description": "Filtered state plus regime belief as RL input."
+}

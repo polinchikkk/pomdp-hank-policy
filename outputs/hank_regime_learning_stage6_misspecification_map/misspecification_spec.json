@@ -1,0 +1,108 @@
+{
+  "source_architecture_dir": "outputs/hank_regime_learning_stage6_architecture_ablation",
+  "candidate_name": "larger_network",
+  "candidate_description": "Wider network with slightly more exploration and training steps.",
+  "action_bound": 0.0035,
+  "evaluation_seeds": [
+    900,
+    901,
+    902,
+    903,
+    904,
+    905,
+    906,
+    907,
+    908,
+    909
+  ],
+  "misspecifications": [
+    {
+      "name": "normal_only_filter",
+      "label": "Single-regime normal-only filter",
+      "description": "Classical benchmark ignores hidden regime switching and filters as if only the normal regime existed.",
+      "filter_type": "single_regime_normal_only",
+      "measurement_noise_scale": 1.0,
+      "phi_pi": 1.5,
+      "phi_y": 0.125,
+      "rho_i": 0.7
+    },
+    {
+      "name": "overstated_noise",
+      "label": "Overstated measurement noise",
+      "description": "Switching filter is retained, but measurement noise variance is overstated, making the classical rule excessively cautious.",
+      "filter_type": "switching",
+      "measurement_noise_scale": 2.0,
+      "phi_pi": 1.5,
+      "phi_y": 0.125,
+      "rho_i": 0.7
+    },
+    {
+      "name": "wrong_persistence",
+      "label": "Normal-biased regime persistence",
+      "description": "Switching filter underestimates stress arrivals and overestimates stress exits.",
+      "filter_type": "switching",
+      "measurement_noise_scale": 1.0,
+      "phi_pi": 1.5,
+      "phi_y": 0.125,
+      "rho_i": 0.7,
+      "regime_transition_override": [
+        [
+          0.992,
+          0.008
+        ],
+        [
+          0.12,
+          0.88
+        ]
+      ]
+    },
+    {
+      "name": "inflation_only_rule",
+      "label": "Inflation-only simple rule",
+      "description": "Filter is correctly switching, but the policy rule omits the output-gap term.",
+      "filter_type": "switching",
+      "measurement_noise_scale": 1.0,
+      "phi_pi": 1.5,
+      "phi_y": 0.0,
+      "rho_i": 0.7
+    }
+  ],
+  "best_learned_selection": [
+    {
+      "scenario_name": "macro_core_moderate_gap",
+      "scenario_label": "Инфляция, выпуск, ставка × умеренный режимный разрыв",
+      "best_learned_architecture": "raw_observations",
+      "best_learned_mean_cumulative_loss": 0.0020096692234271,
+      "switching_classical_mean_cumulative_loss": 0.0076052857429902,
+      "full_information_mean_cumulative_loss": 0.0060826096695615695,
+      "seed_loss_column": "rawobs_cumulative_policy_loss"
+    },
+    {
+      "scenario_name": "macro_core_strong_gap",
+      "scenario_label": "Инфляция, выпуск, ставка × сильный режимный разрыв",
+      "best_learned_architecture": "raw_observations",
+      "best_learned_mean_cumulative_loss": 0.0023986121583063,
+      "switching_classical_mean_cumulative_loss": 0.0084860241462418,
+      "full_information_mean_cumulative_loss": 0.007040926200803569,
+      "seed_loss_column": "rawobs_cumulative_policy_loss"
+    },
+    {
+      "scenario_name": "thin_information_moderate_gap",
+      "scenario_label": "Инфляция, ставка × умеренный режимный разрыв",
+      "best_learned_architecture": "belief_state",
+      "best_learned_mean_cumulative_loss": 0.0036837226266454,
+      "switching_classical_mean_cumulative_loss": 0.0085021067526057,
+      "full_information_mean_cumulative_loss": 0.0060826096695615695,
+      "seed_loss_column": "belief_cumulative_policy_loss"
+    },
+    {
+      "scenario_name": "thin_information_strong_gap",
+      "scenario_label": "Инфляция, ставка × сильный режимный разрыв",
+      "best_learned_architecture": "belief_state",
+      "best_learned_mean_cumulative_loss": 0.0036272001508272,
+      "switching_classical_mean_cumulative_loss": 0.010156859030405,
+      "full_information_mean_cumulative_loss": 0.00704092620500236,
+      "seed_loss_column": "belief_cumulative_policy_loss"
+    }
+  ]
+}

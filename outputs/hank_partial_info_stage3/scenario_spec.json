@@ -1,0 +1,75 @@
+[
+  {
+    "name": "macro_core",
+    "label": "Фильтрация: инфляция, выпуск и ставка",
+    "description": "Базовый policy-relevant набор наблюдений: инфляция и разрыв выпуска наблюдаются с шумом, ставка известна как инструмент политики.",
+    "noisy_observations": [
+      "pi",
+      "output_gap"
+    ],
+    "known_exact": [
+      "i"
+    ],
+    "noise_scale": 1.0,
+    "includes_distribution_stats": false
+  },
+  {
+    "name": "full_macro",
+    "label": "Фильтрация: расширенный макронабор",
+    "description": "К инфляции и выпуску добавлены потребление и реальная заработная плата.",
+    "noisy_observations": [
+      "pi",
+      "output_gap",
+      "C",
+      "w"
+    ],
+    "known_exact": [
+      "i"
+    ],
+    "noise_scale": 1.0,
+    "includes_distribution_stats": false
+  },
+  {
+    "name": "thin_information",
+    "label": "Фильтрация: инфляция и ставка",
+    "description": "Тонкий информационный набор: регулятор видит только инфляцию и собственную ставку.",
+    "noisy_observations": [
+      "pi"
+    ],
+    "known_exact": [
+      "i"
+    ],
+    "noise_scale": 1.0,
+    "includes_distribution_stats": false
+  },
+  {
+    "name": "high_noise",
+    "label": "Фильтрация: высокий шум измерения",
+    "description": "Базовый набор инфляция-выпуск-ставка, но с более высоким шумом в доступных макронаблюдениях.",
+    "noisy_observations": [
+      "pi",
+      "output_gap"
+    ],
+    "known_exact": [
+      "i"
+    ],
+    "noise_scale": 2.0,
+    "includes_distribution_stats": false
+  },
+  {
+    "name": "distribution_augmented",
+    "label": "Фильтрация: с распределительной статистикой",
+    "description": "К инфляции, выпуску и ставке добавлены наблюдения доли низколиквидных домохозяйств и средней MPC.",
+    "noisy_observations": [
+      "pi",
+      "output_gap",
+      "share_low_liquidity",
+      "mean_mpc"
+    ],
+    "known_exact": [
+      "i"
+    ],
+    "noise_scale": 1.0,
+    "includes_distribution_stats": true
+  }
+]

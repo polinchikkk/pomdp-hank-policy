@@ -1,0 +1,72 @@
+[
+  {
+    "name": "baseline",
+    "label": "Базовое правило",
+    "description": "Стандартное правило Тейлора с базовой реакцией на инфляцию и выпуск.",
+    "rule": {
+      "rho_i": 0.7,
+      "phi_pi": 1.5,
+      "phi_y": 0.125,
+      "shock_name": "monetary_policy_shock",
+      "shock_size": 0.001,
+      "shock_persistence": 0.0,
+      "output_measure": "output_gap"
+    }
+  },
+  {
+    "name": "high_phi_pi",
+    "label": "Сильная реакция на инфляцию",
+    "description": "Более агрессивное правило Тейлора по инфляции.",
+    "rule": {
+      "rho_i": 0.7,
+      "phi_pi": 2.0,
+      "phi_y": 0.125,
+      "shock_name": "monetary_policy_shock",
+      "shock_size": 0.001,
+      "shock_persistence": 0.0,
+      "output_measure": "output_gap"
+    }
+  },
+  {
+    "name": "high_rho_i",
+    "label": "Высокая инерция ставки",
+    "description": "Правило с более высокой инерционностью процентной ставки.",
+    "rule": {
+      "rho_i": 0.9,
+      "phi_pi": 1.5,
+      "phi_y": 0.125,
+      "shock_name": "monetary_policy_shock",
+      "shock_size": 0.001,
+      "shock_persistence": 0.0,
+      "output_measure": "output_gap"
+    }
+  },
+  {
+    "name": "low_phi_y",
+    "label": "Слабая реакция на выпуск",
+    "description": "Правило с отключенной или почти нулевой реакцией на выпуск.",
+    "rule": {
+      "rho_i": 0.7,
+      "phi_pi": 1.5,
+      "phi_y": 0.0,
+      "shock_name": "monetary_policy_shock",
+      "shock_size": 0.001,
+      "shock_persistence": 0.0,
+      "output_measure": "output_gap"
+    }
+  },
+  {
+    "name": "persistent_shock",
+    "label": "Более персистентный монетарный шок",
+    "description": "То же правило ставки, но с более персистентным policy shock.",
+    "rule": {
+      "rho_i": 0.7,
+      "phi_pi": 1.5,
+      "phi_y": 0.125,
+      "shock_name": "monetary_policy_shock",
+      "shock_size": 0.001,
+      "shock_persistence": 0.6,
+      "output_measure": "output_gap"
+    }
+  }
+]

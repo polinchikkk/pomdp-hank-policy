@@ -1,0 +1,43 @@
+{
+  "policy_family": "residual_ppo_over_filtered_classical_rule",
+  "classical_reference_rule": {
+    "phi_pi": 1.5,
+    "phi_y": 0.125,
+    "rho_i": 0.7
+  },
+  "rl_action": "continuous residual around filtered classical rule",
+  "action_bound": 0.0015,
+  "rate_bounds": [
+    -0.00375,
+    0.00375
+  ],
+  "observation_modes": {
+    "filtered_state": "(x_hat_t, i_{t-1})",
+    "filtered_state_uncertainty": "(x_hat_t, diag(P_t), i_{t-1})",
+    "raw_observations": "(y_t, i_{t-1})"
+  },
+  "loss_function": "L_t = pi_t^2 + lambda_y y_gap_t^2 + lambda_i (i_t - i_{t-1})^2",
+  "lambda_y": 0.5,
+  "lambda_i": 0.05,
+  "gamma": 0.99,
+  "ppo": {
+    "hidden_dim_1": 32,
+    "hidden_dim_2": 32,
+    "rollout_episodes": 8,
+    "num_iterations": 24,
+    "num_epochs": 8,
+    "minibatch_size": 128,
+    "actor_learning_rate": 0.0005,
+    "critic_learning_rate": 0.0008,
+    "clip_epsilon": 0.2,
+    "gae_lambda": 0.95,
+    "entropy_coefficient": 0.001,
+    "max_grad_norm": 1.0,
+    "initial_log_std": -9.0,
+    "min_log_std": -10.5,
+    "max_log_std": -7.0,
+    "validation_episodes": 4,
+    "normalization_episodes": 8,
+    "normalization_clip": 6.0
+  }
+}

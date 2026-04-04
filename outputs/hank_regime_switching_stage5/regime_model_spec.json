@@ -1,0 +1,228 @@
+{
+  "macro_core_moderate_gap": {
+    "stage": "stage5_regime_switching_reduced_hank",
+    "regime_names": [
+      "normal",
+      "stress"
+    ],
+    "scenario_name": "macro_core_moderate_gap",
+    "scenario_label": "Фильтрация: инфляция, выпуск и ставка × умеренный режимный разрыв",
+    "gap_name": "moderate_gap",
+    "gap_scale": 1.0,
+    "regime_transition_matrix": [
+      [
+        0.96,
+        0.04
+      ],
+      [
+        0.1,
+        0.9
+      ]
+    ],
+    "state_names": [
+      "rstar_gap",
+      "productivity_gap",
+      "fiscal_gap",
+      "inflation_gap",
+      "output_gap",
+      "low_liquidity_gap",
+      "mean_mpc_gap"
+    ],
+    "observation_names": [
+      "pi",
+      "output_gap",
+      "C",
+      "w",
+      "N",
+      "share_low_liquidity",
+      "mean_mpc"
+    ],
+    "info_scenario_name": "macro_core",
+    "noisy_observations": [
+      "pi",
+      "output_gap"
+    ],
+    "description": "Two-regime reduced-state HANK overlay. Normal regime uses the stage-3 local linear approximation; stress regime amplifies policy transmission and distributional dynamics.",
+    "steady_state_statistics": {
+      "share_low_liquidity": 0.5933819694104534,
+      "mean_mpc": 0.10616847305520215
+    },
+    "base_model_training_summary": {
+      "training_periods": 1200.0,
+      "mean_abs_transition_residual": 0.0008463657361924229,
+      "max_abs_transition_residual": 0.009673239358079063,
+      "mean_observation_fit_rmse": 5.784165286889312e-05,
+      "spectral_radius": 2.3732091288425314,
+      "stability_shrink_factor": 0.4003018480142695
+    }
+  },
+  "macro_core_strong_gap": {
+    "stage": "stage5_regime_switching_reduced_hank",
+    "regime_names": [
+      "normal",
+      "stress"
+    ],
+    "scenario_name": "macro_core_strong_gap",
+    "scenario_label": "Фильтрация: инфляция, выпуск и ставка × сильный режимный разрыв",
+    "gap_name": "strong_gap",
+    "gap_scale": 1.75,
+    "regime_transition_matrix": [
+      [
+        0.96,
+        0.04
+      ],
+      [
+        0.1,
+        0.9
+      ]
+    ],
+    "state_names": [
+      "rstar_gap",
+      "productivity_gap",
+      "fiscal_gap",
+      "inflation_gap",
+      "output_gap",
+      "low_liquidity_gap",
+      "mean_mpc_gap"
+    ],
+    "observation_names": [
+      "pi",
+      "output_gap",
+      "C",
+      "w",
+      "N",
+      "share_low_liquidity",
+      "mean_mpc"
+    ],
+    "info_scenario_name": "macro_core",
+    "noisy_observations": [
+      "pi",
+      "output_gap"
+    ],
+    "description": "Two-regime reduced-state HANK overlay. Normal regime uses the stage-3 local linear approximation; stress regime amplifies policy transmission and distributional dynamics.",
+    "steady_state_statistics": {
+      "share_low_liquidity": 0.5933819694104534,
+      "mean_mpc": 0.10616847305520215
+    },
+    "base_model_training_summary": {
+      "training_periods": 1200.0,
+      "mean_abs_transition_residual": 0.0008463657361924229,
+      "max_abs_transition_residual": 0.009673239358079063,
+      "mean_observation_fit_rmse": 5.784165286889312e-05,
+      "spectral_radius": 2.3732091288425314,
+      "stability_shrink_factor": 0.4003018480142695
+    }
+  },
+  "thin_information_moderate_gap": {
+    "stage": "stage5_regime_switching_reduced_hank",
+    "regime_names": [
+      "normal",
+      "stress"
+    ],
+    "scenario_name": "thin_information_moderate_gap",
+    "scenario_label": "Фильтрация: инфляция и ставка × умеренный режимный разрыв",
+    "gap_name": "moderate_gap",
+    "gap_scale": 1.0,
+    "regime_transition_matrix": [
+      [
+        0.96,
+        0.04
+      ],
+      [
+        0.1,
+        0.9
+      ]
+    ],
+    "state_names": [
+      "rstar_gap",
+      "productivity_gap",
+      "fiscal_gap",
+      "inflation_gap",
+      "output_gap",
+      "low_liquidity_gap",
+      "mean_mpc_gap"
+    ],
+    "observation_names": [
+      "pi",
+      "output_gap",
+      "C",
+      "w",
+      "N",
+      "share_low_liquidity",
+      "mean_mpc"
+    ],
+    "info_scenario_name": "thin_information",
+    "noisy_observations": [
+      "pi"
+    ],
+    "description": "Two-regime reduced-state HANK overlay. Normal regime uses the stage-3 local linear approximation; stress regime amplifies policy transmission and distributional dynamics.",
+    "steady_state_statistics": {
+      "share_low_liquidity": 0.5933819694104534,
+      "mean_mpc": 0.10616847305520215
+    },
+    "base_model_training_summary": {
+      "training_periods": 1200.0,
+      "mean_abs_transition_residual": 0.0008463657361924229,
+      "max_abs_transition_residual": 0.009673239358079063,
+      "mean_observation_fit_rmse": 5.784165286889312e-05,
+      "spectral_radius": 2.3732091288425314,
+      "stability_shrink_factor": 0.4003018480142695
+    }
+  },
+  "thin_information_strong_gap": {
+    "stage": "stage5_regime_switching_reduced_hank",
+    "regime_names": [
+      "normal",
+      "stress"
+    ],
+    "scenario_name": "thin_information_strong_gap",
+    "scenario_label": "Фильтрация: инфляция и ставка × сильный режимный разрыв",
+    "gap_name": "strong_gap",
+    "gap_scale": 1.75,
+    "regime_transition_matrix": [
+      [
+        0.96,
+        0.04
+      ],
+      [
+        0.1,
+        0.9
+      ]
+    ],
+    "state_names": [
+      "rstar_gap",
+      "productivity_gap",
+      "fiscal_gap",
+      "inflation_gap",
+      "output_gap",
+      "low_liquidity_gap",
+      "mean_mpc_gap"
+    ],
+    "observation_names": [
+      "pi",
+      "output_gap",
+      "C",
+      "w",
+      "N",
+      "share_low_liquidity",
+      "mean_mpc"
+    ],
+    "info_scenario_name": "thin_information",
+    "noisy_observations": [
+      "pi"
+    ],
+    "description": "Two-regime reduced-state HANK overlay. Normal regime uses the stage-3 local linear approximation; stress regime amplifies policy transmission and distributional dynamics.",
+    "steady_state_statistics": {
+      "share_low_liquidity": 0.5933819694104534,
+      "mean_mpc": 0.10616847305520215
+    },
+    "base_model_training_summary": {
+      "training_periods": 1200.0,
+      "mean_abs_transition_residual": 0.0008463657361924229,
+      "max_abs_transition_residual": 0.009673239358079063,
+      "mean_observation_fit_rmse": 5.784165286889312e-05,
+      "spectral_radius": 2.3732091288425314,
+      "stability_shrink_factor": 0.4003018480142695
+    }
+  }
+}

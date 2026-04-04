@@ -1,0 +1,112 @@
+{
+  "candidate_name": "larger_network",
+  "candidate_description": "Wider network with slightly more exploration and training steps.",
+  "action_bound": 0.0035,
+  "ppo": {
+    "hidden_dim_1": 48,
+    "hidden_dim_2": 48,
+    "rollout_episodes": 12,
+    "num_iterations": 36,
+    "num_epochs": 8,
+    "minibatch_size": 128,
+    "actor_learning_rate": 0.0004,
+    "critic_learning_rate": 0.0007,
+    "clip_epsilon": 0.2,
+    "gae_lambda": 0.95,
+    "entropy_coefficient": 0.0015,
+    "max_grad_norm": 1.0,
+    "initial_log_std": -8.8,
+    "min_log_std": -10.5,
+    "max_log_std": -7.0,
+    "validation_episodes": 4,
+    "normalization_episodes": 8,
+    "normalization_clip": 6.0,
+    "checkpoint_interval": 4
+  },
+  "training_seeds": [
+    11
+  ],
+  "selection_seeds": [
+    500,
+    501
+  ],
+  "evaluation_seeds": [
+    900,
+    901,
+    902,
+    903,
+    904,
+    905,
+    906,
+    907,
+    908,
+    909
+  ],
+  "classical_policy_mode": "switching",
+  "variants": [
+    {
+      "name": "macro_core_moderate_gap_belief_state",
+      "scenario_name": "macro_core_moderate_gap",
+      "scenario_label": "Инфляция, выпуск, ставка × умеренный режимный разрыв",
+      "input_mode": "belief_state",
+      "include_distributional_state": true,
+      "description": "Filtered state plus regime belief as RL input."
+    },
+    {
+      "name": "macro_core_moderate_gap_raw_observations",
+      "scenario_name": "macro_core_moderate_gap",
+      "scenario_label": "Инфляция, выпуск, ставка × умеренный режимный разрыв",
+      "input_mode": "raw_observations",
+      "include_distributional_state": true,
+      "description": "Raw observables plus lagged rate as RL input."
+    },
+    {
+      "name": "macro_core_strong_gap_belief_state",
+      "scenario_name": "macro_core_strong_gap",
+      "scenario_label": "Инфляция, выпуск, ставка × сильный режимный разрыв",
+      "input_mode": "belief_state",
+      "include_distributional_state": true,
+      "description": "Filtered state plus regime belief as RL input."
+    },
+    {
+      "name": "macro_core_strong_gap_raw_observations",
+      "scenario_name": "macro_core_strong_gap",
+      "scenario_label": "Инфляция, выпуск, ставка × сильный режимный разрыв",
+      "input_mode": "raw_observations",
+      "include_distributional_state": true,
+      "description": "Raw observables plus lagged rate as RL input."
+    },
+    {
+      "name": "thin_information_moderate_gap_belief_state",
+      "scenario_name": "thin_information_moderate_gap",
+      "scenario_label": "Инфляция, ставка × умеренный режимный разрыв",
+      "input_mode": "belief_state",
+      "include_distributional_state": true,
+      "description": "Filtered state plus regime belief as RL input."
+    },
+    {
+      "name": "thin_information_moderate_gap_raw_observations",
+      "scenario_name": "thin_information_moderate_gap",
+      "scenario_label": "Инфляция, ставка × умеренный режимный разрыв",
+      "input_mode": "raw_observations",
+      "include_distributional_state": true,
+      "description": "Raw observables plus lagged rate as RL input."
+    },
+    {
+      "name": "thin_information_strong_gap_belief_state",
+      "scenario_name": "thin_information_strong_gap",
+      "scenario_label": "Инфляция, ставка × сильный режимный разрыв",
+      "input_mode": "belief_state",
+      "include_distributional_state": true,
+      "description": "Filtered state plus regime belief as RL input."
+    },
+    {
+      "name": "thin_information_strong_gap_raw_observations",
+      "scenario_name": "thin_information_strong_gap",
+      "scenario_label": "Инфляция, ставка × сильный режимный разрыв",
+      "input_mode": "raw_observations",
+      "include_distributional_state": true,
+      "description": "Raw observables plus lagged rate as RL input."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "model_name": "Two-Asset HANK",
+  "stage": "Этап 2. Классическая денежно-кредитная политика в полной HANK",
+  "solution_method": "steady state + sequence-space Jacobian + nonlinear transition",
+  "household_block": "two assets, idiosyncratic labor income, rebalancing costs",
+  "fiscal_mode": "passive",
+  "policy_rule": "i_t = rho_i i_{t-1} + (1-rho_i)(rstar + phi_pi pi_t + phi_y y_gap_t) + eps_t^i",
+  "output_measure_in_rule": "output_gap"
+}

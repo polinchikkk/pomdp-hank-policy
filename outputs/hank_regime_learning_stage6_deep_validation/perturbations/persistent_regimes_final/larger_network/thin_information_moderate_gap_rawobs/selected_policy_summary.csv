@@ -1,0 +1,2 @@
+variant_name,scenario_name,scenario_label,training_seed,checkpoint_iteration,validation_return,mean_episode_return,selection_objective,selection_rate_rmse,selection_unstable_episodes
+thin_information_moderate_gap_rawobs,thin_information_moderate_gap,Фильтрация: инфляция и ставка × умеренный режимный разрыв,11,0,-0.002797273668675007,-0.004649182988311049,0.0037385740598062803,0.00436138431783331,0

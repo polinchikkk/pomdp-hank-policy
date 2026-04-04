@@ -1,0 +1,5 @@
+misspecification_name,misspecification_label,mean_relative_improvement_pct,mean_excess_loss_vs_switching,four_of_four_wins,scenario_win_share,mean_seed_win_rate
+normal_only_filter,Single-regime normal-only filter,66.56772931441684,0.00042457271339509827,1,1.0,1.0
+wrong_persistence,Normal-biased regime persistence,66.43988137607744,0.00040937010145689464,1,1.0,1.0
+overstated_noise,Overstated measurement noise,62.924802991357,-0.00024063310774723464,1,1.0,1.0
+inflation_only_rule,Inflation-only simple rule,-136.88368838651178,-0.00701530337764632,0,0.0,0.025

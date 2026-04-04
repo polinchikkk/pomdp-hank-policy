@@ -1,0 +1,9 @@
+{
+  "rho_i": 0.7,
+  "phi_pi": 1.5,
+  "phi_y": 0.125,
+  "shock_name": "monetary_policy_shock",
+  "shock_size": 0.001,
+  "shock_persistence": 0.0,
+  "output_measure": "output_gap"
+}

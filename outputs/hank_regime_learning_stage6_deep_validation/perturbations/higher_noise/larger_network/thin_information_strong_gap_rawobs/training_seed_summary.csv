@@ -1,0 +1,2 @@
+variant_name,training_seed,best_validation_return,final_validation_return,final_mean_episode_return,best_validation_return_selected,final_validation_return_selected,final_mean_episode_return_selected
+thin_information_strong_gap_rawobs,11,-0.003322072481494827,-0.011136378133159855,-0.005832174693946584,-0.0077883291345541145,-0.0077883291345541145,-0.007032153249310548

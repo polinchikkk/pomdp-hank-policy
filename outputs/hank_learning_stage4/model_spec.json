@@ -1,0 +1,34 @@
+{
+  "stage": "stage3_partial_information_full_hank",
+  "source_model": "full_two_asset_hank_baseline",
+  "description": "Reduced-state local linear representation of the full two-asset HANK model, used to filter policy-relevant macro and distributional state components from noisy observables before applying a classical policy rule.",
+  "state_names": [
+    "rstar_gap",
+    "productivity_gap",
+    "fiscal_gap",
+    "inflation_gap",
+    "output_gap",
+    "low_liquidity_gap",
+    "mean_mpc_gap"
+  ],
+  "state_interpretation": {
+    "rstar_gap": "Отклонение естественной ставки / агрегированного спросового фактора",
+    "productivity_gap": "Скрытый фактор производительности",
+    "fiscal_gap": "Скрытый фискальный фактор",
+    "inflation_gap": "Отклонение инфляции от стационара",
+    "output_gap": "Отклонение выпуска от стационара",
+    "low_liquidity_gap": "Отклонение доли низколиквидных домохозяйств",
+    "mean_mpc_gap": "Отклонение средней MPC"
+  },
+  "observation_names": [
+    "pi",
+    "output_gap",
+    "C",
+    "w",
+    "N",
+    "share_low_liquidity",
+    "mean_mpc",
+    "i"
+  ],
+  "timing_note": "Noisy macro releases enter the Kalman update contemporaneously; the policy rate is treated as an exactly known instrument chosen by the regulator."
+}

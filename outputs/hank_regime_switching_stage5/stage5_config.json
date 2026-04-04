@@ -1,0 +1,126 @@
+{
+  "output_dir": "outputs/hank_regime_switching_stage5",
+  "random_seed": 17,
+  "lambda_y": 0.5,
+  "lambda_i": 0.05,
+  "regime_transition": [
+    [
+      0.96,
+      0.04
+    ],
+    [
+      0.1,
+      0.9
+    ]
+  ],
+  "moderate_gap_scale": 1.0,
+  "strong_gap_scale": 1.75,
+  "stress_inflation_row_factor": 1.1,
+  "stress_output_row_factor": 1.15,
+  "stress_low_liquidity_row_factor": 1.22,
+  "stress_mean_mpc_row_factor": 1.18,
+  "stress_inflation_control_factor": 1.2,
+  "stress_output_control_factor": 1.35,
+  "stress_low_liquidity_control_factor": 1.6,
+  "stress_mean_mpc_control_factor": 1.45,
+  "stress_macro_noise_factor": 1.15,
+  "stress_distribution_noise_factor": 1.6,
+  "output_to_inflation_link": 0.03,
+  "output_to_low_liquidity_link": -0.08,
+  "output_to_mean_mpc_link": -0.06,
+  "partial_config": {
+    "output_dir": "outputs/hank_partial_info_stage3",
+    "horizon": 60,
+    "response_horizon": 60,
+    "training_periods": 1200,
+    "training_burn_in": 120,
+    "random_seed": 7,
+    "impulse_scale": 0.001,
+    "base_policy_shock_size": 0.001,
+    "base_policy_shock_period": 0,
+    "base_policy_shock_persistence": 0.0,
+    "rstar_rho": 0.85,
+    "productivity_rho": 0.8,
+    "fiscal_rho": 0.7,
+    "rstar_std": 0.0002,
+    "productivity_std": 0.0005,
+    "fiscal_std": 0.00035,
+    "training_policy_std": 0.0005,
+    "training_policy_rho": 0.25,
+    "lambda_y": 0.5,
+    "lambda_i": 0.05,
+    "confidence_scale": 1.96
+  },
+  "scenario_specs": [
+    {
+      "name": "macro_core_moderate_gap",
+      "label": "Фильтрация: инфляция, выпуск и ставка × умеренный режимный разрыв",
+      "info_scenario_name": "macro_core",
+      "info_scenario_label": "Фильтрация: инфляция, выпуск и ставка",
+      "gap_name": "moderate_gap",
+      "gap_label": "Умеренный режимный разрыв",
+      "gap_scale": 1.0,
+      "description": "Базовый policy-relevant набор наблюдений: инфляция и разрыв выпуска наблюдаются с шумом, ставка известна как инструмент политики. При этом reduced-state HANK dynamics имеют скрытое переключение между режимами `normal` и `stress` с интенсивностью `умеренный режимный разрыв`.",
+      "noisy_observations": [
+        "pi",
+        "output_gap"
+      ],
+      "known_exact": [
+        "i"
+      ],
+      "noise_scale": 1.0
+    },
+    {
+      "name": "macro_core_strong_gap",
+      "label": "Фильтрация: инфляция, выпуск и ставка × сильный режимный разрыв",
+      "info_scenario_name": "macro_core",
+      "info_scenario_label": "Фильтрация: инфляция, выпуск и ставка",
+      "gap_name": "strong_gap",
+      "gap_label": "Сильный режимный разрыв",
+      "gap_scale": 1.75,
+      "description": "Базовый policy-relevant набор наблюдений: инфляция и разрыв выпуска наблюдаются с шумом, ставка известна как инструмент политики. При этом reduced-state HANK dynamics имеют скрытое переключение между режимами `normal` и `stress` с интенсивностью `сильный режимный разрыв`.",
+      "noisy_observations": [
+        "pi",
+        "output_gap"
+      ],
+      "known_exact": [
+        "i"
+      ],
+      "noise_scale": 1.0
+    },
+    {
+      "name": "thin_information_moderate_gap",
+      "label": "Фильтрация: инфляция и ставка × умеренный режимный разрыв",
+      "info_scenario_name": "thin_information",
+      "info_scenario_label": "Фильтрация: инфляция и ставка",
+      "gap_name": "moderate_gap",
+      "gap_label": "Умеренный режимный разрыв",
+      "gap_scale": 1.0,
+      "description": "Тонкий информационный набор: регулятор видит только инфляцию и собственную ставку. При этом reduced-state HANK dynamics имеют скрытое переключение между режимами `normal` и `stress` с интенсивностью `умеренный режимный разрыв`.",
+      "noisy_observations": [
+        "pi"
+      ],
+      "known_exact": [
+        "i"
+      ],
+      "noise_scale": 1.0
+    },
+    {
+      "name": "thin_information_strong_gap",
+      "label": "Фильтрация: инфляция и ставка × сильный режимный разрыв",
+      "info_scenario_name": "thin_information",
+      "info_scenario_label": "Фильтрация: инфляция и ставка",
+      "gap_name": "strong_gap",
+      "gap_label": "Сильный режимный разрыв",
+      "gap_scale": 1.75,
+      "description": "Тонкий информационный набор: регулятор видит только инфляцию и собственную ставку. При этом reduced-state HANK dynamics имеют скрытое переключение между режимами `normal` и `stress` с интенсивностью `сильный режимный разрыв`.",
+      "noisy_observations": [
+        "pi"
+      ],
+      "known_exact": [
+        "i"
+      ],
+      "noise_scale": 1.0
+    }
+  ]
+}

@@ -1,0 +1,901 @@
+scenario,scenario_label,period,channel,value
+baseline,Базовое правило,0,labor_income,-0.8955420260300772
+baseline,Базовое правило,0,financial_income,-10.204388341503952
+baseline,Базовое правило,0,disposable_income,-3.4346079141164996
+baseline,Базовое правило,1,labor_income,-0.9819302201053987
+baseline,Базовое правило,1,financial_income,8.63443453911801
+baseline,Базовое правило,1,disposable_income,1.6410139020844308
+baseline,Базовое правило,2,labor_income,-0.5110700962002086
+baseline,Базовое правило,2,financial_income,4.553076516689253
+baseline,Базовое правило,2,disposable_income,0.8702183558050931
+baseline,Базовое правило,3,labor_income,-0.25642017588151267
+baseline,Базовое правило,3,financial_income,2.348111990162035
+baseline,Базовое правило,3,disposable_income,0.45398781165099245
+baseline,Базовое правило,4,labor_income,-0.11983593004625791
+baseline,Базовое правило,4,financial_income,1.1659521459390894
+baseline,Базовое правило,4,disposable_income,0.230873549131197
+baseline,Базовое правило,5,labor_income,-0.04732581645525234
+baseline,Базовое правило,5,financial_income,0.5383354091077936
+baseline,Базовое правило,5,disposable_income,0.1124181936408535
+baseline,Базовое правило,6,labor_income,-0.009441514369252557
+baseline,Базовое правило,6,financial_income,0.20989466102752394
+baseline,Базовое правило,6,disposable_income,0.050384266624420214
+baseline,Базовое правило,7,labor_income,0.009847719180941551
+baseline,Базовое правило,7,financial_income,0.041813131283541624
+baseline,Базовое правило,7,disposable_income,0.018566553364889302
+baseline,Базовое правило,8,labor_income,0.019233255767819396
+baseline,Базовое правило,8,financial_income,-0.041054733201715224
+baseline,Базовое правило,8,disposable_income,0.002789201255996706
+baseline,Базовое правило,9,labor_income,0.023405993273262093
+baseline,Базовое правило,9,financial_income,-0.07919254757486931
+baseline,Базовое правило,9,disposable_income,-0.004578619041355046
+baseline,Базовое правило,10,labor_income,0.024883769817012166
+baseline,Базовое правило,10,financial_income,-0.09427859474341532
+baseline,Базовое правило,10,disposable_income,-0.007618764304319707
+baseline,Базовое правило,11,labor_income,0.02500820197114514
+baseline,Базовое правило,11,financial_income,-0.09782589700901966
+baseline,Базовое правило,11,disposable_income,-0.00849582850102321
+baseline,Базовое правило,12,labor_income,0.02448683538582638
+baseline,Базовое правило,12,financial_income,-0.09587679482349609
+baseline,Базовое правило,12,disposable_income,-0.008343354013979887
+baseline,Базовое правило,13,labor_income,0.023687169707041832
+baseline,Базовое правило,13,financial_income,-0.09154660732092229
+baseline,Базовое правило,13,disposable_income,-0.007743809223253574
+baseline,Базовое правило,14,labor_income,0.02279563236270679
+baseline,Базовое правило,14,financial_income,-0.08639749835036507
+baseline,Базовое правило,14,disposable_income,-0.006987709633821361
+baseline,Базовое правило,15,labor_income,0.021903214604015883
+baseline,Базовое правило,15,financial_income,-0.08117751373309612
+baseline,Базовое правило,15,disposable_income,-0.006212918391393348
+baseline,Базовое правило,16,labor_income,0.021051372079559566
+baseline,Базовое правило,16,financial_income,-0.07621587186138189
+baseline,Базовое правило,16,disposable_income,-0.005479084300201796
+baseline,Базовое правило,17,labor_income,0.02025645126117541
+baseline,Базовое правило,17,financial_income,-0.07163261739920214
+baseline,Базовое правило,17,disposable_income,-0.00480706271431766
+baseline,Базовое правило,18,labor_income,0.019522548864706123
+baseline,Базовое правило,18,financial_income,-0.06744838805534673
+baseline,Базовое правило,18,disposable_income,-0.004199503439621962
+baseline,Базовое правило,19,labor_income,0.01884817095744855
+baseline,Базовое правило,19,financial_income,-0.06364072742603709
+baseline,Базовое правило,19,disposable_income,-0.003651367753711922
+baseline,Базовое правило,20,labor_income,0.01822959277554556
+baseline,Базовое правило,20,financial_income,-0.060172034133062706
+baseline,Базовое правило,20,disposable_income,-0.003155108368695925
+baseline,Базовое правило,21,labor_income,0.017662483216892403
+baseline,Базовое правило,21,financial_income,-0.05700266287066394
+baseline,Базовое правило,21,disposable_income,-0.0027030614526732033
+baseline,Базовое правило,22,labor_income,0.017142633253669645
+baseline,Базовое правило,22,financial_income,-0.054096420428821165
+baseline,Базовое правило,22,disposable_income,-0.0022884159843018187
+baseline,Базовое правило,23,labor_income,0.016666235241507243
+baseline,Базовое правило,23,financial_income,-0.05142230577686166
+baseline,Базовое правило,23,disposable_income,-0.0019054852499931687
+baseline,Базовое правило,24,labor_income,0.016229948388082414
+baseline,Базовое правило,24,financial_income,-0.04895451117404825
+baseline,Базовое правило,24,disposable_income,-0.0015496595352267864
+baseline,Базовое правило,25,labor_income,0.015830871913634734
+baseline,Базовое правило,25,financial_income,-0.04667171721436975
+baseline,Базовое правило,25,disposable_income,-0.0012172333610243793
+baseline,Базовое правило,26,labor_income,0.015466486497229126
+baseline,Базовое правило,26,financial_income,-0.044556189000664916
+baseline,Базовое правило,26,disposable_income,-0.0009052015405207468
+baseline,Базовое правило,27,labor_income,0.015134592880508288
+baseline,Базовое правило,27,financial_income,-0.04259290498566576
+baseline,Базовое правило,27,disposable_income,-0.0006110662129123449
+baseline,Базовое правило,28,labor_income,0.014833259892863018
+baseline,Базовое правило,28,financial_income,-0.04076880683006672
+baseline,Базовое правило,28,disposable_income,-0.0003326700342906925
+baseline,Базовое правило,29,labor_income,0.014560786233310733
+baseline,Базовое правило,29,financial_income,-0.03907218799339057
+baseline,Базовое правило,29,disposable_income,-6.805720448745562e-05
+baseline,Базовое правило,30,labor_income,0.014315676510680945
+baseline,Базовое правило,30,financial_income,-0.037492204666764783
+baseline,Базовое правило,30,disposable_income,0.00018464250565618996
+baseline,Базовое правило,31,labor_income,0.014096630603760246
+baseline,Базовое правило,31,financial_income,-0.0360184789581442
+baseline,Базовое правило,31,disposable_income,0.00042731425092159067
+baseline,Базовое правило,32,labor_income,0.01390254537303417
+baseline,Базовое правило,32,financial_income,-0.03464075962769228
+baseline,Базовое правило,32,disposable_income,0.0006619518939840443
+baseline,Базовое правило,33,labor_income,0.013732527393717515
+baseline,Базовое правило,33,financial_income,-0.03334860561653199
+baseline,Базовое правило,33,disposable_income,0.0008907535855084186
+baseline,Базовое правило,34,labor_income,0.013585915960959916
+baseline,Базовое правило,34,financial_income,-0.032131061645063644
+baseline,Базовое правило,34,disposable_income,0.0011162269778232092
+baseline,Базовое правило,35,labor_income,0.013462315158415885
+baseline,Базовое правило,35,financial_income,-0.030976300717634384
+baseline,Базовое правило,35,disposable_income,0.001341310056301732
+baseline,Базовое правило,36,labor_income,0.013361633137308464
+baseline,Базовое правило,36,financial_income,-0.02987121902569904
+baseline,Базовое правило,36,disposable_income,0.0015695101983674458
+baseline,Базовое правило,37,labor_income,0.013284125070487842
+baseline,Базовое правило,37,financial_income,-0.028800985834484705
+baseline,Базовое правило,37,disposable_income,0.0018050581835976562
+baseline,Базовое правило,38,labor_income,0.013230433271241598
+baseline,Базовое правило,38,financial_income,-0.02774857870738065
+baseline,Базовое правило,38,disposable_income,0.002053064141265182
+baseline,Базовое правило,39,labor_income,0.013201613035733993
+baseline,Базовое правило,39,financial_income,-0.026694377678800264
+baseline,Базовое правило,39,disposable_income,0.0023196470367667153
+baseline,Базовое правило,40,labor_income,0.013199126272911988
+baseline,Базовое правило,40,financial_income,-0.025615958516793887
+baseline,Базовое правило,40,disposable_income,0.0026119864284382213
+baseline,Базовое правило,41,labor_income,0.013224774440151153
+baseline,Базовое правило,41,financial_income,-0.02448831810889177
+baseline,Базовое правило,41,disposable_income,0.002938212219615996
+baseline,Базовое правило,42,labor_income,0.01328053036130364
+baseline,Базовое правило,42,financial_income,-0.023284897523930294
+baseline,Базовое правило,42,disposable_income,0.003307003301101933
+baseline,Базовое правило,43,labor_income,0.013368212175668843
+baseline,Базовое правило,43,financial_income,-0.021979937472847735
+baseline,Базовое правило,43,disposable_income,0.0037267079615276155
+baseline,Базовое правило,44,labor_income,0.013488925784656514
+baseline,Базовое правило,44,financial_income,-0.02055291289775056
+baseline,Базовое правило,44,disposable_income,0.00420372884005093
+baseline,Базовое правило,45,labor_income,0.013642184793433704
+baseline,Базовое правило,45,financial_income,-0.018996030968684362
+baseline,Базовое правило,45,disposable_income,0.004739837769864497
+baseline,Базовое правило,46,labor_income,0.013824606040314704
+baseline,Базовое правило,46,financial_income,-0.017326014280727303
+baseline,Базовое правило,46,disposable_income,0.005328013146915431
+baseline,Базовое правило,47,labor_income,0.01402808131356285
+baseline,Базовое правило,47,financial_income,-0.015601563856610342
+baseline,Базовое правило,47,disposable_income,0.005946347146071451
+baseline,Базовое правило,48,labor_income,0.014237356735617154
+baseline,Базовое правило,48,financial_income,-0.013947899478269524
+baseline,Базовое правило,48,disposable_income,0.006549591767297949
+baseline,Базовое правило,49,labor_income,0.014427031051859536
+baseline,Базовое правило,49,financial_income,-0.012589430444694174
+baseline,Базовое правило,49,disposable_income,0.007058064643135658
+baseline,Базовое правило,50,labor_income,0.014558144145742186
+baseline,Базовое правило,50,financial_income,-0.011890647934599393
+baseline,Базовое правило,50,disposable_income,0.007344014330260443
+baseline,Базовое правило,51,labor_income,0.014574811518219176
+baseline,Базовое правило,51,financial_income,-0.01240335391173116
+baseline,Базовое правило,51,disposable_income,0.007216290682786942
+baseline,Базовое правило,52,labor_income,0.014401825070934115
+baseline,Базовое правило,52,financial_income,-0.014914793543492559
+baseline,Базовое правило,52,disposable_income,0.00640547152128882
+baseline,Базовое правило,53,labor_income,0.013944859244973297
+baseline,Базовое правило,53,financial_income,-0.020485405657397808
+baseline,Базовое правило,53,disposable_income,0.004553715791892094
+baseline,Базовое правило,54,labor_income,0.013095971636410887
+baseline,Базовое правило,54,financial_income,-0.03045582254782856
+baseline,Базовое правило,54,disposable_income,0.0012168545868203866
+baseline,Базовое правило,55,labor_income,0.011748543778503269
+baseline,Базовое правило,55,financial_income,-0.04638938448035211
+baseline,Базовое правило,55,disposable_income,-0.0041090636460181604
+baseline,Базовое правило,56,labor_income,0.009827701883982692
+baseline,Базовое правило,56,financial_income,-0.06989773871194639
+baseline,Базовое правило,56,disposable_income,-0.011918080543771518
+baseline,Базовое правило,57,labor_income,0.007344527301708177
+baseline,Базовое правило,57,financial_income,-0.10227235400859032
+baseline,Базовое правило,57,disposable_income,-0.02255439622339691
+baseline,Базовое правило,58,labor_income,0.004484773383780188
+baseline,Базовое правило,58,financial_income,-0.14381417061864935
+baseline,Базовое правило,58,disposable_income,-0.03596500709329198
+baseline,Базовое правило,59,labor_income,0.0017448614584398283
+baseline,Базовое правило,59,financial_income,-0.19271903996353562
+baseline,Базовое правило,59,disposable_income,-0.05129679825226912
+high_phi_pi,Сильная реакция на инфляцию,0,labor_income,-0.7743385812942087
+high_phi_pi,Сильная реакция на инфляцию,0,financial_income,-9.4417584119297
+high_phi_pi,Сильная реакция на инфляцию,0,disposable_income,-3.1384500172203227
+high_phi_pi,Сильная реакция на инфляцию,1,labor_income,-0.8861163322074763
+high_phi_pi,Сильная реакция на инфляцию,1,financial_income,7.966335015596417
+high_phi_pi,Сильная реакция на инфляцию,1,disposable_income,1.5284640015327897
+high_phi_pi,Сильная реакция на инфляцию,2,labor_income,-0.4447126180960545
+high_phi_pi,Сильная реакция на инфляцию,2,financial_income,4.074700829389878
+high_phi_pi,Сильная реакция на инфляцию,2,disposable_income,0.7879952954072496
+high_phi_pi,Сильная реакция на инфляцию,3,labor_income,-0.21420423524163354
+high_phi_pi,Сильная реакция на инфляцию,3,financial_income,2.040318534085082
+high_phi_pi,Сильная реакция на инфляцию,3,disposable_income,0.4007357544750563
+high_phi_pi,Сильная реакция на инфляцию,4,labor_income,-0.09456924034815667
+high_phi_pi,Сильная реакция на инфляцию,4,financial_income,0.9821848217493991
+high_phi_pi,Сильная реакция на инфляцию,4,disposable_income,0.19912445877177273
+high_phi_pi,Сильная реакция на инфляцию,5,labor_income,-0.03304064803273416
+high_phi_pi,Сильная реакция на инфляцию,5,financial_income,0.4360110160893943
+high_phi_pi,Сильная реакция на инфляцию,5,disposable_income,0.09489712639835363
+high_phi_pi,Сильная реакция на инфляцию,6,labor_income,-0.0019131098654245383
+high_phi_pi,Сильная реакция на инфляцию,6,financial_income,0.1577375167646132
+high_phi_pi,Сильная реакция на инфляцию,6,disposable_income,0.041632937233250414
+high_phi_pi,Сильная реакция на инфляцию,7,labor_income,0.013374026936081043
+high_phi_pi,Сильная реакция на инфляцию,7,financial_income,0.01909564336338352
+high_phi_pi,Сильная реакция на инфляцию,7,disposable_income,0.014934645792922443
+high_phi_pi,Сильная реакция на инфляцию,8,labor_income,0.020463150591941506
+high_phi_pi,Сильная реакция на инфляцию,8,financial_income,-0.04724194591340006
+high_phi_pi,Сильная реакция на инфляцию,8,disposable_income,0.001996017806606153
+high_phi_pi,Сильная реакция на инфляцию,9,labor_income,0.023357621150754605
+high_phi_pi,Сильная реакция на инфляцию,9,financial_income,-0.07654285883593259
+high_phi_pi,Сильная реакция на инфляцию,9,disposable_income,-0.0038910724404079694
+high_phi_pi,Сильная реакция на инфляцию,10,labor_income,0.02414755744711447
+high_phi_pi,Сильная реакция на инфляцию,10,financial_income,-0.08721522201664719
+high_phi_pi,Сильная реакция на инфляцию,10,disposable_income,-0.006227574438865862
+high_phi_pi,Сильная реакция на инфляцию,11,labor_income,0.023917949158321822
+high_phi_pi,Сильная реакция на инфляцию,11,financial_income,-0.08880770353029616
+high_phi_pi,Сильная реакция на инфляцию,11,disposable_income,-0.006828917827556637
+high_phi_pi,Сильная реакция на инфляцию,12,labor_income,0.023226562078234505
+high_phi_pi,Сильная реакция на инфляцию,12,financial_income,-0.08622122462060805
+high_phi_pi,Сильная реакция на инфляцию,12,disposable_income,-0.006626239473731446
+high_phi_pi,Сильная реакция на инфляцию,13,labor_income,0.022355469857377668
+high_phi_pi,Сильная реакция на инфляцию,13,financial_income,-0.08192679644222285
+high_phi_pi,Сильная реакция на инфляцию,13,disposable_income,-0.006088392692326715
+high_phi_pi,Сильная реакция на инфляцию,14,labor_income,0.02144340173090778
+high_phi_pi,Сильная реакция на инфляцию,14,financial_income,-0.07713312244055351
+high_phi_pi,Сильная реакция на инфляцию,14,disposable_income,-0.005444171810159452
+high_phi_pi,Сильная реакция на инфляцию,15,labor_income,0.02055529249124896
+high_phi_pi,Сильная реакция на инфляцию,15,financial_income,-0.07240047730355853
+high_phi_pi,Сильная реакция на инфляцию,15,disposable_income,-0.00479917316303846
+high_phi_pi,Сильная реакция на инфляцию,16,labor_income,0.0197187209967116
+high_phi_pi,Сильная реакция на инфляцию,16,financial_income,-0.06796238889904933
+high_phi_pi,Сильная реакция на инфляцию,16,disposable_income,-0.004197036941592974
+high_phi_pi,Сильная реакция на инфляцию,17,labor_income,0.01894288602559761
+high_phi_pi,Сильная реакция на инфляцию,17,financial_income,-0.06389307956130649
+high_phi_pi,Сильная реакция на инфляцию,17,disposable_income,-0.003651318175490732
+high_phi_pi,Сильная реакция на инфляцию,18,labor_income,0.01822838032770399
+high_phi_pi,Сильная реакция на инфляцию,18,financial_income,-0.06019356212899767
+high_phi_pi,Сильная реакция на инфляцию,18,disposable_income,-0.0031618620526229786
+high_phi_pi,Сильная реакция на инфляцию,19,labor_income,0.017572130378027368
+high_phi_pi,Сильная реакция на инфляцию,19,financial_income,-0.05683497211938974
+high_phi_pi,Сильная реакция на инфляцию,19,disposable_income,-0.0027230307386035446
+high_phi_pi,Сильная реакция на инфляцию,20,labor_income,0.016969812430252158
+high_phi_pi,Сильная реакция на инфляцию,20,financial_income,-0.053779576649556654
+high_phi_pi,Сильная реакция на инфляцию,20,disposable_income,-0.002327676681454617
+high_phi_pi,Сильная реакция на инфляцию,21,labor_income,0.01641696699533853
+high_phi_pi,Сильная реакция на инфляцию,21,financial_income,-0.0509902878128538
+high_phi_pi,Сильная реакция на инфляцию,21,disposable_income,-0.0019689269696690787
+high_phi_pi,Сильная реакция на инфляцию,22,labor_income,0.015909456097637734
+high_phi_pi,Сильная реакция на инфляцию,22,financial_income,-0.048434399897777994
+high_phi_pi,Сильная реакция на инфляцию,22,disposable_income,-0.0016408701543014902
+high_phi_pi,Сильная реакция на инфляцию,23,labor_income,0.015443600248187597
+high_phi_pi,Сильная реакция на инфляцию,23,financial_income,-0.04608455100859595
+high_phi_pi,Сильная реакция на инфляцию,23,disposable_income,-0.0013387189263534508
+high_phi_pi,Сильная реакция на инфляцию,24,labor_income,0.015016169502950141
+high_phi_pi,Сильная реакция на инфляцию,24,financial_income,-0.043918461995930476
+high_phi_pi,Сильная реакция на инфляцию,24,disposable_income,-0.0010587454107188336
+high_phi_pi,Сильная реакция на инфляцию,25,labor_income,0.014624315971282872
+high_phi_pi,Сильная реакция на инфляцию,25,financial_income,-0.04191823371560649
+high_phi_pi,Сильная реакция на инфляцию,25,disposable_income,-0.0007981385703468253
+high_phi_pi,Сильная реакция на инфляцию,26,labor_income,0.014265490325521582
+high_phi_pi,Сильная реакция на инфляцию,26,financial_income,-0.04006957554841134
+high_phi_pi,Сильная реакция на инфляцию,26,disposable_income,-0.0005548544961627011
+high_phi_pi,Сильная реакция на инфляцию,27,labor_income,0.01393736163660847
+high_phi_pi,Сильная реакция на инфляцию,27,financial_income,-0.038361121197767335
+high_phi_pi,Сильная реакция на инфляцию,27,disposable_income,-0.00032748808409392027
+high_phi_pi,Сильная реакция на инфляцию,28,labor_income,0.013637748602933436
+high_phi_pi,Сильная реакция на инфляцию,28,financial_income,-0.036783872866814185
+high_phi_pi,Сильная реакция на инфляцию,28,disposable_income,-0.00011517144290026
+high_phi_pi,Сильная реакция на инфляцию,29,labor_income,0.013364565806187683
+high_phi_pi,Сильная реакция на инфляцию,29,financial_income,-0.03533075368766886
+high_phi_pi,Сильная реакция на инфляцию,29,disposable_income,8.250909948068096e-05
+high_phi_pi,Сильная реакция на инфляцию,30,labor_income,0.013115787166126295
+high_phi_pi,Сильная реакция на инфляцию,30,financial_income,-0.033996212506198185
+high_phi_pi,Сильная реакция на инфляцию,30,disposable_income,0.00026559421701167303
+high_phi_pi,Сильная реакция на инфляцию,31,labor_income,0.012889430060212382
+high_phi_pi,Сильная реакция на инфляцию,31,financial_income,-0.03277580494132901
+high_phi_pi,Сильная реакция на инфляцию,31,disposable_income,0.00043385430631948086
+high_phi_pi,Сильная реакция на инфляцию,32,labor_income,0.012683564666561795
+high_phi_pi,Сильная реакция на инфляцию,32,financial_income,-0.031665659466068204
+high_phi_pi,Сильная реакция на инфляцию,32,disposable_income,0.0005869419120330896
+high_phi_pi,Сильная реакция на инфляцию,33,labor_income,0.012496355818580532
+high_phi_pi,Сильная реакция на инфляцию,33,financial_income,-0.03066173193206063
+high_phi_pi,Сильная реакция на инфляцию,33,disposable_income,0.0007246255000284739
+high_phi_pi,Сильная реакция на инфляцию,34,labor_income,0.012326145571911494
+high_phi_pi,Сильная реакция на инфляцию,34,financial_income,-0.02975875188545781
+high_phi_pi,Сильная реакция на инфляцию,34,disposable_income,0.000847136904649619
+high_phi_pi,Сильная реакция на инфляцию,35,labor_income,0.012171586003774645
+high_phi_pi,Сильная реакция на инфляцию,35,financial_income,-0.028948780814132356
+high_phi_pi,Сильная реакция на инфляцию,35,disposable_income,0.0009556611561051079
+high_phi_pi,Сильная реакция на инфляцию,36,labor_income,0.012031830002952144
+high_phi_pi,Сильная реакция на инфляцию,36,financial_income,-0.028219336835041395
+high_phi_pi,Сильная реакция на инфляцию,36,disposable_income,0.0010529867381313127
+high_phi_pi,Сильная реакция на инфляцию,37,labor_income,0.011906784101935738
+high_phi_pi,Сильная реакция на инфляцию,37,financial_income,-0.027551106019979784
+high_phi_pi,Сильная реакция на инфляцию,37,disposable_income,0.0011443137131193785
+high_phi_pi,Сильная реакция на инфляцию,38,labor_income,0.011797419446973894
+high_phi_pi,Сильная реакция на инфляцию,38,financial_income,-0.026915362917200737
+high_phi_pi,Сильная реакция на инфляцию,38,disposable_income,0.0012381834468886126
+high_phi_pi,Сильная реакция на инфляцию,39,labor_income,0.011706123892033645
+high_phi_pi,Сильная реакция на инфляцию,39,financial_income,-0.026271371740494515
+high_phi_pi,Сильная реакция на инфляцию,39,disposable_income,0.0013474435134524752
+high_phi_pi,Сильная реакция на инфляцию,40,labor_income,0.011637059326275428
+high_phi_pi,Сильная реакция на инфляцию,40,financial_income,-0.02556424028337786
+high_phi_pi,Сильная реакция на инфляцию,40,disposable_income,0.0014900929214091217
+high_phi_pi,Сильная реакция на инфляцию,41,labor_income,0.011596462971445365
+high_phi_pi,Сильная реакция на инфляцию,41,financial_income,-0.02472394835246223
+high_phi_pi,Сильная реакция на инфляцию,41,disposable_income,0.0016897662328462877
+high_phi_pi,Сильная реакция на инфляцию,42,labor_income,0.011592799831823371
+high_phi_pi,Сильная реакция на инфляцию,42,financial_income,-0.02366655911265708
+high_phi_pi,Сильная реакция на инфляцию,42,disposable_income,0.001975514026731047
+high_phi_pi,Сильная реакция на инфляцию,43,labor_income,0.011636638097236817
+high_phi_pi,Сильная реакция на инфляцию,43,financial_income,-0.02229891654756844
+high_phi_pi,Сильная реакция на инфляцию,43,disposable_income,0.002380431015107654
+high_phi_pi,Сильная реакция на инфляцию,44,labor_income,0.011740084256517713
+high_phi_pi,Сильная реакция на инфляцию,44,financial_income,-0.020528382906247165
+high_phi_pi,Сильная реакция на инфляцию,44,disposable_income,0.002938589263779436
+high_phi_pi,Сильная реакция на инфляцию,45,labor_income,0.011915586650378234
+high_phi_pi,Сильная реакция на инфляцию,45,financial_income,-0.018279295641922273
+high_phi_pi,Сильная реакция на инфляцию,45,disposable_income,0.0036796793182703414
+high_phi_pi,Сильная реакция на инфляцию,46,labor_income,0.012173907369253757
+high_phi_pi,Сильная реакция на инфляцию,46,financial_income,-0.015517710753143663
+high_phi_pi,Сильная реакция на инфляцию,46,disposable_income,0.004620786329589492
+high_phi_pi,Сильная реакция на инфляцию,47,labor_income,0.01252108731275537
+high_phi_pi,Сильная реакция на инфляцию,47,financial_income,-0.012285495566731383
+high_phi_pi,Сильная реакция на инфляцию,47,disposable_income,0.005754883826883454
+high_phi_pi,Сильная реакция на инфляцию,48,labor_income,0.01295430936422525
+high_phi_pi,Сильная реакция на инфляцию,48,financial_income,-0.00874375550022062
+high_phi_pi,Сильная реакция на инфляцию,48,disposable_income,0.007035980232168
+high_phi_pi,Сильная реакция на инфляцию,49,labor_income,0.013456726522678245
+high_phi_pi,Сильная реакция на инфляцию,49,financial_income,-0.005223715944964504
+high_phi_pi,Сильная реакция на инфляцию,49,disposable_income,0.008361479202388361
+high_phi_pi,Сильная реакция на инфляцию,50,labor_income,0.01399159618645739
+high_phi_pi,Сильная реакция на инфляцию,50,financial_income,-0.0022803157785979185
+high_phi_pi,Сильная реакция на инфляцию,50,disposable_income,0.009553295756504942
+high_phi_pi,Сильная реакция на инфляцию,51,labor_income,0.014496485701439238
+high_phi_pi,Сильная реакция на инфляцию,51,financial_income,-0.0007397149614997468
+high_phi_pi,Сильная реакция на инфляцию,51,disposable_income,0.010340684213683978
+high_phi_pi,Сильная реакция на инфляцию,52,labor_income,0.014878924233293298
+high_phi_pi,Сильная реакция на инфляцию,52,financial_income,-0.0017265538093501123
+high_phi_pi,Сильная реакция на инфляцию,52,disposable_income,0.010349640858691405
+high_phi_pi,Сильная реакция на инфляцию,53,labor_income,0.01501570564793035
+high_phi_pi,Сильная реакция на инфляцию,53,financial_income,-0.006650145969793018
+high_phi_pi,Сильная реакция на инфляцию,53,disposable_income,0.009106162949032479
+high_phi_pi,Сильная реакция на инфляцию,54,labor_income,0.014759112222160899
+high_phi_pi,Сильная реакция на инфляцию,54,financial_income,-0.017121084659014154
+high_phi_pi,Сильная реакция на инфляцию,54,disposable_income,0.006063521204418118
+high_phi_pi,Сильная реакция на инфляцию,55,labor_income,0.013954607786686515
+high_phi_pi,Сильная реакция на инфляцию,55,financial_income,-0.03476159714912025
+high_phi_pi,Сильная реакция на инфляцию,55,disposable_income,0.0006668544005517201
+high_phi_pi,Сильная реакция на инфляцию,56,labor_income,0.012475948587876217
+high_phi_pi,Сильная реакция на инфляцию,56,financial_income,-0.0608655352067377
+high_phi_pi,Сильная реакция на инфляцию,56,disposable_income,-0.007528556092258079
+high_phi_pi,Сильная реакция на инфляцию,57,labor_income,0.010284982691552957
+high_phi_pi,Сильная реакция на инфляцию,57,financial_income,-0.09585904212064557
+high_phi_pi,Сильная реакция на инфляцию,57,disposable_income,-0.018666690103461576
+high_phi_pi,Сильная реакция на инфляцию,58,labor_income,0.0075243559669494016
+high_phi_pi,Сильная реакция на инфляцию,58,financial_income,-0.1385135727944952
+high_phi_pi,Сильная реакция на инфляцию,58,disposable_income,-0.032308713644321335
+high_phi_pi,Сильная реакция на инфляцию,59,labor_income,0.004651443161210896
+high_phi_pi,Сильная реакция на инфляцию,59,financial_income,-0.184872900460995
+high_phi_pi,Сильная реакция на инфляцию,59,disposable_income,-0.04704291074095523
+high_rho_i,Высокая инерция ставки,0,labor_income,-2.6353107696065394
+high_rho_i,Высокая инерция ставки,0,financial_income,-24.61697912716069
+high_rho_i,Высокая инерция ставки,0,disposable_income,-8.630995132460193
+high_rho_i,Высокая инерция ставки,1,labor_income,-2.3811355603116136
+high_rho_i,Высокая инерция ставки,1,financial_income,17.091177243149225
+high_rho_i,Высокая инерция ставки,1,disposable_income,2.9301010339837266
+high_rho_i,Высокая инерция ставки,2,labor_income,-1.6258913525235612
+high_rho_i,Высокая инерция ставки,2,financial_income,11.60608222209191
+high_rho_i,Высокая инерция ставки,2,disposable_income,1.983240391280191
+high_rho_i,Высокая инерция ставки,3,labor_income,-1.0622005996307766
+high_rho_i,Высокая инерция ставки,3,financial_income,7.596627517347332
+high_rho_i,Высокая инерция ставки,3,disposable_income,1.2995673743529783
+high_rho_i,Высокая инерция ставки,4,labor_income,-0.6599325866522862
+high_rho_i,Высокая инерция ставки,4,financial_income,4.783675627051176
+high_rho_i,Высокая инерция ставки,4,disposable_income,0.8248571987958001
+high_rho_i,Высокая инерция ставки,5,labor_income,-0.38369511519409133
+high_rho_i,Высокая инерция ставки,5,financial_income,2.8775773286950246
+high_rho_i,Высокая инерция ставки,5,disposable_income,0.5058442899490136
+high_rho_i,Высокая инерция ставки,6,labor_income,-0.20044618963523378
+high_rho_i,Высокая инерция ставки,6,financial_income,1.625637831718857
+high_rho_i,Высокая инерция ставки,6,disposable_income,0.2976335390732241
+high_rho_i,Высокая инерция ставки,7,labor_income,-0.08280667078959855
+high_rho_i,Высокая инерция ставки,7,financial_income,0.8276057807000909
+high_rho_i,Высокая инерция ставки,7,disposable_income,0.16551595924717635
+high_rho_i,Высокая инерция ставки,8,labor_income,-0.009835459446745416
+high_rho_i,Высокая инерция ставки,8,financial_income,0.33460676208970036
+high_rho_i,Высокая инерция ставки,8,disposable_income,0.08411404465735274
+high_rho_i,Высокая инерция ставки,9,labor_income,0.033646172421752864
+high_rho_i,Высокая инерция ставки,9,financial_income,0.04087967565965622
+high_rho_i,Высокая инерция ставки,9,disposable_income,0.03561917108349223
+high_rho_i,Высокая инерция ставки,10,labor_income,0.058207700405260764
+high_rho_i,Высокая инерция ставки,10,financial_income,-0.12609563614578256
+high_rho_i,Высокая инерция ставки,10,disposable_income,0.00793741996037869
+high_rho_i,Высокая инерция ставки,11,labor_income,0.07096738447033854
+high_rho_i,Высокая инерция ставки,11,financial_income,-0.21458512616412295
+high_rho_i,Высокая инерция ставки,11,disposable_income,-0.006919457189528998
+high_rho_i,Высокая инерция ставки,12,labor_income,0.07658487756376807
+high_rho_i,Высокая инерция ставки,12,financial_income,-0.25587943452061124
+high_rho_i,Высокая инерция ставки,12,disposable_income,-0.014097551301362492
+high_rho_i,Высокая инерция ставки,13,labor_income,0.07803265948743393
+high_rho_i,Высокая инерция ставки,13,financial_income,-0.26976978633492354
+high_rho_i,Высокая инерция ставки,13,disposable_income,-0.016833373966425123
+high_rho_i,Высокая инерция ставки,14,labor_income,0.0771600483862352
+high_rho_i,Высокая инерция ставки,14,financial_income,-0.2684683062565742
+high_rho_i,Высокая инерция ставки,14,disposable_income,-0.017112983468426633
+high_rho_i,Высокая инерция ставки,15,labor_income,0.07508787572910164
+high_rho_i,Высокая инерция ставки,15,financial_income,-0.2593122770302309
+high_rho_i,Высокая инерция ставки,15,disposable_income,-0.01612256991233576
+high_rho_i,Высокая инерция ставки,16,labor_income,0.07247559676038032
+high_rho_i,Высокая инерция ставки,16,financial_income,-0.2465752871781153
+high_rho_i,Высокая инерция ставки,16,disposable_income,-0.014548207105124408
+high_rho_i,Высокая инерция ставки,17,labor_income,0.06969720572792056
+high_rho_i,Высокая инерция ставки,17,financial_income,-0.2326502214851457
+high_rho_i,Высокая инерция ставки,17,disposable_income,-0.012770590255701543
+high_rho_i,Высокая инерция ставки,18,labor_income,0.06695436646603686
+high_rho_i,Высокая инерция ставки,18,financial_income,-0.21880463632393746
+high_rho_i,Высокая инерция ставки,18,disposable_income,-0.010988797660707447
+high_rho_i,Высокая инерция ставки,19,labor_income,0.06434756622514033
+high_rho_i,Высокая инерция ставки,19,financial_income,-0.20565263168144585
+high_rho_i,Высокая инерция ставки,19,disposable_income,-0.009297251730607786
+high_rho_i,Высокая инерция ставки,20,labor_income,0.06191988259781244
+high_rho_i,Высокая инерция ставки,20,financial_income,-0.19344301016713766
+high_rho_i,Высокая инерция ставки,20,disposable_income,-0.007732487645391358
+high_rho_i,Высокая инерция ставки,21,labor_income,0.05968326856050592
+high_rho_i,Высокая инерция ставки,21,financial_income,-0.18223087124335888
+high_rho_i,Высокая инерция ставки,21,disposable_income,-0.006300841543528707
+high_rho_i,Высокая инерция ставки,22,labor_income,0.05763390919798706
+high_rho_i,Высокая инерция ставки,22,financial_income,-0.17197676658396316
+high_rho_i,Высокая инерция ставки,22,disposable_income,-0.004994327928377077
+high_rho_i,Высокая инерция ставки,23,labor_income,0.05576089198187081
+high_rho_i,Высокая инерция ставки,23,financial_income,-0.16260181533579657
+high_rho_i,Высокая инерция ставки,23,disposable_income,-0.0037993674305856896
+high_rho_i,Высокая инерция ставки,24,labor_income,0.0540508813130605
+high_rho_i,Высокая инерция ставки,24,financial_income,-0.1540167008319355
+high_rho_i,Высокая инерция ставки,24,disposable_income,-0.0027012963829881236
+high_rho_i,Высокая инерция ставки,25,labor_income,0.05249047103248331
+high_rho_i,Высокая инерция ставки,25,financial_income,-0.14613563869001422
+high_rho_i,Высокая инерция ставки,25,disposable_income,-0.0016864658926962007
+high_rho_i,Высокая инерция ставки,26,labor_income,0.051067234204631475
+high_rho_i,Высокая инерция ставки,26,financial_income,-0.13888203482501063
+high_rho_i,Высокая инерция ставки,26,disposable_income,-0.0007430216654566298
+high_rho_i,Высокая инерция ставки,27,labor_income,0.049770077424812514
+high_rho_i,Высокая инерция ставки,27,financial_income,-0.132189806784798
+high_rho_i,Высокая инерция ставки,27,disposable_income,0.00013899325612652045
+high_rho_i,Высокая инерция ставки,28,labor_income,0.04858925069203606
+high_rho_i,Высокая инерция ставки,28,financial_income,-0.12600264747860165
+high_rho_i,Высокая инерция ставки,28,disposable_income,0.0009678464967319056
+high_rho_i,Высокая инерция ставки,29,labor_income,0.04751620926502089
+high_rho_i,Высокая инерция ставки,29,financial_income,-0.12027248731207048
+high_rho_i,Высокая инерция ставки,29,disposable_income,0.001750435349819472
+high_rho_i,Высокая инерция ставки,30,labor_income,0.046543431709937695
+high_rho_i,Высокая инерция ставки,30,financial_income,-0.11495780495968538
+high_rho_i,Высокая инерция ставки,30,disposable_income,0.0024926152054430342
+high_rho_i,Высокая инерция ставки,31,labor_income,0.045664245383668145
+high_rho_i,Высокая инерция ставки,31,financial_income,-0.11002208822876819
+high_rho_i,Высокая инерция ставки,31,disposable_income,0.0031994924465186254
+high_rho_i,Высокая инерция ставки,32,labor_income,0.04487268154980469
+high_rho_i,Высокая инерция ставки,32,financial_income,-0.10543255162026961
+high_rho_i,Высокая инерция ставки,32,disposable_income,0.0038756688793364054
+high_rho_i,Высокая инерция ставки,33,labor_income,0.0441633669714849
+high_rho_i,Высокая инерция ставки,33,financial_income,-0.10115911070919872
+high_rho_i,Высокая инерция ставки,33,disposable_income,0.004525442641620236
+high_rho_i,Высокая инерция ставки,34,labor_income,0.043531452107521476
+high_rho_i,Высокая инерция ставки,34,financial_income,-0.09717355660587267
+high_rho_i,Высокая инерция ставки,34,disposable_income,0.005152981156391163
+high_rho_i,Высокая инерция ставки,35,labor_income,0.04297257318957391
+high_rho_i,Высокая инерция ставки,35,financial_income,-0.09344884115456457
+high_rho_i,Высокая инерция ставки,35,disposable_income,0.005762488520980465
+high_rho_i,Высокая инерция ставки,36,labor_income,0.042482845339418866
+high_rho_i,Высокая инерция ставки,36,financial_income,-0.08995836294155574
+high_rho_i,Высокая инерция ставки,36,disposable_income,0.006358395248969874
+high_rho_i,Высокая инерция ставки,37,labor_income,0.04205888390778933
+high_rho_i,Высокая инерция ставки,37,financial_income,-0.08667512781627797
+high_rho_i,Высокая инерция ставки,37,disposable_income,0.006945602763414748
+high_rho_i,Высокая инерция ставки,38,labor_income,0.04169785001919744
+high_rho_i,Высокая инерция ставки,38,financial_income,-0.08357064757274654
+high_rho_i,Высокая инерция ставки,38,disposable_income,0.007529816913007857
+high_rho_i,Высокая инерция ставки,39,labor_income,0.04139751327153165
+high_rho_i,Высокая инерция ставки,39,financial_income,-0.0806134454361593
+high_rho_i,Высокая инерция ставки,39,disposable_income,0.008118001210807175
+high_rho_i,Высокая инерция ставки,40,labor_income,0.041156315836259
+high_rho_i,Высокая инерция ставки,40,financial_income,-0.07776707469411633
+high_rho_i,Высокая инерция ставки,40,disposable_income,0.008718963885443291
+high_rho_i,Высокая инерция ставки,41,labor_income,0.04097340704104945
+high_rho_i,Высокая инерция ставки,41,financial_income,-0.07498766357666159
+high_rho_i,Высокая инерция ставки,41,disposable_income,0.009344052685721528
+high_rho_i,Высокая инерция ставки,42,labor_income,0.04084859081759108
+high_rho_i,Высокая инерция ставки,42,financial_income,-0.07222122666368397
+high_rho_i,Высокая инерция ставки,42,disposable_income,0.010007849998666404
+high_rho_i,Высокая инерция ставки,43,labor_income,0.04078208680877602
+high_rho_i,Высокая инерция ставки,43,financial_income,-0.06940141277963376
+high_rho_i,Высокая инерция ставки,43,disposable_income,0.010728613397169197
+high_rho_i,Высокая инерция ставки,44,labor_income,0.04077394525653253
+high_rho_i,Высокая инерция ставки,44,financial_income,-0.06644910072069682
+high_rho_i,Высокая инерция ставки,44,disposable_income,0.011527960391058408
+high_rho_i,Высокая инерция ставки,45,labor_income,0.04082287383740964
+high_rho_i,Высокая инерция ставки,45,financial_income,-0.06327644621603969
+high_rho_i,Высокая инерция ставки,45,disposable_income,0.01242891141037851
+high_rho_i,Высокая инерция ставки,46,labor_income,0.040924133761824015
+high_rho_i,Высокая инерция ставки,46,financial_income,-0.059799779732853664
+high_rho_i,Высокая инерция ставки,46,disposable_income,0.013450841776795348
+high_rho_i,Высокая инерция ставки,47,labor_income,0.04106605696443727
+high_rho_i,Высокая инерция ставки,47,financial_income,-0.055968284001831764
+high_rho_i,Высокая инерция ставки,47,disposable_income,0.014599126823935634
+high_rho_i,Высокая инерция ставки,48,labor_income,0.04122465937144857
+high_rho_i,Высокая инерция ставки,48,financial_income,-0.051818663334435355
+high_rho_i,Высокая инерция ставки,48,disposable_income,0.015846312926521014
+high_rho_i,Высокая инерция ставки,49,labor_income,0.04135584542041111
+high_rho_i,Высокая инерция ставки,49,financial_income,-0.047569815511910314
+high_rho_i,Высокая инерция ставки,49,disposable_income,0.017100625751199135
+high_rho_i,Высокая инерция ставки,50,labor_income,0.041384942879169634
+high_rho_i,Высокая инерция ставки,50,financial_income,-0.0437750718787272
+high_rho_i,Высокая инерция ставки,50,disposable_income,0.018156834779320126
+high_rho_i,Высокая инерция ставки,51,labor_income,0.0411939839775479
+high_rho_i,Высокая инерция ставки,51,financial_income,-0.041551179859863875
+high_rho_i,Высокая инерция ставки,51,disposable_income,0.018624546715019445
+high_rho_i,Высокая инерция ставки,52,labor_income,0.04060859866048338
+high_rho_i,Высокая инерция ставки,52,financial_income,-0.0428996031999204
+high_rho_i,Высокая инерция ставки,52,disposable_income,0.017831036379039166
+high_rho_i,Высокая инерция ставки,53,labor_income,0.03938910666771662
+high_rho_i,Высокая инерция ставки,53,financial_income,-0.05112119625345718
+high_rho_i,Высокая инерция ставки,53,disposable_income,0.014701662608674901
+high_rho_i,Высокая инерция ставки,54,labor_income,0.0372350804020317
+high_rho_i,Высокая инерция ставки,54,financial_income,-0.07129060195612846
+high_rho_i,Высокая инерция ставки,54,disposable_income,0.007633790540936412
+high_rho_i,Высокая инерция ставки,55,labor_income,0.03382013166387615
+high_rho_i,Высокая инерция ставки,55,financial_income,-0.11068775700970779
+high_rho_i,Высокая инерция ставки,55,disposable_income,-0.005595606683907095
+high_rho_i,Высокая инерция ставки,56,labor_income,0.02888470981535803
+high_rho_i,Высокая инерция ставки,56,financial_income,-0.1789608702312527
+high_rho_i,Высокая инерция ставки,56,disposable_income,-0.027806914946838304
+high_rho_i,Высокая инерция ставки,57,labor_income,0.022429398492675577
+high_rho_i,Высокая инерция ставки,57,financial_income,-0.28759294879233255
+high_rho_i,Высокая инерция ставки,57,disposable_income,-0.0621317962954768
+high_rho_i,Высокая инерция ставки,58,labor_income,0.015067965358010273
+high_rho_i,Высокая инерция ставки,58,financial_income,-0.4479349403886154
+high_rho_i,Высокая инерция ставки,58,disposable_income,-0.11121995950673938
+high_rho_i,Высокая инерция ставки,59,labor_income,0.00861309982916108
+high_rho_i,Высокая инерция ставки,59,financial_income,-0.6666316236303618
+high_rho_i,Высокая инерция ставки,59,disposable_income,-0.17556556048413516
+low_phi_y,Слабая реакция на выпуск,0,labor_income,-1.0315561731096448
+low_phi_y,Слабая реакция на выпуск,0,financial_income,-11.685775667742613
+low_phi_y,Слабая реакция на выпуск,0,disposable_income,-3.9375838768907765
+low_phi_y,Слабая реакция на выпуск,1,labor_income,-1.1128447057516924
+low_phi_y,Слабая реакция на выпуск,1,financial_income,9.438472768806552
+low_phi_y,Слабая реакция на выпуск,1,disposable_income,1.7651156092110818
+low_phi_y,Слабая реакция на выпуск,2,labor_income,-0.6087967093582406
+low_phi_y,Слабая реакция на выпуск,2,financial_income,5.2284643900036825
+low_phi_y,Слабая реакция на выпуск,2,disposable_income,0.9833652014691939
+low_phi_y,Слабая реакция на выпуск,3,labor_income,-0.3195781394608469
+low_phi_y,Слабая реакция на выпуск,3,financial_income,2.82021537210146
+low_phi_y,Слабая реакция на выпуск,3,disposable_income,0.536826868277986
+low_phi_y,Слабая реакция на выпуск,4,labor_income,-0.15610853137766462
+low_phi_y,Слабая реакция на выпуск,4,financial_income,1.4616009861933363
+low_phi_y,Слабая реакция на выпуск,4,disposable_income,0.28513530418438815
+low_phi_y,Слабая реакция на выпуск,5,labor_income,-0.06524773421908282
+low_phi_y,Слабая реакция на выпуск,5,financial_income,0.7069309283836538
+low_phi_y,Слабая реакция на выпуск,5,disposable_income,0.1453704707956266
+low_phi_y,Слабая реакция на выпуск,6,labor_income,-0.015802023998033616
+low_phi_y,Слабая реакция на выпуск,6,financial_income,0.2956510048750708
+low_phi_y,Слабая реакция на выпуск,6,disposable_income,0.06914940118968901
+low_phi_y,Слабая реакция на выпуск,7,labor_income,0.01031591125796928
+low_phi_y,Слабая реакция на выпуск,7,financial_income,0.07718821276283519
+low_phi_y,Слабая реакция на выпуск,7,disposable_income,0.028555892223894718
+low_phi_y,Слабая реакция на выпуск,8,labor_income,0.023480633069063096
+low_phi_y,Слабая реакция на выпуск,8,financial_income,-0.03452411063292463
+low_phi_y,Слабая реакция на выпуск,8,disposable_income,0.007659352849182699
+low_phi_y,Слабая реакция на выпуск,9,labor_income,0.029574922494424376
+low_phi_y,Слабая реакция на выпуск,9,financial_income,-0.08813122313373037
+low_phi_y,Слабая реакция на выпуск,9,disposable_income,-0.002530415702603859
+low_phi_y,Слабая реакция на выпуск,10,labor_income,0.031895100145387226
+low_phi_y,Слабая реакция на выпуск,10,financial_income,-0.11080105123124077
+low_phi_y,Слабая реакция на выпуск,10,disposable_income,-0.007026471663056287
+low_phi_y,Слабая реакция на выпуск,11,labor_income,0.032264112131874495
+low_phi_y,Слабая реакция на выпуск,11,financial_income,-0.11750280634121232
+low_phi_y,Слабая реакция на выпуск,11,disposable_income,-0.008586070691171723
+low_phi_y,Слабая реакция на выпуск,12,labor_income,0.0316745239460638
+low_phi_y,Слабая реакция на выпуск,12,financial_income,-0.1163500825238733
+low_phi_y,Слабая реакция на выпуск,12,disposable_income,-0.008700428668665867
+low_phi_y,Слабая реакция на выпуск,13,labor_income,0.030656153989854516
+low_phi_y,Слабая реакция на выпуск,13,financial_income,-0.11164761015010022
+low_phi_y,Слабая реакция на выпуск,13,disposable_income,-0.00815839090959719
+low_phi_y,Слабая реакция на выпуск,14,labor_income,0.02948420744493181
+low_phi_y,Слабая реакция на выпуск,14,financial_income,-0.10561196706994842
+low_phi_y,Слабая реакция на выпуск,14,disposable_income,-0.007364406947953401
+low_phi_y,Слабая реакция на выпуск,15,labor_income,0.028295936918847523
+low_phi_y,Слабая реакция на выпуск,15,financial_income,-0.09933373609573151
+low_phi_y,Слабая реакция на выпуск,15,disposable_income,-0.006516126582531489
+low_phi_y,Слабая реакция на выпуск,16,labor_income,0.027155325218189138
+low_phi_y,Слабая реакция на выпуск,16,financial_income,-0.0933095778427259
+low_phi_y,Слабая реакция на выпуск,16,disposable_income,-0.005702487201066514
+low_phi_y,Слабая реакция на выпуск,17,labor_income,0.026088497935798174
+low_phi_y,Слабая реакция на выпуск,17,financial_income,-0.08773259863973189
+low_phi_y,Слабая реакция на выпуск,17,disposable_income,-0.004957160555634292
+low_phi_y,Слабая реакция на выпуск,18,labor_income,0.025102806898090847
+low_phi_y,Слабая реакция на выпуск,18,financial_income,-0.08264814607146775
+low_phi_y,Слабая реакция на выпуск,18,disposable_income,-0.004287169026094988
+low_phi_y,Слабая реакция на выпуск,19,labor_income,0.024196899573032962
+low_phi_y,Слабая реакция на выпуск,19,financial_income,-0.0780354741019182
+low_phi_y,Слабая реакция на выпуск,19,disposable_income,-0.003687837574753512
+low_phi_y,Слабая реакция на выпуск,20,labor_income,0.023365874996479807
+low_phi_y,Слабая реакция на выпуск,20,financial_income,-0.07384910346219593
+low_phi_y,Слабая реакция на выпуск,20,disposable_income,-0.0031503255347474063
+low_phi_y,Слабая реакция на выпуск,21,labor_income,0.022603805430522532
+low_phi_y,Слабая реакция на выпуск,21,financial_income,-0.07003864442958387
+low_phi_y,Слабая реакция на выпуск,21,disposable_income,-0.0026651995843631642
+low_phi_y,Слабая реакция на выпуск,22,labor_income,0.021904877593461512
+low_phi_y,Слабая реакция на выпуск,22,financial_income,-0.06655738817432406
+low_phi_y,Слабая реакция на выпуск,22,disposable_income,-0.002223947159007071
+low_phi_y,Слабая реакция на выпуск,23,labor_income,0.021263834832797424
+low_phi_y,Слабая реакция на выпуск,23,financial_income,-0.06336525424281779
+low_phi_y,Слабая реакция на выпуск,23,disposable_income,-0.001819458835339118
+low_phi_y,Слабая реакция на выпуск,24,labor_income,0.020676084336582145
+low_phi_y,Слабая реакция на выпуск,24,financial_income,-0.06042906983748301
+low_phi_y,Слабая реакция на выпуск,24,disposable_income,-0.0014460265386351742
+low_phi_y,Слабая реакция на выпуск,25,labor_income,0.02013765964181417
+low_phi_y,Слабая реакция на выпуск,25,financial_income,-0.05772172463464826
+low_phi_y,Слабая реакция на выпуск,25,disposable_income,-0.001099140277745208
+low_phi_y,Слабая реакция на выпуск,26,labor_income,0.019645134268883375
+low_phi_y,Слабая реакция на выпуск,26,financial_income,-0.05522096831718098
+low_phi_y,Слабая реакция на выпуск,26,disposable_income,-0.0007752229706796969
+low_phi_y,Слабая реакция на выпуск,27,labor_income,0.019195532548718898
+low_phi_y,Слабая реакция на выпуск,27,financial_income,-0.05290820376702476
+low_phi_y,Слабая реакция на выпуск,27,disposable_income,-0.00047136612792121634
+low_phi_y,Слабая реакция на выпуск,28,labor_income,0.01878625774991546
+low_phi_y,Слабая реакция на выпуск,28,financial_income,-0.050767412082285523
+low_phi_y,Слабая реакция на выпуск,28,disposable_income,-0.0001850889107940841
+low_phi_y,Слабая реакция на выпуск,29,labor_income,0.01841504509455212
+low_phi_y,Слабая реакция на выпуск,29,financial_income,-0.048784235752012545
+low_phi_y,Слабая реакция на выпуск,29,disposable_income,8.587777144519709e-05
+low_phi_y,Слабая реакция на выпуск,30,labor_income,0.018079941472340853
+low_phi_y,Слабая реакция на выпуск,30,financial_income,-0.046945193427807196
+low_phi_y,Слабая реакция на выпуск,30,disposable_income,0.00034379068653949855
+low_phi_y,Слабая реакция на выпуск,31,labor_income,0.01777931180132933
+low_phi_y,Слабая реакция на выпуск,31,financial_income,-0.04523697668319054
+low_phi_y,Слабая реакция на выпуск,31,disposable_income,0.0005910907197638316
+low_phi_y,Слабая реакция на выпуск,32,labor_income,0.017511871361840403
+low_phi_y,Слабая реакция на выпуск,32,financial_income,-0.04364577148969404
+low_phi_y,Слабая реакция на выпуск,32,disposable_income,0.0008306114615784381
+low_phi_y,Слабая реакция на выпуск,33,labor_income,0.017276743883066457
+low_phi_y,Слабая реакция на выпуск,33,financial_income,-0.04215654944471858
+low_phi_y,Слабая реакция на выпуск,33,disposable_income,0.0010658147742333007
+low_phi_y,Слабая реакция на выпуск,34,labor_income,0.017073544854126807
+low_phi_y,Слабая реакция на выпуск,34,financial_income,-0.04075228206548265
+low_phi_y,Слабая реакция на выпуск,34,disposable_income,0.0013010656868834211
+low_phi_y,Слабая реакция на выпуск,35,labor_income,0.016902489037686635
+low_phi_y,Слабая реакция на выпуск,35,financial_income,-0.039413048789198
+low_phi_y,Слабая реакция на выпуск,35,disposable_income,0.00154195388439351
+low_phi_y,Слабая реакция на выпуск,36,labor_income,0.01676451883945505
+low_phi_y,Слабая реакция на выпуск,36,financial_income,-0.03811503641364975
+low_phi_y,Слабая реакция на выпуск,36,disposable_income,0.0017956599740171213
+low_phi_y,Слабая реакция на выпуск,37,labor_income,0.016661446451854457
+low_phi_y,Слабая реакция на выпуск,37,financial_income,-0.036829470980392076
+low_phi_y,Слабая реакция на выпуск,37,disposable_income,0.00207135019591747
+low_phi_y,Слабая реакция на выпуск,38,labor_income,0.016596095859042717
+low_phi_y,Слабая реакция на выпуск,38,financial_income,-0.03552158706046254
+low_phi_y,Слабая реакция на выпуск,38,disposable_income,0.002380560831145347
+low_phi_y,Слабая реакция на выпуск,39,labor_income,0.016572421449157344
+low_phi_y,Слабая реакция на выпуск,39,financial_income,-0.034149832177166044
+low_phi_y,Слабая реакция на выпуск,39,disposable_income,0.0027375014617748066
+low_phi_y,Слабая реакция на выпуск,40,labor_income,0.016595566139676263
+low_phi_y,Слабая реакция на выпуск,40,financial_income,-0.03266563016033125
+low_phi_y,Слабая реакция на выпуск,40,disposable_income,0.003159161789157258
+low_phi_y,Слабая реакция на выпуск,41,labor_income,0.01667180432279532
+low_phi_y,Слабая реакция на выпуск,41,financial_income,-0.031014193961166805
+low_phi_y,Слабая реакция на выпуск,41,disposable_income,0.00366504843932961
+low_phi_y,Слабая реакция на выпуск,42,labor_income,0.016808293183895397
+low_phi_y,Слабая реакция на выпуск,42,financial_income,-0.029137084729160864
+low_phi_y,Слабая реакция на выпуск,42,disposable_income,0.004276306101862484
+low_phi_y,Слабая реакция на выпуск,43,labor_income,0.017012531151678587
+low_phi_y,Слабая реакция на выпуск,43,financial_income,-0.026977453576641847
+low_phi_y,Слабая реакция на выпуск,43,disposable_income,0.005013893956931085
+low_phi_y,Слабая реакция на выпуск,44,labor_income,0.017291397380633313
+low_phi_y,Слабая реакция на выпуск,44,financial_income,-0.024489155593631434
+low_phi_y,Слабая реакция на выпуск,44,disposable_income,0.0058954012230902145
+low_phi_y,Слабая реакция на выпуск,45,labor_income,0.017649625394986143
+low_phi_y,Слабая реакция на выпуск,45,financial_income,-0.02165115036477112
+low_phi_y,Слабая реакция на выпуск,45,disposable_income,0.006930009265866967
+low_phi_y,Слабая реакция на выпуск,46,labor_income,0.018087557353678802
+low_phi_y,Слабая реакция на выпуск,46,financial_income,-0.018488730378191376
+low_phi_y,Слабая реакция на выпуск,46,disposable_income,0.008111068179241487
+low_phi_y,Слабая реакция на выпуск,47,labor_income,0.01859804430710849
+low_phi_y,Слабая реакция на выпуск,47,financial_income,-0.015103031773314731
+low_phi_y,Слабая реакция на выпуск,47,disposable_income,0.009405793219529567
+low_phi_y,Слабая реакция на выпуск,48,labor_income,0.01916242419262031
+low_phi_y,Слабая реакция на выпуск,48,financial_income,-0.011709811960518589
+low_phi_y,Слабая реакция на выпуск,48,disposable_income,0.010741762915293713
+low_phi_y,Слабая реакция на выпуск,49,labor_income,0.019745650824519394
+low_phi_y,Слабая реакция на выпуск,49,financial_income,-0.008687378639538256
+low_phi_y,Слабая реакция на выпуск,49,disposable_income,0.011990303624604843
+low_phi_y,Слабая реакция на выпуск,50,labor_income,0.020290904584026454
+low_phi_y,Слабая реакция на выпуск,50,financial_income,-0.0066314892941742995
+low_phi_y,Слабая реакция на выпуск,50,disposable_income,0.01294759590698356
+low_phi_y,Слабая реакция на выпуск,51,labor_income,0.020714440889525582
+low_phi_y,Слабая реакция на выпуск,51,financial_income,-0.0064115695573551505
+low_phi_y,Слабая реакция на выпуск,51,disposable_income,0.013315594086031383
+low_phi_y,Слабая реакция на выпуск,52,labor_income,0.020902092952775286
+low_phi_y,Слабая реакция на выпуск,52,financial_income,-0.0092171782600183
+low_phi_y,Слабая реакция на выпуск,52,disposable_income,0.012686809176608832
+low_phi_y,Слабая реакция на выпуск,53,labor_income,0.020709814504811977
+low_phi_y,Слабая реакция на выпуск,53,financial_income,-0.016575645353215856
+low_phi_y,Слабая реакция на выпуск,53,disposable_income,0.010539892686500517
+low_phi_y,Слабая реакция на выпуск,54,labor_income,0.019971999638922038
+low_phi_y,Слабая реакция на выпуск,54,financial_income,-0.0303105764585056
+low_phi_y,Слабая реакция на выпуск,54,disposable_income,0.0062570053842874816
+low_phi_y,Слабая реакция на выпуск,55,labor_income,0.018523089610247984
+low_phi_y,Слабая реакция на выпуск,55,financial_income,-0.05239591983894613
+low_phi_y,Слабая реакция на выпуск,55,disposable_income,-0.000820664879486433
+low_phi_y,Слабая реакция на выпуск,56,labor_income,0.01624012925051084
+low_phi_y,Слабая реакция на выпуск,56,financial_income,-0.08464136970967984
+low_phi_y,Слабая реакция на выпуск,56,disposable_income,-0.011276145491619512
+low_phi_y,Слабая реакция на выпуск,57,labor_income,0.01311627363196127
+low_phi_y,Слабая реакция на выпуск,57,financial_income,-0.12812265908281373
+low_phi_y,Слабая реакция на выпуск,57,disposable_income,-0.025407829567562268
+low_phi_y,Слабая реакция на выпуск,58,labor_income,0.009377365981155775
+low_phi_y,Слабая реакция на выпуск,58,financial_income,-0.18224675498770168
+low_phi_y,Слабая реакция на выпуск,58,disposable_income,-0.042889719799142384
+low_phi_y,Слабая реакция на выпуск,59,labor_income,0.005654837679457388
+low_phi_y,Слабая реакция на выпуск,59,financial_income,-0.24332101807364995
+low_phi_y,Слабая реакция на выпуск,59,disposable_income,-0.06225541466285825
+persistent_shock,Более персистентный монетарный шок,0,labor_income,-2.0125834013243242
+persistent_shock,Более персистентный монетарный шок,0,financial_income,-16.721152742828867
+persistent_shock,Более персистентный монетарный шок,0,disposable_income,-6.0244690219396935
+persistent_shock,Более персистентный монетарный шок,1,labor_income,-1.694026790880817
+persistent_shock,Более персистентный монетарный шок,1,financial_income,11.193917747557071
+persistent_shock,Более персистентный монетарный шок,1,disposable_income,1.8212681485900744
+persistent_shock,Более персистентный монетарный шок,2,labor_income,-1.2381342653675447
+persistent_shock,Более персистентный монетарный шок,2,financial_income,8.591540902529692
+persistent_shock,Более персистентный монетарный шок,2,disposable_income,1.4429920594156644
+persistent_shock,Более персистентный монетарный шок,3,labor_income,-0.8234237658729086
+persistent_shock,Более персистентный монетарный шок,3,financial_income,5.875114841222653
+persistent_shock,Более персистентный монетарный шок,3,disposable_income,1.0036588070807757
+persistent_shock,Более персистентный монетарный шок,4,labor_income,-0.5087167942036237
+persistent_shock,Более персистентный монетарный шок,4,financial_income,3.717538951033344
+persistent_shock,Более персистентный монетарный шок,4,disposable_income,0.6440298978567047
+persistent_shock,Более персистентный монетарный шок,5,labor_income,-0.2911665380593709
+persistent_shock,Более персистентный монетарный шок,5,financial_income,2.198314021260751
+persistent_shock,Более персистентный монетарный шок,5,disposable_income,0.38786015902090226
+persistent_shock,Более персистентный монетарный шок,6,labor_income,-0.14949300852220998
+persistent_shock,Более персистентный монетарный шок,6,financial_income,1.2025539672100667
+persistent_shock,Более персистентный монетарный шок,6,disposable_income,0.2192891411482435
+persistent_shock,Более персистентный монетарный шок,7,labor_income,-0.06121883941899329
+persistent_shock,Более персистентный монетарный шок,7,financial_income,0.5825139045945293
+persistent_shock,Более персистентный монетарный шок,7,disposable_income,0.1143646642695415
+persistent_shock,Более персистентный монетарный шок,8,labor_income,-0.008302244349530565
+persistent_shock,Более персистентный монетарный шок,8,financial_income,0.21286313024154094
+persistent_shock,Более персистентный монетарный шок,8,disposable_income,0.05202246606240554
+persistent_shock,Более персистентный монетарный шок,9,labor_income,0.022182183819740058
+persistent_shock,Более персистентный монетарный шок,9,financial_income,0.0019329406690744683
+persistent_shock,Более персистентный монетарный шок,9,disposable_income,0.016659032958611514
+persistent_shock,Более персистентный монетарный шок,10,labor_income,0.03889485077804924
+persistent_shock,Более персистентный монетарный шок,10,financial_income,-0.11216579524850745
+persistent_shock,Более персистентный монетарный шок,10,disposable_income,-0.0023082070832363285
+persistent_shock,Более персистентный монетарный шок,11,labor_income,0.047388565079540874
+persistent_shock,Более персистентный монетарный шок,11,financial_income,-0.16912597508573476
+persistent_shock,Более персистентный монетарный шок,11,disposable_income,-0.011667591245057046
+persistent_shock,Более персистентный монетарный шок,12,labor_income,0.05111061541323418
+persistent_shock,Более персистентный монетарный шок,12,financial_income,-0.19346812544303993
+persistent_shock,Более персистентный монетарный шок,12,disposable_income,-0.015600286970762885
+persistent_shock,Более персистентный монетарный шок,13,labor_income,0.05214676349849223
+persistent_shock,Более персистентный монетарный шок,13,financial_income,-0.19988479077700136
+persistent_shock,Более персистентный монетарный шок,13,disposable_income,-0.016596956238120162
+persistent_shock,Более персистентный монетарный шок,14,labor_income,0.05173091013795369
+persistent_shock,Более персистентный монетарный шок,14,financial_income,-0.19693871175122313
+persistent_shock,Более персистентный монетарный шок,14,disposable_income,-0.016095814350175503
+persistent_shock,Более персистентный монетарный шок,15,labor_income,0.050577335879522
+persistent_shock,Более персистентный монетарный шок,15,financial_income,-0.18948076544580902
+persistent_shock,Более персистентный монетарный шок,15,disposable_income,-0.014900524166432763
+persistent_shock,Более персистентный монетарный шок,16,labor_income,0.049090009028964335
+persistent_shock,Более персистентный монетарный шок,16,financial_income,-0.18017086225640708
+persistent_shock,Более персистентный монетарный шок,16,disposable_income,-0.01344281598781474
+persistent_shock,Более персистентный монетарный шок,17,labor_income,0.04749111592279124
+persistent_shock,Более персистентный монетарный шок,17,financial_income,-0.17040703099946644
+persistent_shock,Более персистентный монетарный шок,17,disposable_income,-0.011942430746444698
+persistent_shock,Более персистентный монетарный шок,18,labor_income,0.04589836977092367
+persistent_shock,Более персистентный монетарный шок,18,financial_income,-0.1608793527408574
+persistent_shock,Более персистентный монетарный шок,18,disposable_income,-0.010501987894563265
+persistent_shock,Более персистентный монетарный шок,19,labor_income,0.04437067558609012
+persistent_shock,Более персистентный монетарный шок,19,financial_income,-0.15189294969726275
+persistent_shock,Более персистентный монетарный шок,19,disposable_income,-0.009161873898661244
+persistent_shock,Более персистентный монетарный шок,20,labor_income,0.042934642514303505
+persistent_shock,Более персистентный монетарный шок,20,financial_income,-0.1435520980415186
+persistent_shock,Более персистентный монетарный шок,20,disposable_income,-0.007931179680927354
+persistent_shock,Более персистентный монетарный шок,21,labor_income,0.04159970428229249
+persistent_shock,Более персистентный монетарный шок,21,financial_income,-0.1358625288118523
+persistent_shock,Более персистентный монетарный шок,21,disposable_income,-0.006804607831427896
+persistent_shock,Более персистентный монетарный шок,22,labor_income,0.04036657133049562
+persistent_shock,Более персистентный монетарный шок,22,financial_income,-0.12878648034325862
+persistent_shock,Более персистентный монетарный шок,22,disposable_income,-0.005771341877555304
+persistent_shock,Более персистентный монетарный шок,23,labor_income,0.03923184184084357
+persistent_shock,Более персистентный монетарный шок,23,financial_income,-0.12227103655581786
+persistent_shock,Более персистентный монетарный шок,23,disposable_income,-0.004819422458462083
+persistent_shock,Более персистентный монетарный шок,24,labor_income,0.03819043872803474
+persistent_shock,Более персистентный монетарный шок,24,financial_income,-0.11626173585004576
+persistent_shock,Более персистентный монетарный шок,24,disposable_income,-0.003937686983946605
+persistent_shock,Более персистентный монетарный шок,25,labor_income,0.03723684200641056
+persistent_shock,Более персистентный монетарный шок,25,financial_income,-0.1107083204953524
+persistent_shock,Более персистентный монетарный шок,25,disposable_income,-0.0031164415998640605
+persistent_shock,Более персистентный монетарный шок,26,labor_income,0.036365671662712186
+persistent_shock,Более персистентный монетарный шок,26,financial_income,-0.10556648440215231
+persistent_shock,Более персистентный монетарный шок,26,disposable_income,-0.0023475140182904353
+persistent_shock,Более персистентный монетарный шок,27,labor_income,0.03557193399999307
+persistent_shock,Более персистентный монетарный шок,27,financial_income,-0.10079773109597501
+persistent_shock,Более персистентный монетарный шок,27,disposable_income,-0.0016240356272301517
+persistent_shock,Более персистентный монетарный шок,28,labor_income,0.03485110442352781
+persistent_shock,Более персистентный монетарный шок,28,financial_income,-0.09636845593175318
+persistent_shock,Более персистентный монетарный шок,28,disposable_income,-0.000940130951566429
+persistent_shock,Более персистентный монетарный шок,29,labor_income,0.03419913990663141
+persistent_shock,Более персистентный монетарный шок,29,financial_income,-0.09224880652871689
+persistent_shock,Более персистентный монетарный шок,29,disposable_income,-0.0002905977613705466
+persistent_shock,Более персистентный монетарный шок,30,labor_income,0.03361247000578104
+persistent_shock,Более персистентный монетарный шок,30,financial_income,-0.08841156744889482
+persistent_shock,Более персистентный монетарный шок,30,disposable_income,0.00032939060714042305
+persistent_shock,Более персистентный монетарный шок,31,labor_income,0.03308799126852718
+persistent_shock,Более персистентный монетарный шок,31,financial_income,-0.08483114992319069
+persistent_shock,Более персистентный монетарный шок,31,disposable_income,0.0009245567455495185
+persistent_shock,Более персистентный монетарный шок,32,labor_income,0.03262307672546943
+persistent_shock,Более персистентный монетарный шок,32,financial_income,-0.08148268183070294
+persistent_shock,Более персистентный монетарный шок,32,disposable_income,0.001499774291909125
+persistent_shock,Более персистентный монетарный шок,33,labor_income,0.03221560619005842
+persistent_shock,Более персистентный монетарный шок,33,financial_income,-0.07834115339044975
+persistent_shock,Более персистентный монетарный шок,33,disposable_income,0.00206032298578706
+persistent_shock,Более персистентный монетарный шок,34,labor_income,0.031864019002039404
+persistent_shock,Более персистентный монетарный шок,34,financial_income,-0.07538055813612608
+persistent_shock,Более персистентный монетарный шок,34,disposable_income,0.002612161331879168
+persistent_shock,Более персистентный монетарный шок,35,labor_income,0.03156738904429467
+persistent_shock,Более персистентный монетарный шок,35,financial_income,-0.07257297229566667
+persistent_shock,Более персистентный монетарный шок,35,disposable_income,0.003162232262227645
+persistent_shock,Более персистентный монетарный шок,36,labor_income,0.031325518554468704
+persistent_shock,Более персистентный монетарный шок,36,financial_income,-0.06988753252109799
+persistent_shock,Более персистентный монетарный шок,36,disposable_income,0.0037188101927742626
+persistent_shock,Более персистентный монетарный шок,37,labor_income,0.031139043129731203
+persistent_shock,Более персистентный монетарный шок,37,financial_income,-0.06728930986007377
+persistent_shock,Более персистентный монетарный шок,37,disposable_income,0.004291884520894606
+persistent_shock,Более персистентный монетарный шок,38,labor_income,0.03100953290099648
+persistent_shock,Более персистентный монетарный шок,38,financial_income,-0.06473814114379314
+persistent_shock,Более персистентный монетарный шок,38,disposable_income,0.004893551952149997
+persistent_shock,Более персистентный монетарный шок,39,labor_income,0.03093956339634313
+persistent_shock,Более персистентный монетарный шок,39,financial_income,-0.06218758153927201
+persistent_shock,Более персистентный монетарный шок,39,disposable_income,0.005538353735413452
+persistent_shock,Более персистентный монетарный шок,40,labor_income,0.03093271300825573
+persistent_shock,Более персистентный монетарный шок,40,financial_income,-0.05958429827878633
+persistent_shock,Более персистентный монетарный шок,40,disposable_income,0.0062434391861826725
+persistent_shock,Более персистентный монетарный шок,41,labor_income,0.030993419864090446
+persistent_shock,Более персистентный монетарный шок,41,financial_income,-0.056868451953501764
+persistent_shock,Более персистентный монетарный шок,41,disposable_income,0.00702835759588664
+persistent_shock,Более персистентный монетарный шок,42,labor_income,0.031126600057144835
+persistent_shock,Более персистентный монетарный шок,42,financial_income,-0.05397592831456113
+persistent_shock,Более персистентный монетарный шок,42,disposable_income,0.007914171851176573
+persistent_shock,Более персистентный монетарный шок,43,labor_income,0.031336890100488166
+persistent_shock,Более персистентный монетарный шок,43,financial_income,-0.05084370032236947
+persistent_shock,Более персистентный монетарный шок,43,disposable_income,0.008921444970779867
+persistent_shock,Более персистентный монетарный шок,44,labor_income,0.0316273324055807
+persistent_shock,Более персистентный монетарный шок,44,financial_income,-0.04742012058841592
+persistent_shock,Более персистентный монетарный шок,44,disposable_income,0.010066476781242584
+persistent_shock,Более персистентный монетарный шок,45,labor_income,0.03199727858497409
+persistent_shock,Более персистентный монетарный шок,45,financial_income,-0.04368254282430584
+persistent_shock,Более персистентный монетарный шок,45,disposable_income,0.011354972713271063
+persistent_shock,Более персистентный монетарный шок,46,labor_income,0.032439253238969776
+persistent_shock,Более персистентный монетарный шок,46,financial_income,-0.03966527981553827
+persistent_shock,Более персистентный монетарный шок,46,disposable_income,0.012772137245155699
+persistent_shock,Более персистентный монетарный шок,47,labor_income,0.0329345205520006
+persistent_shock,Более персистентный монетарный шок,47,financial_income,-0.03550138114766904
+persistent_shock,Более персистентный монетарный шок,47,disposable_income,0.014268054522028588
+persistent_shock,Более персистентный монетарный шок,48,labor_income,0.0334471624238441
+persistent_shock,Более персистентный монетарный шок,48,financial_income,-0.031481801747142914
+persistent_shock,Более персистентный монетарный шок,48,disposable_income,0.015737243010821918
+persistent_shock,Более персистентный монетарный шок,49,labor_income,0.03391666179710399
+persistent_shock,Более персистентный монетарный шок,49,financial_income,-0.02813480180574427
+persistent_shock,Более персистентный монетарный шок,49,disposable_income,0.016991604792155914
+persistent_shock,Более персистентный монетарный шок,50,labor_income,0.034249370357310134
+persistent_shock,Более персистентный монетарный шок,50,financial_income,-0.026326204586629806
+persistent_shock,Более персистентный монетарный шок,50,disposable_income,0.017726874359542788
+persistent_shock,Более персистентный монетарный шок,51,labor_income,0.03430993807168831
+persistent_shock,Более персистентный монетарный шок,51,financial_income,-0.027376439102264505
+persistent_shock,Более персистентный монетарный шок,51,disposable_income,0.01748446145149084
+persistent_shock,Более персистентный монетарный шок,52,labor_income,0.033914950710589545
+persistent_shock,Более персистентный монетарный шок,52,financial_income,-0.033181694493343496
+persistent_shock,Более персистентный монетарный шок,52,disposable_income,0.015613778119615042
+persistent_shock,Более персистентный монетарный шок,53,labor_income,0.032832852892590095
+persistent_shock,Более персистентный монетарный шок,53,financial_income,-0.04631209105599272
+persistent_shock,Более персистентный монетарный шок,53,disposable_income,0.011245405792917886
+persistent_shock,Более персистентный монетарный шок,54,labor_income,0.03079694248743186
+persistent_shock,Более персистентный монетарный шок,54,financial_income,-0.07003710836857632
+persistent_shock,Более персистентный монетарный шок,54,disposable_income,0.003293609613588293
+persistent_shock,Более персистентный монетарный шок,55,labor_income,0.02754197412733218
+persistent_shock,Более персистентный монетарный шок,55,financial_income,-0.10819483096483201
+persistent_shock,Более персистентный монетарный шок,55,disposable_income,-0.009481377627263619
+persistent_shock,Более персистентный монетарный шок,56,labor_income,0.022879695630720256
+persistent_shock,Более персистентный монетарный шок,56,financial_income,-0.16477426688248475
+persistent_shock,Более персистентный монетарный шок,56,disposable_income,-0.02830449614064656
+persistent_shock,Более персистентный монетарный шок,57,labor_income,0.016834044170926467
+persistent_shock,Более персистентный монетарный шок,57,financial_income,-0.24301772059178858
+persistent_shock,Более персистентный монетарный шок,57,disposable_income,-0.05404270354927634
+persistent_shock,Более персистентный монетарный шок,58,labor_income,0.009861645178461217
+persistent_shock,Более персистентный монетарный шок,58,financial_income,-0.34377486931637097
+persistent_shock,Более персистентный монетарный шок,58,disposable_income,-0.08659567942500873
+persistent_shock,Более персистентный монетарный шок,59,labor_income,0.003185826966777537
+persistent_shock,Более персистентный монетарный шок,59,financial_income,-0.4627597880151877
+persistent_shock,Более персистентный монетарный шок,59,disposable_income,-0.12390474651680596
