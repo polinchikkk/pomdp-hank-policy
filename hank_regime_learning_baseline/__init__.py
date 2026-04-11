@@ -1,14 +1,7 @@
-from .architecture_ablation import run_architecture_ablation
 from .config import RegimeLearningConfig, default_regime_learning_config
-from .environment_shift import run_environment_shift
-from .misspecification_map import run_misspecification_map
-from .pipeline import run_pipeline
-from .stage6_diagnostics import run_stage6_diagnostics
-from .stage6_summary import run_stage6_summary
-from .tuning import run_best_candidate_validation_suite, run_universal_rawobs_misspecified_tuning
-from .validation import run_deep_validation
 
 __all__ = [
+    "run_core_matrix",
     "run_architecture_ablation",
     "RegimeLearningConfig",
     "default_regime_learning_config",
@@ -21,3 +14,47 @@ __all__ = [
     "run_deep_validation",
     "run_universal_rawobs_misspecified_tuning",
 ]
+
+
+def __getattr__(name: str):
+    if name == "run_core_matrix":
+        from .core_matrix import run_core_matrix
+
+        return run_core_matrix
+    if name == "run_architecture_ablation":
+        from .architecture_ablation import run_architecture_ablation
+
+        return run_architecture_ablation
+    if name == "run_environment_shift":
+        from .environment_shift import run_environment_shift
+
+        return run_environment_shift
+    if name == "run_misspecification_map":
+        from .misspecification_map import run_misspecification_map
+
+        return run_misspecification_map
+    if name == "run_pipeline":
+        from .pipeline import run_pipeline
+
+        return run_pipeline
+    if name == "run_stage6_diagnostics":
+        from .stage6_diagnostics import run_stage6_diagnostics
+
+        return run_stage6_diagnostics
+    if name == "run_stage6_summary":
+        from .stage6_summary import run_stage6_summary
+
+        return run_stage6_summary
+    if name == "run_best_candidate_validation_suite":
+        from .tuning import run_best_candidate_validation_suite
+
+        return run_best_candidate_validation_suite
+    if name == "run_universal_rawobs_misspecified_tuning":
+        from .tuning import run_universal_rawobs_misspecified_tuning
+
+        return run_universal_rawobs_misspecified_tuning
+    if name == "run_deep_validation":
+        from .validation import run_deep_validation
+
+        return run_deep_validation
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

@@ -1,6 +1,8 @@
 # pomdp-hank-policy
 
-Текущая рабочая ветка проекта сфокусирована на полной two-asset HANK-модели и классической денежно-кредитной политике в этой среде.
+Текущая рабочая ветка проекта сфокусирована на денежно-кредитной политике в полной двухактивной HANK-среде при неполной наблюдаемости. Главная рамка проекта: полная HANK-модель используется как истинная экономика, а низкоразмерный слой состояния выступает как интерфейс политики, то есть как представление той информации, которую регулятор может восстановить по наблюдаемым данным и использовать для выбора ставки.
+
+Поэтому низкоразмерное состояние здесь не трактуется как слабая замена полной HANK. Напротив, это отдельный объект исследования: какая сжатая информация об агрегированных шоках, распределительных состояниях и скрытых режимах достаточна для денежно-кредитной политики в полной HANK-среде.
 
 На `main` оставлена только актуальная HANK-линия:
 - [hank_full_baseline](/Users/polinazosimova/pomdp-hank-policy/hank_full_baseline)
@@ -13,10 +15,12 @@
 - [scripts/run_hank_learning.py](/Users/polinazosimova/pomdp-hank-policy/scripts/run_hank_learning.py)
 - [scripts/run_hank_regime.py](/Users/polinazosimova/pomdp-hank-policy/scripts/run_hank_regime.py)
 - [scripts/run_hank_regime_learning.py](/Users/polinazosimova/pomdp-hank-policy/scripts/run_hank_regime_learning.py)
+- [scripts/run_hank_regime_core_matrix.py](/Users/polinazosimova/pomdp-hank-policy/scripts/run_hank_regime_core_matrix.py)
 - [outputs/hank_policy_stage2](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_policy_stage2)
 - [outputs/hank_partial_info_stage3](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_partial_info_stage3)
 - [outputs/hank_learning_stage4](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_learning_stage4)
 - [outputs/hank_regime_switching_stage5](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_regime_switching_stage5)
+- [outputs/hank_regime_learning_stage6_core_matrix](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_regime_learning_stage6_core_matrix)
 - [outputs/hank_regime_learning_stage6_universal_tuning](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_regime_learning_stage6_universal_tuning)
 
 ## Быстрый запуск
@@ -57,12 +61,19 @@ python3 scripts/run_hank_regime.py
 python3 scripts/run_hank_regime_learning.py
 ```
 
+Сборка чистой матрицы монетарных сравнений для основного текста:
+
+```bash
+python3 scripts/run_hank_regime_core_matrix.py
+```
+
 По умолчанию результаты сохраняются в:
 
 - `outputs/hank_policy_stage2`
 - `outputs/hank_partial_info_stage3`
 - `outputs/hank_learning_stage4`
 - `outputs/hank_regime_switching_stage5`
+- `outputs/hank_regime_learning_stage6_core_matrix`
 - `outputs/hank_regime_learning_stage6_universal_tuning`
 
 ## Что считает текущий baseline
@@ -77,25 +88,26 @@ python3 scripts/run_hank_regime_learning.py
 
 ## Что считает partial-information baseline
 
-- reduced hidden-state представление полной HANK-среды;
-- synthetic trajectories скрытого состояния и noisy macro observables;
-- Kalman-filter восстановление hidden state;
-- classical `filter -> rule` policy поверх оценённого состояния;
-- сравнение с full-information HANK benchmark по loss, rate-gap и распределительным метрикам.
+- низкоразмерное представление скрытого состояния полной HANK-среды как интерфейс политики;
+- синтетические траектории скрытого состояния и шумных макроэкономических наблюдений;
+- фильтрацию скрытого состояния;
+- классическую схему `наблюдения -> фильтрация -> правило`;
+- сравнение с benchmark при полной информации по функции потерь, отклонению ставки и распределительным метрикам.
 
 ## Что считает learning-based policy baseline
 
-- continuous-action residual PPO поверх того же reduced HANK state-space и того же Kalman filter;
-- comparison `classical filter + fixed rule` vs `filtering + learned policy`;
-- main scenarios: `macro_core`, `full_macro`, `thin_information`, `high_noise`, `distribution_augmented`;
-- ablations: `filtered state + uncertainty`, `raw observations`, `without distributional state`;
+- continuous-action residual PPO поверх того же reduced HANK state-space и того же фильтра;
+- сравнение `классическая схема фильтрации и фиксированного правила` против `фильтрации и обучаемого правила`;
+- основные сценарии: `macro_core`, `full_macro`, `thin_information`, `high_noise`, `distribution_augmented`;
+- абляции: `оценённое состояние + неопределённость`, `наблюдаемые переменные`, `без распределительных компонент состояния`;
 - policy, macro and distributional evaluation уже на полном HANK transition solver.
 
 ## Что считают regime-switching расширения
 
-- stage 5: hidden regime-switching overlay поверх reduced-state HANK с switching filter и classical policy benchmark;
-- stage 6: raw-observation и tuned learning-based policy в regime-switching HANK;
-- основной stage-6 артефакт на `main` теперь не ранние search-раны, а universal tuning result с лучшим кандидатом `larger_network`.
+- stage 5: скрытые режимы поверх reduced-state HANK с переключающимся фильтром и классическим правилом;
+- stage 6: обучаемые правила по отфильтрованному состоянию и по наблюдениям в HANK-среде со скрытыми режимами;
+- основной результат stage 6 для основного текста теперь собран в чистую матрицу монетарных сравнений: `полная информация, фиксированное правило`, `фильтрация, фиксированное правило`, `фильтрация, гибкое правило`, `наблюдаемые переменные, гибкое правило`;
+- главный вывод этой матрицы: гибкость правила по отфильтрованному состоянию особенно важна при тонком информационном наборе, тогда как в сценариях с более богатым набором наблюдений различие между правилами по наблюдаемым переменным и по отфильтрованному состоянию невелико.
 
 ## Ключевые артефакты
 
@@ -173,6 +185,25 @@ python3 scripts/run_hank_regime_learning.py
 - `outputs/hank_regime_learning_stage6_universal_tuning/best_candidate_seed_win_rates.csv`
 - `outputs/hank_regime_learning_stage6_universal_tuning/report_universal_tuning.md`
 
+Для stage 6 summary и diagnostics:
+
+- `outputs/hank_regime_learning_stage6_core_matrix/main_policy_matrix.csv`
+- `outputs/hank_regime_learning_stage6_core_matrix/core_headline_table.csv`
+- `outputs/hank_regime_learning_stage6_core_matrix/core_value_summary_table.csv`
+- `outputs/hank_regime_learning_stage6_core_matrix/core_comparisons.csv`
+- `outputs/hank_regime_learning_stage6_core_matrix/loss_component_decomposition.csv`
+- `outputs/hank_regime_learning_stage6_core_matrix/stage6_core_text_blocks.tex`
+- `outputs/hank_regime_learning_stage6_core_matrix/table_stage6_core_value_summary.tex`
+- `outputs/hank_regime_learning_stage6_core_matrix/report_stage6_core_matrix.md`
+- `outputs/hank_regime_learning_stage6_summary/stage6_thesis.txt`
+- `outputs/hank_regime_learning_stage6_summary/stage6_summary_table.csv`
+- `outputs/hank_regime_learning_stage6_summary/table_stage6_summary.tex`
+- `outputs/hank_regime_learning_stage6_summary/stage6_text_blocks.tex`
+- `outputs/hank_regime_learning_stage6_diagnostics/delta_loss_intervals.csv`
+- `outputs/hank_regime_learning_stage6_diagnostics/stage6_metric_interpretation_table.csv`
+- `outputs/hank_regime_learning_stage6_diagnostics/table_stage6_metric_interpretation.tex`
+- `outputs/hank_regime_learning_stage6_diagnostics/report_stage6_diagnostics.md`
+
 Основные таблицы лежат в:
 
 - `outputs/hank_policy_stage2/tables/`
@@ -186,13 +217,13 @@ python3 scripts/run_hank_regime_learning.py
 - `hank_full_baseline/`
   Полный HANK pipeline: calibration, steady state, household solver, sequence-space Jacobian, transition dynamics, plots, tables и robustness.
 - `hank_partial_info_baseline/`
-  Reduced-state partial-observability HANK pipeline: state-space approximation, Kalman filter, information scenarios, policy diagnostics и article-ready plots/tables.
+  Reduced-state partial-observability HANK pipeline: state-space approximation, фильтр, information scenarios, policy diagnostics и article-ready plots/tables. Этот слой трактуется как интерфейс политики, а не как замена полной HANK-экономики.
 - `hank_learning_policy_baseline/`
   Learning-based policy layer for partial-information HANK: PPO trainer, residual policy environment, scenario evaluation и article-ready outputs.
 - `regime_switching_baseline/`
-  Stage-5 regime-switching HANK overlay: hidden regimes, switching filter, classical benchmark и regime diagnostics.
+  Stage-5 regime-switching HANK overlay: скрытые режимы, переключающийся фильтр, classical benchmark и regime diagnostics.
 - `hank_regime_learning_baseline/`
-  Stage-6 regime-learning layer: raw-observation and filtered-state policy experiments, universal tuning and scenario comparison.
+  Stage-6 regime-learning layer: обучаемые правила по наблюдениям и по отфильтрованному состоянию, проверки архитектурных ошибок, переноса на новые среды и интерпретационные diagnostics.
 - `scripts/run_hank.py`
   One-command запуск полного HANK baseline.
 - `scripts/run_hank_partial_info.py`
@@ -226,10 +257,10 @@ python3 scripts/run_hank_regime_learning.py
 ## Текущий фокус
 
 Текущая main-line логика уже собрана как последовательность:
-- stage 2: full-information classical policy в полной HANK;
-- stage 3: reduced-state partial observability и classical `filter -> rule`;
-- stage 4: learning-based policy layer на той же HANK-среде и той же информационной структуре.
-- stage 5: regime-switching HANK under partial information;
-- stage 6: tuned regime-learning policy и карта условий, где RL получает преимущество над misspecified classical benchmark.
+- stage 2: классическая денежно-кредитная политика при полной информации в полной HANK;
+- stage 3: неполная наблюдаемость и classical `filter -> rule`, где низкоразмерное состояние является интерфейсом политики;
+- stage 4: learning-based policy layer на той же HANK-среде и той же информационной структуре;
+- stage 5: hidden regime-switching HANK under partial information;
+- stage 6: tuned regime-learning policy и карта условий, где обучаемое правило получает преимущество над жестко заданной или ошибочно специфицированной классической архитектурой.
 
-Следующие расширения должны идти уже от этого канонического stage-4 baseline, а не от старых pre-HANK линий проекта.
+Следующие расширения должны идти уже от этой рамки: полная HANK как истинная экономика, низкоразмерное представление состояния как интерфейс политики, скрытые режимы и информационные искажения как условия, при которых обучаемая политика может иметь добавочную ценность.
