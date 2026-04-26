@@ -22,6 +22,7 @@
 - [outputs/hank_regime_switching_stage5](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_regime_switching_stage5)
 - [outputs/hank_regime_learning_stage6_core_matrix](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_regime_learning_stage6_core_matrix)
 - [outputs/hank_regime_learning_stage6_universal_tuning](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_regime_learning_stage6_universal_tuning)
+- [outputs/hank_regime_learning_stage6_reduced_state_validation](/Users/polinazosimova/pomdp-hank-policy/outputs/hank_regime_learning_stage6_reduced_state_validation)
 
 ## Быстрый запуск
 
@@ -67,6 +68,12 @@ python3 scripts/run_hank_regime_learning.py
 python3 scripts/run_hank_regime_core_matrix.py
 ```
 
+Валидация редуцированного представления состояния:
+
+```bash
+python3 scripts/run_hank_regime_reduced_state_validation.py --run-full-hank-projection
+```
+
 По умолчанию результаты сохраняются в:
 
 - `outputs/hank_policy_stage2`
@@ -75,6 +82,7 @@ python3 scripts/run_hank_regime_core_matrix.py
 - `outputs/hank_regime_switching_stage5`
 - `outputs/hank_regime_learning_stage6_core_matrix`
 - `outputs/hank_regime_learning_stage6_universal_tuning`
+- `outputs/hank_regime_learning_stage6_reduced_state_validation`
 
 ## Что считает текущий baseline
 
@@ -108,6 +116,7 @@ python3 scripts/run_hank_regime_core_matrix.py
 - stage 6: обучаемые правила по отфильтрованному состоянию и по наблюдениям в HANK-среде со скрытыми режимами;
 - основной результат stage 6 для основного текста теперь собран в чистую матрицу монетарных сравнений: `полная информация, фиксированное правило`, `фильтрация, фиксированное правило`, `фильтрация, гибкое правило`, `наблюдаемые переменные, гибкое правило`;
 - главный вывод этой матрицы: гибкость правила по отфильтрованному состоянию особенно важна при тонком информационном наборе, тогда как в сценариях с более богатым набором наблюдений различие между правилами по наблюдаемым переменным и по отфильтрованному состоянию невелико.
+- отдельный validation package проверяет, что редуцированное состояние является содержательно и прогностически значимым интерфейсом политики: для него собраны таблица экономической интерпретации компонент, out-of-sample forecast sufficiency tests и проверка сохранения ранжирования правил через full-HANK projection.
 
 ## Ключевые артефакты
 
@@ -194,6 +203,26 @@ python3 scripts/run_hank_regime_core_matrix.py
 - `outputs/hank_regime_learning_stage6_core_matrix/loss_component_decomposition.csv`
 - `outputs/hank_regime_learning_stage6_core_matrix/stage6_core_text_blocks.tex`
 - `outputs/hank_regime_learning_stage6_core_matrix/table_stage6_core_value_summary.tex`
+- `outputs/hank_regime_learning_stage6_core_matrix/table_stage6_core_pairwise_summary.tex`
+- `outputs/hank_regime_learning_stage6_core_matrix/final_evidence_package.md`
+- `outputs/hank_regime_learning_stage6_policy_extensions/comparison_summary.csv`
+- `outputs/hank_regime_learning_stage6_policy_extensions/selected_rule_specs.csv`
+- `outputs/hank_regime_learning_stage6_policy_extensions/component_decomposition.csv`
+- `outputs/hank_regime_learning_stage6_policy_extensions/full_hank_projection_metrics.csv`
+- `outputs/hank_regime_learning_stage6_policy_extensions/table_stage6_policy_extensions_comparison.tex`
+- `outputs/hank_regime_learning_stage6_policy_extensions/table_stage6_policy_extensions_selected_rules.tex`
+- `outputs/hank_regime_learning_stage6_policy_extensions/report_stage6_policy_extensions.md`
+- `outputs/hank_regime_learning_stage6_policy_extensions/report_full_hank_projection.md`
+- `outputs/hank_regime_learning_stage6_policy_extensions/article_strength_check.md`
+- `outputs/hank_regime_learning_stage6_reduced_state_validation/state_component_interpretation.csv`
+- `outputs/hank_regime_learning_stage6_reduced_state_validation/forecast_sufficiency_summary.csv`
+- `outputs/hank_regime_learning_stage6_reduced_state_validation/policy_ranking_validation.csv`
+- `outputs/hank_regime_learning_stage6_reduced_state_validation/policy_pairwise_ranking_validation.csv`
+- `outputs/hank_regime_learning_stage6_reduced_state_validation/table_state_component_interpretation.tex`
+- `outputs/hank_regime_learning_stage6_reduced_state_validation/table_forecast_sufficiency.tex`
+- `outputs/hank_regime_learning_stage6_reduced_state_validation/table_policy_ranking_validation.tex`
+- `outputs/hank_regime_learning_stage6_reduced_state_validation/reduced_state_validation_text_blocks.tex`
+- `outputs/hank_regime_learning_stage6_reduced_state_validation/report_reduced_state_validation.md`
 - `outputs/hank_regime_learning_stage6_core_matrix/report_stage6_core_matrix.md`
 - `outputs/hank_regime_learning_stage6_summary/stage6_thesis.txt`
 - `outputs/hank_regime_learning_stage6_summary/stage6_summary_table.csv`
@@ -234,6 +263,12 @@ python3 scripts/run_hank_regime_core_matrix.py
   One-command запуск stage-5 regime-switching baseline.
 - `scripts/run_hank_regime_learning.py`
   One-command запуск stage-6 regime-learning experiments.
+- `scripts/run_hank_regime_policy_extensions.py`
+  One-command запуск stage-6 extension checks: оптимизированное линейное правило по оценённому состоянию, историческое правило по наблюдаемым переменным и увеличенный набор test trajectories.
+- `scripts/run_hank_regime_full_hank_projection.py`
+  Проверка selected stage-6 policy-rate paths через full-HANK transition solver.
+- `scripts/run_hank_regime_reduced_state_validation.py`
+  Проверка редуцированного состояния как интерфейса политики: экономическая интерпретация компонент, прогнозная достаточность и сохранение ранжирования правил при full-HANK projection.
 - `outputs/hank_policy_stage2/`
   Канонический набор результатов для текущей рабочей ветки.
 - `outputs/hank_partial_info_stage3/`
@@ -244,6 +279,10 @@ python3 scripts/run_hank_regime_core_matrix.py
   Канонический набор результатов для stage 5: regime-switching HANK baseline.
 - `outputs/hank_regime_learning_stage6_universal_tuning/`
   Канонический набор результатов для stage 6: tuned regime-learning comparison против misspecified classical benchmark.
+- `outputs/hank_regime_learning_stage6_policy_extensions/`
+  Дополнительный stage-6 validation layer: selected linear rule, history-based observable rule, 50 held-out test trajectories и full-HANK projection для top policy paths.
+- `outputs/hank_regime_learning_stage6_reduced_state_validation/`
+  Обоснование редуцированного представления состояния: component interpretation, forecast sufficiency и policy ranking validation.
 
 ## Архивные ветки
 

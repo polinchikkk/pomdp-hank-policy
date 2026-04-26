@@ -1,0 +1,9 @@
+scenario_name,scenario_label,policy_name,phi_pi,phi_y,rho_i,alpha
+macro_core_moderate_gap,Базовый макроэкономический набор × умеренная разделимость режимов,optimized_linear_estimated_state,1.0,0.0,0.85,
+macro_core_moderate_gap,Базовый макроэкономический набор × умеренная разделимость режимов,history_observables_rule,0.5,0.0,0.85,0.8
+macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,optimized_linear_estimated_state,1.0,0.0,0.85,
+macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,history_observables_rule,0.5,0.0,0.7,0.5
+thin_information_moderate_gap,Ограниченный информационный набор × умеренная разделимость режимов,optimized_linear_estimated_state,1.0,0.0,0.85,
+thin_information_moderate_gap,Ограниченный информационный набор × умеренная разделимость режимов,history_observables_rule,0.5,0.0,0.85,0.8
+thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,optimized_linear_estimated_state,1.0,0.0,0.85,
+thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,history_observables_rule,0.5,0.0,0.7,0.5

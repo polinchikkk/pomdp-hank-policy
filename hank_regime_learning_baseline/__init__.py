@@ -7,6 +7,9 @@ __all__ = [
     "default_regime_learning_config",
     "run_environment_shift",
     "run_misspecification_map",
+    "run_full_hank_projection_from_policy_paths",
+    "run_policy_extension_experiments",
+    "run_reduced_state_validation",
     "run_pipeline",
     "run_stage6_diagnostics",
     "run_stage6_summary",
@@ -33,6 +36,18 @@ def __getattr__(name: str):
         from .misspecification_map import run_misspecification_map
 
         return run_misspecification_map
+    if name == "run_policy_extension_experiments":
+        from .policy_extensions import run_policy_extension_experiments
+
+        return run_policy_extension_experiments
+    if name == "run_full_hank_projection_from_policy_paths":
+        from .policy_extensions import run_full_hank_projection_from_policy_paths
+
+        return run_full_hank_projection_from_policy_paths
+    if name == "run_reduced_state_validation":
+        from .reduced_state_validation import run_reduced_state_validation
+
+        return run_reduced_state_validation
     if name == "run_pipeline":
         from .pipeline import run_pipeline
 

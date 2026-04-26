@@ -37,6 +37,18 @@ COMPARISON_LABELS = {
     "filtered_classical_minus_full_information_classical": "Классическое правило по оценённому состоянию минус правило при полной информации",
 }
 
+SHORT_COMPARISON_LABELS = {
+    "filtered_selected_minus_filtered_classical": "Гибкость правила",
+    "filtered_selected_minus_raw_selected": "Оценивание состояния",
+    "filtered_selected_minus_full_information_classical": "Разрыв до полной информации",
+}
+
+COMPONENT_LABELS = {
+    "delta_inflation_loss": "Инфляция",
+    "delta_output_gap_loss": "Разрыв выпуска",
+    "delta_rate_change_loss": "Сглаживание ставки",
+}
+
 
 def _save_text(path: Path, text: str) -> None:
     path.write_text(text, encoding="utf-8")
@@ -261,6 +273,61 @@ def _write_latex_table(path: Path, table: pd.DataFrame, columns: list[str], head
     _save_text(path, "\n".join(lines))
 
 
+def _write_pairwise_latex_table(path: Path, table: pd.DataFrame) -> None:
+    lines = [
+        "\\begin{tabular}{p{0.35\\linewidth}p{0.17\\linewidth}rrrr}",
+        "\\toprule",
+        "Сценарий & Сравнение & $\\Delta J$ & 95\\% ДИ & Доля побед & Вероятность ухудшения \\\\",
+        "\\midrule",
+    ]
+    for _, row in table.iterrows():
+        delta_value = float(row["$\\Delta J$"])
+        cells = [
+            _latex_escape(str(row["Сценарий"])),
+            _latex_escape(str(row["Сравнение"])),
+            f"{delta_value:.4f}",
+            _latex_escape(str(row["95% ДИ"])),
+            f"{float(row['Доля побед']):.2f}",
+            f"{float(row['Вероятность ухудшения']):.2f}",
+        ]
+        lines.append(" & ".join(cells) + " \\\\")
+    lines.extend(["\\bottomrule", "\\end{tabular}"])
+    _save_text(path, "\n".join(lines))
+
+
+def _build_pairwise_summary_table(comparisons: pd.DataFrame) -> pd.DataFrame:
+    table = comparisons[
+        comparisons["comparison_name"].isin(
+            [
+                "filtered_selected_minus_filtered_classical",
+                "filtered_selected_minus_raw_selected",
+            ]
+        )
+    ].copy()
+    table["Сравнение"] = table["comparison_name"].map(SHORT_COMPARISON_LABELS)
+    table["95% ДИ"] = table.apply(lambda row: f"[{row['ci_lower']:.4f}; {row['ci_upper']:.4f}]", axis=1)
+    table = table.rename(
+        columns={
+            "scenario_label": "Сценарий",
+            "mean_delta_cumulative_loss": "$\\Delta J$",
+            "win_rate": "Доля побед",
+            "probability_of_degradation": "Вероятность ухудшения",
+            "mean_relative_improvement_pct": "Относительное улучшение, %",
+        }
+    )
+    return table[
+        [
+            "Сценарий",
+            "Сравнение",
+            "$\\Delta J$",
+            "95% ДИ",
+            "Доля побед",
+            "Вероятность ухудшения",
+            "Относительное улучшение, %",
+        ]
+    ].reset_index(drop=True)
+
+
 def _plot_value_of_filtering(comparisons: pd.DataFrame, path: Path) -> None:
     data = comparisons[comparisons["comparison_name"] == "filtered_selected_minus_raw_selected"].copy()
     fig, ax = plt.subplots(figsize=(7.2, 3.8))
@@ -334,6 +401,95 @@ def _plot_pairwise_scatter(seed_losses: pd.DataFrame, path: Path) -> None:
     plt.close(fig)
 
 
+def _plot_pairwise_delta_intervals(comparisons: pd.DataFrame, path: Path) -> None:
+    selected = comparisons[
+        comparisons["comparison_name"].isin(
+            [
+                "filtered_selected_minus_filtered_classical",
+                "filtered_selected_minus_raw_selected",
+            ]
+        )
+    ].copy()
+    order = list(SCENARIO_LABELS)
+    fig, ax = plt.subplots(figsize=(8.8, 4.4))
+    x = np.arange(len(order))
+    offsets = {
+        "filtered_selected_minus_filtered_classical": -0.13,
+        "filtered_selected_minus_raw_selected": 0.13,
+    }
+    colors = {
+        "filtered_selected_minus_filtered_classical": "#0b6e4f",
+        "filtered_selected_minus_raw_selected": "#3a86ff",
+    }
+    for comparison_name in offsets:
+        frame = selected[selected["comparison_name"] == comparison_name].set_index("scenario_name").loc[order]
+        means = frame["mean_delta_cumulative_loss"].to_numpy(dtype=float)
+        lower = means - frame["ci_lower"].to_numpy(dtype=float)
+        upper = frame["ci_upper"].to_numpy(dtype=float) - means
+        ax.errorbar(
+            x + offsets[comparison_name],
+            means,
+            yerr=np.vstack([lower, upper]),
+            fmt="o",
+            capsize=4,
+            markersize=6,
+            color=colors[comparison_name],
+            label=SHORT_COMPARISON_LABELS[comparison_name],
+        )
+    ax.axhline(0.0, color="black", linewidth=0.8, linestyle="--")
+    ax.set_xticks(x)
+    ax.set_xticklabels(
+        [
+            "Базовый\nмакронабор,\nумеренная",
+            "Базовый\nмакронабор,\nвысокая",
+            "Ограниченный\nнабор,\nумеренная",
+            "Ограниченный\nнабор,\nвысокая",
+        ]
+    )
+    ax.set_ylabel("$\\Delta J$; значение ниже нуля означает выигрыш")
+    ax.set_title("Попарные разности накопленной функции потерь")
+    ax.legend(frameon=False, loc="best")
+    fig.tight_layout()
+    fig.savefig(path.with_suffix(".pdf"))
+    plt.close(fig)
+
+
+def _plot_loss_decomposition_core(components: pd.DataFrame, path: Path) -> None:
+    data = components[components["comparison_name"] == "filtered_selected_vs_filtered_classical"].copy()
+    data = data.set_index("scenario_name").loc[list(SCENARIO_LABELS)].reset_index()
+    x = np.arange(len(data))
+    fig, ax = plt.subplots(figsize=(8.6, 4.4))
+    colors = {
+        "delta_inflation_loss": "#ca6702",
+        "delta_output_gap_loss": "#0b6e4f",
+        "delta_rate_change_loss": "#4361ee",
+    }
+    positive_bottom = np.zeros(len(data))
+    negative_bottom = np.zeros(len(data))
+    for column in ["delta_inflation_loss", "delta_output_gap_loss", "delta_rate_change_loss"]:
+        values = data[column].to_numpy(dtype=float)
+        bottoms = np.where(values >= 0.0, positive_bottom, negative_bottom)
+        ax.bar(x, values, bottom=bottoms, color=colors[column], label=COMPONENT_LABELS[column], width=0.58)
+        positive_bottom += np.where(values >= 0.0, values, 0.0)
+        negative_bottom += np.where(values < 0.0, values, 0.0)
+    ax.axhline(0.0, color="black", linewidth=0.8)
+    ax.set_xticks(x)
+    ax.set_xticklabels(
+        [
+            "Базовый\nмакронабор,\nумеренная",
+            "Базовый\nмакронабор,\nвысокая",
+            "Ограниченный\nнабор,\nумеренная",
+            "Ограниченный\nнабор,\nвысокая",
+        ]
+    )
+    ax.set_ylabel("Вклад в $\\Delta J$")
+    ax.set_title("Разложение выигрыша от гибкости правила")
+    ax.legend(frameon=False)
+    fig.tight_layout()
+    fig.savefig(path.with_suffix(".pdf"))
+    plt.close(fig)
+
+
 def _build_value_summary_table(wide: pd.DataFrame) -> pd.DataFrame:
     table = wide[
         [
@@ -375,17 +531,11 @@ def _build_text_block(
 
 Центральная постановка работы строится вокруг четырех чисто монетарных вариантов денежно-кредитного правила: правила при полной информации; классического правила по оценённому состоянию; отобранного правила по оценённому состоянию; и отобранного правила по наблюдаемым переменным без явного этапа фильтрации. Такая матрица позволяет отдельно оценить ценность информации, выигрыш от оценивания скрытого состояния и выигрыш от более гибкой формы правила.
 
+Важно подчеркнуть границу интерпретации данного блока. На этапах 5--6 полная HANK-модель не заменяется другой экономикой, но сравнение правил проводится на низкоразмерном интерфейсе политики, построенном по мотивам полной HANK-среды и оцененном по наблюдаемым макроэкономическим переменным. Поэтому результаты этого блока следует трактовать как сравнение архитектур принятия решений при неполной наблюдаемости: какое представление состояния и какая форма правила лучше переводят доступную информацию в траекторию ставки. Проверка выбранных траекторий через полный HANK transition solver рассматривается отдельно как валидация согласованности, а не как полная переоптимизация политики в исходной HANK-модели.
+
 По четырем базовым сценариям --- базовый макроэкономический набор и ограниченный информационный набор, каждый в сочетании с умеренной или высокой разделимостью режимов --- отобранное правило по оценённому состоянию уменьшает накопленную функцию потерь относительно классического правила по оценённому состоянию на {classical_range.min():.1f}--{classical_range.max():.1f}\%. При этом выигрыш от оценивания скрытого состояния зависит от информационного режима. В сценариях с базовым макроэкономическим набором правило по наблюдаемым переменным и правило по оценённому состоянию почти не различаются, а при высокой разделимости режимов прямое правило по наблюдаемым данным даже слегка лучше. Напротив, при ограниченном информационном наборе преимущество правила по оценённому состоянию становится выраженным: относительный выигрыш по сравнению с правилом, использующим только наблюдаемые переменные, достигает {filtering_range.max():.1f}\%, а в сценарии ``ограниченный информационный набор × высокая разделимость режимов'' доверительный интервал для разницы потерь целиком лежит ниже нуля в пользу фильтрации.
 
-Правило при полной информации используется здесь не как глобальная верхняя граница, а как внутренний ориентир внутри одной и той же семьи правил. Сопоставление с ним показывает, насколько дорого обходится потеря информации и насколько этот разрыв удается сократить за счет более качественного представления состояния. Тем самым главный результат этапа 6 связан не с усложнением пространства действий, а с тем, какую информацию регулятор действительно получает и как она переводится в решение по ставке.
-
-\begin{{table}}[htbp]
-\centering
-\small
-\caption{{Основная матрица сравнений денежно-кредитных правил}}
-\label{{tab:stage6_core_main_matrix}}
-\input{{outputs/hank_regime_learning_stage6_core_matrix/table_stage6_core_main_results.tex}}
-\end{{table}}
+Правило при полной информации используется здесь не как глобальная верхняя граница, а как внутренний ориентир внутри одной и той же семьи правил. Сопоставление с ним показывает, насколько дорого обходится потеря информации и насколько этот разрыв удается сократить за счет более качественного представления состояния. Тем самым главный результат этапа 6 связан не с абсолютным уровнем функции потерь и не с усложнением пространства действий, а с тем, какую информацию регулятор действительно получает и как она переводится в решение по ставке.
 
 \begin{{table}}[htbp]
 \centering
@@ -394,6 +544,28 @@ def _build_text_block(
 \label{{tab:stage6_core_values}}
 \input{{outputs/hank_regime_learning_stage6_core_matrix/table_stage6_core_value_summary.tex}}
 \end{{table}}
+
+\begin{{table}}[htbp]
+\centering
+\small
+\caption{{Попарные сравнения правил на независимых тестовых траекториях}}
+\label{{tab:stage6_core_pairwise}}
+\input{{outputs/hank_regime_learning_stage6_core_matrix/table_stage6_core_pairwise_summary.tex}}
+\end{{table}}
+
+\begin{{figure}}[htbp]
+\centering
+\includegraphics[width=\linewidth]{{outputs/hank_regime_learning_stage6_core_matrix/figures/fig_04_pairwise_delta_intervals.pdf}}
+\caption{{Попарные разности накопленной функции потерь. Значения ниже нуля означают выигрыш первого правила в соответствующем сравнении.}}
+\label{{fig:stage6_pairwise_delta_intervals}}
+\end{{figure}}
+
+\begin{{figure}}[htbp]
+\centering
+\includegraphics[width=\linewidth]{{outputs/hank_regime_learning_stage6_core_matrix/figures/fig_05_loss_decomposition_core.pdf}}
+\caption{{Разложение выигрыша от гибкости правила по компонентам функции потерь.}}
+\label{{fig:stage6_loss_decomposition_core}}
+\end{{figure}}
 """.strip()
 
 
@@ -525,13 +697,39 @@ def run_core_matrix(
         columns=["scenario_label", "comparison_label", "mean_delta_cumulative_loss", "ci_lower", "ci_upper", "win_rate"],
         headers=["Сценарий", "Сравнение", "Средняя разность", "Нижняя граница ДИ", "Верхняя граница ДИ", "Доля выигрышных траекторий"],
     )
+    pairwise_summary = _build_pairwise_summary_table(comparisons)
+    pairwise_summary.to_csv(root / "pairwise_evidence_table.csv", index=False)
+    _write_pairwise_latex_table(root / "table_stage6_core_pairwise_summary.tex", pairwise_summary)
 
     _plot_value_of_filtering(comparisons, figures_dir / "fig_01_value_of_filtering")
     _plot_gap_to_oracle(main_table, figures_dir / "fig_02_gap_to_oracle")
     _plot_pairwise_scatter(seed_losses, figures_dir / "fig_03_filtered_vs_raw_scatter")
+    _plot_pairwise_delta_intervals(comparisons, figures_dir / "fig_04_pairwise_delta_intervals")
+    _plot_loss_decomposition_core(components, figures_dir / "fig_05_loss_decomposition_core")
 
     text_block = _build_text_block(main_table, comparisons)
     _save_text(root / "stage6_core_text_blocks.tex", text_block + "\n")
+    _save_text(
+        root / "final_evidence_package.md",
+        "\n".join(
+            [
+                "# Финальный доказательный блок этапа 6",
+                "",
+                "В основном тексте не следует делать центральной таблицу с сырыми уровнями функции потерь. Уровень функции потерь зависит от масштаба переменных, горизонта и весов, поэтому он используется как техническая основа для попарных сравнений, а не как самостоятельная интерпретационная метрика.",
+                "",
+                "## Рекомендуемый порядок вставки",
+                "",
+                "1. Таблица `table_stage6_core_value_summary.tex`: три интерпретируемые оси результата — выигрыш от оценивания скрытого состояния, выигрыш от гибкости правила и разрыв до полной информации.",
+                "2. Таблица `table_stage6_core_pairwise_summary.tex`: парные разности потерь, 95% доверительные интервалы, доля выигрышных траекторий и вероятность ухудшения.",
+                "3. Рисунок `fig_04_pairwise_delta_intervals.pdf`: интервальная визуализация ключевых разностей функции потерь.",
+                "4. Рисунок `fig_05_loss_decomposition_core.pdf`: разложение выигрыша от гибкости правила на инфляцию, разрыв выпуска и сглаживание ставки.",
+                "",
+                "## Интерпретация",
+                "",
+                "Главный результат подтверждается не малым уровнем функции потерь, а устойчивым знаком попарных разностей, доверительными интервалами, долей выигрышных траекторий и экономическим механизмом через компоненты функции потерь.",
+            ]
+        ),
+    )
     _save_text(
         root / "report_stage6_core_matrix.md",
         "\n".join(
@@ -554,5 +752,6 @@ def run_core_matrix(
         "seed_losses": seed_losses,
         "comparisons": comparisons,
         "components": components,
+        "pairwise_summary": pairwise_summary,
         "text_block": text_block,
     }
