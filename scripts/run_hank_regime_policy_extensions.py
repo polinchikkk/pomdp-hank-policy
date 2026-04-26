@@ -17,7 +17,7 @@ def _seed_range(start: int, count: int) -> tuple[int, ...]:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Run stage-6 policy extension experiments: optimized linear rule and history-based observable rule."
+        description="Запуск расширенных сравнений правил для этапа 6."
     )
     parser.add_argument(
         "--output-dir",
@@ -28,6 +28,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--validation-count", type=int, default=10)
     parser.add_argument("--test-start", type=int, default=900)
     parser.add_argument("--test-count", type=int, default=50)
+    parser.add_argument(
+        "--ppo-training-seed",
+        action="append",
+        dest="ppo_training_seeds",
+        type=int,
+        help="Номер запуска PPO. Флаг можно повторять несколько раз.",
+    )
     parser.add_argument(
         "--scenario",
         action="append",
@@ -52,6 +59,7 @@ def main() -> None:
     args = parse_args()
     run_policy_extension_experiments(
         output_dir=args.output_dir,
+        ppo_training_seeds=tuple(args.ppo_training_seeds) if args.ppo_training_seeds else (11, 22),
         validation_seeds=_seed_range(args.validation_start, args.validation_count),
         test_seeds=_seed_range(args.test_start, args.test_count),
         scenario_names=tuple(args.scenarios) if args.scenarios else (

@@ -104,6 +104,14 @@ class RegimeSwitchingPolicyEnvironment:
         self.state_dim = len(model.state_names)
         self.state_names = model.state_names
         self.state_index_map = {name: idx for idx, name in enumerate(self.state_names)}
+        self.taylor_state_indices = tuple(
+            self.state_index_map[name]
+            for name in ("rstar_gap", "inflation_gap", "output_gap")
+        )
+        self.extended_state_indices = tuple(
+            self.state_index_map[name]
+            for name in ("rstar_gap", "productivity_gap", "fiscal_gap", "inflation_gap", "output_gap")
+        )
         self.selected_state_indices = (
             tuple(range(self.state_dim))
             if scenario_spec.include_distributional_state
@@ -202,6 +210,12 @@ class RegimeSwitchingPolicyEnvironment:
         p_stress = float(self.filtered_mode_probabilities[1])
         if self.scenario_spec.input_mode == "belief_state":
             state = self.filtered_mean[list(self.selected_state_indices)]
+            return np.concatenate([state, np.array([p_stress, self.prev_rate], dtype=float)])
+        if self.scenario_spec.input_mode == "filtered_taylor_state":
+            state = self.filtered_mean[list(self.taylor_state_indices)]
+            return np.concatenate([state, np.array([self.prev_rate], dtype=float)])
+        if self.scenario_spec.input_mode == "filtered_extended_state":
+            state = self.filtered_mean[list(self.extended_state_indices)]
             return np.concatenate([state, np.array([p_stress, self.prev_rate], dtype=float)])
         if self.scenario_spec.input_mode == "belief_state_uncertainty":
             state = self.filtered_mean[list(self.selected_state_indices)]

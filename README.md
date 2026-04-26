@@ -32,31 +32,31 @@
 python3 -m pip install -r requirements.txt
 ```
 
-Полный запуск HANK baseline:
+Запуск полной HANK-модели:
 
 ```bash
 python3 scripts/run_hank.py
 ```
 
-Запуск HANK baseline с неполной информацией:
+Запуск версии с неполной наблюдаемостью:
 
 ```bash
 python3 scripts/run_hank_partial_info.py
 ```
 
-Запуск learning-based policy layer поверх partial-information HANK:
+Запуск обучаемого правила поверх версии с неполной наблюдаемостью:
 
 ```bash
 python3 scripts/run_hank_learning.py
 ```
 
-Запуск regime-switching HANK baseline:
+Запуск версии со скрытыми режимами:
 
 ```bash
 python3 scripts/run_hank_regime.py
 ```
 
-Запуск regime-learning experiments:
+Запуск сравнений правил при скрытых режимах:
 
 ```bash
 python3 scripts/run_hank_regime_learning.py
@@ -84,7 +84,7 @@ python3 scripts/run_hank_regime_reduced_state_validation.py --run-full-hank-proj
 - `outputs/hank_regime_learning_stage6_universal_tuning`
 - `outputs/hank_regime_learning_stage6_reduced_state_validation`
 
-## Что считает текущий baseline
+## Что считает базовая полная модель
 
 - стационарное равновесие полной two-asset HANK-модели;
 - распределение домохозяйств по ликвидному и неликвидному богатству;
@@ -92,31 +92,31 @@ python3 scripts/run_hank_regime_reduced_state_validation.py --run-full-hank-proj
 - переходную динамику после монетарного шока;
 - импульсные отклики агрегатов;
 - групповые и распределительные эффекты;
-- validation и robustness-блок по MPC, WHtM и household-side calibration.
+- проверочный блок по MPC, WHtM и параметрам сектора домохозяйств.
 
-## Что считает partial-information baseline
+## Что считает версия с неполной наблюдаемостью
 
 - низкоразмерное представление скрытого состояния полной HANK-среды как интерфейс политики;
 - синтетические траектории скрытого состояния и шумных макроэкономических наблюдений;
 - фильтрацию скрытого состояния;
 - классическую схему `наблюдения -> фильтрация -> правило`;
-- сравнение с benchmark при полной информации по функции потерь, отклонению ставки и распределительным метрикам.
+- сравнение с правилом при полной информации по функции потерь, отклонению ставки и распределительным показателям.
 
-## Что считает learning-based policy baseline
+## Что считает версия с обучаемым правилом
 
-- continuous-action residual PPO поверх того же reduced HANK state-space и того же фильтра;
+- PPO с непрерывным выбором ставки поверх того же редуцированного состояния и того же фильтра;
 - сравнение `классическая схема фильтрации и фиксированного правила` против `фильтрации и обучаемого правила`;
 - основные сценарии: `macro_core`, `full_macro`, `thin_information`, `high_noise`, `distribution_augmented`;
 - абляции: `оценённое состояние + неопределённость`, `наблюдаемые переменные`, `без распределительных компонент состояния`;
-- policy, macro and distributional evaluation уже на полном HANK transition solver.
+- проверка траекторий ставки, макропеременных и распределительных показателей через переходный решатель полной HANK-модели.
 
-## Что считают regime-switching расширения
+## Что считают расширения со скрытыми режимами
 
-- stage 5: скрытые режимы поверх reduced-state HANK с переключающимся фильтром и классическим правилом;
+- stage 5: скрытые режимы поверх редуцированного состояния HANK с переключающимся фильтром и классическим правилом;
 - stage 6: обучаемые правила по отфильтрованному состоянию и по наблюдениям в HANK-среде со скрытыми режимами;
 - основной результат stage 6 для основного текста теперь собран в чистую матрицу монетарных сравнений: `полная информация, фиксированное правило`, `фильтрация, фиксированное правило`, `фильтрация, гибкое правило`, `наблюдаемые переменные, гибкое правило`;
 - главный вывод этой матрицы: гибкость правила по отфильтрованному состоянию особенно важна при тонком информационном наборе, тогда как в сценариях с более богатым набором наблюдений различие между правилами по наблюдаемым переменным и по отфильтрованному состоянию невелико.
-- отдельный validation package проверяет, что редуцированное состояние является содержательно и прогностически значимым интерфейсом политики: для него собраны таблица экономической интерпретации компонент, out-of-sample forecast sufficiency tests и проверка сохранения ранжирования правил через full-HANK projection.
+- отдельный проверочный блок показывает, что редуцированное состояние является содержательно и прогностически значимым представлением для задачи политики: для него собраны таблица экономической интерпретации компонент, проверка качества прогноза и проверка сохранения ранжирования правил через HANK-переход.
 
 ## Ключевые артефакты
 
@@ -144,7 +144,7 @@ python3 scripts/run_hank_regime_reduced_state_validation.py --run-full-hank-proj
 - `outputs/hank_policy_stage2/household_robustness_group_peaks.csv`
 - `outputs/hank_policy_stage2/report_stage2_hank_policy.md`
 
-Для partial-information HANK:
+Для версии с неполной наблюдаемостью:
 
 - `outputs/hank_partial_info_stage3/model_spec.json`
 - `outputs/hank_partial_info_stage3/filter_spec.json`
@@ -161,7 +161,7 @@ python3 scripts/run_hank_regime_reduced_state_validation.py --run-full-hank-proj
 - `outputs/hank_partial_info_stage3/policy_metrics.csv`
 - `outputs/hank_partial_info_stage3/report_stage3_partial_information_hank.md`
 
-Для stage 4 learning-based policy:
+Для stage 4 с обучаемым правилом:
 
 - `outputs/hank_learning_stage4/model_spec.json`
 - `outputs/hank_learning_stage4/filter_spec.json`
@@ -177,14 +177,14 @@ python3 scripts/run_hank_regime_reduced_state_validation.py --run-full-hank-proj
 - `outputs/hank_learning_stage4/group_paths.csv`
 - `outputs/hank_learning_stage4/report_stage4_learning_policy_hank.md`
 
-Для stage 5 regime-switching baseline:
+Для stage 5 со скрытыми режимами:
 
 - `outputs/hank_regime_switching_stage5/filter_metrics.csv`
 - `outputs/hank_regime_switching_stage5/policy_metrics.csv`
 - `outputs/hank_regime_switching_stage5/regime_paths.csv`
 - `outputs/hank_regime_switching_stage5/report_stage5_regime_switching_hank.md`
 
-Для stage 6 tuned regime-learning results:
+Для stage 6 с подбором правил:
 
 - `outputs/hank_regime_learning_stage6_universal_tuning/candidate_summary.csv`
 - `outputs/hank_regime_learning_stage6_universal_tuning/scenario_results.csv`
@@ -194,7 +194,7 @@ python3 scripts/run_hank_regime_reduced_state_validation.py --run-full-hank-proj
 - `outputs/hank_regime_learning_stage6_universal_tuning/best_candidate_seed_win_rates.csv`
 - `outputs/hank_regime_learning_stage6_universal_tuning/report_universal_tuning.md`
 
-Для stage 6 summary и diagnostics:
+Для stage 6: основные таблицы и проверочные материалы:
 
 - `outputs/hank_regime_learning_stage6_core_matrix/main_policy_matrix.csv`
 - `outputs/hank_regime_learning_stage6_core_matrix/core_headline_table.csv`
@@ -237,69 +237,69 @@ python3 scripts/run_hank_regime_reduced_state_validation.py --run-full-hank-proj
 
 - `outputs/hank_policy_stage2/tables/`
 
-Основные figures лежат в:
+Основные рисунки лежат в:
 
 - `outputs/hank_policy_stage2/figures/`
 
 ## Структура репозитория
 
 - `hank_full_baseline/`
-  Полный HANK pipeline: calibration, steady state, household solver, sequence-space Jacobian, transition dynamics, plots, tables и robustness.
+  Полная HANK-модель: калибровка, стационарное состояние, решение задачи домохозяйств, якобианы, переходная динамика, графики и таблицы.
 - `hank_partial_info_baseline/`
-  Reduced-state partial-observability HANK pipeline: state-space approximation, фильтр, information scenarios, policy diagnostics и article-ready plots/tables. Этот слой трактуется как интерфейс политики, а не как замена полной HANK-экономики.
+  Версия с неполной наблюдаемостью: редуцированное состояние, фильтр, информационные сценарии и сравнение правил. Этот слой трактуется как представление состояния для задачи политики, а не как замена полной HANK-модели.
 - `hank_learning_policy_baseline/`
-  Learning-based policy layer for partial-information HANK: PPO trainer, residual policy environment, scenario evaluation и article-ready outputs.
+  Блок обучаемого правила для версии с неполной наблюдаемостью: обучение PPO, оценка по сценариям и итоговые таблицы.
 - `regime_switching_baseline/`
-  Stage-5 regime-switching HANK overlay: скрытые режимы, переключающийся фильтр, classical benchmark и regime diagnostics.
+  Блок со скрытыми режимами: скрытые режимы, переключающийся фильтр, классическое правило и диагностические материалы.
 - `hank_regime_learning_baseline/`
-  Stage-6 regime-learning layer: обучаемые правила по наблюдениям и по отфильтрованному состоянию, проверки архитектурных ошибок, переноса на новые среды и интерпретационные diagnostics.
+  Этап 6: сравнение правил по наблюдаемым переменным и по оценённому состоянию, проверка ошибок спецификации, проверка переноса на новые среды и интерпретационные таблицы.
 - `scripts/run_hank.py`
-  One-command запуск полного HANK baseline.
+  Однокомандный запуск полной HANK-модели.
 - `scripts/run_hank_partial_info.py`
-  One-command запуск partial-information HANK baseline.
+  Однокомандный запуск версии с неполной наблюдаемостью.
 - `scripts/run_hank_learning.py`
-  One-command запуск stage-4 learning-based policy baseline.
+  Однокомандный запуск этапа 4 с обучаемым правилом.
 - `scripts/run_hank_regime.py`
-  One-command запуск stage-5 regime-switching baseline.
+  Однокомандный запуск этапа 5 со скрытыми режимами.
 - `scripts/run_hank_regime_learning.py`
-  One-command запуск stage-6 regime-learning experiments.
+  Однокомандный запуск этапа 6 со скрытыми режимами.
 - `scripts/run_hank_regime_policy_extensions.py`
-  One-command запуск stage-6 extension checks: оптимизированное линейное правило по оценённому состоянию, историческое правило по наблюдаемым переменным и увеличенный набор test trajectories.
+  Однокомандный запуск дополнительных проверок этапа 6: оптимизированные линейные правила, правило по наблюдаемым переменным с историей и расширенный набор тестовых траекторий.
 - `scripts/run_hank_regime_full_hank_projection.py`
-  Проверка selected stage-6 policy-rate paths через full-HANK transition solver.
+  Проверка выбранных траекторий ставки из этапа 6 через переходный решатель полной HANK-модели.
 - `scripts/run_hank_regime_reduced_state_validation.py`
-  Проверка редуцированного состояния как интерфейса политики: экономическая интерпретация компонент, прогнозная достаточность и сохранение ранжирования правил при full-HANK projection.
+  Проверка редуцированного состояния как представления для задачи политики: экономическая интерпретация компонент, прогнозная достаточность и сохранение ранжирования правил при HANK-переходе.
 - `outputs/hank_policy_stage2/`
   Канонический набор результатов для текущей рабочей ветки.
 - `outputs/hank_partial_info_stage3/`
-  Канонический набор результатов для HANK baseline с неполной информацией.
+  Канонический набор результатов для HANK-модели с неполной наблюдаемостью.
 - `outputs/hank_learning_stage4/`
-  Канонический набор результатов для stage 4: learning-based policy layer в полной HANK при неполной информации.
+  Канонический набор результатов для этапа 4: обучаемое правило в полной HANK-модели при неполной наблюдаемости.
 - `outputs/hank_regime_switching_stage5/`
-  Канонический набор результатов для stage 5: regime-switching HANK baseline.
+  Канонический набор результатов для этапа 5: версия со скрытыми режимами.
 - `outputs/hank_regime_learning_stage6_universal_tuning/`
-  Канонический набор результатов для stage 6: tuned regime-learning comparison против misspecified classical benchmark.
+  Канонический набор результатов для этапа 6: сравнение настроенных правил со стандартным классическим правилом.
 - `outputs/hank_regime_learning_stage6_policy_extensions/`
-  Дополнительный stage-6 validation layer: selected linear rule, history-based observable rule, 50 held-out test trajectories и full-HANK projection для top policy paths.
+  Дополнительные проверки этапа 6: настроенные линейные правила, правило по наблюдаемым переменным с историей, 50 независимых тестовых траекторий и проверка выбранных траекторий через HANK-переход.
 - `outputs/hank_regime_learning_stage6_reduced_state_validation/`
-  Обоснование редуцированного представления состояния: component interpretation, forecast sufficiency и policy ranking validation.
+  Обоснование редуцированного представления состояния: экономическая интерпретация компонент, проверка качества прогноза и проверка сохранения ранжирования правил.
 
 ## Архивные ветки
 
 Старые линии проекта специально вынесены из `main`, чтобы не мешать текущей HANK-разработке.
 
 - `archive/hank-legacy`
-  Legacy HANK-постановки и переходные partial-information HANK материалы.
+  Ранние HANK-постановки и переходные материалы по версии с неполной наблюдаемостью.
 - `archive/pre-hank-only-main`
-  Предыдущая широкая версия проекта с baseline этапами 1–7, RL-блоками и не-HANK артефактами.
+  Предыдущая широкая версия проекта с этапами 1–7, блоками обучения и не-HANK артефактами.
 
 ## Текущий фокус
 
-Текущая main-line логика уже собрана как последовательность:
+Текущая рабочая логика уже собрана как последовательность:
 - stage 2: классическая денежно-кредитная политика при полной информации в полной HANK;
-- stage 3: неполная наблюдаемость и classical `filter -> rule`, где низкоразмерное состояние является интерфейсом политики;
-- stage 4: learning-based policy layer на той же HANK-среде и той же информационной структуре;
-- stage 5: hidden regime-switching HANK under partial information;
-- stage 6: tuned regime-learning policy и карта условий, где обучаемое правило получает преимущество над жестко заданной или ошибочно специфицированной классической архитектурой.
+- stage 3: неполная наблюдаемость и классическая схема `фильтр -> правило`, где низкоразмерное состояние служит представлением для задачи политики;
+- stage 4: обучаемое правило на той же HANK-среде и при той же информационной структуре;
+- stage 5: HANK-модель при неполной наблюдаемости со скрытыми режимами;
+- stage 6: настроенные правила при скрытых режимах и карта условий, в которых более гибкая схема даёт выигрыш относительно жёстко заданного классического правила.
 
-Следующие расширения должны идти уже от этой рамки: полная HANK как истинная экономика, низкоразмерное представление состояния как интерфейс политики, скрытые режимы и информационные искажения как условия, при которых обучаемая политика может иметь добавочную ценность.
+Следующие расширения должны идти уже от этой рамки: полная HANK как истинная экономика, низкоразмерное представление состояния как рабочее представление для задачи политики, скрытые режимы и информационные искажения как условия, при которых обучаемая политика может иметь добавочную ценность.

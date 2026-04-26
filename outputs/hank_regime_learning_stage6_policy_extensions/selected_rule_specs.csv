@@ -1,9 +1,25 @@
-scenario_name,scenario_label,policy_name,phi_pi,phi_y,rho_i,alpha
-macro_core_moderate_gap,Базовый макроэкономический набор × умеренная разделимость режимов,optimized_linear_estimated_state,1.0,0.0,0.85,
-macro_core_moderate_gap,Базовый макроэкономический набор × умеренная разделимость режимов,history_observables_rule,0.5,0.0,0.85,0.8
-macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,optimized_linear_estimated_state,1.0,0.0,0.85,
-macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,history_observables_rule,0.5,0.0,0.7,0.5
-thin_information_moderate_gap,Ограниченный информационный набор × умеренная разделимость режимов,optimized_linear_estimated_state,1.0,0.0,0.85,
-thin_information_moderate_gap,Ограниченный информационный набор × умеренная разделимость режимов,history_observables_rule,0.5,0.0,0.85,0.8
-thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,optimized_linear_estimated_state,1.0,0.0,0.85,
-thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,history_observables_rule,0.5,0.0,0.7,0.5
+scenario_name,scenario_label,policy_name,phi_pi,phi_y,rho_i,coeff_rstar,coeff_productivity,coeff_fiscal,coeff_pi,coeff_output,coeff_stress,alpha,policy_label,training_seed,checkpoint_iteration,validation_return,mean_episode_return,selection_objective,selection_rate_rmse,selection_unstable_episodes
+macro_core_moderate_gap,Базовый макроэкономический набор × умеренная разделимость режимов,optimized_linear_estimated_state,1.0,0.0,0.85,,,,,,,,,,,,,,,
+macro_core_moderate_gap,Базовый макроэкономический набор × умеренная разделимость режимов,optimized_linear_extended_state,,,0.85,0.5,0.5,0.5,1.0,0.0,0.0,,,,,,,,,
+macro_core_moderate_gap,Базовый макроэкономический набор × умеренная разделимость режимов,history_observables_rule,0.5,0.0,0.85,,,,,,,0.8,,,,,,,,
+macro_core_moderate_gap,Базовый макроэкономический набор × умеренная разделимость режимов,optimized_linear_true_state,1.0,0.0,0.85,,,,,,,,,,,,,,,
+macro_core_moderate_gap,Базовый макроэкономический набор × умеренная разделимость режимов,ppo_filtered_taylor_state,,,,,,,,,,,PPO-правило на оценённом тейлоровском наборе,11.0,35.0,-0.0031655676289023193,-0.002434231044388581,0.0015085366333915827,0.0024769647323514533,0.0
+macro_core_moderate_gap,Базовый макроэкономический набор × умеренная разделимость режимов,ppo_filtered_extended_state,,,,,,,,,,,PPO-правило на расширенном оценённом состоянии,22.0,1.0,-0.0017619295119496972,-0.002718833157163971,0.0023861170365193285,0.0019126743595307243,0.0
+macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,optimized_linear_estimated_state,1.0,0.0,0.85,,,,,,,,,,,,,,,
+macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,optimized_linear_extended_state,,,0.85,1.5,0.5,0.5,1.0,0.0,0.0,,,,,,,,,
+macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,history_observables_rule,0.5,0.0,0.7,,,,,,,0.5,,,,,,,,
+macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,optimized_linear_true_state,1.0,0.0,0.85,,,,,,,,,,,,,,,
+macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,ppo_filtered_taylor_state,,,,,,,,,,,PPO-правило на оценённом тейлоровском наборе,22.0,3.0,-0.0027421131108165304,-0.004687556437205912,0.003882442235696193,0.001920786308066325,0.0
+macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,ppo_filtered_extended_state,,,,,,,,,,,PPO-правило на расширенном оценённом состоянии,22.0,35.0,-0.00244382719173215,-0.003596389469020247,0.0035031304724470547,0.0023733283953253008,0.0
+thin_information_moderate_gap,Ограниченный информационный набор × умеренная разделимость режимов,optimized_linear_estimated_state,1.0,0.0,0.85,,,,,,,,,,,,,,,
+thin_information_moderate_gap,Ограниченный информационный набор × умеренная разделимость режимов,optimized_linear_extended_state,,,0.85,0.5,0.5,0.5,1.0,0.0,0.0,,,,,,,,,
+thin_information_moderate_gap,Ограниченный информационный набор × умеренная разделимость режимов,history_observables_rule,0.5,0.0,0.85,,,,,,,0.8,,,,,,,,
+thin_information_moderate_gap,Ограниченный информационный набор × умеренная разделимость режимов,optimized_linear_true_state,1.0,0.0,0.85,,,,,,,,,,,,,,,
+thin_information_moderate_gap,Ограниченный информационный набор × умеренная разделимость режимов,ppo_filtered_taylor_state,,,,,,,,,,,PPO-правило на оценённом тейлоровском наборе,11.0,24.0,-0.0022404725079864293,-0.0037449010029324756,0.0027071047647529165,0.0020784037790354277,0.0
+thin_information_moderate_gap,Ограниченный информационный набор × умеренная разделимость режимов,ppo_filtered_extended_state,,,,,,,,,,,PPO-правило на расширенном оценённом состоянии,22.0,27.0,-0.000874871583422099,-0.0014717805654611085,0.0010981138265032154,0.0034462156878606424,0.0
+thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,optimized_linear_estimated_state,1.0,0.0,0.85,,,,,,,,,,,,,,,
+thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,optimized_linear_extended_state,,,0.85,0.5,0.0,0.5,1.0,0.0,0.0,,,,,,,,,
+thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,history_observables_rule,0.5,0.0,0.7,,,,,,,0.5,,,,,,,,
+thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,optimized_linear_true_state,1.0,0.0,0.85,,,,,,,,,,,,,,,
+thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,ppo_filtered_taylor_state,,,,,,,,,,,PPO-правило на оценённом тейлоровском наборе,22.0,0.0,-0.003261790423752424,-0.00541698387699998,0.006194711334903394,0.0017169886457719316,0.0
+thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,ppo_filtered_extended_state,,,,,,,,,,,PPO-правило на расширенном оценённом состоянии,22.0,12.0,-0.0018284262088511972,-0.003674646257272755,0.005610603574949806,0.0028740268583143922,0.0

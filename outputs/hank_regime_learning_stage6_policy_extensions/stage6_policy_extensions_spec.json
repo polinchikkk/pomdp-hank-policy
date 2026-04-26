@@ -1,4 +1,30 @@
 {
+  "ppo_candidate_name": "larger_network",
+  "ppo_training_seeds": [
+    11,
+    22
+  ],
+  "ppo_config": {
+    "hidden_dim_1": 48,
+    "hidden_dim_2": 48,
+    "rollout_episodes": 12,
+    "num_iterations": 36,
+    "num_epochs": 8,
+    "minibatch_size": 128,
+    "actor_learning_rate": 0.0004,
+    "critic_learning_rate": 0.0007,
+    "clip_epsilon": 0.2,
+    "gae_lambda": 0.95,
+    "entropy_coefficient": 0.0015,
+    "max_grad_norm": 1.0,
+    "initial_log_std": -8.8,
+    "min_log_std": -10.5,
+    "max_log_std": -7.0,
+    "validation_episodes": 4,
+    "normalization_episodes": 8,
+    "normalization_clip": 6.0,
+    "checkpoint_interval": 4
+  },
   "validation_seeds": [
     500,
     501,
@@ -69,9 +95,12 @@
     "thin_information_moderate_gap",
     "thin_information_strong_gap"
   ],
-  "run_full_hank_projection": false,
+  "run_full_hank_projection": true,
   "full_hank_scenarios": [
+    "macro_core_moderate_gap",
+    "macro_core_strong_gap",
+    "thin_information_moderate_gap",
     "thin_information_strong_gap"
   ],
-  "note": "Rules are selected on validation trajectories and reported on held-out test trajectories. The history-based rule is recurrent through an exponentially smoothed observation state."
+  "note": "Правила отбираются на валидационных траекториях и оцениваются на независимых тестовых траекториях. Историческое правило использует внутреннее экспоненциально сглаженное состояние наблюдений."
 }
