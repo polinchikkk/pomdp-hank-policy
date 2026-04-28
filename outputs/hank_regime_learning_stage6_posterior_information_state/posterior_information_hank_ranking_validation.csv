@@ -1,0 +1,9 @@
+scenario_name,scenario_label,policy_name,info_set_name,common_scale,reduced_cumulative_loss,common_scale_full_hank_loss,reduced_rank,common_scale_full_hank_rank,spearman_rank_correlation,ranking_preserved
+macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,linear_observed_information,observed_information,1.0,0.0007385905780910342,1.9437227155778578e-06,3.0,2.0,-0.3333333333333334,0
+macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,linear_posterior_mean,posterior_mean,1.0,0.000731882554509842,1.7385656995642796e-07,2.0,1.0,-0.3333333333333334,0
+macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,linear_posterior_uncertainty,posterior_uncertainty,1.0,0.000731882554509842,1.7385656995642796e-07,2.0,1.0,-0.3333333333333334,0
+macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,linear_posterior_distribution,posterior_distribution,1.0,0.0006891263481721452,6.664343285276288e-06,1.0,3.0,-0.3333333333333334,0
+thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,linear_observed_information,observed_information,1.0,0.0007385905780910342,1.9437227155778578e-06,2.0,2.0,1.0,1
+thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,linear_posterior_mean,posterior_mean,1.0,0.0007647100429128986,1.994253978281932e-06,3.0,3.0,1.0,1
+thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,linear_posterior_uncertainty,posterior_uncertainty,1.0,0.0007647100429128986,1.994253978281932e-06,3.0,3.0,1.0,1
+thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,linear_posterior_distribution,posterior_distribution,1.0,0.0007039407068832429,1.4120442885603554e-06,1.0,1.0,1.0,1

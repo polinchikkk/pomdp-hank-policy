@@ -36,6 +36,7 @@ def simulate_policy_episode(
             "include_distributional_state": int(scenario_spec.include_distributional_state),
             "hidden_regime": int(step_info["hidden_regime"]),
             "stress_probability": float(step_info["stress_probability"]),
+            "stress_entropy": float(step_info["stress_entropy"]),
             "reward": float(reward),
             "loss": float(step_info["loss"]),
             "inflation_loss": float(step_info["inflation_loss"]),
@@ -47,6 +48,9 @@ def simulate_policy_episode(
             "residual_action": float(step_info["residual_action"]),
             "policy_shock": float(step_info["policy_shock"]),
             "current_rate": float(step_info["current_rate"]),
+            "lagged_policy_rate": float(step_info["current_rate"]),
+            "filtered_variance_trace": float(step_info["filtered_variance_trace"]),
+            "filtered_macro_variance_trace": float(step_info["filtered_macro_variance_trace"]),
         }
         true_state = np.asarray(step_info["true_state"], dtype=float)
         filtered_state = np.asarray(step_info["filtered_state"], dtype=float)
@@ -56,8 +60,10 @@ def simulate_policy_episode(
             row[f"filtered_{state_name}"] = float(filtered_state[index])
             row[f"filtered_var_{state_name}"] = float(filtered_variance[index])
         observations = np.asarray(step_info["current_observations"], dtype=float)
+        lagged_observations = np.asarray(step_info["lagged_observations"], dtype=float)
         for index, observation_name in enumerate(step_info["noisy_observation_names"]):
             row[f"observed_{observation_name}"] = float(observations[index])
+            row[f"lagged_observed_{observation_name}"] = float(lagged_observations[index])
         rows.append(row)
         observation = next_observation
         info = env.current_context.copy()

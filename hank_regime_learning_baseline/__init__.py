@@ -2,6 +2,7 @@ from .config import RegimeLearningConfig, default_regime_learning_config
 
 __all__ = [
     "run_core_matrix",
+    "run_posterior_information_state",
     "run_architecture_ablation",
     "RegimeLearningConfig",
     "default_regime_learning_config",
@@ -24,6 +25,10 @@ def __getattr__(name: str):
         from .core_matrix import run_core_matrix
 
         return run_core_matrix
+    if name == "run_posterior_information_state":
+        from .posterior_information_state import run_posterior_information_state
+
+        return run_posterior_information_state
     if name == "run_architecture_ablation":
         from .architecture_ablation import run_architecture_ablation
 
