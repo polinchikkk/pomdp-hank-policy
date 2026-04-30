@@ -34,6 +34,15 @@ OBSERVATION_LABELS = {
     "i": "Номинальная ставка",
 }
 
+INFORMATION_REGIME_LABELS = {
+    "compact_macro_observations": "Сжатый макронабор",
+    "macro_observations": "Базовые макроэкономические наблюдения",
+    "thin_information": "Ограниченный информационный набор",
+    "high_noise_macro_observations": "Базовые макронаблюдения с повышенным шумом",
+    "distribution_signals": "Макронаблюдения и шумные распределительные сигналы",
+    "full_information_upper_bound": "Полная информация",
+}
+
 
 @dataclass(frozen=True)
 class HANKPartialInfoConfig:
@@ -74,26 +83,38 @@ class HANKPartialInfoConfig:
         return [
             {
                 "name": "macro_core",
-                "label": "Фильтрация: инфляция, выпуск и ставка",
+                "label": "Сжатый макронабор: инфляция, выпуск и ставка",
                 "description": (
-                    "Базовый policy-relevant набор наблюдений: инфляция и разрыв выпуска "
-                    "наблюдаются с шумом, ставка известна как инструмент политики."
+                    "Сжатый макроэкономический режим: регулятор наблюдает только шумные "
+                    "сигналы по инфляции и разрыву выпуска; ставка известна точно как "
+                    "собственный инструмент."
                 ),
                 "noisy_observations": ("pi", "output_gap"),
                 "known_exact": ("i",),
                 "noise_scale": 1.0,
                 "includes_distribution_stats": False,
+                "information_regime": "compact_macro_observations",
+                "information_regime_label": INFORMATION_REGIME_LABELS["compact_macro_observations"],
+                "distribution_signal_lag": None,
+                "uses_true_distribution_state": False,
             },
             {
                 "name": "full_macro",
-                "label": "Фильтрация: расширенный макронабор",
+                "label": "Базовые макроэкономические наблюдения",
                 "description": (
-                    "К инфляции и выпуску добавлены потребление и реальная заработная плата."
+                    "Базовый макроэкономический режим: регулятор получает шумные "
+                    "текущие сигналы по инфляции, разрыву выпуска, потреблению, "
+                    "реальной заработной плате и занятости. Распределительные "
+                    "характеристики напрямую не наблюдаются."
                 ),
-                "noisy_observations": ("pi", "output_gap", "C", "w"),
+                "noisy_observations": ("pi", "output_gap", "C", "w", "N"),
                 "known_exact": ("i",),
                 "noise_scale": 1.0,
                 "includes_distribution_stats": False,
+                "information_regime": "macro_observations",
+                "information_regime_label": INFORMATION_REGIME_LABELS["macro_observations"],
+                "distribution_signal_lag": None,
+                "uses_true_distribution_state": False,
             },
             {
                 "name": "thin_information",
@@ -106,30 +127,100 @@ class HANKPartialInfoConfig:
                 "known_exact": ("i",),
                 "noise_scale": 1.0,
                 "includes_distribution_stats": False,
+                "information_regime": "thin_information",
+                "information_regime_label": INFORMATION_REGIME_LABELS["thin_information"],
+                "distribution_signal_lag": None,
+                "uses_true_distribution_state": False,
             },
             {
                 "name": "high_noise",
-                "label": "Фильтрация: высокий шум измерения",
+                "label": "Базовые макронаблюдения с повышенным шумом",
                 "description": (
-                    "Базовый набор инфляция-выпуск-ставка, но с более высоким шумом "
-                    "в доступных макронаблюдениях."
+                    "Те же базовые макроэкономические наблюдения, но с более высоким "
+                    "шумом измерения."
                 ),
-                "noisy_observations": ("pi", "output_gap"),
+                "noisy_observations": ("pi", "output_gap", "C", "w", "N"),
                 "known_exact": ("i",),
                 "noise_scale": 2.0,
                 "includes_distribution_stats": False,
+                "information_regime": "high_noise_macro_observations",
+                "information_regime_label": INFORMATION_REGIME_LABELS["high_noise_macro_observations"],
+                "distribution_signal_lag": None,
+                "uses_true_distribution_state": False,
             },
             {
                 "name": "distribution_augmented",
-                "label": "Фильтрация: с распределительной статистикой",
+                "label": "Макронаблюдения и шумные распределительные сигналы",
                 "description": (
-                    "К инфляции, выпуску и ставке добавлены наблюдения доли "
-                    "низколиквидных домохозяйств и средней MPC."
+                    "К базовым макроэкономическим наблюдениям добавлены шумные "
+                    "сигналы по доле низколиквидных домохозяйств и средней предельной "
+                    "склонности к потреблению. Эти сигналы используются как наблюдаемые "
+                    "статистики, а не как истинные скрытые состояния."
                 ),
-                "noisy_observations": ("pi", "output_gap", "share_low_liquidity", "mean_mpc"),
+                "noisy_observations": (
+                    "pi",
+                    "output_gap",
+                    "C",
+                    "w",
+                    "N",
+                    "share_low_liquidity",
+                    "mean_mpc",
+                ),
                 "known_exact": ("i",),
                 "noise_scale": 1.0,
                 "includes_distribution_stats": True,
+                "information_regime": "distribution_signals",
+                "information_regime_label": INFORMATION_REGIME_LABELS["distribution_signals"],
+                "distribution_signal_lag": 0,
+                "uses_true_distribution_state": False,
+            },
+        ]
+
+    def article_information_regimes_payload(self) -> list[dict]:
+        scenario_map = {
+            spec["name"]: spec
+            for spec in self.scenario_specs()
+        }
+        macro_spec = scenario_map["full_macro"]
+        distribution_spec = scenario_map["distribution_augmented"]
+        return [
+            {
+                "name": "macro_observations",
+                "label": INFORMATION_REGIME_LABELS["macro_observations"],
+                "role": "базовый режим",
+                "scenario_name": macro_spec["name"],
+                "noisy_observations": list(macro_spec["noisy_observations"]),
+                "known_exact": list(macro_spec["known_exact"]),
+                "distribution_signals": "нет",
+                "note": (
+                    "Регулятор использует только шумные макроэкономические сигналы. "
+                    "Распределительные характеристики напрямую не наблюдаются."
+                ),
+            },
+            {
+                "name": "distribution_signals",
+                "label": INFORMATION_REGIME_LABELS["distribution_signals"],
+                "role": "режим с распределительными сигналами",
+                "scenario_name": distribution_spec["name"],
+                "noisy_observations": list(distribution_spec["noisy_observations"]),
+                "known_exact": list(distribution_spec["known_exact"]),
+                "distribution_signals": "шумные сигналы по ликвидности и средней склонности к потреблению",
+                "note": (
+                    "Распределительные показатели входят только как шумные наблюдаемые "
+                    "сигналы и не подменяют истинное скрытое состояние."
+                ),
+            },
+            {
+                "name": "full_information_upper_bound",
+                "label": INFORMATION_REGIME_LABELS["full_information_upper_bound"],
+                "role": "верхняя граница",
+                "scenario_name": "full_information",
+                "true_state_names": list(STATE_NAMES),
+                "distribution_signals": "истинное структурное и распределительное состояние",
+                "note": (
+                    "Используется только как верхняя граница: правило строится по истинному "
+                    "состоянию, но потери сравниваются с теми же реализованными траекториями."
+                ),
             },
         ]
 
@@ -141,8 +232,9 @@ class HANKPartialInfoConfig:
             "base_measurement_noise_std": self.base_measurement_noise(),
             "confidence_band_scale": self.confidence_scale,
             "note": (
-                "Policy rate is treated as an exact component of the policymaker information set. "
-                "Noisy measurements are applied only to macro and distributional releases."
+                "Ставка известна регулятору точно как собственный инструмент. "
+                "Шум накладывается только на наблюдаемые макроэкономические и "
+                "распределительные статистики."
             ),
         }
 
@@ -166,12 +258,14 @@ class HANKPartialInfoConfig:
         for scenario in self.scenario_specs():
             rows.append({
                 "scenario": scenario["label"],
+                "information_regime": scenario["information_regime_label"],
                 "observed_variables": ", ".join(
                     OBSERVATION_LABELS[name]
                     for name in scenario["noisy_observations"] + scenario["known_exact"]
                 ),
                 "noise_scale": scenario["noise_scale"],
                 "uses_distribution_stats": scenario["includes_distribution_stats"],
+                "distribution_signal_lag": scenario["distribution_signal_lag"],
                 "base_noise": {
                     name: base_noise[name]
                     for name in scenario["noisy_observations"]
@@ -184,9 +278,9 @@ class HANKPartialInfoConfig:
             "stage": "stage3_partial_information_full_hank",
             "source_model": hank_model_name,
             "description": (
-                "Reduced-state local linear representation of the full two-asset HANK model, "
-                "used to filter policy-relevant macro and distributional state components "
-                "from noisy observables before applying a classical policy rule."
+                "Низкоразмерное локально-линейное представление полной двухактивной "
+                "HANK-модели. Используется для восстановления скрытых компонент состояния "
+                "по шумным наблюдаемым сигналам перед применением правила политики."
             ),
             "state_names": list(STATE_NAMES),
             "state_interpretation": {
@@ -200,8 +294,14 @@ class HANKPartialInfoConfig:
             },
             "observation_names": list(NOISY_OBSERVATION_NAMES) + ["i"],
             "timing_note": (
-                "Noisy macro releases enter the Kalman update contemporaneously; the policy rate "
-                "is treated as an exactly known instrument chosen by the regulator."
+                "Наблюдаемые макроэкономические и распределительные сигналы входят в "
+                "обновление фильтра с шумом измерения; ставка считается точно известным "
+                "инструментом, который выбирает регулятор."
+            ),
+            "loss_evaluation_note": (
+                "Правило политики использует только наблюдаемые сигналы или оценённое "
+                "состояние, а функция потерь считается по истинным реализованным значениям "
+                "инфляции и разрыва выпуска."
             ),
         }
 

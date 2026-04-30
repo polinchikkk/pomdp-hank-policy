@@ -1,5 +1,0 @@
-scenario_name,scenario_label,best_learned_architecture,best_learned_mean_cumulative_loss,switching_classical_mean_cumulative_loss,full_information_mean_cumulative_loss,seed_loss_column
-macro_core_moderate_gap,"Инфляция, выпуск, ставка × умеренный режимный разрыв",raw_observations,0.0020096692234271,0.0076052857429902,0.0060826096695615695,rawobs_cumulative_policy_loss
-macro_core_strong_gap,"Инфляция, выпуск, ставка × сильный режимный разрыв",raw_observations,0.0023986121583063,0.0084860241462418,0.007040926200803569,rawobs_cumulative_policy_loss
-thin_information_moderate_gap,"Инфляция, ставка × умеренный режимный разрыв",belief_state,0.0036837226266454,0.0085021067526057,0.0060826096695615695,belief_cumulative_policy_loss
-thin_information_strong_gap,"Инфляция, ставка × сильный режимный разрыв",belief_state,0.0036272001508272,0.010156859030405,0.00704092620500236,belief_cumulative_policy_loss

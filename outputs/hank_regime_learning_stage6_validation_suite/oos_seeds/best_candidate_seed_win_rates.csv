@@ -1,5 +1,0 @@
-scenario_name,seed_win_rate,num_evaluation_seeds
-macro_core_moderate_gap,1.0,10
-macro_core_strong_gap,1.0,10
-thin_information_moderate_gap,1.0,10
-thin_information_strong_gap,0.9,10

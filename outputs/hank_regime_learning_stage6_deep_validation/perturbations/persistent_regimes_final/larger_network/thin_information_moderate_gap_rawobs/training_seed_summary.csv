@@ -1,2 +1,0 @@
-variant_name,training_seed,best_validation_return,final_validation_return,final_mean_episode_return,best_validation_return_selected,final_validation_return_selected,final_mean_episode_return_selected
-thin_information_moderate_gap_rawobs,11,-0.0016374682860430631,-0.004044875104948702,-0.0032165840497260134,-0.002797273668675007,-0.002797273668675007,-0.004649182988311049

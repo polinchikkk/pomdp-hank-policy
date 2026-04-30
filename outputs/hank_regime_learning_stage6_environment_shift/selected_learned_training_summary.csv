@@ -1,5 +1,0 @@
-scenario_name,input_mode,training_seed,checkpoint_iteration,selection_objective,selection_rate_rmse
-macro_core_moderate_gap,raw_observations,11,32,0.0009590363813196878,0.0023778087307766704
-macro_core_strong_gap,raw_observations,11,32,0.000869767338540079,0.003623485499490822
-thin_information_moderate_gap,belief_state,11,16,0.0014853337575744965,0.002415182585749027
-thin_information_strong_gap,belief_state,11,32,0.0009185121223302317,0.006112914992352177

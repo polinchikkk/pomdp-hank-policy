@@ -8,9 +8,15 @@ def information_scenarios_table(scenario_spec: list[dict]) -> pd.DataFrame:
     for entry in scenario_spec:
         rows.append({
             "сценарий": entry["scenario"],
+            "информационный режим": entry.get("information_regime", ""),
             "наблюдаемые переменные": entry["observed_variables"],
             "масштаб шума": entry["noise_scale"],
             "используется распределительная статистика": "да" if entry["uses_distribution_stats"] else "нет",
+            "лаг распределительных сигналов": (
+                "нет"
+                if entry.get("distribution_signal_lag") is None
+                else str(entry["distribution_signal_lag"])
+            ),
         })
     return pd.DataFrame(rows)
 

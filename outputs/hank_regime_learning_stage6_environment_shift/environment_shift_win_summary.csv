@@ -1,5 +1,0 @@
-environment_name,environment_label,mean_learned_improvement_vs_fixed_pct,mean_learned_improvement_vs_retuned_pct,scenario_win_share_vs_fixed,scenario_win_share_vs_retuned,mean_seed_win_rate_vs_fixed,mean_seed_win_rate_vs_retuned
-baseline_environment,Baseline regime environment,61.576252837891715,-333.7924604058871,1.0,0.0,1.0,0.0
-persistent_regimes,More persistent hidden regimes,60.88308206906919,-352.8670934411663,1.0,0.0,1.0,0.0
-shifted_transmission,Shifted macro transmission,56.054743339302256,-476.975001508872,1.0,0.0,0.975,0.0
-stronger_distributional_channel,Stronger distributional channel,51.85482064868966,-326.3649595824791,1.0,0.0,0.975,0.025

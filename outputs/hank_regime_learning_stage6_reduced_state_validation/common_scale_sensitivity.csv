@@ -1,9 +1,0 @@
-scenario_name,scenario_label,projection_scale,num_successful_policies,all_policies_success,pairwise_signs_preserved,spearman_rank_correlation
-macro_core_moderate_gap,Базовый макроэкономический набор × умеренная разделимость режимов,0.1,3,1,3/3,1.0
-macro_core_moderate_gap,Базовый макроэкономический набор × умеренная разделимость режимов,0.25,3,1,3/3,1.0
-macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,0.1,3,1,3/3,1.0
-macro_core_strong_gap,Базовый макроэкономический набор × высокая разделимость режимов,0.25,3,1,3/3,1.0
-thin_information_moderate_gap,Ограниченный информационный набор × умеренная разделимость режимов,0.1,3,1,3/3,1.0
-thin_information_moderate_gap,Ограниченный информационный набор × умеренная разделимость режимов,0.25,3,1,3/3,1.0
-thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,0.1,3,1,3/3,1.0
-thin_information_strong_gap,Ограниченный информационный набор × высокая разделимость режимов,0.25,3,1,3/3,1.0

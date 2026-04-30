@@ -57,10 +57,12 @@ def build_scenario_spec(
     config: RegimeLearningConfig,
     variant: RegimeLearningVariant,
 ) -> RegimeRLScenarioSpec:
-    scenario = {
-        spec["name"]: spec
-        for spec in config.regime_config.scenario_specs()
-    }[variant.scenario_name]
+    scenario_lookup = {}
+    for spec in config.regime_config.scenario_specs():
+        scenario_lookup[spec["name"]] = spec
+    for spec in config.regime_config.article_scenario_specs():
+        scenario_lookup[spec["name"]] = spec
+    scenario = scenario_lookup[variant.scenario_name]
     rate_bound = 2.5 * config.action_bound
     return RegimeRLScenarioSpec(
         variant_name=variant.name,
@@ -280,6 +282,10 @@ class RegimeSwitchingPolicyEnvironment:
         filtered_variance_diag = np.diag(self.filtered_covariance)
         filtered_variance_trace = float(np.trace(self.filtered_covariance))
         filtered_macro_variance_trace = float(np.sum(filtered_variance_diag[list(self.macro_state_indices)]))
+        normal_mean = self.regime_conditioned_means[0].copy()
+        stress_mean = self.regime_conditioned_means[1].copy()
+        regime_mean_delta = stress_mean - normal_mean
+        stress_interaction = stress_probability * regime_mean_delta
         if policy_rate is None:
             policy_rate = self.prev_rate
         if residual_action is None:
@@ -304,6 +310,12 @@ class RegimeSwitchingPolicyEnvironment:
             "filtered_variance_trace": filtered_variance_trace,
             "filtered_macro_variance_trace": filtered_macro_variance_trace,
             "filtered_mode_probabilities": self.filtered_mode_probabilities.copy(),
+            "regime_conditioned_means": self.regime_conditioned_means.copy(),
+            "regime_conditioned_covariances": self.regime_conditioned_covariances.copy(),
+            "normal_regime_state_mean": normal_mean,
+            "stress_regime_state_mean": stress_mean,
+            "regime_mean_delta": regime_mean_delta,
+            "stress_interaction_state": stress_interaction,
             "misspecified_filtered_state": self.misspecified_mean.copy(),
             "misspecified_filtered_covariance": self.misspecified_covariance.copy(),
             "current_observations": self.current_observations.copy(),

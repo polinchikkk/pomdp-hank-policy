@@ -39,7 +39,7 @@ class RegimeSwitchingConfig:
     output_to_mean_mpc_link: float = -0.06
     partial_config: HANKPartialInfoConfig = field(default_factory=default_partial_info_config)
 
-    def scenario_specs(self) -> list[dict]:
+    def scenario_specs(self, info_names: tuple[str, ...] | None = None) -> list[dict]:
         partial_specs = {
             spec["name"]: spec
             for spec in self.partial_config.scenario_specs()
@@ -48,9 +48,9 @@ class RegimeSwitchingConfig:
             ("moderate_gap", "Умеренный режимный разрыв", self.moderate_gap_scale),
             ("strong_gap", "Сильный режимный разрыв", self.strong_gap_scale),
         )
-        info_names = ("macro_core", "thin_information")
+        selected_info_names = info_names or ("macro_core", "thin_information")
         rows = []
-        for info_name in info_names:
+        for info_name in selected_info_names:
             info_spec = partial_specs[info_name]
             for gap_name, gap_label, gap_scale in gap_specs:
                 rows.append({
@@ -62,15 +62,27 @@ class RegimeSwitchingConfig:
                     "gap_label": gap_label,
                     "gap_scale": gap_scale,
                     "description": (
-                        f"{info_spec['description']} При этом reduced-state HANK dynamics "
-                        f"имеют скрытое переключение между режимами `{REGIME_NAMES[0]}` "
-                        f"и `{REGIME_NAMES[1]}` с интенсивностью `{gap_label.lower()}`."
+                        f"{info_spec['description']} При этом низкоразмерная HANK-динамика "
+                        f"содержит скрытое переключение между режимами `{REGIME_NAMES[0]}` "
+                        f"и `{REGIME_NAMES[1]}` с {gap_label.lower()}."
                     ),
                     "noisy_observations": tuple(info_spec["noisy_observations"]),
                     "known_exact": tuple(info_spec["known_exact"]),
                     "noise_scale": float(info_spec["noise_scale"]),
+                    "information_regime": info_spec.get("information_regime"),
+                    "information_regime_label": info_spec.get("information_regime_label"),
+                    "includes_distribution_stats": bool(info_spec.get("includes_distribution_stats", False)),
                 })
         return rows
+
+    def article_information_scenarios(self) -> list[dict]:
+        return self.scenario_specs(info_names=("full_macro", "distribution_augmented"))
+
+    def article_scenario_specs(self) -> list[dict]:
+        return self.article_information_scenarios()
+
+    def article_information_regimes_payload(self) -> list[dict]:
+        return self.partial_config.article_information_regimes_payload()
 
     def filter_spec_payload(self) -> dict:
         return {
@@ -78,8 +90,13 @@ class RegimeSwitchingConfig:
             "regime_names": list(REGIME_NAMES),
             "regime_transition_matrix": [list(row) for row in self.regime_transition],
             "note": (
-                "Policy instrument is known exactly; noisy macro releases are filtered with an "
-                "IMM / switching Kalman filter over reduced-state HANK dynamics."
+                "Ставка считается точно известным инструментом. Шумные макроэкономические "
+                "и распределительные сигналы проходят через переключающийся фильтр Калмана "
+                "над низкоразмерной HANK-динамикой."
+            ),
+            "full_information_note": (
+                "Полная информация используется отдельно как верхняя граница и не входит "
+                "в набор обычных наблюдаемых режимов."
             ),
         }
 

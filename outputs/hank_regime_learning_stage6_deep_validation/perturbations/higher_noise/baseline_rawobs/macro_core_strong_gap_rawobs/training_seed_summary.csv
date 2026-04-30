@@ -1,2 +1,0 @@
-variant_name,training_seed,best_validation_return,final_validation_return,final_mean_episode_return,best_validation_return_selected,final_validation_return_selected,final_mean_episode_return_selected
-macro_core_strong_gap_rawobs,11,-0.004083668184849893,-0.004298005139756671,-0.004734616240075601,-0.005034292934352674,-0.005034292934352674,-0.007289843147679708

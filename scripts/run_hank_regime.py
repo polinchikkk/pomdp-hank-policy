@@ -13,7 +13,7 @@ from regime_switching_baseline import run_pipeline
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Run stage 5: regime-switching reduced-state HANK baseline under partial information."
+        description="Запуск этапа 5: HANK со скрытыми режимами при неполной наблюдаемости."
     )
     parser.add_argument(
         "--output-dir",
@@ -24,10 +24,23 @@ def main():
         "--scenarios",
         nargs="*",
         default=None,
-        help="Optional subset of regime-switching scenarios to run.",
+        help="Необязательный список сценариев для запуска.",
+    )
+    parser.add_argument(
+        "--article-information-regimes",
+        action="store_true",
+        help=(
+            "Использовать чистую матрицу для основного текста: "
+            "базовые макроэкономические наблюдения и макронаблюдения "
+            "с шумными распределительными сигналами."
+        ),
     )
     args = parser.parse_args()
-    run_pipeline(output_dir=args.output_dir, scenario_names=args.scenarios)
+    run_pipeline(
+        output_dir=args.output_dir,
+        scenario_names=args.scenarios,
+        use_article_information_scenarios=bool(args.article_information_regimes),
+    )
 
 
 if __name__ == "__main__":

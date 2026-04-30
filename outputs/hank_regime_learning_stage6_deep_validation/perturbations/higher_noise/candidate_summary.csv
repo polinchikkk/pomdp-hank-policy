@@ -1,3 +1,0 @@
-candidate_name,action_bound,num_wins,mean_delta_cumulative_loss,median_delta_cumulative_loss,worst_case_delta_cumulative_loss,best_case_delta_cumulative_loss,mean_relative_loss_improvement_pct,mean_rate_rmse_improvement_pct,nonzero_checkpoint_count
-larger_network,0.0035,4,-0.002453879215829635,-0.0025002175962887292,-0.0014359440861200761,-0.0033791375846210048,35.750237920442316,30.125189869864855,3
-baseline_rawobs,0.003,3,-0.0003097483858809011,-0.0003932812696766262,0.00025499178974922043,-0.0007074227939195725,5.262938433541055,64.3134078608665,2

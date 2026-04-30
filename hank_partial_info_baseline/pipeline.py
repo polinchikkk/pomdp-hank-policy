@@ -119,49 +119,60 @@ def _write_report(
     largest_rate_gap = policy_metrics.loc[policy_metrics["policy_rate_rmse"].idxmax()]
     best_distribution = distribution_summary.loc[distribution_summary["peak_mean_mpc_difference"].idxmin()]
     distribution_augmented = filter_metrics.loc[filter_metrics["scenario"] == "distribution_augmented"].iloc[0]
-    macro_core = filter_metrics.loc[filter_metrics["scenario"] == "macro_core"].iloc[0]
-    distribution_factor_gain = macro_core["distribution_factor_rmse"] - distribution_augmented["distribution_factor_rmse"]
+    full_macro = filter_metrics.loc[filter_metrics["scenario"] == "full_macro"].iloc[0]
+    distribution_factor_gain = full_macro["distribution_factor_rmse"] - distribution_augmented["distribution_factor_rmse"]
 
     lines = [
         "# Этап 3. Классическая денежно-кредитная политика при неполной информации в полной HANK",
         "",
-        "## Постановка hidden-state baseline",
+        "## Постановка базового эксперимента",
         "",
-        "- Используется reduced-state локально-линейное представление полной two-asset HANK, а не попытка фильтровать полное распределение домохозяйств напрямую.",
-        "- Скрытое состояние сочетает агрегатные структурные компоненты и policy-relevant reduced distributional state.",
+        "- Используется низкоразмерное локально-линейное представление полной двухактивной HANK-модели, а не попытка фильтровать полное распределение домохозяйств напрямую.",
+        "- Скрытое состояние сочетает агрегатные структурные компоненты и низкоразмерные распределительные компоненты, значимые для политики.",
         "- Состояние: `rstar_gap`, `productivity_gap`, `fiscal_gap`, `inflation_gap`, `output_gap`, `low_liquidity_gap`, `mean_mpc_gap`.",
-        "- Тем самым HANK-specific скрытость задаётся не только через шоки, но и через низкоразмерные распределительные компоненты, влияющие на агрегированную динамику.",
+        "- Скрытость задаётся не только через шоки, но и через распределительные компоненты, влияющие на агрегированную динамику.",
         "",
         "## Информационные сценарии",
+        "",
+        "- В качестве верхней границы отдельно используется режим полной информации: правило строится по истинному скрытому состоянию, но потери считаются по тем же реализованным траекториям.",
+        "- Основные наблюдаемые режимы разделены на базовые макроэкономические сигналы и макроэкономические сигналы с шумной распределительной статистикой.",
         "",
     ]
     for scenario in config.scenario_specs():
         observed = ", ".join(OBSERVATION_LABELS[name] for name in scenario["noisy_observations"])
+        distribution_note = (
+            "распределительные сигналы отсутствуют"
+            if not scenario["includes_distribution_stats"]
+            else "распределительные сигналы наблюдаются с шумом"
+        )
         lines.append(
-            f"- {scenario['label']}: шумные наблюдения `{observed}`, известная ставка как инструмент политики, масштаб шума `{scenario['noise_scale']}`."
+            f"- {scenario['label']}: режим `{scenario['information_regime_label']}`, "
+            f"шумные наблюдения `{observed}`, {distribution_note}, "
+            f"ставка известна точно, масштаб шума `{scenario['noise_scale']}`."
         )
 
     lines.extend([
         "",
         "## Блок фильтрации",
         "",
-        "- Фильтр: классический Kalman filter с известным policy instrument и Gaussian measurement noise.",
-        "- Это первый baseline-milestone перед более богатыми постановками; цель шага состоит в валидации `hidden state -> noisy observables -> filtered state` в HANK-среде.",
+        "- Используется классический фильтр Калмана с точно известной ставкой и гауссовым шумом измерения.",
+        "- Правило политики получает только наблюдаемые сигналы или их фильтрованную оценку, а функция потерь считается по истинным реализованным значениям инфляции и разрыва выпуска.",
+        "- Цель шага состоит в проверке цепочки `скрытое состояние -> шумные наблюдения -> оценённое состояние` в HANK-среде.",
         "",
         "## Качество фильтрации",
         "",
         f"- Лучшее качество фильтрации даёт сценарий `{best_filter['scenario_label']}`: средний RMSE состояния `{best_filter['mean_state_rmse']:.4e}`, RMSE распределительного фактора `{best_filter['distribution_factor_rmse']:.4e}`.",
         f"- Наиболее сложным для фильтрации оказывается сценарий `{hardest_filter['scenario_label']}`: средний RMSE состояния `{hardest_filter['mean_state_rmse']:.4e}`.",
-        f"- Добавление распределительной статистики улучшает восстановление распределительного фактора относительно базового сценария `Фильтрация: инфляция, выпуск и ставка` на `{distribution_factor_gain:.4e}`.",
+        f"- Добавление шумных распределительных сигналов улучшает восстановление распределительного фактора относительно базового макроэкономического режима на `{distribution_factor_gain:.4e}`.",
         f"- Логарифм правдоподобия в лучшем сценарии: `{best_filter['log_likelihood']:.2f}`.",
         "",
-        "## Качество classical filter-plus-rule policy",
+        "## Качество классического правила",
         "",
         f"- Наибольшую среднюю квадратичную потерю среди фильтрованных сценариев даёт `{worst_policy['scenario_label']}`: `{worst_policy['mean_policy_loss']:.4e}`.",
         f"- Наибольшее RMSE ставки относительно полной информации наблюдается в сценарии `{largest_rate_gap['scenario_label']}`: `{largest_rate_gap['policy_rate_rmse']:.4e}`.",
-        f"- Для наиболее затратного по loss сценария среднее абсолютное отклонение ставки равно `{worst_policy['mean_abs_rate_gap']:.4e}`.",
-        "- Сравнение ведётся не с оптимальной политикой, а с full-information реализацией того же классического правила.",
-        "- Поэтому знак `excess loss` здесь нельзя интерпретировать как структурный выигрыш или проигрыш от неполной информации: это только диагностическая разница внутри одной и той же classical policy architecture.",
+        f"- Для наиболее затратного по потерям сценария среднее абсолютное отклонение ставки равно `{worst_policy['mean_abs_rate_gap']:.4e}`.",
+        "- Сравнение ведётся не с оптимальной политикой, а с реализацией того же правила при полной информации.",
+        "- Поэтому дополнительную потерю здесь нужно понимать как диагностическую цену неполной наблюдаемости внутри одного и того же класса правил.",
         "",
         "## Распределительные последствия",
         "",
@@ -170,7 +181,7 @@ def _write_report(
         "",
         "## Вывод",
         "",
-        "Reduced-state filtering baseline показывает, что в полной HANK неполная информация ухудшает качество классической денежно-кредитной политики не только через ошибки в восстановлении макросостояния, но и через различия в распределительных траекториях. Это создаёт содержательный classical benchmark для следующего шага, где policy layer можно будет сравнивать уже с learning-based альтернативой.",
+        "Базовая постановка с фильтрацией показывает, что в полной HANK неполная наблюдаемость ухудшает качество денежно-кредитной политики не только через ошибки в восстановлении макросостояния, но и через различия в распределительных траекториях. Это даёт содержательный ориентир для следующих сравнений правил.",
     ])
     (output_dir / "report_stage3_partial_information_hank.md").write_text("\n".join(lines))
 
@@ -350,6 +361,7 @@ def run_pipeline(config: HANKPartialInfoConfig | None = None, output_dir: str | 
     _save_json(root / "filter_spec.json", config.filter_spec_payload())
     _save_json(root / "policy_spec.json", config.policy_spec_payload(hank_config.phi_pi, hank_config.phi_y, hank_config.rho_i))
     _save_json(root / "scenario_spec.json", config.scenario_specs())
+    _save_json(root / "information_regime_spec.json", config.article_information_regimes_payload())
     _save_json(root / "steady_state_aggregates.json", steady_state_aggregates(ss))
     _save_json(root / "reduced_state_space.json", {
         "state_names": list(reduced_model.state_names),

@@ -1,9 +1,0 @@
-scenario_name,policy_name,mean_policy_rate_volatility,mean_sign_change_rate,mean_corner_share,rate_bound,impact_sign_match_share_vs_classical
-macro_core_moderate_gap,classical_filtered_rule,0.002595875559189659,0.2262674218009689,0.09,0.00875,
-macro_core_moderate_gap,learning_policy,0.0012158643609406342,0.2551724137931034,0.0,0.00875,0.9
-macro_core_strong_gap,classical_filtered_rule,0.002896178327739126,0.2281387270000975,0.135,0.00875,
-macro_core_strong_gap,learning_policy,0.0014490576915395259,0.2551724137931034,0.0,0.00875,0.9
-thin_information_moderate_gap,classical_filtered_rule,0.0026212814446704936,0.2686521705772062,0.15666666666666668,0.00875,
-thin_information_moderate_gap,learning_policy,0.001994277470327771,0.24850357839947948,0.011666666666666667,0.00875,0.9
-thin_information_strong_gap,classical_filtered_rule,0.0028648779716849006,0.28284034239671446,0.28833333333333333,0.00875,
-thin_information_strong_gap,learning_policy,0.0030043577955580084,0.24056992288841958,0.09166666666666666,0.00875,0.8

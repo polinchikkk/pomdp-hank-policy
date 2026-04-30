@@ -1,2 +1,0 @@
-variant_name,training_seed,best_validation_return,final_validation_return,final_mean_episode_return,best_validation_return_selected,final_validation_return_selected,final_mean_episode_return_selected
-thin_information_moderate_gap_belief_state,11,-0.0009049201029813609,-0.0034575553369409046,-0.0027541201005199284,-0.0015856870180047757,-0.0015856870180047757,-0.0036774353550532712

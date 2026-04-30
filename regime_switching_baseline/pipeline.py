@@ -86,6 +86,7 @@ def _observation_frame(run: RegimePolicyRun) -> pd.DataFrame:
 def _write_report(
     output_dir: Path,
     config: RegimeSwitchingConfig,
+    selected_scenarios: list[dict],
     filter_metrics: pd.DataFrame,
     policy_metrics: pd.DataFrame,
 ) -> None:
@@ -95,39 +96,42 @@ def _write_report(
     worst_policy = policy_metrics.loc[policy_metrics["delta_cumulative_policy_loss_filtered_minus_full_information"].idxmax()]
 
     lines = [
-        "# Этап 5. Regime-switching HANK при неполной информации",
+        "# Этап 5. HANK со скрытыми режимами при неполной информации",
         "",
         "## Постановка",
         "",
-        "- Используется reduced-state HANK layer из этапа 3, но поверх него задаётся скрытое переключение между режимами `normal` и `stress`.",
-        "- В `stress` режиме усиливается policy transmission в инфляции, выпуске и распределительных состояниях (`low_liquidity_gap`, `mean_mpc_gap`).",
-        "- Регулятор не наблюдает режим напрямую и использует switching Kalman / IMM filter.",
-        "- Classical benchmark строится как `switching filter + fixed Taylor-type rule`.",
+        "- Используется низкоразмерный HANK-слой из этапа 3, но поверх него задаётся скрытое переключение между режимами `normal` и `stress`.",
+        "- В `stress` режиме усиливается передача шоков в инфляции, выпуске и распределительных состояниях (`low_liquidity_gap`, `mean_mpc_gap`).",
+        "- Регулятор не наблюдает режим напрямую и использует переключающийся фильтр Калмана.",
+        "- Правило строится по шумным наблюдениям и фильтрованному состоянию, а полная информация используется отдельно как верхняя граница.",
+        "- Классический ориентир задаётся схемой `переключающийся фильтр + фиксированное правило`.",
         "",
         "## Сценарии",
         "",
     ]
-    for scenario in config.scenario_specs():
+    for scenario in selected_scenarios:
         lines.append(
-            f"- `{scenario['label']}`: noisy observables `{', '.join(scenario['noisy_observations'])}`, regime gap `{scenario['gap_label']}`."
+            f"- `{scenario['label']}`: режим `{scenario.get('information_regime_label', '')}`, "
+            f"шумные наблюдения `{', '.join(scenario['noisy_observations'])}`, "
+            f"режимный разрыв `{scenario['gap_label']}`."
         )
 
     lines.extend([
         "",
         "## Качество фильтрации режима",
         "",
-        f"- Наилучшая regime classification accuracy: `{easiest_filter['scenario_label']}` с accuracy `{easiest_filter['regime_accuracy']:.3f}` и Brier score `{easiest_filter['stress_brier_score']:.4e}`.",
-        f"- Наиболее сложный режимный сценарий для фильтра: `{hardest_filter['scenario_label']}` с accuracy `{hardest_filter['regime_accuracy']:.3f}`.",
+        f"- Наилучшая точность распознавания режима: `{easiest_filter['scenario_label']}` с точностью `{easiest_filter['regime_accuracy']:.3f}` и показателем Брайера `{easiest_filter['stress_brier_score']:.4e}`.",
+        f"- Наиболее сложный режимный сценарий для фильтра: `{hardest_filter['scenario_label']}` с точностью `{hardest_filter['regime_accuracy']:.3f}`.",
         "",
-        "## Качество classical policy under regime uncertainty",
+        "## Качество классического правила при скрытых режимах",
         "",
         f"- Лучший сценарий по разнице накопленной потери относительно полной информации: `{best_policy['scenario_label']}` с delta cumulative loss `{best_policy['delta_cumulative_policy_loss_filtered_minus_full_information']:.4e}`.",
         f"- Наиболее затратный сценарий: `{worst_policy['scenario_label']}` с delta cumulative loss `{worst_policy['delta_cumulative_policy_loss_filtered_minus_full_information']:.4e}`.",
         "",
         "## Ограничение текущего шага",
         "",
-        "- Это regime-switching reduced-state HANK overlay, откалиброванный на full-HANK baseline, а не новая структурная full HANK solution с эндогенным режимным блоком.",
-        "- Но именно такая среда нужна как следующий кандидат для проверки, где flexible RL policy может превосходить classical filter-plus-rule benchmark.",
+        "- Это переключающийся низкоразмерный слой над полной HANK-калибровкой, а не новая структурная HANK-модель с эндогенным режимным блоком.",
+        "- Такая среда нужна как следующий шаг для проверки того, когда гибкое правило действительно даёт выигрыш относительно фиксированного.",
     ])
     (output_dir / "report_stage5_regime_switching_hank.md").write_text("\n".join(lines))
 
@@ -136,6 +140,7 @@ def run_pipeline(
     config: RegimeSwitchingConfig | None = None,
     output_dir: str | None = None,
     scenario_names: list[str] | None = None,
+    use_article_information_scenarios: bool = False,
 ):
     config = RegimeSwitchingConfig() if config is None else config
     if output_dir is not None:
@@ -148,9 +153,28 @@ def run_pipeline(
     bundle = solve_steady_state(hank_config)
     reduced_model = fit_reduced_state_space(bundle, hank_config, config.partial_config)
 
-    selected_scenarios = config.scenario_specs()
+    def _info_name_from_scenario_name(name: str) -> str:
+        for suffix in ("_moderate_gap", "_strong_gap"):
+            if name.endswith(suffix):
+                return name[: -len(suffix)]
+        return name
+
+    if use_article_information_scenarios:
+        selected_scenarios = config.article_scenario_specs()
+    else:
+        selected_scenarios = config.scenario_specs()
     if scenario_names is not None:
         selected = set(scenario_names)
+        inferred_info_names = []
+        seen_info_names = set()
+        for spec in config.partial_config.scenario_specs():
+            info_name = spec["name"]
+            if any(_info_name_from_scenario_name(name) == info_name for name in selected):
+                if info_name not in seen_info_names:
+                    inferred_info_names.append(info_name)
+                    seen_info_names.add(info_name)
+        if inferred_info_names:
+            selected_scenarios = config.scenario_specs(info_names=tuple(inferred_info_names))
         selected_scenarios = [scenario for scenario in selected_scenarios if scenario["name"] in selected]
 
     _save_json(root / "stage5_config.json", config.to_dict())
@@ -162,6 +186,7 @@ def run_pipeline(
         "steady_state_statistics": reduced_model.steady_state_statistics,
     })
     _save_json(root / "scenario_spec.json", selected_scenarios)
+    _save_json(root / "information_regime_spec.json", config.article_information_regimes_payload())
 
     filter_metric_rows = []
     state_metric_frames = []
@@ -256,7 +281,7 @@ def run_pipeline(
     filtered_state_paths.to_csv(root / "filtered_state_paths.csv", index=False)
     observations.to_csv(root / "observations.csv", index=False)
 
-    _write_report(root, config, filter_metrics, policy_metrics)
+    _write_report(root, config, selected_scenarios, filter_metrics, policy_metrics)
     return {
         "filter_metrics": filter_metrics,
         "policy_metrics": policy_metrics,
