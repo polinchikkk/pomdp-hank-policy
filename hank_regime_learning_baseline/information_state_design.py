@@ -94,7 +94,7 @@ class LinearInformationStatePolicy(BasePolicy):
 
     @staticmethod
     def _signal_map(info: dict) -> dict[str, float]:
-        signals: dict[str, float] = {}
+        signals: dict[str, float] = {"constant": 1.0}
         current = np.asarray(info["current_observations"], dtype=float)
         lagged = np.asarray(info["lagged_observations"], dtype=float)
         observation_names = tuple(info["noisy_observation_names"])
@@ -129,23 +129,25 @@ def _save_json(path: Path, payload: dict) -> None:
 
 def _feature_names_for_rule(rule_name: str, observation_names: tuple[str, ...]) -> tuple[str, ...]:
     if rule_name == "history_rule":
-        names: list[str] = []
+        names: list[str] = ["constant"]
         for observation_name in observation_names:
             names.append(f"observed_{observation_name}")
             names.append(f"lagged_observed_{observation_name}")
         names.append("previous_rate")
         return tuple(names)
     if rule_name == "posterior_mean_rule":
-        return tuple(f"mu_{name}" for name in BASE_STATE_NAMES) + ("previous_rate",)
+        return ("constant",) + tuple(f"mu_{name}" for name in BASE_STATE_NAMES) + ("previous_rate",)
     if rule_name == "belief_interaction_rule":
         return (
-            tuple(f"mu_{name}" for name in BASE_STATE_NAMES)
+            ("constant",)
+            + tuple(f"mu_{name}" for name in BASE_STATE_NAMES)
             + tuple(f"pdelta_{name}" for name in BASE_STATE_NAMES)
             + ("previous_rate",)
         )
     if rule_name == "distribution_belief_rule":
         return (
-            tuple(f"mudist_{name}" for name in DIST_STATE_NAMES)
+            ("constant",)
+            + tuple(f"mudist_{name}" for name in DIST_STATE_NAMES)
             + tuple(f"pdelta_dist_{name}" for name in DIST_STATE_NAMES)
             + ("previous_rate",)
         )
@@ -153,6 +155,8 @@ def _feature_names_for_rule(rule_name: str, observation_names: tuple[str, ...]) 
 
 
 def _initial_coefficient(feature_name: str) -> float:
+    if feature_name == "constant":
+        return 0.0
     if feature_name.endswith("rstar_gap"):
         return 1.0
     if feature_name.endswith("inflation_gap") or feature_name == "observed_pi":
@@ -165,6 +169,8 @@ def _initial_coefficient(feature_name: str) -> float:
 
 
 def _candidate_values(feature_name: str) -> tuple[float, ...]:
+    if feature_name == "constant":
+        return (-0.001, -0.0005, 0.0, 0.0005, 0.001)
     if feature_name == "previous_rate":
         return (0.0, 0.3, 0.6, 0.85)
     if feature_name.endswith("rstar_gap"):
@@ -357,8 +363,12 @@ def _summarize_metrics(paths: pd.DataFrame) -> pd.DataFrame:
                 "output_gap_loss": float(frame["output_gap_loss"].sum()),
                 "rate_change_loss": float(frame["rate_change_loss"].sum()),
                 "mean_stress_probability": float(frame["stress_probability"].mean()),
+                "median_stress_probability": float(frame["stress_probability"].median()),
+                "p10_stress_probability": float(frame["stress_probability"].quantile(0.1)),
+                "p90_stress_probability": float(frame["stress_probability"].quantile(0.9)),
                 "ambiguous_regime_share": float(frame["stress_probability"].between(0.2, 0.8).mean()),
                 "mean_delta_norm": float(frame["regime_mean_delta_norm"].mean()),
+                "median_delta_norm": float(frame["regime_mean_delta_norm"].median()),
                 "p90_delta_norm": float(frame["regime_mean_delta_norm"].quantile(0.9)),
             }
         )
@@ -469,14 +479,252 @@ def _levels(metrics: pd.DataFrame) -> pd.DataFrame:
             mean_output_gap_loss=("output_gap_loss", "mean"),
             mean_rate_change_loss=("rate_change_loss", "mean"),
             mean_stress_probability=("mean_stress_probability", "mean"),
+            median_stress_probability=("median_stress_probability", "mean"),
+            p10_stress_probability=("p10_stress_probability", "mean"),
+            p90_stress_probability=("p90_stress_probability", "mean"),
             ambiguous_regime_share=("ambiguous_regime_share", "mean"),
             mean_delta_norm=("mean_delta_norm", "mean"),
+            median_delta_norm=("median_delta_norm", "mean"),
             p90_delta_norm=("p90_delta_norm", "mean"),
             num_test_trajectories=("evaluation_seed", "nunique"),
         )
         .sort_values(["scenario_name", "mean_cumulative_loss"])
         .reset_index(drop=True)
     )
+
+
+def _write_table(df: pd.DataFrame, path_without_suffix: Path) -> None:
+    path_without_suffix.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(path_without_suffix.with_suffix(".csv"), index=False)
+    try:
+        df.to_latex(
+            path_without_suffix.with_suffix(".tex"),
+            index=False,
+            escape=False,
+        )
+    except Exception as exc:  # pragma: no cover - diagnostic fallback
+        path_without_suffix.with_suffix(".tex.error.txt").write_text(str(exc), encoding="utf-8")
+
+
+def _write_article_tables(
+    *,
+    root: Path,
+    levels: pd.DataFrame,
+    pairwise: pd.DataFrame,
+    decomposition: pd.DataFrame,
+) -> None:
+    tables_dir = root / "tables"
+    state_components = pd.DataFrame(
+        [
+            {"Компонента": r"$r_t^*$", "Тип": "скрытая", "Смысл": "естественная ставка", "Где используется": "базовое и расширенное состояние"},
+            {"Компонента": r"$z_t$", "Тип": "скрытая", "Смысл": "фактор производительности", "Где используется": "базовое и расширенное состояние"},
+            {"Компонента": r"$f_t$", "Тип": "скрытая", "Смысл": "фискальный фактор", "Где используется": "базовое и расширенное состояние"},
+            {"Компонента": r"$\pi_t^{gap}$", "Тип": "макроэкономическая", "Смысл": "инфляционный разрыв", "Где используется": "состояние и функция потерь"},
+            {"Компонента": r"$y_t^{gap}$", "Тип": "макроэкономическая", "Смысл": "разрыв выпуска", "Где используется": "состояние и функция потерь"},
+            {"Компонента": r"$s_t^{liq}$", "Тип": "распределительная", "Смысл": "доля низколиквидных домохозяйств", "Где используется": "распределительное расширение"},
+            {"Компонента": r"$m_t^{mpc}$", "Тип": "распределительная", "Смысл": "средняя предельная склонность к потреблению", "Где используется": "распределительное расширение"},
+            {"Компонента": r"$r_t$", "Тип": "скрытый режим", "Смысл": "нормальный или стрессовый режим", "Где используется": "динамика состояния"},
+            {"Компонента": r"$p_t$", "Тип": "оценка фильтра", "Смысл": "вероятность стрессового режима", "Где используется": "режимное расхождение"},
+        ]
+    )
+    rule_descriptions = pd.DataFrame(
+        [
+            {
+                "Правило": RULE_LABELS_RU["history_rule"],
+                "Вход": r"$(y_t^{obs}, y_{t-1}^{obs}, i_{t-1})$",
+                "Что проверяет": "достаточно ли короткой истории наблюдений без явного фильтра",
+            },
+            {
+                "Правило": RULE_LABELS_RU["posterior_mean_rule"],
+                "Вход": r"$(\mu_t, i_{t-1})$",
+                "Что проверяет": "ценность фильтра как сжатия истории наблюдений",
+            },
+            {
+                "Правило": RULE_LABELS_RU["belief_interaction_rule"],
+                "Вход": r"$(\mu_t, p_t\delta_t, i_{t-1})$",
+                "Что проверяет": "ценность режимного расхождения условных оценок",
+            },
+            {
+                "Правило": RULE_LABELS_RU["distribution_belief_rule"],
+                "Вход": r"$(\mu_t^{dist}, p_t\delta_t^{dist}, i_{t-1})$",
+                "Что проверяет": "ценность распределительных характеристик",
+            },
+        ]
+    )
+    main_results = levels[
+        [
+            "scenario_label",
+            "rule_label",
+            "mean_cumulative_loss",
+            "std_cumulative_loss",
+            "num_test_trajectories",
+        ]
+    ].rename(
+        columns={
+            "scenario_label": "Сценарий",
+            "rule_label": "Правило",
+            "mean_cumulative_loss": "Средняя накопленная потеря",
+            "std_cumulative_loss": "Стандартное отклонение",
+            "num_test_trajectories": "Число траекторий",
+        }
+    )
+    pairwise_results = pairwise[
+        [
+            "scenario_label",
+            "comparison_label",
+            "mean_delta",
+            "ci_low",
+            "ci_high",
+            "win_rate",
+            "tie_rate",
+            "loss_rate",
+            "num_test_trajectories",
+        ]
+    ].rename(
+        columns={
+            "scenario_label": "Сценарий",
+            "comparison_label": "Сравнение",
+            "mean_delta": "Средняя разность",
+            "ci_low": "Нижняя граница",
+            "ci_high": "Верхняя граница",
+            "win_rate": "Доля выигрышей",
+            "tie_rate": "Доля совпадений",
+            "loss_rate": "Доля проигрышей",
+            "num_test_trajectories": "Число траекторий",
+        }
+    )
+    loss_decomposition = decomposition[
+        [
+            "scenario_label",
+            "comparison_label",
+            "mean_delta_inflation_loss",
+            "mean_delta_output_gap_loss",
+            "mean_delta_rate_change_loss",
+            "mean_delta_cumulative_loss",
+        ]
+    ].rename(
+        columns={
+            "scenario_label": "Сценарий",
+            "comparison_label": "Сравнение",
+            "mean_delta_inflation_loss": "Инфляция",
+            "mean_delta_output_gap_loss": "Разрыв выпуска",
+            "mean_delta_rate_change_loss": "Изменение ставки",
+            "mean_delta_cumulative_loss": "Итого",
+        }
+    )
+    _write_table(state_components, tables_dir / "table_state_components")
+    _write_table(rule_descriptions, tables_dir / "table_policy_rules")
+    _write_table(main_results, tables_dir / "table_main_results")
+    _write_table(pairwise_results, tables_dir / "table_pairwise_results")
+    _write_table(loss_decomposition, tables_dir / "table_loss_decomposition")
+
+
+def _load_pyplot():
+    try:
+        import matplotlib
+
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+
+        return plt
+    except Exception:
+        return None
+
+
+def _write_figures(
+    *,
+    root: Path,
+    levels: pd.DataFrame,
+    policy_paths: pd.DataFrame,
+    decomposition: pd.DataFrame,
+) -> None:
+    plt = _load_pyplot()
+    if plt is None:
+        (root / "figures_unavailable.txt").write_text(
+            "matplotlib недоступен, рисунки не построены.",
+            encoding="utf-8",
+        )
+        return
+
+    figures_dir = root / "figures"
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    ordered_levels = levels.copy()
+    ordered_levels["rule_label"] = pd.Categorical(
+        ordered_levels["rule_label"],
+        categories=[RULE_LABELS_RU[name] for name in RULE_ORDER],
+        ordered=True,
+    )
+    pivot = ordered_levels.pivot_table(
+        index="scenario_label",
+        columns="rule_label",
+        values="mean_cumulative_loss",
+        aggfunc="first",
+        observed=False,
+    )
+    if not pivot.empty:
+        fig, ax = plt.subplots(figsize=(9.5, max(4.0, 0.7 * len(pivot.index))))
+        pivot.plot(kind="barh", ax=ax)
+        ax.set_xlabel("Средняя накопленная потеря")
+        ax.set_ylabel("Сценарий")
+        ax.set_title("Сравнение информационных состояний")
+        ax.legend(title="Правило", fontsize=8)
+        ax.invert_yaxis()
+        fig.tight_layout()
+        fig.savefig(figures_dir / "fig_main_comparison.pdf")
+        fig.savefig(figures_dir / "fig_main_comparison.png", dpi=180)
+        plt.close(fig)
+
+    if not policy_paths.empty:
+        diagnostic_paths = policy_paths[policy_paths["policy_name"] == "posterior_mean_rule"]
+        if diagnostic_paths.empty:
+            diagnostic_paths = policy_paths
+        fig, ax = plt.subplots(figsize=(7.0, 4.0))
+        ax.hist(diagnostic_paths["stress_probability"].dropna(), bins=30, color="#356859", alpha=0.85)
+        ax.set_xlabel("Вероятность стрессового режима")
+        ax.set_ylabel("Число наблюдений")
+        ax.set_title("Диагностика режимной вероятности")
+        fig.tight_layout()
+        fig.savefig(figures_dir / "fig_stress_probability_histogram.pdf")
+        fig.savefig(figures_dir / "fig_stress_probability_histogram.png", dpi=180)
+        plt.close(fig)
+
+        fig, ax = plt.subplots(figsize=(7.0, 4.0))
+        ax.hist(diagnostic_paths["regime_mean_delta_norm"].dropna(), bins=30, color="#8a5a44", alpha=0.85)
+        ax.set_xlabel("Норма режимного расхождения")
+        ax.set_ylabel("Число наблюдений")
+        ax.set_title("Диагностика расхождения условных оценок")
+        fig.tight_layout()
+        fig.savefig(figures_dir / "fig_regime_delta_histogram.pdf")
+        fig.savefig(figures_dir / "fig_regime_delta_histogram.png", dpi=180)
+        plt.close(fig)
+
+    if not decomposition.empty:
+        component_columns = [
+            "mean_delta_inflation_loss",
+            "mean_delta_output_gap_loss",
+            "mean_delta_rate_change_loss",
+        ]
+        aggregate = decomposition.groupby("comparison_label", as_index=True)[component_columns].mean()
+        if not aggregate.empty:
+            aggregate = aggregate.rename(
+                columns={
+                    "mean_delta_inflation_loss": "Инфляция",
+                    "mean_delta_output_gap_loss": "Разрыв выпуска",
+                    "mean_delta_rate_change_loss": "Изменение ставки",
+                }
+            )
+            fig, ax = plt.subplots(figsize=(8.5, 4.5))
+            aggregate.plot(kind="bar", ax=ax)
+            ax.axhline(0.0, color="black", linewidth=0.8)
+            ax.set_xlabel("Сравнение")
+            ax.set_ylabel("Вклад в разность потерь")
+            ax.set_title("Разложение разности потерь")
+            ax.legend(title="Компонента", fontsize=8)
+            fig.tight_layout()
+            fig.savefig(figures_dir / "fig_loss_decomposition.pdf")
+            fig.savefig(figures_dir / "fig_loss_decomposition.png", dpi=180)
+            plt.close(fig)
 
 
 def run_information_state_design(
@@ -502,6 +750,9 @@ def run_information_state_design(
                 {"name": rule_name, "label_ru": RULE_LABELS_RU[rule_name]}
                 for rule_name in RULE_ORDER
             ],
+            "base_state_names": list(BASE_STATE_NAMES),
+            "distribution_state_names": list(DIST_STATE_NAMES),
+            "rule_selection": "Все линейные правила подбираются на валидационных траекториях и затем фиксируются.",
             "comparisons": [
                 {"name": name, "left": left, "right": right, "label_ru": label}
                 for name, left, right, label in COMPARISON_SPECS
@@ -566,11 +817,15 @@ def run_information_state_design(
     levels.to_csv(root / "information_state_levels.csv", index=False)
     pairwise.to_csv(root / "information_state_pairwise.csv", index=False)
     decomposition.to_csv(root / "loss_component_decomposition.csv", index=False)
+    _write_article_tables(root=root, levels=levels, pairwise=pairwise, decomposition=decomposition)
+    _write_figures(root=root, levels=levels, policy_paths=policy_paths, decomposition=decomposition)
 
     lines = [
         "# Дизайн информационного состояния",
         "",
         "Сравниваются четыре линейных правила: история наблюдений, апостериорное среднее, среднее с режимным расхождением и распределительно расширенное состояние.",
+        "",
+        "Все правила сначала подбираются на валидационных траекториях, затем фиксируются и оцениваются на независимых тестовых траекториях.",
         "",
         "## Главные сравнения",
         "",
@@ -588,6 +843,8 @@ def run_information_state_design(
             "## Диагностика фильтра",
             "",
             "В таблице `information_state_levels.csv` сохранены средняя вероятность стрессового режима, доля неопределённых периодов и норма режимного расхождения.",
+            "",
+            "Готовые таблицы для текста лежат в папке `tables`, рисунки — в папке `figures`.",
         ]
     )
     (root / "report_information_state_design.md").write_text("\n".join(lines), encoding="utf-8")

@@ -1,6 +1,0 @@
-{
-  "local_mpc_measure": "finite-difference slope of the household consumption policy with respect to the liquid asset grid",
-  "cashflow_mpc_measure": "impact response of household consumption to a one-period uniform transfer shock in disposable income",
-  "transfer_shock_size": 0.001,
-  "transfer_shock_horizon": 4
-}

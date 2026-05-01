@@ -30,7 +30,7 @@ def parse_args() -> argparse.Namespace:
         action="append",
         dest="scenarios",
         default=None,
-        help="Сценарий. Флаг можно повторять. По умолчанию берутся четыре основных сценария.",
+        help="Сценарий. Флаг можно повторять. По умолчанию берутся основные сценарии новой работы.",
     )
     parser.add_argument("--validation-start", type=int, default=500)
     parser.add_argument("--validation-count", type=int, default=10)
