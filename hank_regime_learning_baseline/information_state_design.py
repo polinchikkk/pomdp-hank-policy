@@ -12,7 +12,8 @@ from hank_full_baseline.calibration import default_calibration
 from hank_full_baseline.steady_state import solve_steady_state
 from hank_learning_policy_baseline.policies import BasePolicy
 from hank_partial_info_baseline.state_space import fit_reduced_state_space
-from regime_switching_baseline.regime_model import build_regime_switching_model
+from hank_partial_info_baseline.state_space import ReducedHANKStateSpaceModel
+from regime_switching_baseline.regime_model import RegimeSwitchingConfig, build_regime_switching_model
 
 from .config import RegimeLearningConfig, RegimeLearningVariant
 from .environment import RegimeSwitchingPolicyEnvironment, build_scenario_spec
@@ -80,6 +81,13 @@ class LinearInformationRuleParameters:
             feature_name: float(value)
             for feature_name, value in zip(self.feature_names, self.coefficients)
         }
+
+
+@dataclass(frozen=True)
+class SharedModelSetup:
+    hank_config: object
+    regime_config: RegimeSwitchingConfig
+    reduced_model: ReducedHANKStateSpaceModel
 
 
 class LinearInformationStatePolicy(BasePolicy):
@@ -197,17 +205,26 @@ def _bootstrap_ci(values: np.ndarray, *, seed: int = 2027, draws: int = 2000) ->
     return float(np.quantile(samples, 0.025)), float(np.quantile(samples, 0.975))
 
 
+def _build_shared_model_setup() -> SharedModelSetup:
+    hank_config = default_calibration()
+    bundle = solve_steady_state(hank_config)
+    regime_config = extreme_sticky_regime_config()
+    reduced_model = fit_reduced_state_space(bundle, hank_config, regime_config.partial_config)
+    return SharedModelSetup(
+        hank_config=hank_config,
+        regime_config=regime_config,
+        reduced_model=reduced_model,
+    )
+
+
 def _make_env_factory(
     *,
+    shared_setup: SharedModelSetup,
     scenario_name: str,
     action_bound: float,
     horizon: int,
     noise_scale_multiplier: float,
 ):
-    hank_config = default_calibration()
-    bundle = solve_steady_state(hank_config)
-    regime_config = extreme_sticky_regime_config()
-    reduced_model = fit_reduced_state_space(bundle, hank_config, regime_config.partial_config)
     variant = RegimeLearningVariant(
         name=f"{scenario_name}_information_state_design",
         scenario_name=scenario_name,
@@ -219,7 +236,7 @@ def _make_env_factory(
     config = RegimeLearningConfig(
         action_bound=action_bound,
         horizon=horizon,
-        regime_config=regime_config,
+        regime_config=shared_setup.regime_config,
         training_seeds=(),
         selection_seeds=(),
         evaluation_seeds=(),
@@ -234,16 +251,20 @@ def _make_env_factory(
             scenario_name=f"{scenario_name}_noise_{noise_scale_multiplier:g}",
             scenario_label=f"{scenario_spec.scenario_label} × шум {noise_scale_multiplier:g}",
         )
-    model = build_regime_switching_model(reduced_model, regime_config, scenario_spec.gap_scale)
+    model = build_regime_switching_model(
+        shared_setup.reduced_model,
+        shared_setup.regime_config,
+        scenario_spec.gap_scale,
+    )
 
     def factory() -> RegimeSwitchingPolicyEnvironment:
         return RegimeSwitchingPolicyEnvironment(
             model=model,
-            regime_config=regime_config,
+            regime_config=shared_setup.regime_config,
             scenario_spec=scenario_spec,
-            phi_pi=hank_config.phi_pi,
-            phi_y=hank_config.phi_y,
-            rho_i=hank_config.rho_i,
+            phi_pi=shared_setup.hank_config.phi_pi,
+            phi_y=shared_setup.hank_config.phi_y,
+            rho_i=shared_setup.hank_config.rho_i,
         )
 
     return factory, scenario_spec
@@ -767,8 +788,10 @@ def run_information_state_design(
     selection_frames = []
     selected_rows = []
     path_frames = []
+    shared_setup = _build_shared_model_setup()
     for scenario_name in scenario_names:
         env_factory, scenario_spec = _make_env_factory(
+            shared_setup=shared_setup,
             scenario_name=scenario_name,
             action_bound=action_bound,
             horizon=horizon,
