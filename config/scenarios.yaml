@@ -1,0 +1,24 @@
+scenarios:
+  baseline:
+    aggregate_observation_noise: 1.0
+    distributional_observation_noise: 1.0
+    mpc_channel_strength: 1.0
+    heterogeneity: baseline
+
+  high_aggregate_noise:
+    aggregate_observation_noise: 2.0
+    distributional_observation_noise: 1.0
+    mpc_channel_strength: 1.0
+    heterogeneity: baseline
+
+  high_heterogeneity:
+    aggregate_observation_noise: 1.0
+    distributional_observation_noise: 1.0
+    mpc_channel_strength: 1.5
+    heterogeneity: high
+
+  noisy_distributional_data:
+    aggregate_observation_noise: 1.0
+    distributional_observation_noise: 2.0
+    mpc_channel_strength: 1.0
+    heterogeneity: baseline

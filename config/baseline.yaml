@@ -1,0 +1,25 @@
+project:
+  title_ru: "Ценность распределительной информации для денежно-кредитной политики в HANK-экономике при неполной наблюдаемости"
+  title_en: "The Policy Value of Distributional Information in a HANK Economy under Imperfect Observability"
+
+loss:
+  lambda_pi: 1.0
+  lambda_y: 0.5
+  lambda_i: 0.05
+  beta: 1.0
+  horizon: 60
+
+state:
+  aggregate:
+    - inflation_gap
+    - output_gap
+    - natural_rate_gap
+  distributional:
+    - mean_mpc
+    - low_liquidity_share
+
+main_information_states:
+  - aggregate_only
+  - filtered_aggregates
+  - distributional
+  - full_information

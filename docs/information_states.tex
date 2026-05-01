@@ -1,0 +1,37 @@
+\section{Информационные состояния}
+
+В работе сравниваются четыре информационных состояния.
+
+\paragraph{Только агрегаты.}
+\[
+s_t^{agg} = (\pi_t^{obs}, y_t^{obs}).
+\]
+
+\paragraph{Оценённые агрегаты.}
+\[
+s_t^{filter}
+=
+\mathbb E[
+(\pi_t^{gap},y_t^{gap},r_t^*)
+\mid \mathcal I_t].
+\]
+
+\paragraph{Агрегаты и распределение.}
+\[
+s_t^{dist}
+=
+\left(
+\hat \pi_t,
+\hat y_t,
+\hat r_t^*,
+\widehat{MPC}_t,
+\widehat{share}^{liq}_t
+\right).
+\]
+
+\paragraph{Полная информация.}
+\[
+s_t^{full}=x_t.
+\]
+
+Полная информация используется только как верхняя граница качества правила.

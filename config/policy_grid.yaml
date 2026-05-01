@@ -1,0 +1,20 @@
+linear_rule_grid:
+  intercept:
+    - -0.001
+    - -0.0005
+    - 0.0
+    - 0.0005
+    - 0.001
+  lagged_rate_weight:
+    - 0.0
+    - 0.3
+    - 0.6
+    - 0.85
+  standardized_feature_weight:
+    - -0.0015
+    - -0.001
+    - -0.0005
+    - 0.0
+    - 0.0005
+    - 0.001
+    - 0.0015
