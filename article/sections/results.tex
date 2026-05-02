@@ -1,3 +1,33 @@
 \section{Результаты}
 
-Раздел будет заполнен после основных расчетов.
+В базовом сценарии добавление распределительных статистик снижает средние потери относительно правила по агрегатной информации. Оценка снижения составляет 0.000054, а доля выигрышных траекторий равна 0.58.
+
+Наиболее выраженный эффект возникает в сценарии высокой неоднородности. Там распределительный блок закрывает 75.8\% разрыва между агрегатной информацией и полной информацией.
+
+Отдельная проверка распределительных статистик показывает, что в базовом сценарии более устойчивый сигнал дает доля низколиквидных домохозяйств. Снижение потерь для этой статистики равно 0.000044, доля выигрышных траекторий равна 0.62.
+
+\input{tables/table_main_distributional_value}
+\input{tables/table_sufficiency_gap}
+\input{tables/table_individual_distributional_stats}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/fig_distributional_value_by_scenario.pdf}
+\caption{Ценность распределительной информации по сценариям}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/fig_gap_closed_by_distribution.pdf}
+\caption{Доля разрыва до полной информации, закрытая распределительным блоком}
+\end{figure}
+
+Дополнительная сетка по шуму агрегатных наблюдений и силе распределительного канала показывает, что ценность распределительной информации меняется по параметрам среды. Наибольшее снижение потерь в этой сетке равно 0.000102.
+
+\input{tables/table_distributional_value_grid}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.75\textwidth]{figures/fig_distributional_value_grid.pdf}
+\caption{Сетка ценности распределительной информации}
+\end{figure}

@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from policy import fit_linear_rule, project_rule_to_information_state
 from policy.linear_rules import coefficient_vector
 from policy.optimize_rules import bootstrap_interval, compare_paired_losses
-from state_space import LocalHANKInformationEnvironment, default_information_states, scenario_config
+from state_space import LocalEnvironmentConfig, LocalHANKInformationEnvironment, default_information_states, scenario_config
 
 
 MAIN_INFORMATION_STATES = (
@@ -44,6 +44,7 @@ def run_experiment(
     validation_count: int,
     test_count: int,
     num_candidates: int,
+    environment_config: LocalEnvironmentConfig | None = None,
 ) -> dict[str, pd.DataFrame]:
     output_dir.mkdir(parents=True, exist_ok=True)
     tables_dir = output_dir / "tables"
@@ -51,7 +52,8 @@ def run_experiment(
 
     validation_seeds = list(range(500, 500 + validation_count))
     test_seeds = list(range(900, 900 + test_count))
-    environment = LocalHANKInformationEnvironment(scenario_config(scenario, horizon=horizon))
+    config = environment_config if environment_config is not None else scenario_config(scenario, horizon=horizon)
+    environment = LocalHANKInformationEnvironment(config)
 
     fitted = {}
     for index, information_state in enumerate(MAIN_INFORMATION_STATES):
@@ -122,6 +124,7 @@ def run_experiment(
         validation_seeds=validation_seeds,
         test_seeds=test_seeds,
         num_candidates=num_candidates,
+        environment_config=config,
     )
 
     return {
@@ -346,6 +349,7 @@ def _write_spec(
     validation_seeds: list[int],
     test_seeds: list[int],
     num_candidates: int,
+    environment_config: LocalEnvironmentConfig,
 ) -> None:
     spec = {
         "experiment": "baseline_value_of_information",
@@ -354,6 +358,7 @@ def _write_spec(
         "validation_seeds": validation_seeds,
         "test_seeds": test_seeds,
         "num_candidates_per_rule": num_candidates,
+        "environment_config": asdict(environment_config),
         "information_states": list(MAIN_INFORMATION_STATES),
         "loss": "inflation_gap^2 + 0.5 output_gap^2 + 0.05 rate_change^2",
     }
