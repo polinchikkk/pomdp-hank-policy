@@ -38,6 +38,28 @@ def default_information_states() -> tuple[InformationStateSpec, ...]:
             role="Главный объект: ценность распределительных статистик.",
         ),
         InformationStateSpec(
+            name="distributional_mpc",
+            label="Агрегаты и средняя MPC",
+            variables=(
+                "filtered_inflation_gap",
+                "filtered_output_gap",
+                "filtered_natural_rate_gap",
+                "filtered_mean_mpc",
+            ),
+            role="Проверяет отдельную ценность средней MPC.",
+        ),
+        InformationStateSpec(
+            name="distributional_liquidity",
+            label="Агрегаты и доля низколиквидных",
+            variables=(
+                "filtered_inflation_gap",
+                "filtered_output_gap",
+                "filtered_natural_rate_gap",
+                "filtered_low_liquidity_share",
+            ),
+            role="Проверяет отдельную ценность доли низколиквидных домохозяйств.",
+        ),
+        InformationStateSpec(
             name="full_information",
             label="Полная информация",
             variables=(

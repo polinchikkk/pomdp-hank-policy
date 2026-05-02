@@ -50,6 +50,26 @@ def rule_spec_for_information_state(name: str) -> LinearRuleSpec:
                 "filtered_low_liquidity_share",
             ),
         )
+    if name == "distributional_mpc":
+        return LinearRuleSpec(
+            information_state=name,
+            feature_names=(
+                "filtered_inflation_gap",
+                "filtered_output_gap",
+                "filtered_natural_rate_gap",
+                "filtered_mean_mpc",
+            ),
+        )
+    if name == "distributional_liquidity":
+        return LinearRuleSpec(
+            information_state=name,
+            feature_names=(
+                "filtered_inflation_gap",
+                "filtered_output_gap",
+                "filtered_natural_rate_gap",
+                "filtered_low_liquidity_share",
+            ),
+        )
     if name == "full_information":
         return LinearRuleSpec(
             information_state=name,
