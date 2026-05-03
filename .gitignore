@@ -8,3 +8,5 @@ article/*.log
 article/*.out
 article/*.toc
 article/*.pdf
+article/*.fdb_latexmk
+article/*.fls

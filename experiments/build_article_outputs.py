@@ -31,8 +31,12 @@ def build_article_outputs(*, outputs_dir: Path, article_dir: Path) -> None:
     individual_baseline = pd.read_csv(outputs_dir / "exp04_individual_stats" / "baseline" / "individual_stat_value.csv")
     grid_path = outputs_dir / "exp06_distributional_value_grid" / "distributional_value_grid.csv"
     grid = pd.read_csv(grid_path) if grid_path.exists() else None
+    policy_robustness_path = outputs_dir / "exp05_policy_class_robustness" / "policy_class_robustness_summary.csv"
+    policy_robustness = pd.read_csv(policy_robustness_path) if policy_robustness_path.exists() else None
 
     _write_main_tables(scenario_summary, sufficiency, individual_baseline, tables_dir)
+    if policy_robustness is not None:
+        _write_policy_class_table(policy_robustness, tables_dir)
     _plot_distributional_value(scenario_summary, figures_dir)
     _plot_gap_closed(sufficiency, figures_dir)
     _plot_individual_stats(individual_baseline, figures_dir)
@@ -44,6 +48,7 @@ def build_article_outputs(*, outputs_dir: Path, article_dir: Path) -> None:
         sufficiency,
         individual_baseline,
         grid,
+        policy_robustness,
         article_dir / "sections" / "results.tex",
     )
 
@@ -114,7 +119,13 @@ def _write_main_tables(
             "loss_reduction_ci_high",
             "win_rate",
         ]
-    ]
+    ].copy()
+    individual_label_map = {
+        "Средняя MPC против оценённых агрегатов": "Средняя предельная склонность к потреблению против оценённых агрегатов",
+        "Доля низколиквидных против оценённых агрегатов": "Доля низколиквидных домохозяйств против оценённых агрегатов",
+        "MPC и доля низколиквидных против оценённых агрегатов": "Две распределительные статистики против оценённых агрегатов",
+    }
+    individual_table["comparison_label"] = individual_table["comparison_label"].replace(individual_label_map)
     individual_table = individual_table.rename(
         columns={
             "comparison_label": "Сравнение",
@@ -130,6 +141,45 @@ def _write_main_tables(
         float_format="%.6f",
         caption="Отдельная роль распределительных статистик в базовом сценарии",
         label="tab:individual_distributional_stats",
+    )
+
+
+def _write_policy_class_table(policy_robustness: pd.DataFrame, tables_dir: Path) -> None:
+    table = policy_robustness[
+        [
+            "scenario",
+            "rule_class",
+            "distributional_value_vs_aggregate",
+            "distributional_value_vs_aggregate_ci_low",
+            "distributional_value_vs_aggregate_ci_high",
+            "distributional_win_rate_vs_aggregate",
+            "distributional_value_vs_filtered",
+        ]
+    ].copy()
+    table["scenario"] = table["scenario"].map(SCENARIO_LABELS)
+    table["rule_class"] = table["rule_class"].replace(
+        {
+            "linear": "Линейное",
+            "quadratic": "Квадратичное",
+        }
+    )
+    table = table.rename(
+        columns={
+            "scenario": "Сценарий",
+            "rule_class": "Правило",
+            "distributional_value_vs_aggregate": "Снижение к агрегатам",
+            "distributional_value_vs_aggregate_ci_low": "ДИ, нижняя граница",
+            "distributional_value_vs_aggregate_ci_high": "ДИ, верхняя граница",
+            "distributional_win_rate_vs_aggregate": "Доля выигрышей",
+            "distributional_value_vs_filtered": "Снижение к оценённым агрегатам",
+        }
+    )
+    _write_table(
+        table,
+        tables_dir / "table_policy_class_robustness.tex",
+        float_format="%.6f",
+        caption="Проверка устойчивости к классу правила",
+        label="tab:policy_class_robustness",
     )
 
 
@@ -171,7 +221,7 @@ def _plot_gap_closed(sufficiency: pd.DataFrame, figures_dir: Path) -> None:
 
 def _plot_individual_stats(individual: pd.DataFrame, figures_dir: Path) -> None:
     frame = individual.copy()
-    labels = ["MPC", "Низкая ликвидность", "Обе статистики"]
+    labels = ["Предельная склонность", "Низкая ликвидность", "Обе статистики"]
     values = frame["loss_reduction"]
     errors_low = values - frame["loss_reduction_ci_low"]
     errors_high = frame["loss_reduction_ci_high"] - values
@@ -202,7 +252,7 @@ def _write_grid_table(grid: pd.DataFrame, tables_dir: Path) -> None:
     table = table.rename(
         columns={
             "aggregate_observation_noise": "Шум агрегатов",
-            "mpc_channel_strength": "Сила канала MPC",
+            "mpc_channel_strength": "Сила распределительного канала",
             "distributional_value_vs_aggregate": "Снижение потерь",
             "win_rate": "Доля выигрышей",
             "share_of_full_information_gap_closed": "Закрытая доля разрыва",
@@ -262,31 +312,46 @@ def _write_results_block(
     sufficiency: pd.DataFrame,
     individual_baseline: pd.DataFrame,
     grid: pd.DataFrame | None,
+    policy_robustness: pd.DataFrame | None,
     path: Path,
 ) -> None:
-    high_heterogeneity = scenario_summary.set_index("scenario").loc["high_heterogeneity"]
-    baseline = scenario_summary.set_index("scenario").loc["baseline"]
-    suff_high = sufficiency.set_index("scenario").loc["high_heterogeneity"]
+    scenario_index = scenario_summary.set_index("scenario")
+    sufficiency_index = sufficiency.set_index("scenario")
+    high_heterogeneity = scenario_index.loc["high_heterogeneity"]
+    high_noise = scenario_index.loc["high_aggregate_noise"]
+    noisy_distribution = scenario_index.loc["noisy_distributional_data"]
+    baseline = scenario_index.loc["baseline"]
+    suff_high = sufficiency_index.loc["high_heterogeneity"]
+    suff_noise = sufficiency_index.loc["high_aggregate_noise"]
     liquidity = individual_baseline.set_index("left").loc["distributional_liquidity"]
+    mpc = individual_baseline.set_index("left").loc["distributional_mpc"]
 
     lines = [
         "\\section{Результаты}",
         "",
-        "В базовом сценарии добавление распределительных статистик снижает средние потери относительно правила по агрегатной информации. "
-        f"Оценка снижения составляет {baseline['distributional_value_vs_aggregate']:.6f}, "
-        f"а доля выигрышных траекторий равна {baseline['distributional_win_rate_vs_aggregate']:.2f}.",
+        "\\subsection{Основной эффект распределительной информации}",
         "",
-        "Наиболее выраженный эффект возникает в сценарии высокой неоднородности. "
-        f"Там распределительный блок закрывает {100 * suff_high['share_of_gap_closed_by_distribution']:.1f}\\% "
+        "В базовом сценарии добавление распределительных статистик снижает средние потери относительно правила по агрегатной информации. "
+        f"Среднее снижение потерь равно {baseline['distributional_value_vs_aggregate']:.6f}; "
+        f"доверительный интервал составляет "
+        f"[{baseline['distributional_value_vs_aggregate_ci_low']:.6f}; {baseline['distributional_value_vs_aggregate_ci_high']:.6f}], "
+        f"а доля выигрышных траекторий равна {baseline['distributional_win_rate_vs_aggregate']:.2f}. "
+        "Это означает, что распределительный блок имеет положительную ценность уже в базовой среде, хотя эффект остаётся умеренным.",
+        "",
+        "Наиболее выраженный результат возникает при высокой неоднородности домохозяйств. "
+        f"В этом сценарии снижение потерь достигает {high_heterogeneity['distributional_value_vs_aggregate']:.6f}, "
+        f"доля выигрышных траекторий возрастает до {high_heterogeneity['distributional_win_rate_vs_aggregate']:.2f}, "
+        f"а распределительный блок закрывает {100 * suff_high['share_of_gap_closed_by_distribution']:.1f}\\% "
         "разрыва между агрегатной информацией и полной информацией.",
         "",
-        "Отдельная проверка распределительных статистик показывает, что в базовом сценарии более устойчивый сигнал дает доля низколиквидных домохозяйств. "
-        f"Снижение потерь для этой статистики равно {liquidity['loss_reduction']:.6f}, "
-        f"доля выигрышных траекторий равна {liquidity['win_rate']:.2f}.",
+        "При высоком шуме агрегатных наблюдений средний эффект остаётся положительным, но доверительный интервал включает ноль. "
+        f"Снижение потерь равно {high_noise['distributional_value_vs_aggregate']:.6f}, "
+        f"а закрытая доля разрыва до полной информации составляет только {100 * high_noise['share_of_full_information_gap_closed']:.1f}\\%. "
+        "Когда сами распределительные сигналы становятся более шумными, эффект также ослабевает: "
+        f"снижение потерь равно {noisy_distribution['distributional_value_vs_aggregate']:.6f}, "
+        f"доля выигрышных траекторий составляет {noisy_distribution['distributional_win_rate_vs_aggregate']:.2f}.",
         "",
         "\\input{tables/table_main_distributional_value}",
-        "\\input{tables/table_sufficiency_gap}",
-        "\\input{tables/table_individual_distributional_stats}",
         "",
         "\\begin{figure}[ht]",
         "\\centering",
@@ -294,19 +359,45 @@ def _write_results_block(
         "\\caption{Ценность распределительной информации по сценариям}",
         "\\end{figure}",
         "",
+        "\\subsection{Разрыв до полной информации}",
+        "",
+        "Полная информация используется как верхняя граница качества, поэтому важна не только абсолютная разность потерь, но и то, какую часть информационного разрыва закрывает распределительный блок. "
+        f"В сценарии высокой неоднородности эта доля равна {100 * suff_high['share_of_gap_closed_by_distribution']:.1f}\\%. "
+        f"Напротив, при высоком шуме агрегатов общий разрыв до полной информации возрастает до {100 * suff_noise['sufficiency_gap_pct_of_aggregate']:.1f}\\% "
+        "от потерь агрегатного правила, но распределительный блок закрывает лишь небольшую часть этого разрыва. "
+        "Это говорит о том, что распределительная информация полезна не механически, а тогда, когда она действительно помогает описать будущую трансмиссию ставки.",
+        "",
+        "\\input{tables/table_sufficiency_gap}",
+        "",
         "\\begin{figure}[ht]",
         "\\centering",
         "\\includegraphics[width=0.9\\textwidth]{figures/fig_gap_closed_by_distribution.pdf}",
         "\\caption{Доля разрыва до полной информации, закрытая распределительным блоком}",
         "\\end{figure}",
+        "",
+        "\\subsection{Какая распределительная статистика важнее}",
+        "",
+        "Отдельная проверка распределительных статистик показывает, что в базовом сценарии более устойчивый сигнал даёт доля низколиквидных домохозяйств. "
+        f"Снижение потерь для этой статистики равно {liquidity['loss_reduction']:.6f}, "
+        f"доля выигрышных траекторий равна {liquidity['win_rate']:.2f}. "
+        "Средняя предельная склонность к потреблению также даёт положительное среднее снижение потерь, "
+        f"но оно меньше: {mpc['loss_reduction']:.6f}, при доле выигрышных траекторий {mpc['win_rate']:.2f}. "
+        "В данной калибровке совместное добавление двух статистик не даёт заметного выигрыша сверх сигнала низкой ликвидности.",
+        "",
+        "\\input{tables/table_individual_distributional_stats}",
     ]
     if grid is not None:
         best = grid.loc[grid["distributional_value_vs_aggregate"].idxmax()]
         lines.extend(
             [
                 "",
+                "\\subsection{Когда эффект усиливается}",
+                "",
                 "Дополнительная сетка по шуму агрегатных наблюдений и силе распределительного канала показывает, что ценность распределительной информации меняется по параметрам среды. "
-                f"Наибольшее снижение потерь в этой сетке равно {best['distributional_value_vs_aggregate']:.6f}.",
+                f"Наибольшее снижение потерь в этой сетке равно {best['distributional_value_vs_aggregate']:.6f}; "
+                f"оно достигается при шуме агрегатных наблюдений {best['aggregate_observation_noise']:.1f} "
+                f"и силе распределительного канала {best['mpc_channel_strength']:.2f}. "
+                "Это поддерживает основную интерпретацию: распределительные статистики особенно полезны, когда агрегатные индикаторы хуже отражают будущую силу трансмиссии ставки.",
                 "",
                 "\\input{tables/table_distributional_value_grid}",
                 "",
@@ -317,6 +408,39 @@ def _write_results_block(
                 "\\end{figure}",
             ]
         )
+    if policy_robustness is not None:
+        quadratic = policy_robustness[policy_robustness["rule_class"] == "quadratic"]
+        if not quadratic.empty:
+            base_quad = quadratic.set_index("scenario").loc["baseline"]
+            high_quad = quadratic.set_index("scenario").loc["high_heterogeneity"]
+            lines.extend(
+                [
+                    "",
+                    "\\subsection{Проверка класса правила}",
+                    "",
+                    "Проверка с квадратичным правилом используется только как проверка устойчивости, а не как новая основная спецификация. "
+                    "В этой проверке положительный знак ценности распределительной информации относительно одних агрегатов сохраняется, "
+                    "но сам эффект становится намного меньше. "
+                    f"В базовом сценарии квадратичное правило даёт снижение потерь {base_quad['distributional_value_vs_aggregate']:.6f}, "
+                    f"а в сценарии высокой неоднородности -- {high_quad['distributional_value_vs_aggregate']:.6f}. "
+                    "Добавочный выигрыш относительно оценённых агрегатов становится практически нулевым.",
+                    "",
+                    "Следовательно, вывод о распределительной информации следует формулировать осторожно. "
+                    "Основной результат состоит не в универсальном доминировании распределительного состояния, а в том, что его ценность проявляется в средах и классах правил, где агрегатные показатели не исчерпывают информацию о трансмиссии ставки.",
+                    "",
+                    "\\input{tables/table_policy_class_robustness}",
+                ]
+            )
+    lines.extend(
+        [
+            "",
+            "\\subsection{Итоговая интерпретация}",
+            "",
+            "Полученные результаты в целом поддерживают центральную гипотезу работы в условной форме. "
+            "Распределительная информация имеет положительную ценность тогда, когда она помогает предсказывать силу будущей трансмиссии ставки. "
+            "Эта ценность наиболее заметна при высокой неоднородности домохозяйств и слабее при зашумлённых распределительных данных или при более гибком классе правила.",
+        ]
+    )
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
