@@ -210,5 +210,6 @@ def path_distribution_statistics(ss, path_levels, config, mpc_path=None):
             mpc_t = mpc_path[period]
             stats["mean_mpc"] = float(np.sum(D_t * mpc_t))
             stats["median_mpc"] = weighted_quantile(mpc_t, D_t, 0.5)
+            stats["interest_exposure"] = float(np.sum(D_t * b_grid_t * mpc_t))
         rows.append(stats)
     return pd.DataFrame(rows)

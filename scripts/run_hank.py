@@ -12,7 +12,7 @@ from hank import run_pipeline
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run the HANK core diagnostics.")
+    parser = argparse.ArgumentParser(description="Run the HANK core.")
     parser.add_argument("--output-dir", default="outputs/hank_core", help="Directory for generated outputs.")
     args = parser.parse_args()
     run_pipeline(output_dir=args.output_dir)

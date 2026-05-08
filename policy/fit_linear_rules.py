@@ -126,13 +126,13 @@ def _structured_candidates(information_state: str, feature_scales: dict[str, flo
         for response in (0.004, 0.008, 0.012):
             standardized = np.zeros(len(spec.feature_names), dtype=float)
             for index, name in enumerate(spec.feature_names):
-                if "inflation" in name:
+                if name in {"pi", "pi_obs", "E_pi"}:
                     standardized[index] = response
-                elif "output" in name:
+                elif name in {"Y", "Y_obs", "E_Y"}:
                     standardized[index] = 0.65 * response
-                elif "natural_rate" in name:
-                    standardized[index] = 0.50 * response
-                elif "mean_mpc" in name or "low_liquidity" in name:
+                elif name in {"C", "C_obs", "E_C"}:
+                    standardized[index] = 0.35 * response
+                elif "mean_mpc" in name or "low_liquidity" in name or "interest_exposure" in name:
                     standardized[index] = -0.35 * response
             coefficients = _raw_coefficients(standardized, spec.feature_names, feature_scales)
             candidates.append(
@@ -161,7 +161,9 @@ def _raw_coefficients(
 
 
 def _core_feature_name(name: str) -> str:
-    for prefix in ("observed_", "filtered_", "true_"):
+    for prefix in ("observed_", "filtered_", "true_", "E_"):
         if name.startswith(prefix):
             return name[len(prefix) :]
+    if name.endswith("_obs"):
+        return name[:-len("_obs")]
     return name

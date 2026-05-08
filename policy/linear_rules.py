@@ -32,53 +32,82 @@ def rule_spec_for_information_state(name: str) -> LinearRuleSpec:
     if name == "aggregate_only":
         return LinearRuleSpec(
             information_state=name,
-            feature_names=("observed_inflation_gap", "observed_output_gap"),
+            feature_names=("pi_obs", "Y_obs"),
+        )
+    if name == "aggregate_history":
+        return LinearRuleSpec(
+            information_state=name,
+            feature_names=("pi_obs", "Y_obs", "pi_obs_lag", "Y_obs_lag"),
         )
     if name == "filtered_aggregates":
         return LinearRuleSpec(
             information_state=name,
-            feature_names=("filtered_inflation_gap", "filtered_output_gap", "filtered_natural_rate_gap"),
+            feature_names=("E_pi", "E_Y", "E_C"),
         )
-    if name == "distributional":
+    if name == "observed_distribution":
         return LinearRuleSpec(
             information_state=name,
             feature_names=(
-                "filtered_inflation_gap",
-                "filtered_output_gap",
-                "filtered_natural_rate_gap",
-                "filtered_mean_mpc",
-                "filtered_low_liquidity_share",
+                "pi_obs",
+                "Y_obs",
+                "C_obs",
+                "mean_mpc_obs",
+                "low_liquidity_share_obs",
+                "interest_exposure_obs",
             ),
         )
-    if name == "distributional_mpc":
+    if name == "filtered_distribution":
         return LinearRuleSpec(
             information_state=name,
             feature_names=(
-                "filtered_inflation_gap",
-                "filtered_output_gap",
-                "filtered_natural_rate_gap",
-                "filtered_mean_mpc",
+                "E_pi",
+                "E_Y",
+                "E_C",
+                "E_mean_mpc",
+                "E_low_liquidity_share",
+                "E_interest_exposure",
             ),
         )
-    if name == "distributional_liquidity":
+    if name == "filtered_distribution_mpc":
         return LinearRuleSpec(
             information_state=name,
             feature_names=(
-                "filtered_inflation_gap",
-                "filtered_output_gap",
-                "filtered_natural_rate_gap",
-                "filtered_low_liquidity_share",
+                "E_pi",
+                "E_Y",
+                "E_C",
+                "E_mean_mpc",
+            ),
+        )
+    if name == "filtered_distribution_liquidity":
+        return LinearRuleSpec(
+            information_state=name,
+            feature_names=(
+                "E_pi",
+                "E_Y",
+                "E_C",
+                "E_low_liquidity_share",
+            ),
+        )
+    if name == "filtered_distribution_exposure":
+        return LinearRuleSpec(
+            information_state=name,
+            feature_names=(
+                "E_pi",
+                "E_Y",
+                "E_C",
+                "E_interest_exposure",
             ),
         )
     if name == "full_information":
         return LinearRuleSpec(
             information_state=name,
             feature_names=(
-                "true_inflation_gap",
-                "true_output_gap",
-                "true_natural_rate_gap",
-                "true_mean_mpc",
-                "true_low_liquidity_share",
+                "pi",
+                "Y",
+                "C",
+                "mean_mpc",
+                "low_liquidity_share",
+                "interest_exposure",
             ),
         )
     raise ValueError(f"Unknown information state: {name}")
