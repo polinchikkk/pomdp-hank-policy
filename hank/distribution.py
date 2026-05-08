@@ -133,24 +133,6 @@ def distribution_snapshots(ss, path_levels, horizons):
     return pd.concat(snapshots_b, ignore_index=True), pd.concat(snapshots_a, ignore_index=True)
 
 
-def joint_distribution_shift(ss, path_levels, horizon):
-    joint_ss = stationary_distribution(ss).sum(axis=0)
-    joint_t = path_levels["D"][horizon].sum(axis=0)
-    hh = household_levels(ss)
-    frame = []
-    for i_b, b_value in enumerate(hh["b_grid"]):
-        for i_a, a_value in enumerate(hh["a_grid"]):
-            frame.append({
-                "period": horizon,
-                "b": b_value,
-                "a": a_value,
-                "delta_mass": joint_t[i_b, i_a] - joint_ss[i_b, i_a],
-                "steady_mass": joint_ss[i_b, i_a],
-                "path_mass": joint_t[i_b, i_a],
-            })
-    return pd.DataFrame(frame)
-
-
 def group_share(mask, distribution):
     return float(np.sum(distribution[mask]))
 

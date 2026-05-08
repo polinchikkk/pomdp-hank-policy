@@ -64,19 +64,6 @@ def plot_stationary_distributions(ss, mpc, config, figures_dir: Path):
     ax.set_title("Распределение домохозяйств по неликвидному богатству")
     save_figure(fig, figures_dir, "fig_02_illiquid_wealth_distribution")
 
-    fig, ax = plt.subplots(figsize=(6.6, 5.2))
-    im = ax.imshow(marginals["joint"].T, origin="lower", aspect="auto", cmap="Greys")
-    ax.set_xticks(range(len(marginals["b_grid"])))
-    ax.set_xticklabels([f"{x:.1f}" for x in marginals["b_grid"]], rotation=45, ha="right")
-    ax.set_yticks(range(len(marginals["a_grid"])))
-    ax.set_yticklabels([f"{x:.0f}" for x in marginals["a_grid"]])
-    ax.set_xlabel("Ликвидные активы")
-    ax.set_ylabel("Неликвидные активы")
-    ax.set_title("Стационарное распределение домохозяйств по активам")
-    cbar = fig.colorbar(im, ax=ax)
-    cbar.set_label("Масса распределения")
-    save_figure(fig, figures_dir, "fig_03_joint_wealth_distribution")
-
     fig, ax = plt.subplots()
     ax.hist(mpc.reshape(-1), bins=np.linspace(0, 1.2, 25), weights=D.reshape(-1), color="0.45", edgecolor="black", alpha=0.75)
     ax.set_xlabel("Предельная склонность к потреблению")
@@ -327,11 +314,10 @@ def plot_group_irfs(group_consumption_irf, group_income_irf, figures_dir: Path, 
     save_figure(fig, figures_dir, "fig_21_income_channels_low_liquid")
 
 
-def plot_distribution_dynamics(liquid_snapshots, illiquid_snapshots, joint_shift, figures_dir: Path, scenario_name="baseline"):
+def plot_distribution_dynamics(liquid_snapshots, illiquid_snapshots, figures_dir: Path, scenario_name="baseline"):
     apply_style()
     liquid_snapshots = liquid_snapshots[liquid_snapshots["scenario"] == scenario_name]
     illiquid_snapshots = illiquid_snapshots[illiquid_snapshots["scenario"] == scenario_name]
-    joint_shift = joint_shift[joint_shift["scenario"] == scenario_name]
     horizons = sorted(liquid_snapshots["period"].unique())
     greys = plt.cm.Greys(np.linspace(0.2, 0.9, len(horizons)))
 
@@ -356,45 +342,6 @@ def plot_distribution_dynamics(liquid_snapshots, illiquid_snapshots, joint_shift
     ax.set_title("Динамика распределения неликвидного богатства после шока")
     ax.legend(frameon=False)
     save_figure(fig, figures_dir, "fig_23_illiquid_distribution_dynamics")
-
-    steady_pivot = joint_shift.pivot(index="a", columns="b", values="steady_mass")
-    fig, ax = plt.subplots(figsize=(6.6, 5.2))
-    im = ax.imshow(steady_pivot.to_numpy(), origin="lower", aspect="auto", cmap="Greys")
-    ax.set_xticks(range(len(steady_pivot.columns)))
-    ax.set_xticklabels([f"{x:.1f}" for x in steady_pivot.columns], rotation=45, ha="right")
-    ax.set_yticks(range(len(steady_pivot.index)))
-    ax.set_yticklabels([f"{x:.0f}" for x in steady_pivot.index])
-    ax.set_xlabel("Ликвидные активы")
-    ax.set_ylabel("Неликвидные активы")
-    ax.set_title("Стационарное распределение домохозяйств по активам")
-    fig.colorbar(im, ax=ax, label="Масса распределения")
-    save_figure(fig, figures_dir, "fig_24_heatmap_steady_assets")
-
-    path_pivot = joint_shift.pivot(index="a", columns="b", values="path_mass")
-    fig, ax = plt.subplots(figsize=(6.6, 5.2))
-    im = ax.imshow(path_pivot.to_numpy(), origin="lower", aspect="auto", cmap="Greys")
-    ax.set_xticks(range(len(path_pivot.columns)))
-    ax.set_xticklabels([f"{x:.1f}" for x in path_pivot.columns], rotation=45, ha="right")
-    ax.set_yticks(range(len(path_pivot.index)))
-    ax.set_yticklabels([f"{x:.0f}" for x in path_pivot.index])
-    ax.set_xlabel("Ликвидные активы")
-    ax.set_ylabel("Неликвидные активы")
-    ax.set_title("Распределение домохозяйств по активам после монетарного шока")
-    fig.colorbar(im, ax=ax, label="Масса распределения")
-    save_figure(fig, figures_dir, "fig_25_heatmap_postshock_assets")
-
-    delta_pivot = joint_shift.pivot(index="a", columns="b", values="delta_mass")
-    fig, ax = plt.subplots(figsize=(6.6, 5.2))
-    im = ax.imshow(delta_pivot.to_numpy(), origin="lower", aspect="auto", cmap="RdBu_r")
-    ax.set_xticks(range(len(delta_pivot.columns)))
-    ax.set_xticklabels([f"{x:.1f}" for x in delta_pivot.columns], rotation=45, ha="right")
-    ax.set_yticks(range(len(delta_pivot.index)))
-    ax.set_yticklabels([f"{x:.0f}" for x in delta_pivot.index])
-    ax.set_xlabel("Ликвидные активы")
-    ax.set_ylabel("Неликвидные активы")
-    ax.set_title("Изменение распределения домохозяйств по активам после монетарного шока")
-    fig.colorbar(im, ax=ax, label="Изменение массы распределения")
-    save_figure(fig, figures_dir, "fig_26_heatmap_asset_shift")
 
 
 def plot_channels(channel_decomposition, aggregate_income_channels, figures_dir: Path, scenario_name="baseline"):

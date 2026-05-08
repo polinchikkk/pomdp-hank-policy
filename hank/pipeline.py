@@ -13,17 +13,13 @@ from .distribution import (
     distribution_snapshots,
     household_path_levels,
     household_levels,
-    joint_distribution_shift,
     path_distribution_statistics,
-    stationary_distribution,
 )
 from .experiments import monetary_policy_experiment, policy_scenarios
 from .household_solver import (
-    aggregate_consistency,
     compute_mpc,
     compute_mpc_path,
     compute_transfer_mpc,
-    household_budget_residual,
 )
 from .irfs import (
     aggregate_income_channels_frame,
@@ -90,32 +86,6 @@ def _save_json(path: Path, payload):
 def _save_table(table: pd.DataFrame, basepath: Path):
     table.to_csv(basepath.with_suffix(".csv"), index=False)
     basepath.with_suffix(".tex").write_text(table.to_latex(index=False, escape=False))
-
-
-def _checks(bundle, transition, config, mpc):
-    ss = bundle["ss"]
-    D = stationary_distribution(ss)
-    budget_residual = household_budget_residual(ss)
-    aggregates = aggregate_consistency(ss)
-
-    grid_alt = solve_steady_state(replace(config, nB=config.nB + 2, nA=config.nA + 4))["ss"]
-
-    return {
-        "distribution_mass_sum": float(D.sum()),
-        "distribution_min_mass": float(D.min()),
-        "budget_residual_max_abs": float(np.max(np.abs(budget_residual))),
-        "asset_consistency_abs": float(abs(aggregates["A_from_distribution"] - ss["A"])),
-        "liquid_consistency_abs": float(abs(aggregates["B_from_distribution"] - ss["B"])),
-        "consumption_consistency_abs": float(abs(aggregates["C_from_distribution"] - ss["C"])),
-        "asset_market_residual_abs": float(abs(ss["asset_mkt"])),
-        "goods_market_residual_abs": float(abs(ss["goods_mkt"])),
-        "irf_is_finite": bool(np.isfinite(transition["C"]).all() and np.isfinite(transition["Y"]).all()),
-        "max_abs_irf_output_pct": float(np.max(np.abs(100.0 * transition["Y"] / ss["Y"]))),
-        "mean_mpc": float(np.sum(D * mpc)),
-        "grid_sensitivity_C_abs": float(abs(grid_alt["C"] - ss["C"])),
-        "grid_sensitivity_Y_abs": float(abs(grid_alt["Y"] - ss["Y"])),
-        "grid_sensitivity_A_abs": float(abs(grid_alt["A"] - ss["A"])),
-    }
 
 
 def _append_scenario_column(df, scenario_name, scenario_label):
@@ -287,7 +257,6 @@ def run_pipeline(config: HANKCalibration | None = None, output_dir: str | None =
     aggregate_income_channels_all = []
     group_contributions_all = []
     channel_decomposition_all = []
-    diagnostics = {}
     scenario_summary = []
 
     baseline_bundle = None
@@ -298,11 +267,10 @@ def run_pipeline(config: HANKCalibration | None = None, output_dir: str | None =
     baseline_group_stats = None
     baseline_experiment = None
     baseline_transfer_mpc = None
-    baseline_transfer_mpc_diagnostics = None
+    baseline_transfer_mpc_result = None
     jacobian_df = None
     liquid_snapshots = None
     illiquid_snapshots = None
-    joint_shift = None
     baseline_group_thresholds = None
 
     for scenario in scenarios:
@@ -343,8 +311,6 @@ def run_pipeline(config: HANKCalibration | None = None, output_dir: str | None =
         group_contributions_all.append(group_contributions)
         channel_decomposition_all.append(channel_df)
 
-        diagnostics[scenario_name] = _checks(bundle, transition, scenario_config, mpc)
-
         subset = aggregate_irf.sort_values("period")
         scenario_summary.append({
             "scenario": scenario_name,
@@ -367,15 +333,6 @@ def run_pipeline(config: HANKCalibration | None = None, output_dir: str | None =
             liquid_snapshots, illiquid_snapshots = distribution_snapshots(ss, full_path_levels, experiment["horizons"])
             liquid_snapshots = _append_scenario_column(liquid_snapshots, scenario_name, scenario_label)
             illiquid_snapshots = _append_scenario_column(illiquid_snapshots, scenario_name, scenario_label)
-            joint_shift = _append_scenario_column(
-                joint_distribution_shift(
-                    ss,
-                    full_path_levels,
-                    experiment["horizons"][2] if len(experiment["horizons"]) > 2 else experiment["horizons"][-1],
-                ),
-                scenario_name,
-                scenario_label,
-            )
 
     aggregate_paths_df = pd.concat(aggregate_paths_all, ignore_index=True)
     aggregate_irf_df = pd.concat(aggregate_irf_all, ignore_index=True)
@@ -391,12 +348,12 @@ def run_pipeline(config: HANKCalibration | None = None, output_dir: str | None =
     policy_df = policy_rule_table(scenarios)
     moments_df = steady_state_moments_table(baseline_ss, baseline_mpc, config)
     mpc_validation_df = mpc_moments_frame(baseline_ss, baseline_mpc, config)
-    baseline_transfer_mpc_diagnostics = compute_transfer_mpc(
+    baseline_transfer_mpc_result = compute_transfer_mpc(
         baseline_bundle,
         config.mpc_transfer_shock_size,
         horizon=config.mpc_transfer_horizon,
     )
-    baseline_transfer_mpc = baseline_transfer_mpc_diagnostics["mpc"]
+    baseline_transfer_mpc = baseline_transfer_mpc_result["mpc"]
     transfer_mpc_validation_df = transfer_mpc_moments_frame(baseline_ss, baseline_transfer_mpc, config)
     group_profiles_df = group_profile_frame(baseline_ss, baseline_mpc, config)
     wealthy_htm_sensitivity_df = wealthy_htm_sensitivity_frame(baseline_ss, baseline_transition, baseline_mpc, config)
@@ -429,7 +386,7 @@ def run_pipeline(config: HANKCalibration | None = None, output_dir: str | None =
     plot_wealth_quantiles(distribution_paths_df, figures_dir, scenario_name="baseline")
     plot_low_liquidity_shares(distribution_paths_df, figures_dir, scenario_name="baseline")
     plot_group_irfs(group_consumption_df, group_income_df, figures_dir, scenario_name="baseline")
-    plot_distribution_dynamics(liquid_snapshots, illiquid_snapshots, joint_shift, figures_dir, scenario_name="baseline")
+    plot_distribution_dynamics(liquid_snapshots, illiquid_snapshots, figures_dir, scenario_name="baseline")
     plot_channels(channel_decomposition_df, aggregate_income_channels_df, figures_dir, scenario_name="baseline")
     plot_group_contributions(group_contributions_df, figures_dir, scenario_name="baseline")
     plot_wealthy_htm_sensitivity(wealthy_htm_sensitivity_df, figures_dir)
@@ -458,16 +415,6 @@ def run_pipeline(config: HANKCalibration | None = None, output_dir: str | None =
     ])
     _save_json(root / "calibration.json", asdict(config))
     _save_json(root / "steady_state_aggregates.json", steady_state_aggregates(baseline_ss))
-    diagnostics["mpc_validation"] = mpc_validation_df.to_dict(orient="records")
-    diagnostics["transfer_mpc_validation"] = transfer_mpc_validation_df.to_dict(orient="records")
-    diagnostics["transfer_mpc_spec"] = {
-        "transfer_shock_size": baseline_transfer_mpc_diagnostics["shock_size"],
-        "transfer_shock_horizon": baseline_transfer_mpc_diagnostics["horizon"],
-        "aggregate_mpc_impact": baseline_transfer_mpc_diagnostics["aggregate_mpc"],
-    }
-    diagnostics["household_robustness"] = household_robustness_df.to_dict(orient="records")
-    diagnostics["sequence_jacobian_reference"] = reference_summary_df.to_dict(orient="records")
-    _save_json(root / "diagnostics_summary.json", diagnostics)
     _save_json(root / "experiment_spec.json", baseline_experiment)
     _save_json(root / "group_definition_spec.json", {
         "operational_definition": "wealthy_htm := low liquid wealth below threshold and illiquid wealth above threshold quantile",
@@ -526,7 +473,6 @@ def run_pipeline(config: HANKCalibration | None = None, output_dir: str | None =
     group_contributions_df.to_csv(root / "group_contributions.csv", index=False)
     liquid_snapshots.to_csv(root / "liquid_distribution_snapshots.csv", index=False)
     illiquid_snapshots.to_csv(root / "illiquid_distribution_snapshots.csv", index=False)
-    joint_shift.to_csv(root / "joint_distribution_shift.csv", index=False)
     jacobian_df.to_csv(root / "jacobian_summary.csv", index=False)
     baseline_group_stats.to_csv(root / "group_statistics.csv", index=False)
     mpc_validation_df.to_csv(root / "mpc_validation.csv", index=False)
@@ -569,7 +515,6 @@ def run_pipeline(config: HANKCalibration | None = None, output_dir: str | None =
 
     return {
         "output_dir": str(root),
-        "diagnostics": diagnostics,
         "steady_state_aggregates": steady_state_aggregates(baseline_ss),
         "shock_effects": shock_df.to_dict(orient="records"),
         "scenario_summary": scenario_summary,
