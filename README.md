@@ -178,9 +178,9 @@ python3 experiments/exp19_liquid_wedge_channel_calibration.py --omega-values 0.0
 python3 experiments/exp12_build_article_figures.py
 ```
 
-Скрипт собирает основные рисунки, включая `fig_hank_ssj_irfs.pdf` с HANK/SSJ-откликами
-агрегатных и распределительных переменных и `fig_additional_robustness.pdf` с проверками по
-числу траекторий, шоку доходного риска и клину ликвидной доходности.
+Скрипт собирает основные рисунки, включая `fig_distributional_effect_evidence.pdf` с парной
+статистической проверкой эффекта и `fig_additional_robustness.pdf` с проверками по числу
+траекторий, шоку доходного риска и клину ликвидной доходности.
 
 ## Ближайшие задачи
 

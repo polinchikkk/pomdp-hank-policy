@@ -64,14 +64,6 @@ def main() -> None:
         "--liquid-wedge-summary",
         default="outputs/ssj/liquid_wedge_channel/liquid_wedge_channel_summary.csv",
     )
-    parser.add_argument(
-        "--baseline-shock-library",
-        default="outputs/ssj/stochastic/shock_response_library.csv",
-    )
-    parser.add_argument(
-        "--income-risk-shock-library",
-        default="outputs/ssj/stochastic/income_risk_shock_source/shock_response_library.csv",
-    )
     parser.add_argument("--output-dir", default="article/figures")
     args = parser.parse_args()
 
@@ -79,16 +71,11 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     _plot_main_losses(Path(args.main_voi_dir), output_dir)
+    _plot_distributional_effect_evidence(Path(args.main_voi_dir), Path(args.placebo_summary), output_dir)
     _plot_noise_sensitivity(Path(args.noise_summary), output_dir)
     _plot_artificial_checks(Path(args.placebo_summary), output_dir)
     _plot_signal_strength(Path(args.signal_strength_summary), output_dir)
     _plot_loss_decomposition(Path(args.loss_decomposition), output_dir)
-    if Path(args.baseline_shock_library).exists() and Path(args.income_risk_shock_library).exists():
-        _plot_hank_ssj_irfs(
-            baseline_shock_library_csv=Path(args.baseline_shock_library),
-            income_risk_shock_library_csv=Path(args.income_risk_shock_library),
-            output_dir=output_dir,
-        )
     if Path(args.income_risk_summary).exists():
         _plot_income_risk_calibration(Path(args.income_risk_summary), output_dir)
     if (
@@ -132,6 +119,84 @@ def _plot_main_losses(main_voi_dir: Path, output_dir: Path) -> None:
     ax.spines[["top", "right"]].set_visible(False)
     fig.tight_layout()
     fig.savefig(output_dir / "fig_main_information_states.pdf")
+    plt.close(fig)
+
+
+def _plot_distributional_effect_evidence(main_voi_dir: Path, placebo_summary_csv: Path, output_dir: Path) -> None:
+    losses = pd.read_csv(main_voi_dir / "trajectory_losses.csv")
+    paired = (
+        losses[
+            losses["information_state"].isin(
+                ["filtered_aggregates", "filtered_distribution"]
+            )
+        ]
+        .pivot_table(
+            index=["scenario", "observation_seed"],
+            columns="information_state",
+            values="total_loss",
+            aggfunc="first",
+        )
+        .dropna()
+    )
+    reductions = (
+        paired["filtered_aggregates"].to_numpy(dtype=float)
+        - paired["filtered_distribution"].to_numpy(dtype=float)
+    )
+    reductions_sorted = np.sort(reductions)
+    mean_reduction = float(np.mean(reductions))
+    win_share = float(np.mean(reductions > 0.0))
+
+    placebo = pd.read_csv(placebo_summary_csv)
+    labels = {
+        "actual": "Фактические\nряды",
+        "permuted": "Перемешанные\nряды",
+        "fake": "Искусственные\nряды",
+    }
+    frame = placebo.set_index("run").loc[["actual", "permuted", "fake"]].reset_index()
+    x = np.arange(len(frame))
+    means = frame["loss_reduction"].to_numpy(dtype=float)
+    ci_low_reduction = -frame["ci_high"].to_numpy(dtype=float)
+    ci_high_reduction = -frame["ci_low"].to_numpy(dtype=float)
+    err_low = np.maximum(means - ci_low_reduction, 0.0)
+    err_high = np.maximum(ci_high_reduction - means, 0.0)
+
+    fig, axes = plt.subplots(1, 2, figsize=(11.2, 4.4))
+    axes[0].axhline(0.0, color="#222222", linewidth=0.8)
+    axes[0].axhline(mean_reduction, color=PALETTE["distribution"], linestyle="--", linewidth=1.6)
+    axes[0].scatter(
+        np.arange(1, reductions_sorted.size + 1),
+        reductions_sorted,
+        s=14,
+        color=PALETTE["distribution"],
+        alpha=0.72,
+        edgecolor="none",
+    )
+    axes[0].set_title("Парные снижения потерь")
+    axes[0].set_xlabel("Тестовая траектория, отсортировано")
+    axes[0].set_ylabel("Снижение потерь")
+    axes[0].text(
+        0.04,
+        0.93,
+        f"N = {reductions.size}\nсреднее = {mean_reduction:.6f}\nдоля выигрышей = {win_share:.3f}",
+        transform=axes[0].transAxes,
+        va="top",
+        bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": "#dddddd"},
+    )
+
+    colors = [PALETTE["distribution"], PALETTE["placebo"], PALETTE["placebo"]]
+    axes[1].axhline(0.0, color="#222222", linewidth=0.8)
+    axes[1].bar(x, means, yerr=[err_low, err_high], capsize=4, color=colors, edgecolor="#222222", linewidth=0.7)
+    axes[1].set_xticks(x)
+    axes[1].set_xticklabels([labels[name] for name in frame["run"]])
+    axes[1].set_ylabel("Среднее снижение потерь")
+    axes[1].set_title("Фактический сигнал против искусственного")
+
+    for ax in axes:
+        ax.grid(axis="y", alpha=0.25)
+        ax.spines[["top", "right"]].set_visible(False)
+    fig.suptitle("Статистическая проверка ценности распределительной информации")
+    fig.tight_layout()
+    fig.savefig(output_dir / "fig_distributional_effect_evidence.pdf")
     plt.close(fig)
 
 
@@ -290,60 +355,6 @@ def _plot_loss_decomposition(loss_decomposition_csv: Path, output_dir: Path) -> 
     ax.spines[["top", "right"]].set_visible(False)
     fig.tight_layout()
     fig.savefig(output_dir / "fig_loss_component_decomposition.pdf")
-    plt.close(fig)
-
-
-def _plot_hank_ssj_irfs(
-    *,
-    baseline_shock_library_csv: Path,
-    income_risk_shock_library_csv: Path,
-    output_dir: Path,
-) -> None:
-    baseline = pd.read_csv(baseline_shock_library_csv)
-    income_risk = pd.read_csv(income_risk_shock_library_csv)
-    shock_specs = [
-        (baseline, "rstar", "Шок естественной ставки", PALETTE["filtered"]),
-        (income_risk, "sigma_z", "Шок доходного риска", PALETTE["distribution"]),
-    ]
-    variables = [
-        ("pi", "Инфляция"),
-        ("output_gap", "Разрыв выпуска"),
-        ("C", "Потребление"),
-        ("mean_mpc_centered", "Средняя MPC"),
-        ("share_low_liquidity_centered", "Доля низколиквидных"),
-        ("interest_exposure_centered", "Процентная экспозиция"),
-    ]
-
-    fig, axes = plt.subplots(2, 3, figsize=(11.4, 6.2), sharex=True)
-    for ax, (variable, title) in zip(axes.ravel(), variables):
-        for frame, shock, label, color in shock_specs:
-            response = (
-                frame[(frame["shock"] == shock) & (frame["variable"] == variable) & (frame["period"] <= 24)]
-                .sort_values("period")
-                .copy()
-            )
-            if response.empty:
-                continue
-            ax.plot(
-                response["period"],
-                100.0 * response["response"],
-                label=label,
-                color=color,
-                linewidth=2.0,
-            )
-        ax.axhline(0.0, color="#222222", linewidth=0.8)
-        ax.set_title(title)
-        ax.grid(alpha=0.25)
-        ax.spines[["top", "right"]].set_visible(False)
-
-    for ax in axes[1]:
-        ax.set_xlabel("Период")
-    for ax in axes[:, 0]:
-        ax.set_ylabel("Отклонение, п.п.")
-    axes[0, 0].legend(frameon=False, loc="best")
-    fig.suptitle("HANK/SSJ-отклики агрегатных и распределительных переменных")
-    fig.tight_layout()
-    fig.savefig(output_dir / "fig_hank_ssj_irfs.pdf")
     plt.close(fig)
 
 

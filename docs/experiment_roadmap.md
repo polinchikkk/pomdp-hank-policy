@@ -246,8 +246,8 @@ python3 experiments/exp10_summarize_placebo_tests.py
 
 Текущие фигуры:
 
-- `article/figures/fig_hank_ssj_irfs.pdf`;
 - `article/figures/fig_main_information_states.pdf`;
+- `article/figures/fig_distributional_effect_evidence.pdf`;
 - `article/figures/fig_artificial_distribution_checks.pdf`;
 - `article/figures/fig_distributional_signal_strength.pdf`;
 - `article/figures/fig_income_risk_calibration.pdf`;
