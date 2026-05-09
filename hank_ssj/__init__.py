@@ -7,31 +7,51 @@
 """
 
 from .artifacts import SSJArtifactSpec, export_long_jacobian_to_npz
+from .closed_loop_environment import ClosedLoopDiagnostics, ClosedLoopResult, ClosedLoopSSJEnvironment
 from .filters import FilterBuildSpec, ScalarFilterParams, build_filtered_states
 from .information_sets import InformationStateInputSpec, build_information_state_inputs
+from .kalman_filter import (
+    DEFAULT_STATE_NAMES,
+    JointKalmanBuildSpec,
+    build_joint_kalman_filtered_states,
+    build_observation_matrix,
+    fit_state_transition,
+    run_kalman_filter,
+)
 from .observables import HankObservableBuildSpec, build_hank_observable_panel
 from .observations import ObservationNoiseSpec, build_noisy_observations
 from .policy_evaluation import HankSSJPolicyEnvironment, PolicyLossWeights, SSJPolicyEvaluationSpec, TrajectoryLoss
 from .shock_library import ShockLibrarySpec, StochasticPathSpec, build_shock_response_library, generate_stochastic_hank_paths
+from .state_space import StateSpaceSpec
 
 __all__ = [
     "FilterBuildSpec",
+    "ClosedLoopDiagnostics",
+    "ClosedLoopResult",
+    "ClosedLoopSSJEnvironment",
+    "DEFAULT_STATE_NAMES",
     "HankSSJPolicyEnvironment",
     "HankObservableBuildSpec",
     "InformationStateInputSpec",
+    "JointKalmanBuildSpec",
     "ObservationNoiseSpec",
     "PolicyLossWeights",
     "ScalarFilterParams",
     "SSJPolicyEvaluationSpec",
     "SSJArtifactSpec",
     "ShockLibrarySpec",
+    "StateSpaceSpec",
     "StochasticPathSpec",
     "TrajectoryLoss",
     "build_shock_response_library",
     "build_filtered_states",
+    "build_joint_kalman_filtered_states",
     "generate_stochastic_hank_paths",
     "build_information_state_inputs",
     "build_hank_observable_panel",
+    "build_observation_matrix",
     "build_noisy_observations",
     "export_long_jacobian_to_npz",
+    "fit_state_transition",
+    "run_kalman_filter",
 ]

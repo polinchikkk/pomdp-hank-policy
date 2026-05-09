@@ -37,8 +37,12 @@ PALETTE = {
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build article figures for the HANK/SSJ information experiment.")
-    parser.add_argument("--main-voi-dir", default="outputs/ssj/stochastic/main_voi")
+    parser.add_argument("--main-voi-dir", default="outputs/ssj/stochastic/main_voi_joint_filter")
     parser.add_argument("--placebo-summary", default="outputs/ssj/stochastic/placebo/placebo_summary.csv")
+    parser.add_argument(
+        "--identification-summary",
+        default="outputs/ssj/stochastic/identification_battery/identification_battery_summary.csv",
+    )
     parser.add_argument("--noise-summary", default="outputs/ssj/stochastic/noise_sensitivity/noise_sensitivity_summary.csv")
     parser.add_argument(
         "--signal-strength-summary",
@@ -46,7 +50,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--loss-decomposition",
-        default="outputs/ssj/stochastic/main_voi/loss_component_decomposition.csv",
+        default="outputs/ssj/stochastic/main_voi_joint_filter/loss_component_decomposition.csv",
     )
     parser.add_argument(
         "--income-risk-summary",
@@ -71,7 +75,12 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     _plot_main_losses(Path(args.main_voi_dir), output_dir)
-    _plot_distributional_effect_evidence(Path(args.main_voi_dir), Path(args.placebo_summary), output_dir)
+    _plot_distributional_effect_evidence(
+        Path(args.main_voi_dir),
+        Path(args.placebo_summary),
+        Path(args.identification_summary),
+        output_dir,
+    )
     _plot_noise_sensitivity(Path(args.noise_summary), output_dir)
     _plot_artificial_checks(Path(args.placebo_summary), output_dir)
     _plot_signal_strength(Path(args.signal_strength_summary), output_dir)
@@ -122,7 +131,12 @@ def _plot_main_losses(main_voi_dir: Path, output_dir: Path) -> None:
     plt.close(fig)
 
 
-def _plot_distributional_effect_evidence(main_voi_dir: Path, placebo_summary_csv: Path, output_dir: Path) -> None:
+def _plot_distributional_effect_evidence(
+    main_voi_dir: Path,
+    placebo_summary_csv: Path,
+    identification_summary_csv: Path,
+    output_dir: Path,
+) -> None:
     losses = pd.read_csv(main_voi_dir / "trajectory_losses.csv")
     paired = (
         losses[
@@ -146,19 +160,61 @@ def _plot_distributional_effect_evidence(main_voi_dir: Path, placebo_summary_csv
     mean_reduction = float(np.mean(reductions))
     win_share = float(np.mean(reductions > 0.0))
 
-    placebo = pd.read_csv(placebo_summary_csv)
-    labels = {
-        "actual": "Фактические\nряды",
-        "permuted": "Перемешанные\nряды",
-        "fake": "Искусственные\nряды",
-    }
-    frame = placebo.set_index("run").loc[["actual", "permuted", "fake"]].reset_index()
-    x = np.arange(len(frame))
-    means = frame["loss_reduction"].to_numpy(dtype=float)
-    ci_low_reduction = -frame["ci_high"].to_numpy(dtype=float)
-    ci_high_reduction = -frame["ci_low"].to_numpy(dtype=float)
-    err_low = np.maximum(means - ci_low_reduction, 0.0)
-    err_high = np.maximum(ci_high_reduction - means, 0.0)
+    if identification_summary_csv.exists():
+        frame = pd.read_csv(identification_summary_csv)
+        order = [
+            "actual_distribution",
+            "residualized_distribution",
+            "fake_matched_distribution",
+            "permuted_by_scenario",
+            "permuted_by_time",
+            "lagged_distribution",
+            "future_shifted_distribution",
+        ]
+        labels = {
+            "actual_distribution": "Факт.",
+            "residualized_distribution": "Остат.",
+            "fake_matched_distribution": "Искус.",
+            "permuted_by_scenario": "Сценар.",
+            "permuted_by_time": "Время",
+            "lagged_distribution": "Лаг",
+            "future_shifted_distribution": "Сдвиг вперёд",
+        }
+        frame = frame.set_index("variant").loc[order].reset_index()
+        x = np.arange(len(frame))
+        means = frame["loss_reduction"].to_numpy(dtype=float)
+        ci_low_reduction = -frame["ci_high"].to_numpy(dtype=float)
+        ci_high_reduction = -frame["ci_low"].to_numpy(dtype=float)
+        err_low = np.maximum(means - ci_low_reduction, 0.0)
+        err_high = np.maximum(ci_high_reduction - means, 0.0)
+        bar_labels = [labels[name] for name in frame["variant"]]
+        colors = [
+            PALETTE["distribution"],
+            "#8a4f9a",
+            PALETTE["placebo"],
+            PALETTE["placebo"],
+            PALETTE["placebo"],
+            "#b86b6b",
+            "#b86b6b",
+        ]
+        right_title = "Идентификационные проверки"
+    else:
+        placebo = pd.read_csv(placebo_summary_csv)
+        labels = {
+            "actual": "Фактические\nряды",
+            "permuted": "Перемешанные\nряды",
+            "fake": "Искусственные\nряды",
+        }
+        frame = placebo.set_index("run").loc[["actual", "permuted", "fake"]].reset_index()
+        x = np.arange(len(frame))
+        means = frame["loss_reduction"].to_numpy(dtype=float)
+        ci_low_reduction = -frame["ci_high"].to_numpy(dtype=float)
+        ci_high_reduction = -frame["ci_low"].to_numpy(dtype=float)
+        err_low = np.maximum(means - ci_low_reduction, 0.0)
+        err_high = np.maximum(ci_high_reduction - means, 0.0)
+        bar_labels = [labels[name] for name in frame["run"]]
+        colors = [PALETTE["distribution"], PALETTE["placebo"], PALETTE["placebo"]]
+        right_title = "Фактический сигнал против искусственного"
 
     fig, axes = plt.subplots(1, 2, figsize=(11.2, 4.4))
     axes[0].axhline(0.0, color="#222222", linewidth=0.8)
@@ -183,13 +239,12 @@ def _plot_distributional_effect_evidence(main_voi_dir: Path, placebo_summary_csv
         bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": "#dddddd"},
     )
 
-    colors = [PALETTE["distribution"], PALETTE["placebo"], PALETTE["placebo"]]
     axes[1].axhline(0.0, color="#222222", linewidth=0.8)
     axes[1].bar(x, means, yerr=[err_low, err_high], capsize=4, color=colors, edgecolor="#222222", linewidth=0.7)
     axes[1].set_xticks(x)
-    axes[1].set_xticklabels([labels[name] for name in frame["run"]])
+    axes[1].set_xticklabels(bar_labels, rotation=25, ha="right")
     axes[1].set_ylabel("Среднее снижение потерь")
-    axes[1].set_title("Фактический сигнал против искусственного")
+    axes[1].set_title(right_title)
 
     for ax in axes:
         ax.grid(axis="y", alpha=0.25)

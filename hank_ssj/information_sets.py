@@ -109,22 +109,7 @@ def build_information_state_inputs(
     merged["Y_obs_lag"] = merged.groupby(["scenario", "observation_seed"])["Y_obs"].shift(1).fillna(0.0)
     if filtered_states_csv is not None:
         filtered = pd.read_csv(filtered_states_csv)
-        _require_columns(
-            filtered,
-            {
-                "scenario",
-                "scenario_label",
-                "period",
-                "observation_seed",
-                "E_pi",
-                "E_Y",
-                "E_C",
-                "E_mean_mpc",
-                "E_low_liquidity_share",
-                "E_interest_exposure",
-            },
-            filtered_states_csv,
-        )
+        filtered = _normalize_filtered_columns(filtered, filtered_states_csv)
         merged = merged.merge(
             filtered[
                 [
@@ -132,9 +117,12 @@ def build_information_state_inputs(
                     "scenario_label",
                     "period",
                     "observation_seed",
-                    "E_pi",
-                    "E_Y",
-                    "E_C",
+                    "E_pi_for_aggregates",
+                    "E_Y_for_aggregates",
+                    "E_C_for_aggregates",
+                    "E_pi_for_distribution",
+                    "E_Y_for_distribution",
+                    "E_C_for_distribution",
                     "E_mean_mpc",
                     "E_low_liquidity_share",
                     "E_interest_exposure",
@@ -193,9 +181,9 @@ def build_information_state_inputs(
                 base,
                 "filtered_aggregates",
                 {
-                    "E_pi": record["E_pi"],
-                    "E_Y": record["E_Y"],
-                    "E_C": record["E_C"],
+                    "E_pi": record["E_pi_for_aggregates"],
+                    "E_Y": record["E_Y_for_aggregates"],
+                    "E_C": record["E_C_for_aggregates"],
                 },
             )
             _append_state(
@@ -203,9 +191,9 @@ def build_information_state_inputs(
                 base,
                 "filtered_distribution",
                 {
-                    "E_pi": record["E_pi"],
-                    "E_Y": record["E_Y"],
-                    "E_C": record["E_C"],
+                    "E_pi": record["E_pi_for_distribution"],
+                    "E_Y": record["E_Y_for_distribution"],
+                    "E_C": record["E_C_for_distribution"],
                     "E_mean_mpc": record["E_mean_mpc"],
                     "E_low_liquidity_share": record["E_low_liquidity_share"],
                     "E_interest_exposure": record["E_interest_exposure"],
@@ -216,9 +204,9 @@ def build_information_state_inputs(
                 base,
                 "filtered_distribution_mpc",
                 {
-                    "E_pi": record["E_pi"],
-                    "E_Y": record["E_Y"],
-                    "E_C": record["E_C"],
+                    "E_pi": record["E_pi_for_distribution"],
+                    "E_Y": record["E_Y_for_distribution"],
+                    "E_C": record["E_C_for_distribution"],
                     "E_mean_mpc": record["E_mean_mpc"],
                 },
             )
@@ -227,9 +215,9 @@ def build_information_state_inputs(
                 base,
                 "filtered_distribution_liquidity",
                 {
-                    "E_pi": record["E_pi"],
-                    "E_Y": record["E_Y"],
-                    "E_C": record["E_C"],
+                    "E_pi": record["E_pi_for_distribution"],
+                    "E_Y": record["E_Y_for_distribution"],
+                    "E_C": record["E_C_for_distribution"],
                     "E_low_liquidity_share": record["E_low_liquidity_share"],
                 },
             )
@@ -238,9 +226,9 @@ def build_information_state_inputs(
                 base,
                 "filtered_distribution_exposure",
                 {
-                    "E_pi": record["E_pi"],
-                    "E_Y": record["E_Y"],
-                    "E_C": record["E_C"],
+                    "E_pi": record["E_pi_for_distribution"],
+                    "E_Y": record["E_Y_for_distribution"],
+                    "E_C": record["E_C_for_distribution"],
                     "E_interest_exposure": record["E_interest_exposure"],
                 },
             )
@@ -290,6 +278,54 @@ def _append_state(
                 "value": float(value),
             }
         )
+
+
+def _normalize_filtered_columns(filtered: pd.DataFrame, path: Path) -> pd.DataFrame:
+    """Support both legacy scalar filters and the new joint Kalman output."""
+
+    keys = {"scenario", "scenario_label", "period", "observation_seed"}
+    legacy = {
+        "E_pi",
+        "E_Y",
+        "E_C",
+        "E_mean_mpc",
+        "E_low_liquidity_share",
+        "E_interest_exposure",
+    }
+    joint = {
+        "E_pi_agg",
+        "E_Y_agg",
+        "E_C_agg",
+        "E_pi_dist",
+        "E_Y_dist",
+        "E_C_dist",
+        "E_mean_mpc",
+        "E_low_liquidity_share",
+        "E_interest_exposure",
+    }
+    if keys.union(joint).issubset(filtered.columns):
+        normalized = filtered.copy()
+        normalized["E_pi_for_aggregates"] = normalized["E_pi_agg"]
+        normalized["E_Y_for_aggregates"] = normalized["E_Y_agg"]
+        normalized["E_C_for_aggregates"] = normalized["E_C_agg"]
+        normalized["E_pi_for_distribution"] = normalized["E_pi_dist"]
+        normalized["E_Y_for_distribution"] = normalized["E_Y_dist"]
+        normalized["E_C_for_distribution"] = normalized["E_C_dist"]
+        return normalized
+    if keys.union(legacy).issubset(filtered.columns):
+        normalized = filtered.copy()
+        normalized["E_pi_for_aggregates"] = normalized["E_pi"]
+        normalized["E_Y_for_aggregates"] = normalized["E_Y"]
+        normalized["E_C_for_aggregates"] = normalized["E_C"]
+        normalized["E_pi_for_distribution"] = normalized["E_pi"]
+        normalized["E_Y_for_distribution"] = normalized["E_Y"]
+        normalized["E_C_for_distribution"] = normalized["E_C"]
+        return normalized
+    required = sorted(keys.union(joint))
+    raise ValueError(
+        f"{path} is missing filtered-state columns. Expected either legacy scalar columns "
+        f"or joint Kalman columns. Joint required columns: {required}"
+    )
 
 
 def _require_columns(frame: pd.DataFrame, required: set[str], path: Path) -> None:
