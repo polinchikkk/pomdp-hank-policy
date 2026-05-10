@@ -1,0 +1,29 @@
+# Финальный режим подбора правил политики.
+#
+# Важно: этот бюджет применяется одинаково к каждому информационному состоянию.
+# Случайные кандидаты и supervised initialization используются только как стартовые
+# точки для непрерывной оптимизации, а не как отдельный финальный результат.
+
+num_random_candidates: 1000
+num_starts: 50
+maxiter: 300
+
+methods:
+  - L-BFGS-B
+  - Powell
+
+bounds:
+  intercept: 0.01
+  standardized_coefficient: 0.05
+  rho_i: [0.0, 0.99]
+
+regularization:
+  ridge:
+    - 0.0
+    - 1.0e-5
+    - 1.0e-4
+    - 1.0e-3
+
+sign_constraints:
+  inflation: nonnegative
+  output_gap: nonnegative

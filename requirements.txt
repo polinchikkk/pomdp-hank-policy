@@ -2,5 +2,6 @@ matplotlib>=3.8
 numpy>=1.26
 numba>=0.59
 pandas>=2.2
+PyYAML>=6.0
 scipy>=1.11
 sequence-jacobian>=1.0

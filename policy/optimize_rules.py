@@ -4,6 +4,8 @@ from dataclasses import dataclass
 
 import numpy as np
 
+from policy.inference import paired_bootstrap_ci, summarize_paired_inference
+
 
 @dataclass(frozen=True)
 class PairwiseComparison:
@@ -11,23 +13,18 @@ class PairwiseComparison:
     right: str
     num_trajectories: int
     mean_delta: float
+    median_delta: float
     ci_low: float
     ci_high: float
+    permutation_p_value: float
+    sign_flip_p_value: float
     win_rate: float
     tie_rate: float
     loss_rate: float
 
 
 def bootstrap_interval(values: np.ndarray, *, seed: int = 2027, draws: int = 2000) -> tuple[float, float]:
-    values = np.asarray(values, dtype=float)
-    if values.size == 0:
-        return float("nan"), float("nan")
-    if values.size == 1:
-        value = float(values[0])
-        return value, value
-    rng = np.random.default_rng(seed)
-    samples = values[rng.integers(0, values.size, size=(draws, values.size))].mean(axis=1)
-    return float(np.quantile(samples, 0.025)), float(np.quantile(samples, 0.975))
+    return paired_bootstrap_ci(values, seed=seed, n_boot=draws)
 
 
 def compare_paired_losses(
@@ -43,15 +40,18 @@ def compare_paired_losses(
     if left_losses.shape != right_losses.shape:
         raise ValueError("Paired losses must have the same shape.")
     delta = left_losses - right_losses
-    ci_low, ci_high = bootstrap_interval(delta)
+    inference = summarize_paired_inference(delta, n_boot=2_000, n_perm=4_000, tie_eps=tie_eps)
     return PairwiseComparison(
         left=left_name,
         right=right_name,
-        num_trajectories=int(delta.size),
-        mean_delta=float(np.mean(delta)),
-        ci_low=ci_low,
-        ci_high=ci_high,
-        win_rate=float(np.mean(delta < -tie_eps)),
-        tie_rate=float(np.mean(np.abs(delta) <= tie_eps)),
-        loss_rate=float(np.mean(delta > tie_eps)),
+        num_trajectories=inference.num_observations,
+        mean_delta=inference.mean_delta,
+        median_delta=inference.median_delta,
+        ci_low=inference.bootstrap_ci_low,
+        ci_high=inference.bootstrap_ci_high,
+        permutation_p_value=inference.permutation_p_value,
+        sign_flip_p_value=inference.sign_flip_p_value,
+        win_rate=inference.win_rate,
+        tie_rate=inference.tie_rate,
+        loss_rate=inference.loss_rate,
     )

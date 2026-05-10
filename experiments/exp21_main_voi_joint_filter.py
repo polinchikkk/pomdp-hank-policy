@@ -36,6 +36,7 @@ def main() -> None:
     parser.add_argument("--maxiter", type=int, default=12)
     parser.add_argument("--intercept-bound", type=float, default=0.01)
     parser.add_argument("--standardized-coefficient-bound", type=float, default=0.05)
+    parser.add_argument("--policy-optimization-config", default="config/final_policy_optimization.yaml")
     args = parser.parse_args()
 
     state_space_dir = Path(args.state_space_dir)
@@ -92,6 +93,8 @@ def main() -> None:
             str(args.intercept_bound),
             "--standardized-coefficient-bound",
             str(args.standardized_coefficient_bound),
+            "--policy-optimization-config",
+            args.policy_optimization_config,
         ],
         check=True,
         cwd=ROOT,

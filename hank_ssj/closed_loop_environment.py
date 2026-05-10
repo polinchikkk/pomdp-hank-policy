@@ -45,6 +45,8 @@ class ClosedLoopDiagnostics:
     converged: bool
     rate_update_norm: float
     state_update_norm: float
+    distribution_update_norm: float
+    spectral_radius_local_loop: float
     stability_penalty: float
     convergence_penalty: float
     max_abs_rate: float
@@ -162,6 +164,9 @@ class ClosedLoopSSJEnvironment:
         converged = mode == "partial_local_projection"
         rate_update_norm = np.inf
         state_update_norm = np.inf
+        distribution_update_norm = np.inf
+        previous_rate_update_norm = np.inf
+        contraction_ratios: list[float] = []
 
         for iteration in range(1, iterations + 1):
             rate_deviation = policy_rate - baseline_rate
@@ -181,6 +186,12 @@ class ClosedLoopSSJEnvironment:
             state_update_norm = float(
                 _state_distance(counterfactual_state, previous_state, periods=periods)
             )
+            distribution_update_norm = float(
+                _distribution_state_distance(counterfactual_state, previous_state, periods=periods)
+            )
+            if np.isfinite(previous_rate_update_norm) and previous_rate_update_norm > 0.0:
+                contraction_ratios.append(float(rate_update_norm / previous_rate_update_norm))
+            previous_rate_update_norm = rate_update_norm
             if (
                 mode == "closed_loop_local_projection"
                 and iteration >= min_iterations
@@ -197,6 +208,7 @@ class ClosedLoopSSJEnvironment:
             previous_state = counterfactual_state
         else:
             converged = False
+        spectral_radius_local_loop = float(max(contraction_ratios)) if contraction_ratios else 0.0
 
         final_rate_deviation = policy_rate - baseline_rate
         final_state = self._counterfactual_state(base=base, rate_deviation=final_rate_deviation)
@@ -216,6 +228,8 @@ class ClosedLoopSSJEnvironment:
             converged=bool(converged),
             rate_update_norm=float(rate_update_norm),
             state_update_norm=float(state_update_norm),
+            distribution_update_norm=float(distribution_update_norm),
+            spectral_radius_local_loop=spectral_radius_local_loop,
             stability_penalty=float(stability_penalty),
             convergence_penalty=float(convergence_penalty),
             max_abs_rate=float(np.max(np.abs(policy_rate))),
@@ -512,6 +526,13 @@ def _state_distance(left: dict[str, np.ndarray], right: dict[str, np.ndarray], *
     for name in names:
         total += float(np.mean((left[name][:periods] - right[name][:periods]) ** 2))
     return float(np.sqrt(total / len(names)))
+
+
+def _distribution_state_distance(left: dict[str, np.ndarray], right: dict[str, np.ndarray], *, periods: int) -> float:
+    total = 0.0
+    for name in DISTRIBUTIONAL_STATE_NAMES:
+        total += float(np.mean((left[name][:periods] - right[name][:periods]) ** 2))
+    return float(np.sqrt(total / len(DISTRIBUTIONAL_STATE_NAMES)))
 
 
 def diagnostics_to_row(diagnostics: ClosedLoopDiagnostics) -> dict[str, object]:

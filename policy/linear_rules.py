@@ -98,6 +98,23 @@ def rule_spec_for_information_state(name: str) -> LinearRuleSpec:
                 "E_interest_exposure",
             ),
         )
+    if name.startswith("feature_decomposition_residualized_") or name.startswith("feature_decomposition_"):
+        feature_map = {
+            "mpc": "E_mean_mpc",
+            "liquidity": "E_low_liquidity_share",
+            "exposure": "E_interest_exposure",
+        }
+        selected = tuple(
+            feature
+            for key, feature in feature_map.items()
+            if f"_{key}" in name
+        )
+        if not selected:
+            raise ValueError(f"Feature-decomposition state has no distributional feature: {name}")
+        return LinearRuleSpec(
+            information_state=name,
+            feature_names=("E_pi", "E_Y", "E_C", *selected),
+        )
     if name == "full_information":
         return LinearRuleSpec(
             information_state=name,

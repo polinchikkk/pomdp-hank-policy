@@ -15,7 +15,7 @@ HANK / метод последовательностей
 
 - `hank/` — экономическое HANK-ядро.
 - `hank_ssj/` — интерфейс HANK/SSJ-артефактов и информационных состояний.
-- `policy/` — интерпретируемые правила ставки и сравнение потерь.
+- `policy/` — интерпретируемые правила ставки, сравнение потерь и статистический вывод.
 - `experiments/` — эксперименты HANK/SSJ-линии.
 - `docs/` — постановка, дорожная карта и план проверки.
 - `article/` — черновик статьи.
@@ -51,3 +51,18 @@ HANK / метод последовательностей
 - `experiments/exp24_robustness_comparative_statics.py` — сравнительная статика робастности по экономическим вопросам.
 - `experiments/exp25_policy_class_robustness.py` — проверка устойчивости результата к классу правила.
 - `experiments/exp26_information_frontier.py` — информационная граница, предельные выигрыши и устойчивость рангов информационных уровней.
+- `experiments/exp28_optimizer_noise_audit.py` — аудит численного шума оптимизации правил.
+- `experiments/exp29_large_sample_joint_filter.py` — large-sample split с отдельными shock seed, observation seed и кластерной статистикой.
+- `experiments/exp30_closed_loop_distributional_ssj.py` — closed-loop проверка с прямыми распределительными HANK/SSJ-откликами ставки.
+- `experiments/exp31_validate_ssj_jacobians.py` — конечная разностная проверка локальной линейной аппроксимации HANK/SSJ.
+- `experiments/exp32_null_distribution_channel.py` — negative control: нулевой распределительный канал и ложноположительная частота.
+- `experiments/exp33_known_distribution_channel.py` — positive control: восстановление искусственно заданного распределительного канала.
+- `experiments/exp34_distributional_feature_decomposition.py` — разложение MVOI по отдельным распределительным признакам, Shapley и компонентам потерь.
+- `experiments/exp35_mechanism_residualized_crossfit.py` — cross-fit residual mechanism: остаточная распределительная информация после фильтрованных агрегатов.
+- `experiments/exp36_lqg_information_oracle.py` — LQG/LQR Riccati-ориентир для совместной линейной state-space задачи.
+
+## Общий статистический слой
+
+- `policy/inference.py` — парный bootstrap, кластерный bootstrap, wild-bootstrap, sign-flip проверка, перестановочная проверка и поправка Бенджамини--Хохберга.
+- `policy/lqg_oracle.py` — full-state LQR, partial-information LQG и оценка ограниченных правил в той же линейной state-space системе.
+- `hank_ssj/distributional_jacobians.py` — построение прямых распределительных откликов HANK transition solver на траекторию ставки.

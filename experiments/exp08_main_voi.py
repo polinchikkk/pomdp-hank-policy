@@ -8,6 +8,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -66,6 +67,8 @@ OPTIMIZATION_MODE_LABEL_RU = {
     "random_candidates": "Случайные кандидаты",
     "grid_random": "Сетка и случайные кандидаты",
     "continuous": "Непрерывная оптимизация",
+    "final_continuous": "Финальная непрерывная оптимизация",
+    "final_ridge_0": "Финальная оптимизация, без ridge",
 }
 
 
@@ -85,6 +88,8 @@ class MainVOISpec:
     continuous_methods: tuple[str, ...]
     num_starts: int
     maxiter: int
+    policy_optimization_config: str | None
+    final_policy_optimization: dict[str, object] | None
     loss_weights: dict[str, float]
     evaluator: dict[str, object]
     note: str
@@ -107,6 +112,7 @@ def main() -> None:
     parser.add_argument("--maxiter", type=int, default=12)
     parser.add_argument("--intercept-bound", type=float, default=0.01)
     parser.add_argument("--standardized-coefficient-bound", type=float, default=0.05)
+    parser.add_argument("--policy-optimization-config", default="")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
@@ -116,7 +122,14 @@ def main() -> None:
     test_seeds = _parse_seed_range(args.test_seeds)
     optimization_modes = tuple(part.strip() for part in args.optimization_modes.split(",") if part.strip())
     continuous_methods = tuple(part.strip() for part in args.continuous_methods.split(",") if part.strip())
-    if args.primary_optimization_mode not in optimization_modes:
+    final_optimization_config = _load_policy_optimization_config(args.policy_optimization_config)
+    if final_optimization_config is not None:
+        primary_optimization_mode = "final_continuous"
+        optimization_modes = ("final_continuous",)
+        continuous_methods = tuple(final_optimization_config["methods"])
+    else:
+        primary_optimization_mode = args.primary_optimization_mode
+    if primary_optimization_mode not in optimization_modes:
         raise ValueError("Primary optimization mode must be included in --optimization-modes.")
     loss_weights = PolicyLossWeights()
     environment = HankSSJPolicyEnvironment.from_files(
@@ -137,32 +150,50 @@ def main() -> None:
             information_state=information_state,
             validation_seeds=validation_seeds,
         )
-        results = _fit_policy_under_modes(
-            environment=environment,
-            information_state=information_state,
-            validation_seeds=validation_seeds,
-            num_candidates=args.num_candidates,
-            candidate_seed=args.candidate_seed + index,
-            optimization_modes=optimization_modes,
-            extra_candidates=extra_candidates,
-            continuous_methods=continuous_methods,
-            num_starts=args.num_starts,
-            maxiter=args.maxiter,
-            bounds=LinearRuleOptimizationBounds(
-                intercept_abs_bound=args.intercept_bound,
-                standardized_coefficient_abs_bound=args.standardized_coefficient_bound,
-            ),
-        )
+        if final_optimization_config is None:
+            results = _fit_policy_under_modes(
+                environment=environment,
+                information_state=information_state,
+                validation_seeds=validation_seeds,
+                num_candidates=args.num_candidates,
+                candidate_seed=args.candidate_seed + index,
+                optimization_modes=optimization_modes,
+                extra_candidates=extra_candidates,
+                continuous_methods=continuous_methods,
+                num_starts=args.num_starts,
+                maxiter=args.maxiter,
+                bounds=LinearRuleOptimizationBounds(
+                    intercept_abs_bound=args.intercept_bound,
+                    standardized_coefficient_abs_bound=args.standardized_coefficient_bound,
+                ),
+            )
+        else:
+            results = _fit_policy_final(
+                environment=environment,
+                information_state=information_state,
+                validation_seeds=validation_seeds,
+                candidate_seed=args.candidate_seed + index,
+                extra_candidates=extra_candidates,
+                config=final_optimization_config,
+            )
         fit_results[information_state] = results
-        primary = results[args.primary_optimization_mode]
+        primary = results[primary_optimization_mode]
         fitted[information_state] = primary.rule
-        rule_rows.extend(_rule_rows(primary, optimization_mode=args.primary_optimization_mode))
+        rule_rows.extend(_rule_rows(primary, optimization_mode=primary_optimization_mode))
         for mode, fit in results.items():
             all_rule_rows.extend(_rule_rows(fit, optimization_mode=mode))
 
     fitted_rules = pd.DataFrame(rule_rows)
     fitted_rules.to_csv(output_dir / "fitted_policy_rules.csv", index=False)
     pd.DataFrame(all_rule_rows).to_csv(output_dir / "fitted_policy_rules_all_optimization_modes.csv", index=False)
+    budget_table = _policy_optimization_budget_table(
+        information_states=INFORMATION_STATES,
+        final_config=final_optimization_config,
+        fallback_args=args,
+        optimization_modes=optimization_modes,
+        continuous_methods=continuous_methods,
+    )
+    budget_table.to_csv(output_dir / "policy_optimization_budget.csv", index=False)
 
     optimization_robustness = _optimization_robustness_table(environment, fit_results, test_seeds)
     optimization_robustness.to_csv(output_dir / "policy_optimization_robustness.csv", index=False)
@@ -198,10 +229,12 @@ def main() -> None:
         num_candidates=int(args.num_candidates),
         candidate_seed=int(args.candidate_seed),
         optimization_modes=optimization_modes,
-        primary_optimization_mode=args.primary_optimization_mode,
+        primary_optimization_mode=primary_optimization_mode,
         continuous_methods=continuous_methods,
-        num_starts=int(args.num_starts),
-        maxiter=int(args.maxiter),
+        num_starts=int(final_optimization_config["num_starts"] if final_optimization_config else args.num_starts),
+        maxiter=int(final_optimization_config["maxiter"] if final_optimization_config else args.maxiter),
+        policy_optimization_config=args.policy_optimization_config or None,
+        final_policy_optimization=final_optimization_config,
         loss_weights=asdict(loss_weights),
         evaluator=asdict(
             SSJPolicyEvaluationSpec(
@@ -243,6 +276,187 @@ def _parse_seed_range(value: str) -> list[int]:
         left, right = value.split(":", maxsplit=1)
         return list(range(int(left), int(right) + 1))
     return [int(part) for part in value.split(",") if part.strip()]
+
+
+def _load_policy_optimization_config(path_value: str) -> dict[str, object] | None:
+    if not path_value:
+        return None
+    path = Path(path_value)
+    if not path.exists():
+        raise FileNotFoundError(f"Policy optimization config not found: {path}")
+    payload = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ValueError(f"Policy optimization config must be a mapping: {path}")
+    config = {
+        "num_random_candidates": int(payload.get("num_random_candidates", 1000)),
+        "num_starts": int(payload.get("num_starts", 50)),
+        "maxiter": int(payload.get("maxiter", 300)),
+        "methods": tuple(str(item) for item in payload.get("methods", ("L-BFGS-B", "Powell"))),
+        "regularization": {
+            "ridge": tuple(
+                float(value)
+                for value in payload.get("regularization", {}).get("ridge", (0.0,))
+            )
+        },
+        "sign_constraints": {
+            str(key): str(value)
+            for key, value in payload.get("sign_constraints", {}).items()
+        },
+    }
+    bounds = payload.get("bounds", {})
+    rho = bounds.get("rho_i", (0.0, 0.99))
+    config["bounds"] = {
+        "intercept": float(bounds.get("intercept", 0.01)),
+        "standardized_coefficient": float(bounds.get("standardized_coefficient", 0.05)),
+        "rho_i": (float(rho[0]), float(rho[1])),
+    }
+    if not config["methods"]:
+        raise ValueError("Final policy optimization config must contain at least one method.")
+    if not config["regularization"]["ridge"]:
+        raise ValueError("Final policy optimization config must contain at least one ridge value.")
+    return config
+
+
+def _bounds_from_final_config(config: dict[str, object]) -> LinearRuleOptimizationBounds:
+    bounds = config["bounds"]
+    rho = bounds["rho_i"]
+    return LinearRuleOptimizationBounds(
+        intercept_abs_bound=float(bounds["intercept"]),
+        standardized_coefficient_abs_bound=float(bounds["standardized_coefficient"]),
+        lagged_rate_min=float(rho[0]),
+        lagged_rate_max=float(rho[1]),
+    )
+
+
+def _fit_policy_final(
+    *,
+    environment: HankSSJPolicyEnvironment,
+    information_state: str,
+    validation_seeds: list[int],
+    candidate_seed: int,
+    extra_candidates: list[LinearRule],
+    config: dict[str, object],
+) -> dict[str, ContinuousLinearRuleFit]:
+    """Final policy fitting: random/supervised starts plus equal-budget continuous optimization."""
+
+    random_fit = fit_linear_rule(
+        environment=environment,
+        information_state=information_state,
+        validation_seeds=validation_seeds,
+        num_candidates=int(config["num_random_candidates"]),
+        seed=candidate_seed,
+        extra_candidates=None,
+    )
+    feature_scales = random_fit.feature_scales
+    initial_rules = [random_fit.rule, *extra_candidates]
+    ridge_values = tuple(float(value) for value in config["regularization"]["ridge"])
+    bounds = _bounds_from_final_config(config)
+    results: dict[str, ContinuousLinearRuleFit] = {}
+    for ridge_index, ridge in enumerate(ridge_values):
+        mode = _ridge_mode_name(ridge)
+        results[mode] = fit_linear_rule_continuous(
+            environment=environment,
+            information_state=information_state,
+            validation_seeds=validation_seeds,
+            feature_scales=feature_scales,
+            initial_rules=initial_rules,
+            seed=candidate_seed + 50_000 + ridge_index,
+            num_starts=int(config["num_starts"]),
+            methods=tuple(config["methods"]),
+            bounds=bounds,
+            maxiter=int(config["maxiter"]),
+            regularization_strength=ridge,
+            sign_constraints=dict(config.get("sign_constraints", {})),
+        )
+    best_mode, best_fit = min(results.items(), key=lambda item: item[1].validation_loss)
+    results["final_continuous"] = ContinuousLinearRuleFit(
+        rule=best_fit.rule,
+        validation_loss=best_fit.validation_loss,
+        feature_scales=best_fit.feature_scales,
+        seed=best_fit.seed,
+        num_starts=best_fit.num_starts,
+        methods=best_fit.methods,
+        best_method=best_fit.best_method,
+        best_start_index=best_fit.best_start_index,
+        converged=best_fit.converged,
+        num_function_evaluations=best_fit.num_function_evaluations,
+        message=f"selected from equal-budget ridge variants; selected_mode={best_mode}; {best_fit.message}",
+        regularization_strength=best_fit.regularization_strength,
+        penalized_validation_loss=best_fit.penalized_validation_loss,
+    )
+    return results
+
+
+def _policy_optimization_budget_table(
+    *,
+    information_states: tuple[str, ...],
+    final_config: dict[str, object] | None,
+    fallback_args,
+    optimization_modes: tuple[str, ...],
+    continuous_methods: tuple[str, ...],
+) -> pd.DataFrame:
+    rows: list[dict[str, object]] = []
+    if final_config is not None:
+        bounds = final_config["bounds"]
+        regularization = final_config["regularization"]
+        for state in information_states:
+            rows.append(
+                {
+                    "information_state": state,
+                    "information_state_ru": STATE_LABEL_RU[state],
+                    "optimization_budget_group": "final_equal_budget",
+                    "random_candidates_used_as": "initialization_only",
+                    "num_random_candidates": int(final_config["num_random_candidates"]),
+                    "num_starts": int(final_config["num_starts"]),
+                    "maxiter": int(final_config["maxiter"]),
+                    "methods": ",".join(final_config["methods"]),
+                    "ridge_grid": ",".join(str(value) for value in regularization["ridge"]),
+                    "intercept_bound": float(bounds["intercept"]),
+                    "standardized_coefficient_bound": float(bounds["standardized_coefficient"]),
+                    "rho_i_min": float(bounds["rho_i"][0]),
+                    "rho_i_max": float(bounds["rho_i"][1]),
+                    "sign_constraints": json.dumps(final_config["sign_constraints"], ensure_ascii=False),
+                    "same_budget_for_all_information_states": True,
+                }
+            )
+    else:
+        for state in information_states:
+            rows.append(
+                {
+                    "information_state": state,
+                    "information_state_ru": STATE_LABEL_RU[state],
+                    "optimization_budget_group": "legacy_cli_budget",
+                    "random_candidates_used_as": "reported_mode_if_enabled",
+                    "num_random_candidates": int(fallback_args.num_candidates),
+                    "num_starts": int(fallback_args.num_starts),
+                    "maxiter": int(fallback_args.maxiter),
+                    "methods": ",".join(continuous_methods),
+                    "ridge_grid": "0.0",
+                    "intercept_bound": float(fallback_args.intercept_bound),
+                    "standardized_coefficient_bound": float(fallback_args.standardized_coefficient_bound),
+                    "rho_i_min": 0.0,
+                    "rho_i_max": 0.99,
+                    "sign_constraints": "{}",
+                    "same_budget_for_all_information_states": True,
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def _ridge_mode_name(ridge: float) -> str:
+    if abs(float(ridge)) < 1e-18:
+        return "final_ridge_0"
+    label = f"{float(ridge):.0e}".replace("+", "").replace("-", "m")
+    return f"final_ridge_{label}"
+
+
+def _optimization_mode_label_ru(mode: str) -> str:
+    if mode in OPTIMIZATION_MODE_LABEL_RU:
+        return OPTIMIZATION_MODE_LABEL_RU[mode]
+    if mode.startswith("final_ridge_"):
+        ridge = mode.removeprefix("final_ridge_").replace("m", "-")
+        return f"Финальная оптимизация, ridge {ridge}"
+    return mode
 
 
 def _fit_policy_under_modes(
@@ -386,8 +600,9 @@ def _optimization_robustness_table(
                     "information_state": information_state,
                     "information_state_ru": STATE_LABEL_RU[information_state],
                     "optimization_mode": mode,
-                    "optimization_mode_ru": OPTIMIZATION_MODE_LABEL_RU[mode],
+                    "optimization_mode_ru": _optimization_mode_label_ru(mode),
                     "validation_loss": fit.validation_loss,
+                    "penalized_validation_loss": fit.penalized_validation_loss,
                     "test_loss": float(np.mean(losses)),
                     "test_ci_low": bootstrap_interval(np.asarray(losses, dtype=float))[0],
                     "test_ci_high": bootstrap_interval(np.asarray(losses, dtype=float))[1],
@@ -396,6 +611,7 @@ def _optimization_robustness_table(
                     "methods": ",".join(fit.methods),
                     "best_method": fit.best_method,
                     "best_start_index": int(fit.best_start_index),
+                    "regularization_strength": float(fit.regularization_strength),
                     "converged": bool(fit.converged),
                     "num_function_evaluations": int(fit.num_function_evaluations),
                     "message": fit.message,
@@ -618,13 +834,15 @@ def _rule_rows(
             "information_state": rule.spec.information_state,
             "information_state_ru": STATE_LABEL_RU[rule.spec.information_state],
             "optimization_mode": optimization_mode,
-            "optimization_mode_ru": OPTIMIZATION_MODE_LABEL_RU[optimization_mode],
+            "optimization_mode_ru": _optimization_mode_label_ru(optimization_mode),
             "term": "intercept",
             "coefficient": rule.intercept,
             "validation_loss": validation_loss,
+            "penalized_validation_loss": fit.penalized_validation_loss,
             "num_candidates": int(fit.num_function_evaluations),
             "num_starts": int(fit.num_starts),
             "best_method": fit.best_method,
+            "regularization_strength": float(fit.regularization_strength),
             "converged": bool(fit.converged),
             "feature_scale": np.nan,
         },
@@ -632,13 +850,15 @@ def _rule_rows(
             "information_state": rule.spec.information_state,
             "information_state_ru": STATE_LABEL_RU[rule.spec.information_state],
             "optimization_mode": optimization_mode,
-            "optimization_mode_ru": OPTIMIZATION_MODE_LABEL_RU[optimization_mode],
+            "optimization_mode_ru": _optimization_mode_label_ru(optimization_mode),
             "term": "lagged_rate",
             "coefficient": rule.lagged_rate_weight,
             "validation_loss": validation_loss,
+            "penalized_validation_loss": fit.penalized_validation_loss,
             "num_candidates": int(fit.num_function_evaluations),
             "num_starts": int(fit.num_starts),
             "best_method": fit.best_method,
+            "regularization_strength": float(fit.regularization_strength),
             "converged": bool(fit.converged),
             "feature_scale": np.nan,
         },
@@ -649,13 +869,15 @@ def _rule_rows(
                 "information_state": rule.spec.information_state,
                 "information_state_ru": STATE_LABEL_RU[rule.spec.information_state],
                 "optimization_mode": optimization_mode,
-                "optimization_mode_ru": OPTIMIZATION_MODE_LABEL_RU[optimization_mode],
+                "optimization_mode_ru": _optimization_mode_label_ru(optimization_mode),
                 "term": name,
                 "coefficient": coefficient,
                 "validation_loss": validation_loss,
+                "penalized_validation_loss": fit.penalized_validation_loss,
                 "num_candidates": int(fit.num_function_evaluations),
                 "num_starts": int(fit.num_starts),
                 "best_method": fit.best_method,
+                "regularization_strength": float(fit.regularization_strength),
                 "converged": bool(fit.converged),
                 "feature_scale": feature_scales.get(name, np.nan),
             }

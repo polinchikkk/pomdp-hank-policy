@@ -31,6 +31,8 @@ class ContinuousLinearRuleFit:
     converged: bool
     num_function_evaluations: int
     message: str
+    regularization_strength: float = 0.0
+    penalized_validation_loss: float | None = None
 
 
 def fit_linear_rule_continuous(
@@ -45,6 +47,8 @@ def fit_linear_rule_continuous(
     methods: tuple[str, ...] = ("L-BFGS-B", "Powell", "Nelder-Mead"),
     bounds: LinearRuleOptimizationBounds | None = None,
     maxiter: int = 120,
+    regularization_strength: float = 0.0,
+    sign_constraints: dict[str, str] | None = None,
 ) -> ContinuousLinearRuleFit:
     """Fit an interpretable linear rule by continuous validation-loss minimization.
 
@@ -63,17 +67,21 @@ def fit_linear_rule_continuous(
         num_starts=num_starts,
         bounds=bounds,
     )
-    scipy_bounds = _scipy_bounds(num_features=len(spec.feature_names), bounds=bounds)
+    scipy_bounds = _scipy_bounds(
+        feature_names=spec.feature_names,
+        bounds=bounds,
+        sign_constraints=sign_constraints,
+    )
 
     best_x = starts[0]
-    best_loss = float("inf")
+    best_objective = float("inf")
     best_method = methods[0] if methods else "none"
     best_start_index = 0
     best_success = False
     best_message = ""
     total_evaluations = 0
 
-    def objective(vector: np.ndarray) -> float:
+    def unpenalized_loss(vector: np.ndarray) -> float:
         clipped = _clip_vector(vector, scipy_bounds)
         rule = _vector_to_rule(clipped, information_state, feature_scales)
         try:
@@ -88,6 +96,12 @@ def fit_linear_rule_continuous(
             return 1e12
         return value
 
+    def objective(vector: np.ndarray) -> float:
+        clipped = _clip_vector(vector, scipy_bounds)
+        value = unpenalized_loss(clipped)
+        penalty = float(regularization_strength) * float(np.sum(clipped[1:-1] ** 2))
+        return value + penalty
+
     for start_index, start in enumerate(starts):
         for method in methods:
             result = minimize(
@@ -99,17 +113,19 @@ def fit_linear_rule_continuous(
             )
             total_evaluations += int(getattr(result, "nfev", 0))
             value = float(result.fun) if np.isfinite(result.fun) else float("inf")
-            if value < best_loss:
-                best_loss = value
+            if value < best_objective:
+                best_objective = value
                 best_x = _clip_vector(np.asarray(result.x, dtype=float), scipy_bounds)
                 best_method = method
                 best_start_index = start_index
                 best_success = bool(result.success)
                 best_message = str(result.message)
 
+    best_unpenalized = unpenalized_loss(best_x)
+
     return ContinuousLinearRuleFit(
         rule=_vector_to_rule(best_x, information_state, feature_scales),
-        validation_loss=best_loss,
+        validation_loss=best_unpenalized,
         feature_scales=feature_scales,
         seed=int(seed),
         num_starts=int(len(starts)),
@@ -119,6 +135,8 @@ def fit_linear_rule_continuous(
         converged=bool(best_success),
         num_function_evaluations=int(total_evaluations),
         message=best_message,
+        regularization_strength=float(regularization_strength),
+        penalized_validation_loss=float(best_objective),
     )
 
 
@@ -140,6 +158,8 @@ def fitted_rule_as_continuous_like(
         converged=True,
         num_function_evaluations=int(fit.num_candidates),
         message="candidate search",
+        regularization_strength=0.0,
+        penalized_validation_loss=float(fit.validation_loss),
     )
 
 
@@ -169,7 +189,7 @@ def _initial_points(
         )
         point[-1] = seed_rng.uniform(bounds.lagged_rate_min, min(bounds.lagged_rate_max, 0.9))
         points.append(point)
-    scipy_bounds = _scipy_bounds(num_features=len(spec.feature_names), bounds=bounds)
+    scipy_bounds = _scipy_bounds(feature_names=spec.feature_names, bounds=bounds)
     return [_clip_vector(point, scipy_bounds) for point in points[: max(num_starts, 1)]]
 
 
@@ -201,17 +221,51 @@ def _vector_to_rule(
 
 def _scipy_bounds(
     *,
-    num_features: int,
+    feature_names: tuple[str, ...],
     bounds: LinearRuleOptimizationBounds,
+    sign_constraints: dict[str, str] | None = None,
 ) -> list[tuple[float, float]]:
+    feature_bounds = []
+    for feature_name in feature_names:
+        lower = -bounds.standardized_coefficient_abs_bound
+        upper = bounds.standardized_coefficient_abs_bound
+        sign = _feature_sign_constraint(feature_name, sign_constraints or {})
+        if sign == "nonnegative":
+            lower = max(lower, 0.0)
+        elif sign == "nonpositive":
+            upper = min(upper, 0.0)
+        feature_bounds.append((lower, upper))
     return [
         (-bounds.intercept_abs_bound, bounds.intercept_abs_bound),
-        *[
-            (-bounds.standardized_coefficient_abs_bound, bounds.standardized_coefficient_abs_bound)
-            for _ in range(num_features)
-        ],
+        *feature_bounds,
         (bounds.lagged_rate_min, bounds.lagged_rate_max),
     ]
+
+
+def _feature_sign_constraint(feature_name: str, sign_constraints: dict[str, str]) -> str | None:
+    canonical = _canonical_constraint_name(feature_name)
+    value = sign_constraints.get(canonical)
+    if value in {"nonnegative", "nonpositive"}:
+        return str(value)
+    return None
+
+
+def _canonical_constraint_name(feature_name: str) -> str:
+    if feature_name.endswith("_lag"):
+        feature_name = feature_name[: -len("_lag")]
+    if feature_name in {"pi", "pi_obs", "E_pi"}:
+        return "inflation"
+    if feature_name in {"Y", "Y_obs", "E_Y", "output_gap"}:
+        return "output_gap"
+    if feature_name in {"C", "C_obs", "E_C"}:
+        return "consumption"
+    if "mean_mpc" in feature_name:
+        return "mpc"
+    if "low_liquidity" in feature_name:
+        return "low_liquidity"
+    if "interest_exposure" in feature_name:
+        return "interest_exposure"
+    return feature_name
 
 
 def _clip_vector(vector: np.ndarray, bounds: list[tuple[float, float]]) -> np.ndarray:

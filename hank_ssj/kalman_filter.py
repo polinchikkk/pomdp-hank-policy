@@ -53,6 +53,7 @@ INFORMATION_STATE_OBSERVATIONS: dict[str, tuple[str, ...]] = {
 @dataclass(frozen=True)
 class JointKalmanBuildSpec:
     observables: str
+    transition_observables: str | None
     observations: str
     observations_spec: str
     output_dir: str
@@ -138,6 +139,7 @@ def build_joint_kalman_filtered_states(
     observations_csv: Path,
     observations_spec_json: Path,
     output_dir: Path,
+    transition_observables_csv: Path | None = None,
     scalar_filtered_states_csv: Path | None = None,
     state_names: tuple[str, ...] = DEFAULT_STATE_NAMES,
     information_states: tuple[str, ...] = ("filtered_aggregates", "filtered_distribution"),
@@ -149,21 +151,31 @@ def build_joint_kalman_filtered_states(
 
     output_dir.mkdir(parents=True, exist_ok=True)
     observables = pd.read_csv(observables_csv)
+    transition_observables = (
+        pd.read_csv(transition_observables_csv)
+        if transition_observables_csv is not None
+        else observables
+    )
     observations = pd.read_csv(observations_csv)
     observation_spec = json.loads(observations_spec_json.read_text(encoding="utf-8"))
     keys = ["scenario", "scenario_label", "period", "observation_seed"]
 
     _require_columns(observables, {"scenario", "scenario_label", "period", *state_names}, observables_csv)
+    _require_columns(
+        transition_observables,
+        {"scenario", "scenario_label", "period", *state_names},
+        transition_observables_csv or observables_csv,
+    )
     _require_columns(observations, {*keys, *OBSERVATION_BY_STATE.values()}, observations_csv)
 
     A, Q = fit_state_transition(
-        observables,
+        transition_observables,
         list(state_names),
         shrinkage=transition_shrinkage,
         covariance_floor=covariance_floor,
         max_spectral_radius=max_spectral_radius,
     )
-    initial_mean, initial_cov = _initial_state(observables, state_names, covariance_floor)
+    initial_mean, initial_cov = _initial_state(transition_observables, state_names, covariance_floor)
 
     base = observations[keys].sort_values(keys).reset_index(drop=True)
     wide = base.copy()
@@ -265,6 +277,7 @@ def build_joint_kalman_filtered_states(
 
     build_spec = JointKalmanBuildSpec(
         observables=str(observables_csv),
+        transition_observables=str(transition_observables_csv) if transition_observables_csv is not None else None,
         observations=str(observations_csv),
         observations_spec=str(observations_spec_json),
         output_dir=str(output_dir),
