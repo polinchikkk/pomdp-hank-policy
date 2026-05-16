@@ -84,17 +84,17 @@ class LQGOracleExperimentSpec:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build LQG/Riccati information oracles for the linear state-space task.")
-    parser.add_argument("--state-space-spec", default="outputs/ssj/stochastic/state_space/state_space_spec.json")
-    parser.add_argument("--hank-observables", default="outputs/ssj/stochastic/hank_observables.csv")
-    parser.add_argument("--hank-observations", default="outputs/ssj/stochastic/hank_observations.csv")
+    parser.add_argument("--state-space-spec", default="outputs/ssj/stochastic/large_sample/test/state_space/state_space_spec.json")
+    parser.add_argument("--hank-observables", default="outputs/ssj/stochastic/large_sample/test/hank_observables.csv")
+    parser.add_argument("--hank-observations", default="outputs/ssj/stochastic/large_sample/test/hank_observations.csv")
     parser.add_argument(
         "--jacobians",
         default="outputs/ssj/stochastic/closed_loop_distributional_ssj/jacobians_distributional_augmented.npz",
     )
     parser.add_argument("--fallback-jacobians", default="outputs/ssj/jacobians.npz")
-    parser.add_argument("--fitted-policy-rules", default="outputs/ssj/stochastic/main_voi_joint_filter/fitted_policy_rules.csv")
+    parser.add_argument("--fitted-policy-rules", default="outputs/ssj/stochastic/large_sample/fitted_policy_rules.csv")
     parser.add_argument("--output-dir", default="outputs/ssj/stochastic/lqg_oracle")
-    parser.add_argument("--test-seeds", default="906:911")
+    parser.add_argument("--test-seeds", default="960:999")
     parser.add_argument("--policy-input-source", default="transition_regression", choices=("ssj_one_step", "transition_regression"))
     parser.add_argument("--riccati-horizon", default="finite", choices=("finite", "infinite"))
     parser.add_argument("--max-abs-rate", type=float, default=0.0)

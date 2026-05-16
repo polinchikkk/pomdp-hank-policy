@@ -49,6 +49,9 @@ class ClosedLoopDistributionalSSJSpec:
     damping: float
     force_rebuild_distributional_jacobians: bool
     require_direct_distributional_jacobians: bool
+    strict_shifted_transition_fallback: bool
+    distributional_jacobian_difference_method: str
+    final_protocol_gate: str
     note: str
 
 
@@ -64,7 +67,7 @@ def main() -> None:
         default="outputs/ssj/stochastic/closed_loop_distributional_ssj/jacobians_distributional_augmented.npz",
     )
     parser.add_argument("--state-space-spec", default="outputs/ssj/stochastic/state_space/state_space_spec.json")
-    parser.add_argument("--fitted-policy-rules", default="outputs/ssj/stochastic/main_voi_joint_filter/fitted_policy_rules.csv")
+    parser.add_argument("--fitted-policy-rules", default="outputs/ssj/stochastic/large_sample/fitted_policy_rules.csv")
     parser.add_argument("--output-dir", default="outputs/ssj/stochastic/closed_loop_distributional_ssj")
     parser.add_argument("--test-seeds", default="906:911")
     parser.add_argument("--modes", default="closed_loop_local_projection")
@@ -74,24 +77,44 @@ def main() -> None:
     parser.add_argument("--damping", type=float, default=0.5)
     parser.add_argument("--force-rebuild-distributional-jacobians", action="store_true")
     parser.add_argument("--allow-fallback-distributional-jacobians", action="store_true")
+    parser.add_argument("--allow-shifted-transition-fallback", action="store_true")
+    parser.add_argument("--distributional-jacobian-difference-method", choices=("central", "forward"), default="central")
     parser.add_argument("--distributional-jacobian-horizon", type=int, default=None)
+    parser.add_argument(
+        "--distributional-jacobian-audit-dir",
+        default="outputs/ssj/stochastic/distributional_jacobian_audit",
+    )
+    parser.add_argument("--mass-convergence-failure-threshold", type=float, default=0.05)
+    parser.add_argument("--skip-final-protocol-gate", action="store_true")
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     augmented_jacobians = Path(args.augmented_jacobians)
+    allow_shifted_transition_fallback = bool(
+        args.allow_shifted_transition_fallback or args.allow_fallback_distributional_jacobians
+    )
+    strict_shifted_transition_fallback = not allow_shifted_transition_fallback
     _ensure_distributional_jacobians(
         base_jacobians=Path(args.base_jacobians),
         augmented_jacobians=augmented_jacobians,
         output_dir=output_dir,
         force=bool(args.force_rebuild_distributional_jacobians),
         horizon=args.distributional_jacobian_horizon,
+        difference_method=args.distributional_jacobian_difference_method,
+        strict_shifted_transition_fallback=strict_shifted_transition_fallback,
     )
 
     require_direct = not bool(args.allow_fallback_distributional_jacobians)
     if require_direct and not has_direct_distributional_jacobians(augmented_jacobians):
         missing = ", ".join(required_distributional_jacobian_keys())
         raise RuntimeError(f"Missing direct distributional Jacobians: {missing}")
+    shifted_fallback_periods = _shifted_transition_fallback_periods(output_dir / "distributional_policy_jacobians_spec.json")
+    if strict_shifted_transition_fallback and shifted_fallback_periods:
+        raise RuntimeError(
+            "Distributional Jacobian strict mode forbids shifted-transition fallback periods: "
+            + ", ".join(str(period) for period in shifted_fallback_periods)
+        )
 
     modes = tuple(part.strip() for part in args.modes.split(",") if part.strip())
     test_seeds = _parse_seed_range(args.test_seeds)
@@ -145,6 +168,15 @@ def main() -> None:
     pairwise = _pairwise_table(losses)
     convergence = _convergence_summary(diagnostics)
     jacobian_diagnostics = _jacobian_diagnostics(augmented_jacobians)
+    final_protocol_gate = _final_protocol_gate(
+        convergence=convergence,
+        jacobian_spec_json=output_dir / "distributional_policy_jacobians_spec.json",
+        audit_gate_json=Path(args.distributional_jacobian_audit_dir) / "final_protocol_gate.json",
+        require_direct=require_direct,
+        strict_shifted_transition_fallback=strict_shifted_transition_fallback,
+        mass_convergence_failure_threshold=float(args.mass_convergence_failure_threshold),
+        skip_audit_gate=bool(args.skip_final_protocol_gate),
+    )
 
     losses.to_csv(output_dir / "trajectory_losses_closed_loop.csv", index=False)
     diagnostics.to_csv(output_dir / "convergence_diagnostics.csv", index=False)
@@ -152,6 +184,10 @@ def main() -> None:
     pairwise.to_csv(output_dir / "pairwise_closed_loop_value_of_information.csv", index=False)
     convergence.to_csv(output_dir / "convergence_summary.csv", index=False)
     jacobian_diagnostics.to_csv(output_dir / "direct_distributional_jacobian_diagnostics.csv", index=False)
+    (output_dir / "final_protocol_gate.json").write_text(
+        json.dumps(final_protocol_gate, ensure_ascii=False, indent=2, allow_nan=False),
+        encoding="utf-8",
+    )
     _write_latex(summary, output_dir / "table_main_voi_closed_loop_summary.tex")
     _write_latex(pairwise, output_dir / "table_pairwise_closed_loop_value_of_information.tex")
     _write_latex(convergence, output_dir / "table_convergence_summary.tex")
@@ -173,6 +209,9 @@ def main() -> None:
         damping=float(args.damping),
         force_rebuild_distributional_jacobians=bool(args.force_rebuild_distributional_jacobians),
         require_direct_distributional_jacobians=require_direct,
+        strict_shifted_transition_fallback=strict_shifted_transition_fallback,
+        distributional_jacobian_difference_method=args.distributional_jacobian_difference_method,
+        final_protocol_gate=str(output_dir / "final_protocol_gate.json"),
         note=(
             "Контрфактическая ставка меняет агрегаты и распределительные статистики через локальные "
             "HANK/SSJ-матрицы. После этого заново строятся наблюдения, фильтр и ставка правила."
@@ -182,10 +221,13 @@ def main() -> None:
         json.dumps(asdict(spec), ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-    _write_report(summary, pairwise, convergence, jacobian_diagnostics, output_dir / "report_closed_loop.md")
+    _write_report(summary, pairwise, convergence, jacobian_diagnostics, final_protocol_gate, output_dir / "report_closed_loop.md")
     print(f"Wrote {output_dir / 'main_voi_closed_loop_summary.csv'}")
     print(f"Wrote {output_dir / 'convergence_diagnostics.csv'}")
     print(f"Wrote {output_dir / 'report_closed_loop.md'}")
+    if not bool(final_protocol_gate["passed"]):
+        failed = ", ".join(check["name"] for check in final_protocol_gate["checks"] if not check["passed"])
+        raise RuntimeError(f"Closed-loop final protocol gate failed: {failed}")
 
 
 def _ensure_distributional_jacobians(
@@ -195,17 +237,59 @@ def _ensure_distributional_jacobians(
     output_dir: Path,
     force: bool,
     horizon: int | None,
+    difference_method: str,
+    strict_shifted_transition_fallback: bool,
 ) -> None:
-    if augmented_jacobians.exists() and has_direct_distributional_jacobians(augmented_jacobians) and not force:
+    spec_json = output_dir / "distributional_policy_jacobians_spec.json"
+    if (
+        augmented_jacobians.exists()
+        and has_direct_distributional_jacobians(augmented_jacobians)
+        and not force
+        and _existing_distributional_jacobians_match(
+            spec_json=spec_json,
+            requested_horizon=horizon,
+            difference_method=difference_method,
+            strict_shifted_transition_fallback=strict_shifted_transition_fallback,
+        )
+    ):
         return
     augment_jacobians_with_distributional_policy_responses(
         base_jacobians_npz=base_jacobians,
         output_npz=augmented_jacobians,
         output_long_csv=output_dir / "distributional_policy_jacobians_long.csv",
         output_spec_json=output_dir / "distributional_policy_jacobians_spec.json",
+        output_diagnostics_csv=output_dir / "distributional_policy_jacobian_transition_diagnostics.csv",
         horizon=horizon,
+        difference_method=difference_method,
+        strict_mode=strict_shifted_transition_fallback,
         suppress_solver_output=True,
     )
+
+
+def _existing_distributional_jacobians_match(
+    *,
+    spec_json: Path,
+    requested_horizon: int | None,
+    difference_method: str,
+    strict_shifted_transition_fallback: bool,
+) -> bool:
+    if not spec_json.exists():
+        return False
+    spec = json.loads(spec_json.read_text(encoding="utf-8"))
+    if spec.get("difference_method", "forward") != difference_method:
+        return False
+    if requested_horizon is not None and int(spec.get("horizon", -1)) != int(requested_horizon):
+        return False
+    if strict_shifted_transition_fallback and spec.get("failed_shifted_transition_periods", []):
+        return False
+    return True
+
+
+def _shifted_transition_fallback_periods(spec_json: Path) -> tuple[int, ...]:
+    if not spec_json.exists():
+        return ()
+    spec = json.loads(spec_json.read_text(encoding="utf-8"))
+    return tuple(int(period) for period in spec.get("failed_shifted_transition_periods", []))
 
 
 def _summary_table(losses: pd.DataFrame) -> pd.DataFrame:
@@ -299,6 +383,10 @@ def _convergence_summary(diagnostics: pd.DataFrame) -> pd.DataFrame:
                 "mean_rate_update_norm": float(frame["rate_update_norm"].mean()),
                 "mean_state_update_norm": float(frame["state_update_norm"].mean()),
                 "mean_distribution_update_norm": float(frame["distribution_update_norm"].mean()),
+                "mean_rate_inversion_residual": float(frame["rate_inversion_residual"].mean()),
+                "max_rate_inversion_residual": float(frame["rate_inversion_residual"].max()),
+                "rate_inversion_condition_number": float(frame["rate_inversion_condition_number"].max()),
+                "ridge_used": float(frame["ridge_used"].iloc[0]),
                 "max_spectral_radius_local_loop": float(frame["spectral_radius_local_loop"].max()),
                 "mean_stability_penalty": float(frame["stability_penalty"].mean()),
                 "mean_convergence_penalty": float(frame["convergence_penalty"].mean()),
@@ -314,6 +402,10 @@ def _jacobian_diagnostics(jacobians_npz: Path) -> pd.DataFrame:
         for key in required_distributional_jacobian_keys():
             if key in bundle.files:
                 matrix = np.asarray(bundle[key], dtype=float)
+                try:
+                    condition_number = float(np.linalg.cond(matrix))
+                except np.linalg.LinAlgError:
+                    condition_number = np.inf
                 rows.append(
                     {
                         "jacobian_key": key,
@@ -321,6 +413,7 @@ def _jacobian_diagnostics(jacobians_npz: Path) -> pd.DataFrame:
                         "shape": f"{matrix.shape[0]}x{matrix.shape[1]}",
                         "frobenius_norm": float(np.linalg.norm(matrix)),
                         "max_abs": float(np.max(np.abs(matrix))),
+                        "condition_number": condition_number,
                     }
                 )
             else:
@@ -331,9 +424,95 @@ def _jacobian_diagnostics(jacobians_npz: Path) -> pd.DataFrame:
                         "shape": "",
                         "frobenius_norm": np.nan,
                         "max_abs": np.nan,
+                        "condition_number": np.nan,
                     }
                 )
     return pd.DataFrame(rows)
+
+
+def _final_protocol_gate(
+    *,
+    convergence: pd.DataFrame,
+    jacobian_spec_json: Path,
+    audit_gate_json: Path,
+    require_direct: bool,
+    strict_shifted_transition_fallback: bool,
+    mass_convergence_failure_threshold: float,
+    skip_audit_gate: bool,
+) -> dict[str, object]:
+    checks: list[dict[str, object]] = []
+    fallback_periods = _shifted_transition_fallback_periods(jacobian_spec_json)
+    checks.append(
+        {
+            "name": "no_shifted_transition_fallback",
+            "passed": bool((not strict_shifted_transition_fallback) or not fallback_periods),
+            "value": list(fallback_periods),
+            "threshold": "empty list",
+        }
+    )
+    fallback_effects = sorted(set(",".join(convergence["fallback_effects"].fillna("").astype(str)).split(",")) - {""})
+    checks.append(
+        {
+            "name": "no_closed_loop_aggregate_regression_fallback",
+            "passed": bool((not require_direct) or not fallback_effects),
+            "value": fallback_effects,
+            "threshold": "empty list",
+        }
+    )
+    max_failure_rate = float(convergence["convergence_failure_rate"].max()) if not convergence.empty else None
+    checks.append(
+        {
+            "name": "closed_loop_no_mass_nonconvergence",
+            "passed": bool(max_failure_rate is not None and max_failure_rate <= mass_convergence_failure_threshold),
+            "value": max_failure_rate,
+            "threshold": mass_convergence_failure_threshold,
+        }
+    )
+    if skip_audit_gate:
+        checks.append(
+            {
+                "name": "eps_grid_audit_gate",
+                "passed": True,
+                "value": "skipped",
+                "threshold": "outputs/ssj/stochastic/distributional_jacobian_audit/final_protocol_gate.json passed",
+            }
+        )
+    elif audit_gate_json.exists():
+        audit_gate = json.loads(audit_gate_json.read_text(encoding="utf-8"))
+        required_audit_checks = {
+            "mvoi_sign_stable_eps_grid",
+            "mvoi_magnitude_order_stable_eps_grid",
+            "no_shifted_transition_fallback",
+        }
+        seen_audit_checks: set[str] = set()
+        for check in audit_gate.get("checks", []):
+            if check.get("name") in required_audit_checks:
+                seen_audit_checks.add(str(check.get("name")))
+                copied = dict(check)
+                copied["name"] = f"audit_{copied['name']}"
+                checks.append(copied)
+        for missing in sorted(required_audit_checks - seen_audit_checks):
+            checks.append(
+                {
+                    "name": f"audit_{missing}",
+                    "passed": False,
+                    "value": f"missing in {audit_gate_json}",
+                    "threshold": "present and passed",
+                }
+            )
+    else:
+        checks.append(
+            {
+                "name": "eps_grid_audit_gate",
+                "passed": False,
+                "value": f"missing: {audit_gate_json}",
+                "threshold": "run experiments/exp37_audit_distributional_jacobians.py",
+            }
+        )
+    return {
+        "passed": all(bool(check["passed"]) for check in checks),
+        "checks": checks,
+    }
 
 
 def _mode_scenario_groups(losses: pd.DataFrame):
@@ -355,6 +534,7 @@ def _write_report(
     pairwise: pd.DataFrame,
     convergence: pd.DataFrame,
     jacobian_diagnostics: pd.DataFrame,
+    final_protocol_gate: dict[str, object],
     path: Path,
 ) -> None:
     lines = [
@@ -369,7 +549,10 @@ def _write_report(
     ]
     for _, row in jacobian_diagnostics.iterrows():
         status = "есть" if row["available"] else "нет"
-        lines.append(f"- {row['jacobian_key']}: {status}, max abs {row['max_abs']:.6g}.")
+        lines.append(
+            f"- {row['jacobian_key']}: {status}, max abs {row['max_abs']:.6g}, "
+            f"Frobenius {row['frobenius_norm']:.6g}, condition {row['condition_number']:.6g}."
+        )
 
     for mode in summary["mode"].drop_duplicates():
         block = summary[(summary["mode"] == mode) & (summary["scenario"] == "all")].sort_values("mean_loss")
@@ -395,8 +578,14 @@ def _write_report(
             lines.append(
                 f"- {row['mode']}, {row['information_state_ru']}: доля несходимости "
                 f"{row['convergence_failure_rate']:.3g}, средняя норма обновления распределительных статистик "
-                f"{row['mean_distribution_update_norm']:.3g}."
+                f"{row['mean_distribution_update_norm']:.3g}, mean rate-inversion residual "
+                f"{row['mean_rate_inversion_residual']:.3g}, cond(J_i) "
+                f"{row['rate_inversion_condition_number']:.3g}, ridge {row['ridge_used']:.1e}."
             )
+    lines.extend(["", "## Финальный протокол", ""])
+    lines.append(f"Gate: {'PASS' if final_protocol_gate['passed'] else 'FAIL'}.")
+    for check in final_protocol_gate["checks"]:
+        lines.append(f"- {check['name']}: {'PASS' if check['passed'] else 'FAIL'}; value={check['value']}.")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 

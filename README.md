@@ -46,9 +46,15 @@ MVOI_{dist}=J(s^{filt-agg})-J(s^{filt-dist}).
 
 ```bash
 python3 scripts/run_hank.py --output-dir outputs/hank_core
+python3 experiments/exp00_hank_core_audit.py --hank-core-dir outputs/hank_core
 ```
 
-создаёт HANK-выходы: стационарные агрегаты, распределительные статистики, переходные траектории и `jacobian_summary.csv`.
+создаёт HANK-выходы: стационарные агрегаты, распределительные статистики, переходные траектории и
+`jacobian_summary.csv`. Аудит HANK-ядра проверяет массу и неотрицательность распределения,
+borrowing-constraint shares, policy/Euler proxy residuals, market clearing, steady-state aggregates
+и transition solver residuals по shock types. Результаты сохраняются в
+`outputs/hank_core/audit/steady_state_audit.json`, `outputs/hank_core/audit/transition_audit.csv`
+и `outputs/hank_core/audit/report_hank_core_audit.md`.
 
 Команда
 
@@ -135,39 +141,62 @@ continuous optimization с одинаковым бюджетом для кажд
 Closed-loop проверка с прямыми распределительными SSJ-откликами:
 
 ```bash
+python3 experiments/exp29_large_sample_joint_filter.py
+python3 experiments/exp37_audit_distributional_jacobians.py
+python3 experiments/audit_rate_to_shock_inversion.py
 python3 experiments/exp30_closed_loop_distributional_ssj.py
+python3 experiments/exp36_lqg_information_oracle.py
+python3 experiments/exp38_final_voi_protocol.py
 ```
 
-Она использует уже замороженные правила из `main_voi_joint_filter`, итеративно пересчитывает
+Она использует уже замороженные правила из финального `large_sample`, итеративно пересчитывает
 контрфактическое состояние, наблюдения и фильтрованные признаки. В отличие от старой проверки,
 контрфактическая ставка напрямую меняет распределительные статистики через HANK/SSJ-матрицы.
 Результаты сохраняются в `outputs/ssj/stochastic/closed_loop_distributional_ssj/`.
+
+В финальном протоколе large-sample open-loop/fixed-path оценка является первичной
+оценкой, а closed-loop local projection -- главным credibility check. LQG/Riccati oracle является
+обязательным методологическим ориентиром для той же линейной state-space задачи.
+`exp38_final_voi_protocol.py` требует closed-loop и LQG-артефакты как обязательные этапы, ставит рядом таблицу A
+`open-loop / fixed-path evaluation` и таблицу B `closed-loop local projection`, а для главной пары
+`filtered_distribution` против `filtered_aggregates` фиксирует mean delta, cluster CI,
+sign-flip p-value, win rate, сходимость, spectral radius локальной петли и stability penalty.
+Если closed-loop знак сохраняется, но интервал включает ноль, отчёт пишет
+`effect direction survives, precision weaker`; если знак меняется, финальный gate падает и требует
+диагностики closed-loop среды.
 
 Проверка механизма через локально SSJ-оптимальную ставку:
 
 ```bash
 python3 experiments/exp22_mechanism_optimal_rate_projection.py
 python3 experiments/exp35_mechanism_residualized_crossfit.py
+python3 experiments/exp39_mechanism_dashboard.py
 ```
 
 Она проверяет, помогают ли распределительные признаки предсказывать локально оптимальную ставку и
 будущую силу трансмиссии ставки. Таблица сохраняется в
 `outputs/ssj/stochastic/mechanism_optimal_rate_projection/`, а рисунки -- в `article/figures/`.
 Cross-fit версия дополнительно удаляет из оптимальной ставки и распределительных признаков ту
-часть, которая предсказывается фильтрованными агрегатами out-of-fold.
+часть, которая предсказывается фильтрованными агрегатами out-of-fold. Финальный dashboard
+`exp39_mechanism_dashboard.py` делает этот блок отдельным результатом: две цели
+`local_optimal_rate_t` и `future_marginal_transmission_strength_t`, cross-fitting по `shock_seed`,
+модели A-D, OOF R2 gain, MAE gain, знаки коэффициентов, устойчивость по seed и bins, где
+распределительная информация реально помогает. Выходы пишутся в `outputs/final_protocol/`.
 
 Отрицательный и положительный контроль идентификации:
 
 ```bash
 python3 experiments/exp32_null_distribution_channel.py
 python3 experiments/exp33_known_distribution_channel.py
+python3 experiments/exp38_identification_dashboard.py
 ```
 
 Первый строит null-мир, где распределительные признаки имеют похожую статистику, но не связаны с
 трансмиссией ставки. Второй добавляет в разрыв выпуска известный распределительный канал и
 проверяет, растёт ли оцененный MVOI с силой этого канала. Результаты сохраняются в
 `outputs/ssj/stochastic/null_distribution_channel/` и
-`outputs/ssj/stochastic/known_distribution_channel/`.
+`outputs/ssj/stochastic/known_distribution_channel/`. Сводная строгая таблица
+`гипотеза → тест → результат` сохраняется в `outputs/final_protocol/identification_dashboard.csv`.
 
 Разложение ценности распределительной информации по отдельным признакам:
 
@@ -195,12 +224,15 @@ python3 experiments/exp24_robustness_comparative_statics.py
 
 ```bash
 python3 experiments/exp23_distributional_identification_battery.py
+python3 experiments/exp38_identification_dashboard.py
 ```
 
 В этой проверке агрегатный блок в расширенном информационном состоянии фиксируется равным
 фильтрованным агрегатам, а меняются только распределительные признаки: фактические, искусственные
 с похожей статистикой, перемешанные, сдвинутые во времени и остаточные. Результаты сохраняются в
-`outputs/ssj/stochastic/identification_battery/`.
+`outputs/ssj/stochastic/identification_battery/`. Для финального протокола dashboard сжимает
+эти строки вместе с negative/positive controls в один файл
+`outputs/final_protocol/identification_dashboard.csv`.
 
 Проверка устойчивости к классу правила:
 
@@ -226,6 +258,10 @@ python3 experiments/exp36_lqg_information_oracle.py
 распределительных наблюдениях и LQR-ориентиром полной информации. Результаты сохраняются в
 `outputs/ssj/stochastic/lqg_oracle/`, рисунок -- в
 `article/figures/fig_lqg_oracle_comparison.pdf`.
+В финальном протоколе этот блок не является appendix: `exp38_final_voi_protocol.py` добавляет
+таблицу `table_lqg_oracle_benchmark.csv` с пятью контроллерами и диагностику, отвечающую на три
+вопроса: есть ли ценность распределительных наблюдений внутри LQG, насколько простое правило далеко
+от LQG и не является ли MVOI простого правила артефактом плохой оптимизации.
 
 Информационная граница:
 
@@ -272,46 +308,37 @@ python3 experiments/exp28_optimizer_noise_audit.py \
 Скрипт сохраняет распределение MVOI по seed оптимизатора, разброс тестовых потерь по каждому
 информационному состоянию, разброс коэффициентов и частоту выбора лучшего состояния.
 
-Large-sample прогон с отдельными shock seed и observation seed:
+Основной large-sample прогон с отдельными shock seed и observation seed:
 
 ```bash
 python3 experiments/exp29_large_sample_joint_filter.py
 ```
 
-Быстрая увеличенная проверка, уже посчитанная в текущих артефактах:
+Эта команда является основным статистическим протоколом: train shock seeds `0:199`,
+validation shock seeds `200:399`, test shock seeds `400:899`, validation observation seeds
+`930:959`, test observation seeds `960:999`. Она сохраняет результаты в
+`outputs/ssj/stochastic/large_sample/`.
+
+Маленький прогон оставлен только как smoke-тест инженерного контура:
 
 ```bash
-python3 experiments/exp29_large_sample_joint_filter.py \
-  --train-shock-seeds 0:49 \
-  --validation-shock-seeds 200:219 \
-  --test-shock-seeds 400:499 \
-  --observation-seeds-validation 930:934 \
-  --observation-seeds-test 960:969 \
-  --num-candidates 120 \
-  --maxiter 12 \
-  --cluster-bootstrap-reps 1000 \
-  --output-dir outputs/ssj/stochastic/large_sample
+python3 experiments/exp29_large_sample_joint_filter.py --smoke-test
 ```
 
-Полный финальный split для тяжёлого запуска:
-
-```bash
-python3 experiments/exp29_large_sample_joint_filter.py \
-  --train-shock-seeds 0:199 \
-  --validation-shock-seeds 200:399 \
-  --test-shock-seeds 400:899 \
-  --observation-seeds-validation 930:959 \
-  --observation-seeds-test 960:999
-```
+Smoke-тест пишет в `outputs/ssj/stochastic/large_sample_smoke/` и не должен использоваться как
+таблица финальной статьи.
 
 В этом блоке `shock_seed` задаёт независимую HANK/SSJ-траекторию, `observation_seed` задаёт шум
-наблюдений, а кластерные интервалы строятся по `shock_seed`. Итоговая таблица лежит в
-`outputs/ssj/stochastic/large_sample/main_voi_summary.csv`; подробные строки по отдельным
-HANK/SSJ-шокам вынесены в `main_voi_by_shock_cluster.csv`.
+наблюдений. Основной вывод строится иерархически: `shock_seed` является внешним кластером, а
+`observation_seed` -- вложенным измерительным шумом. Итоговая таблица лежит в
+`outputs/ssj/stochastic/large_sample/main_voi_summary.csv`, основной вывод -- в
+`hierarchical_inference.csv` и `main_inference.csv`; подробные строки по отдельным HANK/SSJ-шокам
+вынесены в `main_voi_by_shock_cluster.csv`.
 
 Файл `pairwise_value_of_information.csv` дополнительно содержит несколько проверок для одной и той
 же парной разности: обычный bootstrap, кластерный bootstrap, wild-bootstrap, перестановочный
-p-value, sign-flip p-value по HANK/SSJ-кластерам, долю выигрышей и долю проигрышей.
+p-value, sign-flip p-value по HANK/SSJ-кластерам, долю выигрышей и долю проигрышей. Эти проверки
+остаются диагностикой; основная статистика статьи берётся из `hierarchical_inference.csv`.
 
 Старые проверки с искусственными распределительными статистиками оставлены как дополнительная
 техническая проверка:

@@ -49,6 +49,9 @@ class ClosedLoopDiagnostics:
     spectral_radius_local_loop: float
     stability_penalty: float
     convergence_penalty: float
+    rate_inversion_residual: float
+    rate_inversion_condition_number: float
+    ridge_used: float
     max_abs_rate: float
     max_abs_rate_change: float
     missing_direct_jacobians: tuple[str, ...]
@@ -59,6 +62,21 @@ class ClosedLoopDiagnostics:
 class ClosedLoopResult:
     loss: TrajectoryLoss
     diagnostics: ClosedLoopDiagnostics
+
+
+@dataclass(frozen=True)
+class RateToShockInversion:
+    rate_response: np.ndarray
+    shock_from_rate: np.ndarray
+    reconstruction_operator: np.ndarray
+    condition_number: float
+    ridge: float
+
+    def residual_norm(self, rate_deviation: np.ndarray) -> float:
+        values = np.asarray(rate_deviation, dtype=float)
+        periods = values.size
+        residual = self.reconstruction_operator[:periods, :periods] @ values - values
+        return float(np.linalg.norm(residual))
 
 
 class ClosedLoopSSJEnvironment:
@@ -99,11 +117,12 @@ class ClosedLoopSSJEnvironment:
         self.scenarios = tuple(sorted({key[0] for key in self._observables}))
         self.seeds = tuple(sorted({key[1] for key in self._observations}))
         self.periods = int(max(len(frame) for frame in self._observables.values()))
-        self._effects, self.effect_sources = _rate_path_effects(
+        self._ridge = float(ridge)
+        self._effects, self.effect_sources, self._rate_inversion = _rate_path_effects(
             jacobians=jacobians,
             observables=observables,
             periods=self.periods,
-            ridge=ridge,
+            ridge=self._ridge,
         )
         self.missing_direct_jacobians = tuple(
             state for state, source in self.effect_sources.items() if source != "direct_jacobian"
@@ -232,6 +251,9 @@ class ClosedLoopSSJEnvironment:
             spectral_radius_local_loop=spectral_radius_local_loop,
             stability_penalty=float(stability_penalty),
             convergence_penalty=float(convergence_penalty),
+            rate_inversion_residual=self._rate_inversion.residual_norm(final_rate_deviation),
+            rate_inversion_condition_number=float(self._rate_inversion.condition_number),
+            ridge_used=float(self._rate_inversion.ridge),
             max_abs_rate=float(np.max(np.abs(policy_rate))),
             max_abs_rate_change=float(np.max(np.abs(policy_rate - np.r_[0.0, policy_rate[:-1]]))),
             missing_direct_jacobians=self.missing_direct_jacobians,
@@ -428,13 +450,12 @@ def _rate_path_effects(
     observables: pd.DataFrame,
     periods: int,
     ridge: float,
-) -> tuple[dict[str, np.ndarray], dict[str, str]]:
+) -> tuple[dict[str, np.ndarray], dict[str, str], RateToShockInversion]:
     rate_key = "J_monetary_policy_shock_i"
     if rate_key not in jacobians:
         raise ValueError(f"Jacobian bundle does not contain {rate_key}.")
-    rate_response = jacobians[rate_key][:periods, :periods]
-    normal = rate_response.T @ rate_response + float(ridge) * np.eye(periods)
-    shock_from_rate = np.linalg.solve(normal, rate_response.T)
+    inversion = _rate_to_shock_inversion(jacobians=jacobians, periods=periods, ridge=ridge)
+    shock_from_rate = inversion.shock_from_rate
 
     effects: dict[str, np.ndarray] = {}
     sources: dict[str, str] = {}
@@ -455,7 +476,29 @@ def _rate_path_effects(
         else:
             effects[variable] = effect
             sources[variable] = "aggregate_regression_fallback"
-    return effects, sources
+    return effects, sources, inversion
+
+
+def _rate_to_shock_inversion(
+    *,
+    jacobians: dict[str, np.ndarray],
+    periods: int,
+    ridge: float,
+) -> RateToShockInversion:
+    rate_key = "J_monetary_policy_shock_i"
+    if rate_key not in jacobians:
+        raise ValueError(f"Jacobian bundle does not contain {rate_key}.")
+    rate_response = np.asarray(jacobians[rate_key], dtype=float)[:periods, :periods]
+    normal = rate_response.T @ rate_response + float(ridge) * np.eye(periods)
+    shock_from_rate = np.linalg.solve(normal, rate_response.T)
+    reconstruction_operator = rate_response @ shock_from_rate
+    return RateToShockInversion(
+        rate_response=rate_response,
+        shock_from_rate=shock_from_rate,
+        reconstruction_operator=reconstruction_operator,
+        condition_number=float(np.linalg.cond(rate_response)),
+        ridge=float(ridge),
+    )
 
 
 def _distributional_fallback_effects(

@@ -261,6 +261,10 @@ def _convergence_summary(diagnostics: pd.DataFrame) -> pd.DataFrame:
                 "mean_iterations": float(frame["iterations"].mean()),
                 "mean_rate_update_norm": float(frame["rate_update_norm"].mean()),
                 "mean_state_update_norm": float(frame["state_update_norm"].mean()),
+                "mean_rate_inversion_residual": float(frame["rate_inversion_residual"].mean()),
+                "max_rate_inversion_residual": float(frame["rate_inversion_residual"].max()),
+                "rate_inversion_condition_number": float(frame["rate_inversion_condition_number"].max()),
+                "ridge_used": float(frame["ridge_used"].iloc[0]),
                 "mean_stability_penalty": float(frame["stability_penalty"].mean()),
                 "mean_convergence_penalty": float(frame["convergence_penalty"].mean()),
                 "fallback_effects": ",".join(sorted(set(",".join(frame["fallback_effects"]).split(",")) - {""})),
@@ -319,6 +323,19 @@ def _write_report(
     lines.extend(["## Сходимость", ""])
     for mode, rate in failure_rate.items():
         lines.append(f"- {mode}: доля несошедшихся траекторий {rate:.3g}.")
+    inversion = diagnostics.groupby("mode", sort=False).agg(
+        mean_rate_inversion_residual=("rate_inversion_residual", "mean"),
+        max_rate_inversion_residual=("rate_inversion_residual", "max"),
+        rate_inversion_condition_number=("rate_inversion_condition_number", "max"),
+        ridge_used=("ridge_used", "first"),
+    )
+    lines.extend(["", "## Обратное отображение ставки", ""])
+    for mode, row in inversion.iterrows():
+        lines.append(
+            f"- {mode}: mean residual {row['mean_rate_inversion_residual']:.3g}, "
+            f"max residual {row['max_rate_inversion_residual']:.3g}, "
+            f"cond(J_i) {row['rate_inversion_condition_number']:.3g}, ridge {row['ridge_used']:.1e}."
+        )
     fallback = sorted(set(",".join(diagnostics["fallback_effects"]).split(",")) - {""})
     if fallback:
         lines.extend(

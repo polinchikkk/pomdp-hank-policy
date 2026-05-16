@@ -10,9 +10,12 @@ from .artifacts import SSJArtifactSpec, export_long_jacobian_to_npz
 from .closed_loop_environment import ClosedLoopDiagnostics, ClosedLoopResult, ClosedLoopSSJEnvironment
 from .distributional_jacobians import (
     DistributionalJacobianSpec,
+    TransitionSolveDiagnostics,
     augment_jacobians_with_distributional_policy_responses,
+    build_distributional_policy_jacobians,
     has_direct_distributional_jacobians,
     required_distributional_jacobian_keys,
+    transition_diagnostics_to_frame,
 )
 from .filters import FilterBuildSpec, ScalarFilterParams, build_filtered_states
 from .information_sets import InformationStateInputSpec, build_information_state_inputs
@@ -37,6 +40,7 @@ __all__ = [
     "ClosedLoopSSJEnvironment",
     "DEFAULT_STATE_NAMES",
     "DistributionalJacobianSpec",
+    "TransitionSolveDiagnostics",
     "HankSSJPolicyEnvironment",
     "HankObservableBuildSpec",
     "InformationStateInputSpec",
@@ -52,6 +56,7 @@ __all__ = [
     "TrajectoryLoss",
     "build_shock_response_library",
     "augment_jacobians_with_distributional_policy_responses",
+    "build_distributional_policy_jacobians",
     "build_filtered_states",
     "build_joint_kalman_filtered_states",
     "generate_stochastic_hank_paths",
@@ -63,5 +68,6 @@ __all__ = [
     "fit_state_transition",
     "has_direct_distributional_jacobians",
     "required_distributional_jacobian_keys",
+    "transition_diagnostics_to_frame",
     "run_kalman_filter",
 ]

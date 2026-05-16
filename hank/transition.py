@@ -23,7 +23,7 @@ DEFAULT_TRANSITION_OUTPUTS = [
 ]
 
 
-def solve_transition(bundle, shock_inputs, outputs=None):
+def solve_transition(bundle, shock_inputs, outputs=None, **kwargs):
     outputs = DEFAULT_TRANSITION_OUTPUTS if outputs is None else list(outputs)
     return bundle["model"].solve_impulse_nonlinear(
         bundle["ss"],
@@ -32,6 +32,7 @@ def solve_transition(bundle, shock_inputs, outputs=None):
         shock_inputs,
         outputs=outputs,
         internals=["hh"],
+        **kwargs,
     )
 
 

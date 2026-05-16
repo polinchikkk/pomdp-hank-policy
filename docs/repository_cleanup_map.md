@@ -14,6 +14,7 @@ HANK / метод последовательностей
 ## Рабочие папки
 
 - `hank/` — экономическое HANK-ядро.
+- `hank/audit.py` — аудит стационарного распределения, policy residuals, market clearing и nonlinear transition solver residuals.
 - `hank_ssj/` — интерфейс HANK/SSJ-артефактов и информационных состояний.
 - `policy/` — интерпретируемые правила ставки, сравнение потерь и статистический вывод.
 - `experiments/` — эксперименты HANK/SSJ-линии.
@@ -24,6 +25,7 @@ HANK / метод последовательностей
 
 ## Текущие эксперименты
 
+- `experiments/exp00_hank_core_audit.py` — аудит HANK-ядра перед SSJ/VOI-слоем.
 - `experiments/exp01_ssj_irfs.py` — экспорт якобиана HANK в матричный SSJ-формат.
 - `experiments/exp02_build_hank_observables.py` — сборка \(q_t\) из HANK-выходов.
 - `experiments/exp03_build_observations.py` — построение шумных наблюдений.
@@ -60,6 +62,7 @@ HANK / метод последовательностей
 - `experiments/exp34_distributional_feature_decomposition.py` — разложение MVOI по отдельным распределительным признакам, Shapley и компонентам потерь.
 - `experiments/exp35_mechanism_residualized_crossfit.py` — cross-fit residual mechanism: остаточная распределительная информация после фильтрованных агрегатов.
 - `experiments/exp36_lqg_information_oracle.py` — LQG/LQR Riccati-ориентир для совместной линейной state-space задачи.
+- `experiments/exp39_mechanism_dashboard.py` — финальный mechanism dashboard с cross-fitting по shock seed, двумя целями и bins выигрыша распределительной информации.
 
 ## Общий статистический слой
 
