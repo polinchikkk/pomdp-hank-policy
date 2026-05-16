@@ -214,7 +214,45 @@ python3 experiments/exp21_main_voi_joint_filter.py
 - ликвидность домохозяйств;
 - силу распределительного канала.
 
-Этот блок был посчитан для старого скалярного фильтра и требует повторения на совместном фильтре:
+Финальная версия этого блока -- карта режимов, а не ещё одна robustness-таблица. Она отвечает на
+policy-вопрос: в каких режимах центральному банку достаточно агрегатных сигналов, а в каких
+распределительные данные имеют самостоятельную ценность для правила ставки.
+
+Команда:
+
+```bash
+python3 experiments/exp40_distributional_value_phase_diagram.py
+```
+
+Карты:
+
+- \(x\): сила распределительного канала, \(y\): шум агрегатных наблюдений, цвет: MVOI;
+- \(x\): шум агрегатных наблюдений, \(y\): шум распределительных наблюдений, цвет: MVOI;
+- \(x\): persistence распределительного состояния, \(y\): вес разрыва выпуска в функции потерь,
+  цвет: MVOI.
+
+Контуры показывают статистическую значимость и устойчивость знака по scenario/shock clusters.
+Скрипт использует совместный фильтр Калмана по умолчанию и оценивает главную пару
+`filtered_distribution` против `filtered_aggregates` в том же SSJ-policy evaluator.
+
+Артефакты:
+
+- `outputs/final_protocol/phase_diagrams/distributional_value_phase_diagram.csv`;
+- `outputs/final_protocol/phase_diagrams/channel_strength_x_aggregate_noise.csv`;
+- `outputs/final_protocol/phase_diagrams/aggregate_noise_x_distribution_noise.csv`;
+- `outputs/final_protocol/phase_diagrams/persistence_x_output_gap_weight.csv`;
+- `outputs/final_protocol/phase_diagrams/fig_channel_strength_x_aggregate_noise.{png,pdf}`;
+- `outputs/final_protocol/phase_diagrams/fig_aggregate_noise_x_distribution_noise.{png,pdf}`;
+- `outputs/final_protocol/phase_diagrams/fig_persistence_x_output_gap_weight.{png,pdf}`;
+- `outputs/final_protocol/phase_diagrams/report_distributional_value_phase_diagram.md`.
+
+Smoke-команда:
+
+```bash
+python3 experiments/exp40_distributional_value_phase_diagram.py --smoke-test
+```
+
+Старый одноосевой блок был посчитан для скалярного фильтра и остаётся как историческая проверка:
 
 - `outputs/ssj/stochastic/noise_sensitivity/noise_sensitivity_summary.csv`;
 - `outputs/ssj/stochastic/noise_sensitivity/report_noise_sensitivity.md`.
@@ -877,6 +915,56 @@ python3 experiments/exp35_mechanism_residualized_crossfit.py
 коэффициенты по всем шести фолдам сохраняют один знак. Это сильнее обычной регрессии механизма:
 распределительные остатки объясняют остаток локально оптимальной ставки после удаления агрегатной
 части out-of-fold.
+
+### 18.2. Индекс скрытой силы трансмиссии
+
+Цель: ввести один компактный объект, который связывает распределительные статистики с задачей
+политики:
+\[
+\tau_t(H)=
+\sum_{h=1}^H
+\left(
+w_y|\partial y_{t+h}/\partial i_t|
++w_C|\partial C_{t+h}/\partial i_t|
++w_\pi|\partial \pi_{t+h}/\partial i_t|
+\right).
+\]
+
+Команда:
+
+```bash
+python3 experiments/exp40_transmission_state_value.py
+```
+
+Сравниваются модели:
+
+- A. filtered aggregates;
+- B. filtered aggregates + MPC;
+- C. filtered aggregates + low-liquidity share;
+- D. filtered aggregates + interest exposure;
+- E. filtered aggregates + all distributional statistics;
+- F. filtered aggregates + compact transmission index.
+
+Модель F использует fold-generated compact index, обученный из всех распределительных статистик,
+а не oracle-значение \(\tau_t(H)\). Cross-fitting делается по `shock_seed`. Метрики:
+`oof_R2`, `delta_oof_R2_vs_filtered_aggregates`, `MAE_gain`, `coefficient_sign_stability`,
+`shock_seed_cluster_p`.
+
+Артефакты:
+
+- `outputs/final_protocol/transmission_state_value.csv`;
+- `outputs/final_protocol/transmission_state_value_spec.json`;
+- `article/figures/fig_transmission_state_prediction.pdf`;
+- `article/tables/table_transmission_state_value.tex`.
+
+Текущий полный прогон на available large-sample test artifacts даёт важный отрицательный результат
+для чистой SSJ-нормы: полный распределительный блок имеет
+`delta_oof_R2_vs_filtered_aggregates = -0.00177`, `MAE_gain = -0.000180`, а compact index имеет
+`delta_oof_R2_vs_filtered_aggregates = -0.00178`, `MAE_gain = -0.000457`. Это означает, что
+чистый локальный Jacobian-index \(\tau_t(H)\) в текущей спецификации почти не является тем
+скрытым state variable, который восстанавливают распределительные признаки. Поэтому основной
+положительный mechanism-вывод остаётся за `local_optimal_rate_t`, а \(\tau_t(H)\) служит строгой
+границей: не всякая формально красивая мера трансмиссии поддерживается данными.
 
 ## 19. Проверка локальной линейной аппроксимации SSJ
 

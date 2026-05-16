@@ -434,12 +434,16 @@ def _observation_covariance(
     covariance_floor: float,
 ) -> np.ndarray:
     base_scales = observation_spec.get("base_scales", {})
+    observation_scales = observation_spec.get("observation_scales", {})
     noise_scale = float(observation_spec.get("noise_scale", 1.0))
     scale_floor = float(observation_spec.get("scale_floor", 0.0))
     variances: list[float] = []
     for observation_name in observation_names:
         state_name = OBSERVATION_STATE_BY_NAME[observation_name]
-        scale = float(base_scales.get(state_name, scale_floor)) * noise_scale
+        if isinstance(observation_scales, dict) and state_name in observation_scales:
+            scale = float(observation_scales[state_name])
+        else:
+            scale = float(base_scales.get(state_name, scale_floor)) * noise_scale
         variances.append(max(scale * scale, covariance_floor))
     return np.diag(variances)
 

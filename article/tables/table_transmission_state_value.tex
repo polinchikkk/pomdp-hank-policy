@@ -1,0 +1,12 @@
+\begin{tabular}{llllll}
+\toprule
+model_label & oof_R2 & delta_oof_R2_vs_filtered_aggregates & MAE_gain & coefficient_sign_stability & shock_seed_cluster_p \\
+\midrule
+A. filtered aggregates & -0.00248172 & 0 & 0 & 0.733333 &  \\
+B. filtered aggregates + MPC & -0.002434 & 4.77207e-05 & -2.50715e-06 & 1 & 0.496876 \\
+C. filtered aggregates + low-liquidity share & -0.00297078 & -0.000489062 & -0.000263311 & 1 & 0.805799 \\
+D. filtered aggregates + interest exposure & -0.00320551 & -0.000723796 & -0.000320891 & 1 & 0.836041 \\
+E. filtered aggregates + all distributional statistics & -0.00424686 & -0.00176514 & -0.000179743 & 0.866667 & 0.657086 \\
+F. filtered aggregates + compact transmission index & -0.00426278 & -0.00178107 & -0.000456519 & 1 & 0.830792 \\
+\bottomrule
+\end{tabular}

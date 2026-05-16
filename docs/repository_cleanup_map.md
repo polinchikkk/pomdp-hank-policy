@@ -62,7 +62,12 @@ HANK / метод последовательностей
 - `experiments/exp34_distributional_feature_decomposition.py` — разложение MVOI по отдельным распределительным признакам, Shapley и компонентам потерь.
 - `experiments/exp35_mechanism_residualized_crossfit.py` — cross-fit residual mechanism: остаточная распределительная информация после фильтрованных агрегатов.
 - `experiments/exp36_lqg_information_oracle.py` — LQG/LQR Riccati-ориентир для совместной линейной state-space задачи.
+- `experiments/exp37_audit_distributional_jacobians.py` — аудит прямых распределительных SSJ-откликов, central differences, eps-grid и fallback-gate.
+- `experiments/exp38_final_voi_protocol.py` — финальный протокол с large-sample, closed-loop и LQG/Riccati gate.
+- `experiments/exp38_identification_dashboard.py` — строгая таблица идентификации `гипотеза → тест → результат`.
 - `experiments/exp39_mechanism_dashboard.py` — финальный mechanism dashboard с cross-fitting по shock seed, двумя целями и bins выигрыша распределительной информации.
+- `experiments/exp40_distributional_value_phase_diagram.py` — карты режимов MVOI по силе распределительного канала, шуму наблюдений, persistence состояния и весу разрыва выпуска.
+- `experiments/exp40_transmission_state_value.py` — проверка компактного индекса скрытой силы трансмиссии \(\tau_t(H)\) и его предсказуемости из распределительных статистик.
 
 ## Общий статистический слой
 
