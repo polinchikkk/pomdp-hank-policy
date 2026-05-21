@@ -26,49 +26,49 @@ DISTRIBUTIONAL_FEATURES = ("E_mean_mpc", "E_low_liquidity_share", "E_interest_ex
 TRANSMISSION_INDEX_FEATURE = "transmission_index"
 
 FEATURE_LABELS = {
-    "E_pi": "filtered inflation",
-    "E_Y": "filtered output",
-    "E_C": "filtered consumption",
-    "E_mean_mpc": "mean MPC",
-    "E_low_liquidity_share": "low-liquidity share",
-    "E_interest_exposure": "interest-rate exposure",
-    TRANSMISSION_INDEX_FEATURE: "compact transmission index",
+    "E_pi": "фильтрованная инфляция",
+    "E_Y": "фильтрованный выпуск",
+    "E_C": "фильтрованное потребление",
+    "E_mean_mpc": "предельная склонность к потреблению",
+    "E_low_liquidity_share": "доля низколиквидных",
+    "E_interest_exposure": "чувствительность к ставке",
+    TRANSMISSION_INDEX_FEATURE: "компактный индекс трансмиссии",
 }
 
 MODEL_SPECS = (
     {
         "model": "A_filtered_aggregates",
-        "model_label": "A. filtered aggregates",
+        "model_label": "A. агрегатная оценка состояния",
         "features": AGGREGATE_FEATURES,
         "first_stage_index": False,
     },
     {
         "model": "B_aggregates_plus_mpc",
-        "model_label": "B. filtered aggregates + MPC",
+        "model_label": "B. агрегатная оценка + MPC",
         "features": (*AGGREGATE_FEATURES, "E_mean_mpc"),
         "first_stage_index": False,
     },
     {
         "model": "C_aggregates_plus_low_liquidity",
-        "model_label": "C. filtered aggregates + low-liquidity share",
+        "model_label": "C. агрегатная оценка + доля низколиквидных",
         "features": (*AGGREGATE_FEATURES, "E_low_liquidity_share"),
         "first_stage_index": False,
     },
     {
         "model": "D_aggregates_plus_interest_exposure",
-        "model_label": "D. filtered aggregates + interest exposure",
+        "model_label": "D. агрегатная оценка + чувствительность к ставке",
         "features": (*AGGREGATE_FEATURES, "E_interest_exposure"),
         "first_stage_index": False,
     },
     {
         "model": "E_aggregates_plus_all_distributional",
-        "model_label": "E. filtered aggregates + all distributional statistics",
+        "model_label": "E. агрегатная оценка + все распределительные статистики",
         "features": (*AGGREGATE_FEATURES, *DISTRIBUTIONAL_FEATURES),
         "first_stage_index": False,
     },
     {
         "model": "F_aggregates_plus_transmission_index",
-        "model_label": "F. filtered aggregates + compact transmission index",
+        "model_label": "F. агрегатная оценка + компактный индекс трансмиссии",
         "features": (*AGGREGATE_FEATURES, TRANSMISSION_INDEX_FEATURE),
         "first_stage_index": True,
     },
@@ -321,7 +321,7 @@ def _crossfit_predictions(*, dataset: pd.DataFrame, ridge: float) -> tuple[pd.Da
             _coefficient_rows(
                 projection=index_projection,
                 model="first_stage_distributional_index",
-                model_label="First stage: all distributional statistics -> compact transmission index",
+                model_label="Первый этап: распределительные статистики -> компактный индекс трансмиссии",
                 fold=int(fold),
             )
         )
@@ -537,7 +537,21 @@ def _write_latex(summary: pd.DataFrame, path: Path) -> None:
         "coefficient_sign_stability",
         "shock_seed_cluster_p",
     ]
+    label_by_model = {str(spec["model"]): str(spec["model_label"]) for spec in MODEL_SPECS}
+    summary = summary.copy()
+    if "model" in summary.columns:
+        summary["model_label"] = summary["model"].map(label_by_model).fillna(summary["model_label"])
     display = summary.loc[:, columns].copy()
+    display = display.rename(
+        columns={
+            "model_label": "Модель",
+            "oof_R2": "OOF R2",
+            "delta_oof_R2_vs_filtered_aggregates": "Прирост OOF R2",
+            "MAE_gain": "Снижение MAE",
+            "coefficient_sign_stability": "Устойчивость знака",
+            "shock_seed_cluster_p": "p-value по shock seed",
+        }
+    )
     for column in display.select_dtypes(include=[np.number]).columns:
         display[column] = display[column].map(lambda value: "" if pd.isna(value) else f"{value:.6g}")
     path.write_text(display.to_latex(index=False, escape=False), encoding="utf-8")
@@ -545,27 +559,36 @@ def _write_latex(summary: pd.DataFrame, path: Path) -> None:
 
 def _plot(summary: pd.DataFrame, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    frame = summary.copy()
-    labels = [str(label).split(". ", maxsplit=1)[0] for label in frame["model_label"]]
-    x = np.arange(len(frame))
-    fig, axes = plt.subplots(1, 2, figsize=(9.2, 3.8))
-    axes[0].bar(x, frame["delta_oof_R2_vs_filtered_aggregates"].to_numpy(dtype=float), color="#2f6f9f")
-    axes[0].axhline(0.0, color="black", linewidth=0.8)
-    axes[0].set_xticks(x)
-    axes[0].set_xticklabels(labels)
-    axes[0].set_ylabel("OOF R2 gain vs filtered aggregates")
-    axes[0].set_title("Transmission-state prediction")
-    axes[1].bar(x, frame["MAE_gain"].to_numpy(dtype=float), color="#7b5b2e")
-    axes[1].axhline(0.0, color="black", linewidth=0.8)
-    axes[1].set_xticks(x)
-    axes[1].set_xticklabels(labels)
-    axes[1].set_ylabel("MAE gain")
-    axes[1].set_title("Error reduction")
+    frame = summary[~summary["model"].eq("A_filtered_aggregates")].copy()
+    labels = [
+        "MPC",
+        "Доля низколиквидных",
+        "Чувствительность к ставке",
+        "Все статистики",
+        "Показатель отклика",
+    ][: len(frame)]
+    y = np.arange(len(frame))
+    fig, axes = plt.subplots(1, 2, figsize=(9.2, 4.6), sharey=True)
+    r2_values = frame["delta_oof_R2_vs_filtered_aggregates"].to_numpy(dtype=float) * 1e3
+    mae_growth = -frame["MAE_gain"].to_numpy(dtype=float) * 1e5
+    axes[0].barh(y, r2_values, color=np.where(r2_values >= 0.0, "#3ba895", "#c45a70"))
+    axes[0].axvline(0.0, color="black", linewidth=0.8)
+    axes[0].set_yticks(y)
+    axes[0].set_yticklabels(labels, fontsize=12)
+    axes[0].set_xlabel("Изменение R² × 10³", fontsize=12)
+    axes[0].set_title("Изменение R²", fontsize=13)
+    axes[1].barh(y, mae_growth, color=np.where(mae_growth <= 0.0, "#3ba895", "#c45a70"))
+    axes[1].axvline(0.0, color="black", linewidth=0.8)
+    axes[1].set_xlabel("Рост MAE × 10⁵", fontsize=12)
+    axes[1].set_title("Рост MAE", fontsize=13)
+    axes[0].invert_yaxis()
     for ax in axes:
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
+        ax.tick_params(axis="both", labelsize=12)
+        ax.grid(axis="x", alpha=0.25)
     fig.tight_layout()
-    fig.savefig(path)
+    fig.savefig(path, bbox_inches="tight")
     plt.close(fig)
 
 

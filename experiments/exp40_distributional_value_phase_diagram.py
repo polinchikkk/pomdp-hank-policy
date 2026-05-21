@@ -753,12 +753,12 @@ def _plot_map(frame: pd.DataFrame, path_stem: Path) -> None:
         norm=TwoSlopeNorm(vmin=-max_abs, vcenter=0.0, vmax=max_abs),
     )
     colorbar = fig.colorbar(mesh, ax=ax)
-    colorbar.set_label("MVOI: loss reduction from distributional information")
+    colorbar.set_label("ΔJ распределительной информации")
     legend_handles = []
     if x.size >= 2 and y.size >= 2:
         xx, yy = np.meshgrid(x, y)
         if _try_contour(ax, xx, yy, significance.to_numpy(dtype=float), level=0.5, color="black", linestyle="-"):
-            legend_handles.append(Line2D([0], [0], color="black", linestyle="-", linewidth=1.4, label="significant"))
+            legend_handles.append(Line2D([0], [0], color="black", linestyle="-", linewidth=1.4, label="значимо"))
         if _try_contour(
             ax,
             xx,
@@ -768,7 +768,7 @@ def _plot_map(frame: pd.DataFrame, path_stem: Path) -> None:
             color="white",
             linestyle="--",
         ):
-            legend_handles.append(Line2D([0], [0], color="white", linestyle="--", linewidth=1.4, label="sign-stable"))
+            legend_handles.append(Line2D([0], [0], color="white", linestyle="--", linewidth=1.4, label="устойчивый знак"))
     ax.axhline(y=0.0, color="0.5", linewidth=0.6, alpha=0.35)
     ax.axvline(x=0.0, color="0.5", linewidth=0.6, alpha=0.35)
     ax.set_xlabel(_axis_label(x_name))
@@ -820,20 +820,20 @@ def _center_extent(values: np.ndarray) -> tuple[float, float]:
 
 def _axis_label(name: str) -> str:
     labels = {
-        "distributional_channel_strength": "Distributional channel strength",
-        "aggregate_noise_scale": "Noise in aggregate observations",
-        "distribution_noise_scale": "Noise in distributional observations",
-        "distributional_persistence": "Persistence of distributional state",
-        "output_gap_loss_weight": "Policy loss weight on output gap",
+        "distributional_channel_strength": "Сила распределительного канала",
+        "aggregate_noise_scale": "Шум агрегатных наблюдений",
+        "distribution_noise_scale": "Шум распределительных сигналов",
+        "distributional_persistence": "Устойчивость распределительного состояния",
+        "output_gap_loss_weight": "Вес выпуска в функции потерь",
     }
     return labels.get(name, name)
 
 
 def _map_title(name: str) -> str:
     labels = {
-        "channel_strength_x_aggregate_noise": "When distributional information is valuable",
-        "aggregate_noise_x_distribution_noise": "Observation-noise tradeoff",
-        "persistence_x_output_gap_weight": "Persistence and policy objective",
+        "channel_strength_x_aggregate_noise": "Сила канала и шум агрегатов",
+        "aggregate_noise_x_distribution_noise": "Шум агрегатов и распределительных сигналов",
+        "persistence_x_output_gap_weight": "Устойчивость состояния и вес выпуска",
     }
     return labels.get(name, name)
 

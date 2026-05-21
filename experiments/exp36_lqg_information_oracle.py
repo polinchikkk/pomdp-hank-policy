@@ -31,7 +31,7 @@ from policy.lqg_oracle import (  # noqa: E402
 
 CONTROLLER_LABEL_RU = {
     "simple_filtered_aggregates": "Простое правило: фильтрованные агрегаты",
-    "simple_filtered_distribution": "Простое правило: распределительная информация",
+    "simple_filtered_distribution": "Простое правило: агрегаты + распр. сигналы",
     "lqg_aggregate_observations": "LQG: агрегатные наблюдения",
     "lqg_distribution_observations": "LQG: агрегатные и распределительные наблюдения",
     "lqr_full_state": "LQR: полная информация",
@@ -83,7 +83,7 @@ class LQGOracleExperimentSpec:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Build LQG/Riccati information oracles for the linear state-space task.")
+    parser = argparse.ArgumentParser(description="Build LQG/LQR information checks for the linear state-space task.")
     parser.add_argument("--state-space-spec", default="outputs/ssj/stochastic/large_sample/test/state_space/state_space_spec.json")
     parser.add_argument("--hank-observables", default="outputs/ssj/stochastic/large_sample/test/hank_observables.csv")
     parser.add_argument("--hank-observations", default="outputs/ssj/stochastic/large_sample/test/hank_observations.csv")
@@ -161,6 +161,7 @@ def main() -> None:
     gains.to_csv(output_dir / "lqg_oracle_gains.csv", index=False)
 
     _plot_summary(summary, figures_dir / "fig_lqg_oracle_comparison.pdf")
+    _plot_summary(summary, figures_dir / "fig_lqg_oracle_ru.pdf")
 
     spec = LQGOracleExperimentSpec(
         state_space_spec=args.state_space_spec,
@@ -196,6 +197,7 @@ def main() -> None:
     print(f"Wrote {output_dir / 'lqg_oracle_summary.csv'}")
     print(f"Wrote {output_dir / 'lqg_oracle_pairwise.csv'}")
     print(f"Wrote {figures_dir / 'fig_lqg_oracle_comparison.pdf'}")
+    print(f"Wrote {figures_dir / 'fig_lqg_oracle_ru.pdf'}")
 
 
 def _evaluate_controllers(
@@ -410,29 +412,34 @@ def _load_fitted_rule(path: Path, information_state: str) -> LinearRule:
 def _plot_summary(summary: pd.DataFrame, output_path: Path) -> None:
     ordered = summary.copy()
     labels = [
-        "простое\\nагрегаты",
-        "простое\\nраспр.",
-        "LQG\\nагрегаты",
-        "LQG\\nраспр.",
-        "LQR\\nполная",
+        "Простое: агрегаты",
+        "Простое: + распр. сигналы",
+        "LQG: агрегаты",
+        "LQG: + распр. сигналы",
+        "LQR: полная инф.",
     ]
     colors = ["#7a8fa6", "#365f8c", "#e2a447", "#b45f2a", "#355e3b"]
-    fig, ax = plt.subplots(figsize=(7.2, 4.2))
-    x = np.arange(len(ordered))
-    y = ordered["mean_loss"].to_numpy(dtype=float)
+    fig, ax = plt.subplots(figsize=(7.4, 4.0))
+    y_pos = np.arange(len(ordered))
+    mean = ordered["mean_loss"].to_numpy(dtype=float) * 1e4
+    low = ordered["ci_low"].to_numpy(dtype=float) * 1e4
+    high = ordered["ci_high"].to_numpy(dtype=float) * 1e4
     yerr = np.vstack(
         [
-            y - ordered["ci_low"].to_numpy(dtype=float),
-            ordered["ci_high"].to_numpy(dtype=float) - y,
+            mean - low,
+            high - mean,
         ]
     )
-    ax.bar(x, y, yerr=yerr, color=colors, edgecolor="#202020", linewidth=0.6, capsize=3)
-    ax.set_xticks(x, labels)
-    ax.set_ylabel("Средняя функция потерь")
-    ax.set_title("LQG/LQR-ориентир для совместной линейной системы")
-    ax.grid(axis="y", alpha=0.25)
-    fig.tight_layout()
-    fig.savefig(output_path)
+    ax.barh(y_pos, mean, color=colors, edgecolor="#202020", linewidth=0.5)
+    ax.errorbar(mean, y_pos, xerr=yerr, fmt="none", ecolor="#202020", capsize=3, linewidth=1.0)
+    ax.set_yticks(y_pos, labels, fontsize=12)
+    ax.set_xlabel("Средние потери × 10⁴", fontsize=12)
+    ax.grid(axis="x", alpha=0.25)
+    ax.invert_yaxis()
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    fig.subplots_adjust(left=0.34, right=0.97, top=0.96, bottom=0.18)
+    fig.savefig(output_path, bbox_inches="tight")
     plt.close(fig)
 
 
@@ -448,7 +455,7 @@ def _write_report(
     lqg_value = pairwise[pairwise["comparison"] == "lqg_distribution_observations_minus_lqg_aggregate_observations"].iloc[0]
     simple_value = pairwise[pairwise["comparison"] == "simple_filtered_distribution_minus_simple_filtered_aggregates"].iloc[0]
     lines = [
-        "# LQG / Riccati oracle",
+        "# LQG/LQR information check",
         "",
         "Проверка строит верхний ориентир для той же совместной линейной state-space задачи, которая используется в совместном фильтре Калмана.",
         "",

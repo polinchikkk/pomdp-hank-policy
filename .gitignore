@@ -8,5 +8,11 @@ article/*.log
 article/*.out
 article/*.toc
 article/*.pdf
+article/*.bbl
+article/*.blg
 article/*.fdb_latexmk
 article/*.fls
+article/*.synctex.gz
+
+*.tmp
+.ipynb_checkpoints/

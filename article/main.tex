@@ -1,13 +1,18 @@
 \documentclass[12pt]{article}
-\usepackage[T2A]{fontenc}
+\usepackage[T1,T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage{graphicx}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{array}
+\usepackage{tabularx}
+\emergencystretch=2em
 
-\title{Ценность распределительной информации для денежно-кредитной политики при неполной наблюдаемости в локальной HANK/SSJ-среде}
+\title{Предельная ценность распределительной информации для правила процентной ставки в линеаризованной HANK-модели}
 \author{}
 \date{}
 
@@ -17,8 +22,12 @@
 \input{sections/introduction}
 \input{sections/model}
 \input{sections/information_states}
+\input{sections/formal_problem}
 \input{sections/experiments}
 \input{sections/results}
 \input{sections/conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}
