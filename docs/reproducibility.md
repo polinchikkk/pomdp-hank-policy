@@ -7,7 +7,7 @@
 
 ```bash
 python3 scripts/run_hank.py --output-dir outputs/hank_core
-python3 experiments/exp00_hank_core_audit.py --hank-core-dir outputs/hank_core
+python3 experiments/final/00_audit_hank_core.py --hank-core-dir outputs/hank_core
 ```
 
 Выходы:

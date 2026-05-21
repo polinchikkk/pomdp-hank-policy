@@ -42,7 +42,8 @@ J^\star_{\mathrm{agg+dist}}.
 - `hank/` - HANK-ядро и распределительные статистики.
 - `hank_ssj/` - SSJ-отклики, наблюдения и локальная модель в пространстве состояний.
 - `policy/` - правила процентной ставки, функция потерь и линейно-квадратичный ориентир.
-- `experiments/` - расчётные скрипты.
+- `experiments/final/` - финальные точки входа для воспроизведения работы.
+- `experiments/archive/` - исторические и вспомогательные расчётные скрипты.
 - `article/` - текст работы, таблицы и рисунки.
 - `docs/` - технические заметки, воспроизводимость и архивные описания расчётов.
 - `config/` - параметры расчётов.
@@ -59,6 +60,7 @@ bash scripts/run_article_pipeline.sh
 
 ```bash
 python3 scripts/run_hank.py --output-dir outputs/hank_core
+python3 experiments/final/00_audit_hank_core.py --hank-core-dir outputs/hank_core
 python3 experiments/final/01_validate_ssj.py
 python3 experiments/final/03_estimate_information_value.py
 python3 experiments/final/04_mechanism_checks.py
@@ -68,7 +70,7 @@ python3 experiments/final/06_feedback_rate_check.py
 
 Подробная схема воспроизводимости приведена в `docs/reproducibility.md`.
 
-## Ключевые выходы
+## Ключевые выходы после запуска
 
 - `outputs/ssj/stochastic/large_sample/`
 - `article/figures/fig_mechanism_local_response.pdf`

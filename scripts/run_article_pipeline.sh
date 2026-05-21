@@ -2,7 +2,7 @@
 set -euo pipefail
 
 python3 scripts/run_hank.py --output-dir outputs/hank_core
-python3 experiments/exp00_hank_core_audit.py --hank-core-dir outputs/hank_core
+python3 experiments/final/00_audit_hank_core.py --hank-core-dir outputs/hank_core
 python3 experiments/final/01_validate_ssj.py
 python3 experiments/final/03_estimate_information_value.py
 python3 experiments/final/04_mechanism_checks.py

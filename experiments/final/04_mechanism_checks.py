@@ -10,4 +10,4 @@ for script in (
     "exp35_mechanism_residualized_crossfit.py",
     "exp40_transmission_state_value.py",
 ):
-    runpy.run_path(str(ROOT / "experiments" / script), run_name="__main__")
+    runpy.run_path(str(ROOT / "experiments" / "archive" / script), run_name="__main__")
